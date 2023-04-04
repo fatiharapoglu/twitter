@@ -8,7 +8,7 @@
 -   use typscript
 -   use larger state management, redux toolkit
 -   use react query
--   use chakra ui
+-   use chakra ui | material ui
 -   use sass
 
 preparing for big project
