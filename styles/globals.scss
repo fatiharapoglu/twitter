@@ -70,13 +70,13 @@ body {
             flex-direction: column;
             gap: 1rem;
 
-            .btn-sign-up {
-                border: none;
-                color: var(--twitter-white);
-                background-color: var(--twitter-red);
+            .btn-light {
+                color: var(--twitter-red);
+                background-color: var(--twitter-white);
+                border: 1px solid var(--twitter-red);
 
                 &:hover {
-                    background-color: var(--twitter-dark-red);
+                    background-color: var(--twitter-red);
                     color: var(--twitter-white);
                 }
             }
@@ -85,14 +85,14 @@ body {
 }
 
 .btn {
+    background-color: var(--twitter-red);
+    color: var(--twitter-white);
+    border: none;
     border-radius: 1rem;
-    background-color: var(--twitter-white);
-    border: 1px solid var(--twitter-red);
     padding: 0.5rem;
-    color: var(--twitter-red);
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
         background-color: var(--twitter-dark-red);
