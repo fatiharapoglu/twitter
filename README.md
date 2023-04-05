@@ -11,4 +11,6 @@
 -   use chakra ui | material ui
 -   use sass
 
+-   [] material ui colors
+
 preparing for big project

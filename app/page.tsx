@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import SignUpDialog from "@/components/homepage/SignUpDialog";
-import LogInDialog from "@/components/homepage/LogInDialog";
+import SignUpDialog from "@/components/root/SignUpDialog";
+import LogInDialog from "@/components/root/LogInDialog";
 
-export default function Home() {
+export default function Root() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [isLogInOpen, setIsLogInOpen] = useState(false);
 
@@ -28,14 +28,14 @@ export default function Home() {
 
     return (
         <>
-            <main className="homepage">
-                <div className="homepage-left">
-                    <Image src="/assets/homepage.jpg" alt="" fill />
-                    <div className="homepage-left-logo">
+            <main className="root">
+                <div className="root-left">
+                    <Image src="/assets/root.jpg" alt="" fill />
+                    <div className="root-left-logo">
                         <Image src="/assets/favicon.png" alt="" width={120} height={120} />
                     </div>
                 </div>
-                <div className="homepage-right">
+                <div className="root-right">
                     <Image src="/assets/favicon.png" alt="" width={50} height={50} />
                     <h1>See what&apos;s happening in the world right now</h1>
                     <p>Join Twitter today.</p>
