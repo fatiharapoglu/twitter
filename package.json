@@ -16,19 +16,22 @@
         "@emotion/react": "^11.10.6",
         "@emotion/styled": "^11.10.6",
         "@mui/material": "^5.11.16",
-        "@types/node": "18.15.11",
+        "@prisma/client": "^4.12.0",
         "@types/react": "18.0.31",
         "@types/react-dom": "18.0.11",
         "eslint": "8.37.0",
         "eslint-config-next": "13.2.4",
         "next": "13.2.4",
         "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "typescript": "5.0.2"
+        "react-dom": "18.2.0"
     },
     "devDependencies": {
+        "@types/node": "^18.15.11",
         "eslint-config-prettier": "^8.8.0",
         "prettier": "^2.8.7",
-        "sass": "^1.60.0"
+        "prisma": "^4.12.0",
+        "sass": "^1.60.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.3"
     }
 }

@@ -10,7 +10,7 @@ export const metadata = {
     },
 };
 
-const roboto = Roboto({ subsets: ["latin"], weight: "500" });
+const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (

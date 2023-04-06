@@ -6,7 +6,7 @@ import Image from "next/image";
 import SignUpDialog from "@/components/root/SignUpDialog";
 import LogInDialog from "@/components/root/LogInDialog";
 
-export default function Root() {
+export default function RootPage() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [isLogInOpen, setIsLogInOpen] = useState(false);
 

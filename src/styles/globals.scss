@@ -1,5 +1,5 @@
 :root {
-    --background-primary: #f5f8fa;
+    --background-primary: #ffffff;
     --twitter-red: #ff0100;
     --twitter-dark-red: #a30000;
     --twitter-blue: #1da1f2;
@@ -8,6 +8,7 @@
     --twitter-light-gray: #aab8c2;
     --twitter-black: #14171a;
     --twitter-white: #f5f8fa;
+    --border-color: #eff3f4;
 }
 
 a {
@@ -113,7 +114,7 @@ body {
         align-items: flex-end;
         justify-content: center;
         padding: 2.5rem;
-        border-right: 1px solid var(--twitter-light-gray);
+        border-right: 1px solid var(--border-color);
     }
 
     .center {
@@ -126,6 +127,6 @@ body {
         align-items: flex-start;
         justify-content: center;
         padding: 2.5rem;
-        border-left: 1px solid var(--twitter-light-gray);
+        border-left: 1px solid var(--border-color);
     }
 }
