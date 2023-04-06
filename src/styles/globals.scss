@@ -84,12 +84,13 @@ body {
         font-size: 1.75rem;
         font-weight: 700;
         color: var(--twitter-dark-blue);
-        padding-left: 2rem;
+        text-align: center;
     }
 
     .input-group {
         .input {
             padding: 0.5rem;
+            min-width: 20vw;
 
             .info {
                 padding-bottom: 0.75rem;

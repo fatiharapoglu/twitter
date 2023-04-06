@@ -2,15 +2,15 @@
 
 ### TODO
 
--   use next.js
--   use prisma
--   use postgresql
--   use typscript
--   use larger state management, redux toolkit
--   use react query
--   use chakra ui | material ui
--   use sass
+-   [x] use next.js
+-   [x] use prisma
+-   [x] use postgresql
+-   [x] use typscript
+-   [ ] use larger state management, redux toolkit
+-   [ ] use react query
+-   [x] use chakra ui | material ui
+-   [x] use sass
 
--   [] material ui colors
-
-preparing for big project
+-   [ ] change default material ui colors
+-   [ ] add hash to passwords when creating
+-   [ ] add regex validation to usernames

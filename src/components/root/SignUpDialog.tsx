@@ -119,8 +119,12 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <button onClick={handleSignUpClose}>Cancel</button>
-                    <button type="submit">Create</button>
+                    <button className="btn" onClick={handleSignUpClose}>
+                        Cancel
+                    </button>
+                    <button className="btn" type="submit">
+                        Create
+                    </button>
                 </DialogActions>
             </form>
         </Dialog>

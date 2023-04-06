@@ -2,10 +2,6 @@ import Footer from "@/components/home/layout/Footer";
 import LeftSidebar from "@/components/home/layout/LeftSidebar";
 import RightSidebar from "@/components/home/layout/RightSidebar";
 
-export const metadata = {
-    title: "Fettan | Home / Twitter",
-};
-
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
     const tempIsLoggedIn = false;
 
