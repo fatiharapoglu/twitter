@@ -79,6 +79,26 @@ body {
     }
 }
 
+.dialog {
+    .title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--twitter-dark-blue);
+        padding-left: 2rem;
+    }
+
+    .input-group {
+        .input {
+            padding: 0.5rem;
+
+            .info {
+                padding-bottom: 0.75rem;
+                color: var(--twitter-gray);
+            }
+        }
+    }
+}
+
 .button-group {
     display: flex;
     flex-direction: column;
