@@ -13,7 +13,6 @@ type DialogProps = {
 
 export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
     const validationSchema = yup.object({
-        email: yup.string().email("Enter a valid email.").required("Email is required."),
         password: yup
             .string()
             .min(8, "Password should be of minimum 8 characters length.")
@@ -29,15 +28,14 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
 
     const formik = useFormik({
         initialValues: {
-            email: "",
-            password: "",
             username: "",
+            password: "",
             name: "",
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const newUser = JSON.stringify(values);
-            const response = await fetch(`/api/user`, {
+            const response = await fetch(`/api/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,6 +46,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
             if (json.success) {
                 handleSignUpClose();
                 // redirect to home
+                console.log("Success");
             } else {
                 alert("something went wrong");
                 // snackbar here
@@ -64,21 +63,21 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                         <div className="input">
                             <div className="info">Your login information</div>
                             <TextField
-                                fullWidth
                                 required
-                                id="email"
-                                name="email"
-                                label="Email"
-                                value={formik.values.email}
+                                fullWidth
+                                id="username"
+                                name="username"
+                                label="Username"
+                                value={formik.values.username}
                                 onChange={formik.handleChange}
-                                error={formik.touched.email && Boolean(formik.errors.email)}
-                                helperText={formik.touched.email && formik.errors.email}
+                                error={formik.touched.username && Boolean(formik.errors.username)}
+                                helperText={formik.touched.username && formik.errors.username}
                             />
                         </div>
                         <div className="input">
                             <TextField
-                                fullWidth
                                 required
+                                fullWidth
                                 id="password"
                                 name="password"
                                 label="Password"
@@ -90,21 +89,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                             />
                         </div>
                         <div className="input">
-                            <div className="info">Your public name (@username)</div>
-                            <TextField
-                                fullWidth
-                                required
-                                id="username"
-                                name="username"
-                                label="Username"
-                                value={formik.values.username}
-                                onChange={formik.handleChange}
-                                error={formik.touched.username && Boolean(formik.errors.username)}
-                                helperText={formik.touched.username && formik.errors.username}
-                            />
-                        </div>
-                        <div className="input">
-                            <div className="info">What do you want to be seen like?</div>
+                            <div className="info">Your public name</div>
                             <TextField
                                 fullWidth
                                 id="name"

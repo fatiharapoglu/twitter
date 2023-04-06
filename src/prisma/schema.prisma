@@ -10,9 +10,8 @@ datasource db {
 model User {
     id            String    @id @default(uuid())
     name          String?   @db.VarChar(50)
-    email         String    @unique @db.VarChar(255)
-    password      String    @db.VarChar(100)
     username      String    @unique @db.VarChar(30)
+    password      String    @db.VarChar(100)
     createdAt     DateTime  @default(now())
     updatedAt     DateTime  @default(now()) @updatedAt
     createdTweets Tweet[]   @relation("userTweets")
