@@ -35,8 +35,23 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
             name: "",
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            console.log(JSON.stringify(values));
+        onSubmit: async (values) => {
+            const newUser = JSON.stringify(values);
+            const response = await fetch(`/api/user`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: newUser,
+            });
+            const json = await response.json();
+            if (json.success) {
+                handleSignUpClose();
+                // redirect to home
+            } else {
+                alert("something went wrong");
+                // snackbar here
+            }
         },
     });
 
