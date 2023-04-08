@@ -3,11 +3,6 @@
 import { Divider, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 export default function Tweets() {
-    const getAllTweets = async () => {
-        const response = await fetch("/api/tweets/all");
-        return response.json();
-    };
-
     return (
         <div>
             <List>

@@ -2,12 +2,10 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@m
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-type DialogProps = {
-    open: boolean;
-    handleSignUpClose: () => void;
-};
+import { SignUpDialogProps } from "@/types/DialogProps";
+import { createUser } from "../fetch";
 
-export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
+export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
     const validationSchema = yup.object({
         password: yup
             .string()
@@ -30,23 +28,15 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const newUser = JSON.stringify(values);
-            const response = await fetch(`/api/users/create`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: newUser,
-            });
-            const json = await response.json();
-            if (json.success) {
-                handleSignUpClose();
-                // redirect to home
-                console.log("Success");
-            } else {
-                alert("something went wrong");
+            const json = await createUser(JSON.stringify(values));
+            if (!json.success) {
+                console.log(json);
+                alert("Something went wrong");
                 // snackbar here
             }
+            handleSignUpClose();
+            // redirect to home
+            console.log("Created successfully");
         },
     });
 

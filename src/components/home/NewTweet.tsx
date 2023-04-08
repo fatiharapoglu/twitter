@@ -5,6 +5,8 @@ import Avatar from "@mui/material/Avatar";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { createTweet } from "../fetch";
+
 export default function NewTweet() {
     const validationSchema = yup.object({
         text: yup
@@ -24,22 +26,14 @@ export default function NewTweet() {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const tweet = JSON.stringify(values);
-            const response = await fetch(`/api/tweet`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: tweet,
-            });
-            const json = await response.json();
-            if (json.success) {
-                // redirect to home
-                console.log("Tweeted successfully");
-            } else {
+            const json = await createTweet(JSON.stringify(values));
+            if (!json.success) {
+                console.log(json);
                 alert("something went wrong");
                 // snackbar here
             }
+            // redirect to home
+            console.log("Tweeted successfully");
         },
     });
 

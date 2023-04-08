@@ -2,12 +2,10 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@m
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-type DialogProps = {
-    open: boolean;
-    handleLogInClose: () => void;
-};
+import { LogInDialogProps } from "@/types/DialogProps";
+import { logIn } from "../fetch";
 
-export default function LogInDialog({ open, handleLogInClose }: DialogProps) {
+export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const validationSchema = yup.object({
         username: yup
             .string()
@@ -28,23 +26,15 @@ export default function LogInDialog({ open, handleLogInClose }: DialogProps) {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const candidate = JSON.stringify(values);
-            const response = await fetch(`/api/auth/login`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: candidate,
-            });
-            const json = await response.json();
-            if (json.success) {
-                handleLogInClose();
-                // redirect to home
-                console.log("Logged in successfully");
-            } else {
-                alert("something went wrong");
+            const json = await logIn(JSON.stringify(values));
+            if (!json.success) {
+                console.log(json);
+                alert("Something went wrong");
                 // snackbar here
             }
+            handleLogInClose();
+            // redirect to home
+            console.log("Logged in successfully");
         },
     });
 
