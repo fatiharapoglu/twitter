@@ -18,3 +18,10 @@
 -   [ ] handle errors like "user already exists"
 -   [ ] add a static @ into username in login and sign up
 -   [ ] if name is not provided, get username in prisma schema
+-   [ ] add auth, also provide auth from google + apple
+-   [ ] visually copy everything
+-   [ ] emote and photo upload to new tweet
+-   [ ] add hidden/locked profile
+-   [ ] add dark mode
+-   [ ] think about test account
+-   [ ] refactor sign up and sign in forms

@@ -1,8 +1,4 @@
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -65,7 +61,6 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                             <TextField
                                 required
                                 fullWidth
-                                id="username"
                                 name="username"
                                 label="Username"
                                 value={formik.values.username}
@@ -78,7 +73,6 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                             <TextField
                                 required
                                 fullWidth
-                                id="password"
                                 name="password"
                                 label="Password"
                                 type="password"
@@ -92,7 +86,6 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
                             <div className="info">Your public name</div>
                             <TextField
                                 fullWidth
-                                id="name"
                                 name="name"
                                 label="Name"
                                 value={formik.values.name}

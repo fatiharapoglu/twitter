@@ -126,7 +126,6 @@ body {
     display: grid;
     grid-template-columns: 1fr minmax(auto, 600px) 1fr;
     grid-template-rows: auto;
-    gap: 1rem;
     min-height: 100vh;
 
     .left-sidebar {
@@ -139,7 +138,11 @@ body {
     }
 
     .center {
-        padding: 2.5rem;
+        h1 {
+            padding-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
     }
 
     .right-sidebar {
