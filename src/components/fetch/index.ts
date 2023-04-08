@@ -1,5 +1,9 @@
 export const getAllTweets = async () => {
-    const response = await fetch("/api/tweets/all");
+    const response = await fetch("http://localhost:3000/api/tweets/all", {
+        next: {
+            revalidate: 0,
+        },
+    });
     return response.json();
 };
 

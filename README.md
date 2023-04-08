@@ -25,3 +25,5 @@
 -   [ ] add dark mode
 -   [ ] think about test account
 -   [ ] refactor sign up and sign in forms
+-   [ ] lazy load tweets
+-   [ ] avatar logic/ image logic in tweets

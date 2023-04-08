@@ -1,16 +1,27 @@
 "use client";
 
 import { Divider, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { TweetProps, TweetsArray } from "@/types/TweetProps";
 
-export default function Tweets() {
+export default function Tweets({ tweets }: TweetsArray) {
     return (
         <div>
             <List>
-                <ListItem disablePadding>
-                    <ListItemButton component="a" href="#simple-list">
-                        <ListItemText primary="Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima possimus qui sequi quod, a repellendus, accusamus velit minus laboriosam similique eius at animi iure nisi sapiente quidem molestiae libero enim?" />
-                    </ListItemButton>
-                </ListItem>
+                {tweets.map((tweet: TweetProps) => {
+                    return (
+                        <div key={tweet.id}>
+                            <ListItem>
+                                <ListItemButton>
+                                    <ListItemText
+                                        primary={tweet.text}
+                                        secondary={tweet.author.username}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
+                        </div>
+                    );
+                })}
             </List>
         </div>
     );
