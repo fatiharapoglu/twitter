@@ -1,3 +1,5 @@
+"use client";
+
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import { useFormik } from "formik";

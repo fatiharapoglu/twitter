@@ -31,7 +31,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: DialogProps) {
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const newUser = JSON.stringify(values);
-            const response = await fetch(`/api/create`, {
+            const response = await fetch(`/api/users/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

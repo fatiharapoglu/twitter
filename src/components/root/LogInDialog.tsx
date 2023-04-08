@@ -29,7 +29,7 @@ export default function LogInDialog({ open, handleLogInClose }: DialogProps) {
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const candidate = JSON.stringify(values);
-            const response = await fetch(`/api/login`, {
+            const response = await fetch(`/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
