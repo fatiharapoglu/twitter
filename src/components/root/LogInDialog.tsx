@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
-import { logIn } from "../fetch";
+import { logIn } from "@/utilities/fetch";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const validationSchema = yup.object({
@@ -29,7 +29,7 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
             const json = await logIn(JSON.stringify(values));
             if (!json.success) {
                 console.log(json);
-                alert("Something went wrong");
+                return alert("Something went wrong");
                 // snackbar here
             }
             handleLogInClose();

@@ -11,8 +11,8 @@
 -   [x] use chakra ui | material ui
 -   [x] use sass
 
+-   [x] add hash to passwords when creating
 -   [ ] change default material ui colors
--   [ ] add hash to passwords when creating
 -   [ ] add regex validation to usernames
 -   [ ] if auth, return to /home
 -   [ ] handle errors like "user already exists"

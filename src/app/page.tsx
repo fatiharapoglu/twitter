@@ -13,15 +13,12 @@ export default function RootPage() {
     const handleSignUpClick = () => {
         setIsSignUpOpen(true);
     };
-
     const handleSignUpClose = () => {
         setIsSignUpOpen(false);
     };
-
     const handleLogInClick = () => {
         setIsLogInOpen(true);
     };
-
     const handleLogInClose = () => {
         setIsLogInOpen(false);
     };

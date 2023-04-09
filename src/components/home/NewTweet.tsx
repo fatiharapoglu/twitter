@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { createTweet } from "../fetch";
+import { createTweet } from "@/utilities/fetch";
 
 export default function NewTweet() {
     const validationSchema = yup.object({
@@ -29,7 +29,7 @@ export default function NewTweet() {
             const json = await createTweet(JSON.stringify(values));
             if (!json.success) {
                 console.log(json);
-                alert("something went wrong");
+                return alert("something went wrong");
                 // snackbar here
             }
             // redirect to home

@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
-import { createUser } from "../fetch";
+import { createUser } from "@/utilities/fetch";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
     const validationSchema = yup.object({
@@ -31,7 +31,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
             const json = await createUser(JSON.stringify(values));
             if (!json.success) {
                 console.log(json);
-                alert("Something went wrong");
+                return alert("Something went wrong");
                 // snackbar here
             }
             handleSignUpClose();
