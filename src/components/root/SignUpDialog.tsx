@@ -7,16 +7,17 @@ import { createUser } from "@/utilities/fetch";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
     const validationSchema = yup.object({
+        username: yup
+            .string()
+            .min(3, "Username should be of minimum 3 characters length.")
+            .max(20, "Username should be of maximum 20 characters length.")
+            .matches(/^[a-zA-Z0-9_]{1,14}[a-zA-Z0-9]$/, "Username is invalid")
+            .required("Username is required."),
         password: yup
             .string()
             .min(8, "Password should be of minimum 8 characters length.")
             .max(100, "Password should be of maximum 100 characters length.")
             .required("Password is required."),
-        username: yup
-            .string()
-            .min(3, "Username should be of minimum 3 characters length.")
-            .max(30, "Username should be of maximum 30 characters length.")
-            .required("Username is required."),
         name: yup.string().max(50, "Name should be of maximum 50 characters length."),
     });
 

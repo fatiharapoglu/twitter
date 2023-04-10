@@ -1,10 +1,10 @@
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
 import { logIn } from "@/utilities/fetch";
-import { useRouter } from "next/navigation";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const router = useRouter();
@@ -13,7 +13,8 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
         username: yup
             .string()
             .min(3, "Username should be of minimum 3 characters length.")
-            .max(30, "Username should be of maximum 30 characters length.")
+            .max(20, "Username should be of maximum 20 characters length.")
+            .matches(/^[a-zA-Z0-9_]{1,14}[a-zA-Z0-9]$/, "Username is invalid")
             .required("Username is required."),
         password: yup
             .string()

@@ -12,9 +12,9 @@
 -   [x] use sass
 
 -   [x] add hash to passwords when creating
+-   [x] if auth, return to /home
+-   [x] add regex validation to usernames / yup docs
 -   [ ] change default material ui colors
--   [ ] add regex validation to usernames / yup docs
--   [ ] if auth, return to /home
 -   [ ] handle errors like "user already exists"
 -   [ ] add a static @ into username in login and sign up
 -   [ ] if name is not provided, get username in prisma schema
