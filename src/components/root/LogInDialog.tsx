@@ -33,8 +33,8 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
                 // snackbar here
             }
             handleLogInClose();
-            // redirect to home
             console.log("Logged in successfully");
+            // redirect to home
         },
     });
 

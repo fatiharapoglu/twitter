@@ -13,7 +13,7 @@
 
 -   [x] add hash to passwords when creating
 -   [ ] change default material ui colors
--   [ ] add regex validation to usernames
+-   [ ] add regex validation to usernames / yup docs
 -   [ ] if auth, return to /home
 -   [ ] handle errors like "user already exists"
 -   [ ] add a static @ into username in login and sign up
@@ -27,3 +27,4 @@
 -   [ ] refactor sign up and sign in forms
 -   [ ] lazy load tweets
 -   [ ] avatar logic/ image logic in tweets
+-   [ ] add env.example
