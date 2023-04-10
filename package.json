@@ -2,7 +2,7 @@
     "name": "twitter",
     "version": "1.0.0",
     "private": true,
-    "description": "Next.js twitter clone",
+    "description": "Next.js 13 full-stack twitter clone",
     "keywords": [],
     "author": "Fatih Arapoğlu",
     "license": "MIT",
@@ -27,9 +27,9 @@
         "formik": "^2.2.9",
         "jose": "^4.13.1",
         "next": "^13.3.0",
-        "next-auth": "^4.21.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "universal-cookie": "^4.0.4",
         "yup": "^1.0.2"
     },
     "devDependencies": {
