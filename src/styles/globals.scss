@@ -154,3 +154,10 @@ body {
         border-left: 1px solid var(--border-color);
     }
 }
+
+.loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}

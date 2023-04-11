@@ -29,3 +29,5 @@ export default function useAuth() {
 }
 
 useAuth.fromServer = fromServer;
+
+// custom hook for authorization which works with server (fromServer) and client side

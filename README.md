@@ -6,8 +6,7 @@
 -   [x] use prisma
 -   [x] use postgresql
 -   [x] use typscript
--   [ ] use larger state management, redux toolkit
--   [ ] use react query
+-   [x] use react query
 -   [x] use chakra ui | material ui
 -   [x] use sass
 
@@ -28,3 +27,5 @@
 -   [ ] lazy load tweets
 -   [ ] avatar logic/ image logic in tweets
 -   [ ] add env.example
+-   [ ] make it responsive
+-   [ ] add first entering the site, animation for twitter

@@ -2,7 +2,7 @@
     "name": "twitter",
     "version": "1.0.0",
     "private": true,
-    "description": "Next.js 13 full-stack twitter clone",
+    "description": "Next.js 13 Full-stack Twitter clone",
     "keywords": [],
     "author": "Fatih Arapoğlu",
     "license": "MIT",

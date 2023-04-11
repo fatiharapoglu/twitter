@@ -1,29 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
+import { getAllTweets } from "@/utilities/fetch";
 import NewTweet from "@/components/home/NewTweet";
 import Tweets from "@/components/home/Tweets";
-import { getAllTweets } from "@/utilities/fetch";
 import useAuth from "@/hooks/useAuth";
+import Loading from "@/components/layout/Loading";
 
 export default function HomePage() {
-    const [tweets, setTweets] = useState(null);
     const auth = useAuth();
-
-    useEffect(() => {
-        const fetch = async () => {
-            const { tweets } = await getAllTweets();
-            setTweets(tweets);
-        };
-        fetch();
-    }, []);
+    const tweetsQuery = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
     return (
         <main className="center">
             <h1>Home</h1>
             {auth && <NewTweet />}
-            {tweets && <Tweets tweets={tweets} />}
+            {tweetsQuery.isLoading && <Loading />}
+            {tweetsQuery.data && <Tweets tweets={tweetsQuery.data.tweets} />}
         </main>
     );
 }
