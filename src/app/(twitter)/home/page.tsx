@@ -15,9 +15,8 @@ export default function HomePage() {
     return (
         <main className="center">
             <h1>Home</h1>
-            {auth && <NewTweet />}
-            {tweetsQuery.isLoading && <Loading />}
-            {tweetsQuery.data && <Tweets tweets={tweetsQuery.data.tweets} />}
+            {auth && <NewTweet auth={auth} />}
+            {tweetsQuery.isLoading ? <Loading /> : <Tweets tweets={tweetsQuery.data.tweets} />}
         </main>
     );
 }

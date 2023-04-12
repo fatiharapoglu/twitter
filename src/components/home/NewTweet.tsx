@@ -4,10 +4,21 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { createTweet } from "@/utilities/fetch";
+import { AuthorProps } from "@/types/AuthorProps";
 
-export default function NewTweet() {
+export default function NewTweet({ auth }: { auth: AuthorProps }) {
+    const queryClient = useQueryClient();
+    const mutation = useMutation({
+        mutationFn: createTweet,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["tweets"] });
+        },
+        onError: (error) => alert(error),
+    });
+
     const validationSchema = yup.object({
         text: yup
             .string()
@@ -20,20 +31,13 @@ export default function NewTweet() {
             text: "",
             author: {
                 connect: {
-                    id: "10043ee5-7548-4cf0-8724-f7c55cd953d9",
+                    id: auth.id,
                 },
             },
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const json = await createTweet(JSON.stringify(values));
-            if (!json.success) {
-                console.log(json);
-                return alert("something went wrong");
-                // snackbar here
-            }
-            // redirect to home
-            console.log("Tweeted successfully");
+            mutation.mutate(JSON.stringify(values));
         },
     });
 

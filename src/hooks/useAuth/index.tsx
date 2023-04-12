@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from "universal-cookie";
 
 import { verifyJwtToken } from "@/utilities/auth";
+import { VerifiedToken } from "@/types/Token";
 
 const fromServer = async () => {
     const cookies = require("next/headers").cookies;
@@ -12,7 +13,7 @@ const fromServer = async () => {
 };
 
 export default function useAuth() {
-    const [auth, setAuth] = React.useState(null);
+    const [auth, setAuth] = React.useState<VerifiedToken>(null);
 
     const getVerifiedToken = async () => {
         const cookies = new Cookies();
