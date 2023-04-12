@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import SignUpDialog from "@/components/root/SignUpDialog";
-import LogInDialog from "@/components/root/LogInDialog";
+import SignUpDialog from "@/components/dialog/SignUpDialog";
+import LogInDialog from "@/components/dialog/LogInDialog";
 
 export default function RootPage() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);

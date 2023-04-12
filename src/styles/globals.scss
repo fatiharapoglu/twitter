@@ -100,6 +100,12 @@ body {
         margin: auto;
         padding-top: 1rem;
     }
+
+    .new-tweet-wrapper {
+        width: 30vw;
+        min-width: 550px;
+        padding: 0.5rem;
+    }
 }
 
 .button-group {
@@ -292,13 +298,13 @@ body {
 
 .new-tweet-form {
     display: flex;
-    padding: 0.85rem;
+    padding: 1rem;
     outline: 1px solid var(--border-color);
 
     form {
         width: 100%;
-        padding: 0 1rem 1rem;
         margin-top: -0.25rem;
+        padding-left: 1rem;
 
         .input textarea {
             font-size: 20px;

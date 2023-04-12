@@ -3,10 +3,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getAllTweets } from "@/utilities/fetch";
-import NewTweet from "@/components/home/NewTweet";
-import Tweets from "@/components/home/Tweets";
-import useAuth from "@/hooks/useAuth";
+import NewTweet from "@/components/NewTweet";
+import Tweets from "@/components/Tweets";
 import Loading from "@/components/layout/Loading";
+import useAuth from "@/hooks/useAuth";
 
 export default function HomePage() {
     const auth = useAuth();

@@ -4,7 +4,7 @@ import { TextField, Avatar } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FaImage, FaSmile } from "react-icons/fa";
+import { FaRegImage, FaRegSmile } from "react-icons/fa";
 
 import { createTweet } from "@/utilities/fetch";
 import { AuthorProps } from "@/types/AuthorProps";
@@ -60,8 +60,8 @@ export default function NewTweet({ token }: { token: AuthorProps }) {
                     />
                 </div>
                 <div className="input-additions">
-                    <FaImage />
-                    <FaSmile />
+                    <FaRegImage />
+                    <FaRegSmile />
                     <button className="btn" type="submit">
                         Tweet
                     </button>
