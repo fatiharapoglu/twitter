@@ -6,4 +6,4 @@ export const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
-// this module is for re-using a single PrismaClient instance instead of creating new one every time
+// This module is for re-using a single PrismaClient instance instead of creating new one every time

@@ -8,6 +8,11 @@ export async function GET(request: Request) {
             include: {
                 author: true,
             },
+            orderBy: [
+                {
+                    createdAt: "desc",
+                },
+            ],
         });
         return NextResponse.json({ success: true, tweets });
     } catch (error: unknown) {

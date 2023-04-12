@@ -1,7 +1,6 @@
 "use client";
 
-import TextField from "@mui/material/TextField";
-import Avatar from "@mui/material/Avatar";
+import { TextField, Avatar } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,14 +8,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTweet } from "@/utilities/fetch";
 import { AuthorProps } from "@/types/AuthorProps";
 
-export default function NewTweet({ auth }: { auth: AuthorProps }) {
+export default function NewTweet({ token }: { token: AuthorProps }) {
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: createTweet,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["tweets"] });
         },
-        onError: (error) => alert(error),
     });
 
     const validationSchema = yup.object({
@@ -31,7 +29,7 @@ export default function NewTweet({ auth }: { auth: AuthorProps }) {
             text: "",
             author: {
                 connect: {
-                    id: auth.id,
+                    id: token.id,
                 },
             },
         },

@@ -13,22 +13,32 @@ const fromServer = async () => {
 };
 
 export default function useAuth() {
-    const [auth, setAuth] = React.useState<VerifiedToken>(null);
+    const useRouter = require("next/navigation").useRouter;
+    const router = useRouter();
+
+    const [token, setToken] = React.useState<VerifiedToken>(null);
 
     const getVerifiedToken = async () => {
         const cookies = new Cookies();
         const token = cookies.get("token") ?? null;
         const verifiedToken = token && (await verifyJwtToken(token));
-        setAuth(verifiedToken);
+        setToken(verifiedToken);
     };
 
     React.useEffect(() => {
         getVerifiedToken();
     }, []);
 
-    return auth;
+    const logout = () => {
+        const cookies = new Cookies();
+        cookies.remove("token");
+        setToken(null);
+        router.push("/");
+    };
+
+    return { token, logout };
 }
 
 useAuth.fromServer = fromServer;
 
-// custom hook for authorization which works with server (fromServer) and client side
+// Custom hook for authorization which works with server (fromServer) and client side
