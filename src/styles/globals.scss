@@ -1,9 +1,7 @@
 :root {
     --background-primary: #ffffff;
-    --twitter-red: #ff0100;
-    --twitter-dark-red: #a30000;
     --twitter-blue: #1da1f2;
-    --twitter-dark-blue: #0f1419;
+    --twitter-dark-blue: #1b90dd;
     --twitter-gray: #657786;
     --twitter-light-gray: #aab8c2;
     --twitter-black: #14171a;
@@ -40,8 +38,6 @@ body {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            filter: drop-shadow(10px 10px 10px black) contrast(0.5);
-            mix-blend-mode: multiply;
         }
     }
 
@@ -68,12 +64,12 @@ body {
         }
 
         .btn-light {
-            color: var(--twitter-red);
+            color: var(--twitter-blue);
             background-color: var(--twitter-white);
-            border: 1px solid var(--twitter-red);
+            border: 1px solid var(--twitter-blue);
 
             &:hover {
-                background-color: var(--twitter-red);
+                background-color: var(--twitter-blue);
                 color: var(--twitter-white);
             }
         }
@@ -84,7 +80,7 @@ body {
     .title {
         font-size: 1.75rem;
         font-weight: 700;
-        color: var(--twitter-dark-blue);
+        color: var(--twitter-black);
         text-align: center;
     }
 
@@ -108,7 +104,7 @@ body {
 }
 
 .btn {
-    background-color: var(--twitter-red);
+    background-color: var(--twitter-blue);
     color: var(--twitter-white);
     border: none;
     border-radius: 2rem;
@@ -118,7 +114,7 @@ body {
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: var(--twitter-dark-red);
+        background-color: var(--twitter-dark-blue);
         color: var(--twitter-white);
     }
 }
@@ -132,7 +128,6 @@ body {
 
     .left-sidebar {
         border-right: 1px solid var(--border-color);
-
         margin-left: auto;
         padding: 2vh 5vw;
         min-width: 190px;
@@ -169,6 +164,11 @@ body {
                                 padding-right: 1rem;
                             }
                         }
+
+                        .active {
+                            font-weight: 900;
+                            text-shadow: 0px 0px 1px black;
+                        }
                     }
                 }
             }
@@ -184,11 +184,11 @@ body {
 
             .side-profile {
                 position: fixed;
-                bottom: 2rem;
+                bottom: 1.5rem;
                 display: flex;
                 gap: 1rem;
                 align-items: center;
-                padding: 0.5rem 2rem;
+                padding: 0.5rem 1.5rem;
                 border: none;
                 border-radius: 2rem;
                 cursor: pointer;
@@ -196,6 +196,8 @@ body {
                 .token-name {
                     font-weight: bold;
                     padding-bottom: 0.25rem;
+                    display: flex;
+                    gap: 0.25rem;
                 }
 
                 .three-dots {
@@ -233,12 +235,14 @@ body {
         justify-content: center;
         gap: 5rem;
         align-items: center;
-        color: var(--twitter-dark-red);
+        color: var(--twitter-white);
         background-color: var(--twitter-blue);
         opacity: 0.9;
 
         .btn {
             margin: 0 0.5rem;
+            color: var(--twitter-white);
+            background-color: var(--twitter-black);
         }
     }
 }

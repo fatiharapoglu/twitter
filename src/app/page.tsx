@@ -27,13 +27,13 @@ export default function RootPage() {
         <>
             <main className="root">
                 <div className="root-left">
-                    <Image src="/assets/root.jpg" alt="" fill />
+                    <Image src="/assets/root.png" alt="" fill />
                     <div className="root-left-logo">
-                        <Image src="/assets/favicon.png" alt="" width={120} height={120} />
+                        <Image src="/assets/favicon-white.png" alt="" width={140} height={140} />
                     </div>
                 </div>
                 <div className="root-right">
-                    <Image src="/assets/favicon.png" alt="" width={50} height={50} />
+                    <Image src="/assets/favicon.png" alt="" width={40} height={40} />
                     <h1>See what&apos;s happening in the world right now</h1>
                     <p>Join Twitter today.</p>
                     <div className="button-group">
