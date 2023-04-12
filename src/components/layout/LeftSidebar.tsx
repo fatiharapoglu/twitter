@@ -2,66 +2,129 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar } from "@mui/material";
+import { useState } from "react";
+import { Avatar, Menu, MenuItem } from "@mui/material";
+import {
+    FaHome,
+    FaBell,
+    FaEnvelope,
+    FaUser,
+    FaCog,
+    FaHashtag,
+    FaLock,
+    FaEllipsisH,
+} from "react-icons/fa";
 
 import useAuth from "@/hooks/useAuth";
 
 export default function LeftSidebar() {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const auth = useAuth();
-    const tempIsLocked = false;
+    const open = Boolean(anchorEl);
+    const tempIsLocked = true;
+
+    const handleAnchorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleAnchorClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <aside className="left-sidebar">
-            <Image src="/assets/favicon.png" alt="" width={50} height={50} />
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/home">Home</Link>
-                    </li>
-                    <li>
-                        <Link href="/explore">Explore</Link>
-                    </li>
-                    {auth.token && (
-                        <>
-                            <li>
-                                <Link href="/notifications">Notifications</Link>
-                            </li>
-                            <li>
-                                <Link href="/messages">Messages</Link>
-                            </li>
-                            <li>
+            <div className="fixed">
+                <Image src="/assets/favicon.png" alt="" width={25} height={25} />
+                <nav>
+                    <ul>
+                        <li>
+                            <Link href="/home">
+                                <div className="nav-link">
+                                    <FaHome /> Home
+                                </div>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/explore">
+                                <div className="nav-link">
+                                    <FaHashtag /> Explore
+                                </div>
+                            </Link>
+                        </li>
+                        {auth.token && (
+                            <>
+                                <li>
+                                    <Link href="/notifications">
+                                        <div className="nav-link">
+                                            <FaBell /> Notifications
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/messages">
+                                        <div className="nav-link">
+                                            <FaEnvelope /> Messages
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/profile">
+                                        <div className="nav-link">
+                                            <FaUser /> Profile
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/settings">
+                                        <div className="nav-link">
+                                            <FaCog /> Settings
+                                        </div>
+                                    </Link>
+                                </li>
+                            </>
+                        )}
+                    </ul>
+                </nav>
+                {auth.token && (
+                    <>
+                        <button className="btn btn-tweet">Tweet</button>
+                        <button onClick={handleAnchorClick} className="side-profile">
+                            <div>
+                                <Avatar alt="" src="https://picsum.photos/200/300" />
+                            </div>
+                            <div>
+                                <p className="token-name">
+                                    {auth.token.name} {tempIsLocked ? <FaLock /> : null}
+                                </p>
+                                <p className="text-muted">@{auth.token.username}</p>
+                            </div>
+                            <div className="three-dots">
+                                <FaEllipsisH />
+                            </div>
+                        </button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            onClose={handleAnchorClose}
+                            open={open}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "right",
+                            }}
+                            transformOrigin={{
+                                vertical: "bottom",
+                                horizontal: "right",
+                            }}
+                        >
+                            <MenuItem onClick={handleAnchorClose}>
                                 <Link href="/profile">Profile</Link>
-                            </li>
-                            <li>
+                            </MenuItem>
+                            <MenuItem onClick={handleAnchorClose}>
                                 <Link href="/settings">Settings</Link>
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </nav>
-            {auth.token && (
-                <>
-                    <div>
-                        <button className="btn">Tweet</button>
-                    </div>
-                    <div>
-                        <div>
-                            <Avatar alt="" src="https://picsum.photos/200/300" />
-                            <p>{auth.token.name}</p>
-                            <p>@{auth.token.username}</p>
-                            <p>{tempIsLocked ? "lock image" : "none"}</p>
-                        </div>
-                        <div>
-                            <button onClick={auth.logout} className="btn">
-                                Log Out
-                            </button>
-                            <p>
-                                <Link href="/profile">Go to profile</Link>
-                            </p>
-                        </div>
-                    </div>
-                </>
-            )}
+                            </MenuItem>
+                            <MenuItem onClick={auth.logout}>Log Out</MenuItem>
+                        </Menu>
+                    </>
+                )}
+            </div>
         </aside>
     );
 }

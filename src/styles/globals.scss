@@ -8,6 +8,7 @@
     --twitter-light-gray: #aab8c2;
     --twitter-black: #14171a;
     --twitter-white: #f5f8fa;
+    --nav-hover: #e7e7e8;
     --border-color: #eff3f4;
 }
 
@@ -110,8 +111,8 @@ body {
     background-color: var(--twitter-red);
     color: var(--twitter-white);
     border: none;
-    border-radius: 1rem;
-    padding: 0.5rem;
+    border-radius: 2rem;
+    padding: 0.75rem;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -130,12 +131,78 @@ body {
     position: relative;
 
     .left-sidebar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        padding: 2.5rem;
         border-right: 1px solid var(--border-color);
+
+        margin-left: auto;
+        padding: 2vh 5vw;
+        min-width: 190px;
+
+        .fixed {
+            position: fixed;
+            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+
+            & > img {
+                padding-left: 0.75rem;
+            }
+
+            nav {
+                ul {
+                    font-size: 1.25rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    li {
+                        .nav-link {
+                            padding: 0.75rem;
+                            border-radius: 5rem;
+                            display: inline-flex;
+                            transition: background-color 0.2s ease;
+
+                            &:hover {
+                                background-color: var(--nav-hover);
+                            }
+
+                            svg {
+                                padding-right: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btn.btn-tweet {
+                display: flex;
+                width: 100%;
+                padding: 0.75rem;
+                border-radius: 5rem;
+                justify-content: center;
+                font-size: initial;
+            }
+
+            .side-profile {
+                position: fixed;
+                bottom: 2rem;
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                padding: 0.5rem 2rem;
+                border: none;
+                border-radius: 2rem;
+                cursor: pointer;
+
+                .token-name {
+                    font-weight: bold;
+                    padding-bottom: 0.25rem;
+                }
+
+                .three-dots {
+                    padding-left: 1.5rem;
+                }
+            }
+        }
     }
 
     .center {
@@ -181,4 +248,9 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20vh;
+}
+
+.text-muted {
+    opacity: 0.75;
+    font-size: smaller;
 }
