@@ -4,6 +4,7 @@ import { TextField, Avatar } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { FaImage, FaSmile } from "react-icons/fa";
 
 import { createTweet } from "@/utilities/fetch";
 import { AuthorProps } from "@/types/AuthorProps";
@@ -41,14 +42,14 @@ export default function NewTweet({ token }: { token: AuthorProps }) {
 
     return (
         <div className="new-tweet-form">
-            <Avatar alt="" src="https://picsum.photos/200/300" />
+            <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
             <form onSubmit={formik.handleSubmit}>
                 <div className="input">
                     <TextField
-                        label="Tweet"
+                        label="What's happening?"
                         placeholder="What's happening?"
                         multiline
-                        maxRows={4}
+                        rows={4}
                         variant="standard"
                         fullWidth
                         name="text"
@@ -58,9 +59,13 @@ export default function NewTweet({ token }: { token: AuthorProps }) {
                         helperText={formik.touched.text && formik.errors.text}
                     />
                 </div>
-                <button className="btn" type="submit">
-                    Tweet
-                </button>
+                <div className="input-additions">
+                    <FaImage />
+                    <FaSmile />
+                    <button className="btn" type="submit">
+                        Tweet
+                    </button>
+                </div>
             </form>
         </div>
     );

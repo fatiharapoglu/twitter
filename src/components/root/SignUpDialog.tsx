@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -43,6 +44,13 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
 
     return (
         <Dialog className="dialog" open={open} onClose={handleSignUpClose}>
+            <Image
+                className="dialog-icon"
+                src="/assets/favicon.png"
+                alt=""
+                width={40}
+                height={40}
+            />
             <DialogTitle className="title">Create your account</DialogTitle>
             <form onSubmit={formik.handleSubmit}>
                 <DialogContent>

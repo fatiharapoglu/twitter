@@ -35,7 +35,7 @@ export default function LeftSidebar() {
     return (
         <aside className="left-sidebar">
             <div className="fixed">
-                <Image src="/assets/favicon.png" alt="" width={30} height={30} />
+                <Image src="/assets/favicon.png" alt="" width={40} height={40} />
                 <nav>
                     <ul>
                         <li>

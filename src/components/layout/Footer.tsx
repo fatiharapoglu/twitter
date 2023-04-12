@@ -10,11 +10,11 @@ export default function Footer() {
                 <p>People on Twitter are the first to know.</p>
             </div>
             <div>
-                <Link href="/" className="btn">
-                    Sign Up
+                <Link href="/" className="btn ">
+                    Log In
                 </Link>
                 <Link href="/" className="btn btn-light">
-                    Log In
+                    Sign Up
                 </Link>
             </div>
         </footer>

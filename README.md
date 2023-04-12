@@ -30,3 +30,4 @@
 -   [ ] make it responsive
 -   [ ] add first entering the site, animation for twitter
 -   [ ] list tweets as last tweeted first
+-   [ ] progress bar for 280 characters

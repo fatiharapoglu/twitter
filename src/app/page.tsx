@@ -38,13 +38,13 @@ export default function RootPage() {
                     <p>Join Twitter today.</p>
                     <div className="button-group">
                         <button className="btn" onClick={handleSignUpClick}>
-                            Sign Up
+                            Create account
                         </button>
                         <button className="btn btn-light" onClick={handleLogInClick}>
-                            Log In
+                            Sign in
                         </button>
                         <button className="btn btn-light">
-                            Test Account <span>(?)</span>
+                            Test account <span>(?)</span>
                         </button>
                     </div>
                 </div>

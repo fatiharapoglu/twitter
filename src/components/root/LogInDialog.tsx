@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
@@ -44,6 +45,13 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
 
     return (
         <Dialog className="dialog" open={open} onClose={handleLogInClose}>
+            <Image
+                className="dialog-icon"
+                src="/assets/favicon.png"
+                alt=""
+                width={40}
+                height={40}
+            />
             <DialogTitle className="title">Sign in to Twitter</DialogTitle>
             <form onSubmit={formik.handleSubmit}>
                 <DialogContent>
