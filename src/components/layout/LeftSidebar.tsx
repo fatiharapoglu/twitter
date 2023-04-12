@@ -40,7 +40,11 @@ export default function LeftSidebar() {
                     <ul>
                         <li>
                             <Link href="/home">
-                                <div className={`nav-link ${pathname === "/home" ? "active" : ""}`}>
+                                <div
+                                    className={`nav-link ${
+                                        pathname.startsWith("/home") ? "active" : ""
+                                    }`}
+                                >
                                     <FaHome /> Home
                                 </div>
                             </Link>
@@ -49,7 +53,7 @@ export default function LeftSidebar() {
                             <Link href="/explore">
                                 <div
                                     className={`nav-link ${
-                                        pathname === "/explore" ? "active" : ""
+                                        pathname.startsWith("/explore") ? "active" : ""
                                     }`}
                                 >
                                     <FaHashtag /> Explore
@@ -62,7 +66,9 @@ export default function LeftSidebar() {
                                     <Link href="/notifications">
                                         <div
                                             className={`nav-link ${
-                                                pathname === "/notifications" ? "active" : ""
+                                                pathname.startsWith("/notifications")
+                                                    ? "active"
+                                                    : ""
                                             }`}
                                         >
                                             <FaBell /> Notifications
@@ -73,7 +79,7 @@ export default function LeftSidebar() {
                                     <Link href="/messages">
                                         <div
                                             className={`nav-link ${
-                                                pathname === "/messages" ? "active" : ""
+                                                pathname.startsWith("/messages") ? "active" : ""
                                             }`}
                                         >
                                             <FaEnvelope /> Messages
@@ -84,7 +90,7 @@ export default function LeftSidebar() {
                                     <Link href="/profile">
                                         <div
                                             className={`nav-link ${
-                                                pathname === "/profile" ? "active" : ""
+                                                pathname.startsWith("/profile") ? "active" : ""
                                             }`}
                                         >
                                             <FaUser /> Profile
@@ -95,7 +101,7 @@ export default function LeftSidebar() {
                                     <Link href="/settings">
                                         <div
                                             className={`nav-link ${
-                                                pathname === "/settings" ? "active" : ""
+                                                pathname.startsWith("/settings") ? "active" : ""
                                             }`}
                                         >
                                             <FaCog /> Settings
