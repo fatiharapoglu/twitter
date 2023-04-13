@@ -3,6 +3,10 @@ import Link from "next/link";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDate, formatDateExtended } from "@/utilities/date";
+import Reply from "./Reply";
+import Retweet from "./Retweet";
+import Like from "./Like";
+import Share from "./Share";
 
 export default function Tweet({ tweet }: { tweet: TweetProps }) {
     return (
@@ -24,9 +28,14 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     </Tooltip>
                 </section>
                 <Link href={`/${tweet.author.username}/tweets/${tweet.id}`} className="tweet-text">
-                    {tweet.text}
+                    <p>{tweet.text}</p>
                 </Link>
-                <div></div>
+                <div className="tweet-bottom">
+                    <Reply />
+                    <Retweet />
+                    <Like />
+                    <Share />
+                </div>
             </div>
         </div>
     );

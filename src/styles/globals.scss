@@ -370,12 +370,24 @@ body {
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
+                width: 100%;
 
                 .tweet-text {
                     overflow-wrap: anywhere;
                     line-height: normal;
                     font-size: 14px;
                     font-family: var(--font-poppins);
+                }
+
+                .tweet-bottom {
+                    max-width: 400px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 0.75rem;
+
+                    .icon {
+                        opacity: 0.5;
+                    }
                 }
             }
 
