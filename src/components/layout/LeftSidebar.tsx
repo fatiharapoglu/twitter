@@ -136,7 +136,9 @@ export default function LeftSidebar() {
                                     <p className="token-name">
                                         {auth.token.name} {tempIsLocked ? <FaLock /> : null}
                                     </p>
-                                    <p className="text-muted">@{auth.token.username}</p>
+                                    <p className="text-muted token-username">
+                                        @{auth.token.username}
+                                    </p>
                                 </div>
                                 <div className="three-dots">
                                     <FaEllipsisH />

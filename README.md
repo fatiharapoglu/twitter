@@ -32,3 +32,4 @@
 -   [ ] list tweets as last tweeted first
 -   [ ] progress bar for 280 characters
 -   [ ] add modal for logout
+-   [ ] add card when hover on tweet profile & username

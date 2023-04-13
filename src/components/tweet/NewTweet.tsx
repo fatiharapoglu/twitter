@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegImage, FaRegSmile } from "react-icons/fa";
 
-import Loading from "./layout/Loading";
+import Loading from "../layout/Loading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/NewTweetProps";
 

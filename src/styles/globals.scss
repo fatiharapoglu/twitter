@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 :root {
     --background-primary: #ffffff;
     --twitter-blue: #1da1f2;
@@ -6,8 +8,10 @@
     --twitter-light-gray: #d1dce4;
     --twitter-black: #14171a;
     --twitter-white: #f5f8fa;
-    --nav-hover: #e7e7e8;
+    --nav-hover: #efefef;
     --border-color: #eff3f4;
+    --font-roboto: "Roboto", sans-serif;
+    --font-poppins: "Poppins", sans-serif;
 }
 
 a {
@@ -19,6 +23,7 @@ body {
     min-height: 100vh;
     background-color: var(--background-primary);
     color: var(--twitter-black);
+    font-family: var(--font-roboto);
 }
 
 .root {
@@ -105,6 +110,10 @@ body {
         width: 30vw;
         min-width: 550px;
         padding: 0.5rem;
+
+        * {
+            border: none;
+        }
     }
 }
 
@@ -131,7 +140,7 @@ body {
     }
 }
 
-.home {
+.layout {
     display: grid;
     grid-template-columns: 1fr minmax(auto, 600px) 1fr;
     grid-template-rows: auto;
@@ -180,7 +189,6 @@ body {
 
                     .active {
                         font-weight: 900;
-                        text-shadow: 0px 0px 1px black;
                     }
                 }
             }
@@ -199,33 +207,30 @@ body {
             position: fixed;
             bottom: 1.5rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             align-items: center;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 0.75rem;
             border: none;
-            border-radius: 2rem;
+            border-radius: 5rem;
             cursor: pointer;
+            background-color: var(--nav-hover);
 
             .token-name {
                 font-weight: bold;
                 padding-bottom: 0.25rem;
                 display: flex;
-                gap: 0.25rem;
+                gap: 0.5rem;
+                text-align: left;
+            }
+
+            .token-username {
+                text-align: left;
             }
 
             .three-dots {
-                padding-left: 1.5rem;
+                padding-right: 0.5rem;
             }
         }
-    }
-}
-
-.center {
-    h1 {
-        padding: 2rem 1rem;
-        font-size: 1.25rem;
-        font-weight: bold;
-        text-shadow: 0px 0px 1px black;
     }
 }
 
@@ -260,7 +265,6 @@ body {
         font-size: small;
         border: 1px solid var(--border-color);
         padding: 0.5rem 1.5rem;
-        text-shadow: 0 0 0 black;
 
         &:hover {
             background-color: var(--twitter-dark-blue);
@@ -288,6 +292,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem;
 }
 
 .text-muted {
@@ -295,10 +300,16 @@ body {
     font-size: smaller;
 }
 
+.middle-dot {
+    padding: 0.35rem;
+    font-weight: 900;
+}
+
 .new-tweet-form {
     display: flex;
     padding: 1rem;
-    outline: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 
     form {
         width: 100%;
@@ -325,6 +336,73 @@ body {
 
             .btn {
                 margin-left: auto;
+            }
+        }
+    }
+}
+
+.home {
+    h1 {
+        padding: 2rem 1rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .tweets-wrapper {
+        .tweet {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow: hidden;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: var(--nav-hover);
+            }
+
+            .tweet-avatar {
+                margin-bottom: auto;
+            }
+
+            .tweet-main {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .tweet-text {
+                    overflow-wrap: anywhere;
+                    line-height: normal;
+                    font-size: 14px;
+                    font-family: var(--font-poppins);
+                }
+            }
+
+            .tweet-author-section {
+                display: flex;
+                align-items: center;
+
+                .tweet-author-link {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.35rem;
+                }
+
+                .tweet-author-link:hover .tweet-author {
+                    text-decoration: underline;
+                }
+
+                .tweet-author {
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+
+                .text-muted.date {
+                    font-size: 0.75rem;
+                    opacity: 0.5;
+                    cursor: pointer;
+                }
             }
         }
     }

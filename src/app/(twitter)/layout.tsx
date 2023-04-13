@@ -7,7 +7,7 @@ export default async function HomeLayout({ children }: { children: React.ReactNo
     const auth = await useAuth.fromServer();
 
     return (
-        <div className="home">
+        <div className="layout">
             <LeftSidebar />
             {children}
             <RightSidebar />

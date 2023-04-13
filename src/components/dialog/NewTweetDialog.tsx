@@ -1,7 +1,7 @@
 import { Dialog } from "@mui/material";
 
 import { NewTweetDialogProps } from "@/types/DialogProps";
-import NewTweet from "../NewTweet";
+import NewTweet from "../tweet/NewTweet";
 import { useEffect, useState } from "react";
 
 export default function NewTweetDialog({ open, handleNewTweetClose, token }: NewTweetDialogProps) {
