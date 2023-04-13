@@ -1,5 +1,3 @@
-"use client";
-
 import { TweetProps, TweetsArray } from "@/types/TweetProps";
 
 export default function Tweets({ tweets }: TweetsArray) {

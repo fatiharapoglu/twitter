@@ -1,15 +1,14 @@
-"use client";
-
 import { TextField, Avatar } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegImage, FaRegSmile } from "react-icons/fa";
 
+import Loading from "./layout/Loading";
 import { createTweet } from "@/utilities/fetch";
-import { AuthorProps } from "@/types/AuthorProps";
+import { NewTweetProps } from "@/types/NewTweetProps";
 
-export default function NewTweet({ token }: { token: AuthorProps }) {
+export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: createTweet,
@@ -35,10 +34,16 @@ export default function NewTweet({ token }: { token: AuthorProps }) {
             },
         },
         validationSchema: validationSchema,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             mutation.mutate(JSON.stringify(values));
+            resetForm();
+            if (handleSubmit) handleSubmit();
         },
     });
+
+    if (mutation.isLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="new-tweet-form">
