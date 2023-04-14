@@ -33,3 +33,5 @@
 -   [ ] progress bar for 280 characters
 -   [ ] add modal for logout
 -   [ ] add card when hover on tweet profile & username
+-   [ ] add twitter blue tick
+-   [ ] break-word for description

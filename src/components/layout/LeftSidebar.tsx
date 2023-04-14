@@ -98,10 +98,12 @@ export default function LeftSidebar() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/profile">
+                                        <Link href={`/${auth.token.username}`}>
                                             <div
                                                 className={`nav-link ${
-                                                    pathname.startsWith("/profile") ? "active" : ""
+                                                    pathname.startsWith(`/${auth.token.username}`)
+                                                        ? "active"
+                                                        : ""
                                                 }`}
                                             >
                                                 <FaUser /> Profile

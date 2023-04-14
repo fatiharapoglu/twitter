@@ -13,8 +13,8 @@ export default function HomePage() {
     const tweetsQuery = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
     return (
-        <main className="home">
-            <h1>Home</h1>
+        <main>
+            <h1 className="page-name">Home</h1>
             {auth.token && <NewTweet token={auth.token} />}
             {tweetsQuery.isLoading ? <Loading /> : <Tweets tweets={tweetsQuery.data.tweets} />}
         </main>
