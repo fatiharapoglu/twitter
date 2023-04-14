@@ -17,7 +17,9 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
             <div className="tweet-main">
                 <section className="tweet-author-section">
                     <Link className="tweet-author-link" href={`/${tweet.author.username}`}>
-                        <span className="tweet-author">{tweet.author.name}</span>
+                        <span className="tweet-author">
+                            {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
+                        </span>
                         <span className="text-muted">@{tweet.author.username}</span>
                     </Link>
                     <Tooltip title={formatDateExtended(tweet.createdAt)} placement="top">

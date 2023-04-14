@@ -37,7 +37,7 @@ export default function Profile({ params, profile }: { params: any; profile: Aut
                 </div>
                 <div className="profile-info">
                     <div className="profile-info-main">
-                        <h1>{profile.name}</h1>
+                        <h1>{profile.name !== "" ? profile.name : profile.username}</h1>
                         <div className="text-muted">@{profile.username}</div>
                     </div>
                     <p className="profile-info-desc">Description placeholder</p>

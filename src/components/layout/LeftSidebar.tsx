@@ -17,6 +17,8 @@ export default function LeftSidebar() {
     const auth = useAuth();
     const pathname = usePathname();
 
+    console.log(auth?.token?.name);
+
     const tempIsLocked = true;
 
     const handleAnchorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -108,7 +110,8 @@ export default function LeftSidebar() {
                                 </div>
                                 <div>
                                     <p className="token-name">
-                                        {auth.token.name} {tempIsLocked ? <FaLock /> : null}
+                                        {auth.token.name !== "" ? auth.token.name : auth.token.username}{" "}
+                                        {tempIsLocked ? <FaLock /> : null}
                                     </p>
                                     <p className="text-muted token-username">@{auth.token.username}</p>
                                 </div>

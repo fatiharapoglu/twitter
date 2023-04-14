@@ -14,8 +14,8 @@
 -   [x] if auth, return to /home
 -   [x] add regex validation to usernames / yup docs
 -   [x] add a static @ into username in login and sign up
+-   [x] if name is not provided, get username in prisma schema
 -   [ ] handle errors like "user already exists"
--   [ ] if name is not provided, get username in prisma schema
 -   [ ] add auth, also provide auth from google + apple
 -   [ ] visually copy everything
 -   [ ] emote and photo upload to new tweet
