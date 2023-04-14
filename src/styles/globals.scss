@@ -508,7 +508,7 @@ body {
             span {
                 color: var(--twitter-black);
                 font-weight: 700;
-                padding: 0 0.25rem 1.25rem;
+                padding: 0 0.25rem 0.75rem;
                 border-bottom: 3px solid var(--twitter-blue);
             }
         }
@@ -517,7 +517,7 @@ body {
     .profile {
         .profile-header {
             width: 100%;
-            height: 250px;
+            height: 200px;
             position: relative;
 
             .avatar-wrapper {

@@ -27,13 +27,9 @@ export default function Profile({ params }: any) {
             </div>
             <section className="profile">
                 <div className="profile-header">
-                    <Image alt="" src="https://picsum.photos/900/400" fill />
+                    <Image alt="" src="https://picsum.photos/600/200" fill />
                     <div className="avatar-wrapper">
-                        <Avatar
-                            sx={{ width: 125, height: 125 }}
-                            alt=""
-                            src="https://picsum.photos/125/125"
-                        />
+                        <Avatar sx={{ width: 125, height: 125 }} alt="" src="https://picsum.photos/125/125" />
                     </div>
                 </div>
                 <div className="profile-info">
@@ -52,12 +48,10 @@ export default function Profile({ params }: any) {
                     </div>
                     <div className="profile-info-popularity">
                         <div>
-                            <span className="count">46</span>{" "}
-                            <span className="text-muted">Following</span>
+                            <span className="count">46</span> <span className="text-muted">Following</span>
                         </div>
                         <div>
-                            <span className="count">77</span>{" "}
-                            <span className="text-muted">Followers</span>
+                            <span className="count">77</span> <span className="text-muted">Followers</span>
                         </div>
                     </div>
                     <button className="btn btn-white edit-profile-btn">Edit profile</button>
@@ -65,33 +59,25 @@ export default function Profile({ params }: any) {
             </section>
             <nav className="profile-nav">
                 <Link
-                    className={`profile-nav-link ${
-                        pathname === `/${params.username}` ? "active" : ""
-                    }`}
+                    className={`profile-nav-link ${pathname === `/${params.username}` ? "active" : ""}`}
                     href={`/${params.username}`}
                 >
                     <span>Tweets</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${
-                        pathname === `/${params.username}/replies` ? "active" : ""
-                    }`}
+                    className={`profile-nav-link ${pathname === `/${params.username}/replies` ? "active" : ""}`}
                     href={`/${params.username}/replies`}
                 >
                     <span>Replies</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${
-                        pathname === `/${params.username}/media` ? "active" : ""
-                    }`}
+                    className={`profile-nav-link ${pathname === `/${params.username}/media` ? "active" : ""}`}
                     href={`/${params.username}/media`}
                 >
                     <span>Media</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${
-                        pathname === `/${params.username}/likes` ? "active" : ""
-                    }`}
+                    className={`profile-nav-link ${pathname === `/${params.username}/likes` ? "active" : ""}`}
                     href={`/${params.username}/likes`}
                 >
                     <span>Likes</span>

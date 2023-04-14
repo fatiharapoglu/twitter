@@ -5,16 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
-import {
-    FaHome,
-    FaBell,
-    FaEnvelope,
-    FaUser,
-    FaCog,
-    FaHashtag,
-    FaLock,
-    FaEllipsisH,
-} from "react-icons/fa";
+import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaLock, FaEllipsisH } from "react-icons/fa";
 
 import useAuth from "@/hooks/useAuth";
 import NewTweetDialog from "../dialog/NewTweetDialog";
@@ -34,7 +25,6 @@ export default function LeftSidebar() {
     const handleAnchorClose = () => {
         setAnchorEl(null);
     };
-
     const handleNewTweetClick = () => {
         setIsNewTweetOpen(true);
     };
@@ -51,22 +41,14 @@ export default function LeftSidebar() {
                         <ul>
                             <li>
                                 <Link href="/home">
-                                    <div
-                                        className={`nav-link ${
-                                            pathname.startsWith("/home") ? "active" : ""
-                                        }`}
-                                    >
+                                    <div className={`nav-link ${pathname.startsWith("/home") ? "active" : ""}`}>
                                         <FaHome /> Home
                                     </div>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/explore">
-                                    <div
-                                        className={`nav-link ${
-                                            pathname.startsWith("/explore") ? "active" : ""
-                                        }`}
-                                    >
+                                    <div className={`nav-link ${pathname.startsWith("/explore") ? "active" : ""}`}>
                                         <FaHashtag /> Explore
                                     </div>
                                 </Link>
@@ -77,9 +59,7 @@ export default function LeftSidebar() {
                                         <Link href="/notifications">
                                             <div
                                                 className={`nav-link ${
-                                                    pathname.startsWith("/notifications")
-                                                        ? "active"
-                                                        : ""
+                                                    pathname.startsWith("/notifications") ? "active" : ""
                                                 }`}
                                             >
                                                 <FaBell /> Notifications
@@ -88,11 +68,7 @@ export default function LeftSidebar() {
                                     </li>
                                     <li>
                                         <Link href="/messages">
-                                            <div
-                                                className={`nav-link ${
-                                                    pathname.startsWith("/messages") ? "active" : ""
-                                                }`}
-                                            >
+                                            <div className={`nav-link ${pathname.startsWith("/messages") ? "active" : ""}`}>
                                                 <FaEnvelope /> Messages
                                             </div>
                                         </Link>
@@ -101,9 +77,7 @@ export default function LeftSidebar() {
                                         <Link href={`/${auth.token.username}`}>
                                             <div
                                                 className={`nav-link ${
-                                                    pathname.startsWith(`/${auth.token.username}`)
-                                                        ? "active"
-                                                        : ""
+                                                    pathname.startsWith(`/${auth.token.username}`) ? "active" : ""
                                                 }`}
                                             >
                                                 <FaUser /> Profile
@@ -112,11 +86,7 @@ export default function LeftSidebar() {
                                     </li>
                                     <li>
                                         <Link href="/settings">
-                                            <div
-                                                className={`nav-link ${
-                                                    pathname.startsWith("/settings") ? "active" : ""
-                                                }`}
-                                            >
+                                            <div className={`nav-link ${pathname.startsWith("/settings") ? "active" : ""}`}>
                                                 <FaCog /> Settings
                                             </div>
                                         </Link>
@@ -138,9 +108,7 @@ export default function LeftSidebar() {
                                     <p className="token-name">
                                         {auth.token.name} {tempIsLocked ? <FaLock /> : null}
                                     </p>
-                                    <p className="text-muted token-username">
-                                        @{auth.token.username}
-                                    </p>
+                                    <p className="text-muted token-username">@{auth.token.username}</p>
                                 </div>
                                 <div className="three-dots">
                                     <FaEllipsisH />
@@ -160,7 +128,7 @@ export default function LeftSidebar() {
                                 }}
                             >
                                 <MenuItem onClick={handleAnchorClose}>
-                                    <Link href="/profile">Profile</Link>
+                                    <Link href={`/${auth.token.username}`}>Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleAnchorClose}>
                                     <Link href="/settings">Settings</Link>
@@ -172,11 +140,7 @@ export default function LeftSidebar() {
                 </div>
             </aside>
             {auth.token && (
-                <NewTweetDialog
-                    open={isNewTweetOpen}
-                    handleNewTweetClose={handleNewTweetClose}
-                    token={auth.token}
-                />
+                <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={auth.token} />
             )}
         </>
     );

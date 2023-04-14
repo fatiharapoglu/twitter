@@ -35,3 +35,4 @@
 -   [ ] add card when hover on tweet profile & username
 -   [ ] add twitter blue tick
 -   [ ] break-word for description
+-   [ ] make profile back arrow sticky | fixed

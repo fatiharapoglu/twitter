@@ -18,10 +18,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     });
 
     const validationSchema = yup.object({
-        text: yup
-            .string()
-            .max(280, "Tweet should be of maximum 280 characters length.")
-            .required("Tweet is required."),
+        text: yup.string().max(280, "Tweet should be of maximum 280 characters length.").required("Tweet is required."),
     });
 
     const formik = useFormik({

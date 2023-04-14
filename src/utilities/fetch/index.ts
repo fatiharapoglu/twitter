@@ -7,6 +7,15 @@ export const getAllTweets = async () => {
     return response.json();
 };
 
+export const getUserTweets = async (username: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${username}`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
 export const createTweet = async (tweet: string) => {
     const response = await fetch(`/api/tweets/create`, {
         method: "POST",

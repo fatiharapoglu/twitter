@@ -45,13 +45,7 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
 
     return (
         <Dialog className="dialog" open={open} onClose={handleLogInClose}>
-            <Image
-                className="dialog-icon"
-                src="/assets/favicon.png"
-                alt=""
-                width={40}
-                height={40}
-            />
+            <Image className="dialog-icon" src="/assets/favicon.png" alt="" width={40} height={40} />
             <DialogTitle className="title">Sign in to Twitter</DialogTitle>
             <form onSubmit={formik.handleSubmit}>
                 <DialogContent>
