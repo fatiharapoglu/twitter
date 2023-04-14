@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, TextField, InputAdornment } from "@mui/material";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
 import { logIn } from "@/utilities/fetch";
+import Loading from "../layout/Loading";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const router = useRouter();
@@ -30,13 +31,14 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
             password: "",
         },
         validationSchema: validationSchema,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             const json = await logIn(JSON.stringify(values));
             if (!json.success) {
                 console.log(json);
                 return alert("Something went wrong");
                 // snackbar here
             }
+            resetForm();
             handleLogInClose();
             console.log("Logged in successfully");
             router.push("/home");
@@ -55,6 +57,10 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
                                 fullWidth
                                 name="username"
                                 label="Username"
+                                placeholder="username"
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">@</InputAdornment>,
+                                }}
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
                                 error={formik.touched.username && Boolean(formik.errors.username)}
@@ -75,13 +81,14 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
                         </div>
                     </div>
                 </DialogContent>
-                <DialogActions>
-                    <button className="btn" type="submit">
+                {formik.isSubmitting ? (
+                    <Loading />
+                ) : (
+                    <button className="btn btn-dark" type="submit">
                         Log In
                     </button>
-                </DialogActions>
+                )}
             </form>
-            <DialogTitle>Don&apos;t have an account? Sign up</DialogTitle>
         </Dialog>
     );
 }

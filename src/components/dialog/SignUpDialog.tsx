@@ -1,12 +1,16 @@
 import Image from "next/image";
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTitle, InputAdornment, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
 import { createUser } from "@/utilities/fetch";
+import Loading from "../layout/Loading";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
+    const router = useRouter();
+
     const validationSchema = yup.object({
         username: yup
             .string()
@@ -29,16 +33,15 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
             name: "",
         },
         validationSchema: validationSchema,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             const json = await createUser(JSON.stringify(values));
             if (!json.success) {
                 console.log(json);
                 return alert("Something went wrong");
-                // snackbar here
             }
+            resetForm();
             handleSignUpClose();
-            // redirect to home
-            console.log("Created successfully");
+            router.push("/home");
         },
     });
 
@@ -56,6 +59,10 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                                 fullWidth
                                 name="username"
                                 label="Username"
+                                placeholder="username"
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">@</InputAdornment>,
+                                }}
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
                                 error={formik.touched.username && Boolean(formik.errors.username)}
@@ -89,14 +96,13 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                         </div>
                     </div>
                 </DialogContent>
-                <DialogActions>
-                    <button className="btn" onClick={handleSignUpClose}>
-                        Cancel
-                    </button>
-                    <button className="btn" type="submit">
+                {formik.isSubmitting ? (
+                    <Loading />
+                ) : (
+                    <button className="btn btn-dark" type="submit">
                         Create
                     </button>
-                </DialogActions>
+                )}
             </form>
         </Dialog>
     );

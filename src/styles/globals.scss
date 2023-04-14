@@ -7,7 +7,7 @@
     --twitter-gray: #657786;
     --twitter-light-gray: #d1dce4;
     --twitter-black: #14171a;
-    --twitter-light-black: #1b2024;
+    --twitter-light-black: #282e32;
     --twitter-white: #f5f8fa;
     --twitter-muted: #536471;
     --hover: #efefef;
@@ -88,7 +88,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 4rem 2rem;
 }
 
 .text-muted {
@@ -172,11 +172,24 @@ body {
 }
 
 .dialog {
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        min-width: 400px;
+
+        .btn {
+            width: 75%;
+            margin: auto;
+            margin-bottom: 3rem;
+        }
+    }
     .title {
         font-size: 1.75rem;
         font-weight: 700;
         color: var(--twitter-black);
         text-align: center;
+        padding: 1rem;
     }
 
     .input-group {
