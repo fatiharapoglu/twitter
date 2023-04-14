@@ -36,7 +36,9 @@ export default function LeftSidebar() {
         <>
             <aside className="left-sidebar">
                 <div className="fixed">
-                    <Image src="/assets/favicon.png" alt="" width={40} height={40} />
+                    <Link href="/home" className="twitter-icon">
+                        <Image src="/assets/favicon.png" alt="" width={40} height={40} />
+                    </Link>
                     <nav>
                         <ul>
                             <li>

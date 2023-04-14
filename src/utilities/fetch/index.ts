@@ -48,3 +48,12 @@ export const createUser = async (newUser: string) => {
     });
     return response.json();
 };
+
+export const getUser = async (username: string) => {
+    const response = await fetch(`http://localhost:3000/api/users/${username}`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};

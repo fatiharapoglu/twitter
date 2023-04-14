@@ -8,8 +8,11 @@ import { Avatar } from "@mui/material";
 import { BsBalloon, BsCalendar3 } from "react-icons/bs";
 
 import useAuth from "@/hooks/useAuth";
+import { AuthorProps } from "@/types/AuthorProps";
+import { formatDateForProfile } from "@/utilities/date";
+import TweetArrayLength from "../tweet/TweetArrayLength";
 
-export default function Profile({ params }: any) {
+export default function Profile({ params, profile }: { params: any; profile: AuthorProps }) {
     const auth = useAuth();
     const pathname = usePathname();
     const tempLength = 15;
@@ -22,7 +25,7 @@ export default function Profile({ params }: any) {
                 </Link>
                 <div className="top">
                     <span className="top-username">{params.username}</span>
-                    <span className="text-muted">{tempLength} Tweets</span>
+                    <TweetArrayLength username={params.username} />
                 </div>
             </div>
             <section className="profile">
@@ -34,16 +37,16 @@ export default function Profile({ params }: any) {
                 </div>
                 <div className="profile-info">
                     <div className="profile-info-main">
-                        <h1>Fatih Arapoğlu</h1>
-                        <div className="text-muted">@username</div>
+                        <h1>{profile.name}</h1>
+                        <div className="text-muted">@{profile.username}</div>
                     </div>
-                    <p className="profile-info-desc">ykuC</p>
+                    <p className="profile-info-desc">Description placeholder</p>
                     <div className="profile-info-optional text-muted">
                         <div>
-                            <BsBalloon /> Born March 23
+                            <BsBalloon /> Born date placeholder
                         </div>
                         <div>
-                            <BsCalendar3 /> Joined November 2007
+                            <BsCalendar3 /> Joined {formatDateForProfile(profile.createdAt)}
                         </div>
                     </div>
                     <div className="profile-info-popularity">
@@ -54,7 +57,9 @@ export default function Profile({ params }: any) {
                             <span className="count">77</span> <span className="text-muted">Followers</span>
                         </div>
                     </div>
-                    <button className="btn btn-white edit-profile-btn">Edit profile</button>
+                    {auth.token?.username === params.username ? (
+                        <button className="btn btn-white edit-profile-btn">Edit profile</button>
+                    ) : null}
                 </div>
             </section>
             <nav className="profile-nav">

@@ -219,8 +219,16 @@ body {
         display: flex;
         flex-direction: column;
 
-        & > img {
-            padding-left: 0.75rem;
+        .twitter-icon {
+            & > img {
+                border-radius: 5rem;
+                padding: 0.25rem;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: var(--hover);
+                }
+            }
         }
 
         nav {
@@ -579,6 +587,33 @@ body {
                     font-weight: 900;
                 }
             }
+        }
+    }
+}
+
+.error-not-found {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--twitter-blue);
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 300;
+        color: var(--twitter-white);
+    }
+
+    a {
+        color: var(--twitter-white);
+        font-size: 1.5rem;
+        font-weight: 900;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--twitter-light-gray);
         }
     }
 }

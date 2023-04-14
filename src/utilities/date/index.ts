@@ -28,3 +28,11 @@ export const formatDateExtended = (date: Date) => {
         minute: "numeric",
     });
 };
+
+export const formatDateForProfile = (date: Date) => {
+    const newDate = new Date(date);
+    return newDate.toLocaleString("en-us", {
+        year: "numeric",
+        month: "long",
+    });
+};
