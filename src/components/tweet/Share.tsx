@@ -3,9 +3,9 @@ import { FiShare } from "react-icons/fi";
 export default function Share() {
     return (
         <div>
-            <span className="icon">
+            <button className="icon share">
                 <FiShare />
-            </span>
+            </button>
         </div>
     );
 }

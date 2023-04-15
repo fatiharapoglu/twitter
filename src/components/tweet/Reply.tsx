@@ -3,9 +3,9 @@ import { FaRegComment } from "react-icons/fa";
 export default function Reply() {
     return (
         <div>
-            <span className="icon">
+            <button className="icon reply">
                 <FaRegComment />
-            </span>
+            </button>
         </div>
     );
 }

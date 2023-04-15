@@ -148,6 +148,8 @@ body {
     right: 2rem;
     font-weight: 900;
     color: var(--twitter-dark-blue);
+    display: flex;
+    gap: 0.5rem;
     transition: all 0.2s ease;
 
     &:hover {
@@ -484,11 +486,52 @@ body {
                 max-width: 400px;
                 display: flex;
                 justify-content: space-between;
-                margin-top: 0.75rem;
+                margin-top: 0.5rem;
+                transform: translate(-6px, -6px);
 
                 .icon {
                     opacity: 0.75;
                     color: var(--twitter-muted);
+                    border: none;
+                    border-radius: 5rem;
+                    transition: all 0.2s ease;
+                    padding: 0.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: inherit;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .like {
+                    &:hover {
+                        background-color: rgba(249, 24, 128, 0.1);
+                        color: rgba(249, 24, 128, 0.75);
+                    }
+                }
+
+                .retweet {
+                    &:hover {
+                        background-color: rgba(19, 226, 157, 0.1);
+                        color: rgba(2, 37, 26, 0.75);
+                    }
+                }
+
+                .reply {
+                    &:hover {
+                        background-color: rgba(21, 140, 209, 0.1);
+                        color: var(--twitter-dark-blue);
+                    }
+                }
+
+                .share {
+                    &:hover {
+                        background-color: rgba(21, 140, 209, 0.1);
+                        color: var(--twitter-dark-blue);
+                    }
                 }
             }
         }
@@ -677,7 +720,7 @@ body {
         opacity: 0;
     }
     100% {
-        transform: scale(20);
+        transform: scale(10);
         opacity: 1;
     }
 }

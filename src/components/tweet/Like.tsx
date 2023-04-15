@@ -1,11 +1,13 @@
 import { FaRegHeart } from "react-icons/fa";
 
 export default function Like() {
+    const handleLike = () => {};
+
     return (
         <div>
-            <span className="icon">
+            <button onClick={handleLike} className="icon like">
                 <FaRegHeart />
-            </span>
+            </button>
         </div>
     );
 }

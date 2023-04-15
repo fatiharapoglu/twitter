@@ -37,6 +37,8 @@
 -   [ ] add twitter blue tick
 -   [ ] make profile back arrow sticky | fixed
 -   [ ] handle tweet text html-like breaks
+-   [ ] change explore to home, home only followings
+-   [ ] add delete options for users tweets
+-   [ ] tweak useAuth, add loading state for auth loading instead of null
 
 You can just look around just like real twitter, but only get full access if you are logged in.
-acknowledgements : animista css https://animista.net/

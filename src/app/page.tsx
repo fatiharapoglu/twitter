@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Tooltip } from "@mui/material";
+import { FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -83,7 +84,7 @@ export default function RootPage() {
                     <SignUpDialog open={isSignUpOpen} handleSignUpClose={handleSignUpClose} />
                     <LogInDialog open={isLogInOpen} handleLogInClose={handleLogInClose} />
                     <Link className="fixed-link text-muted" href="/home">
-                        Explore without signing in
+                        Explore without signing in <FaArrowRight />
                     </Link>
                 </>
             )}
