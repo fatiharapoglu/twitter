@@ -9,15 +9,15 @@ import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaLock, FaEllipsi
 
 import useAuth from "@/hooks/useAuth";
 import NewTweetDialog from "../dialog/NewTweetDialog";
+import LogOutDialog from "../dialog/LogOutDialog";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isNewTweetOpen, setIsNewTweetOpen] = useState(false);
+    const [isLogOutOpen, setIsLogOutOpen] = useState(false);
 
     const auth = useAuth();
     const pathname = usePathname();
-
-    console.log(auth?.token?.name);
 
     const tempIsLocked = true;
 
@@ -32,6 +32,12 @@ export default function LeftSidebar() {
     };
     const handleNewTweetClose = () => {
         setIsNewTweetOpen(false);
+    };
+    const handleLogOutClick = () => {
+        setIsLogOutOpen(true);
+    };
+    const handleLogOutClose = () => {
+        setIsLogOutOpen(false);
     };
 
     return (
@@ -138,14 +144,17 @@ export default function LeftSidebar() {
                                 <MenuItem onClick={handleAnchorClose}>
                                     <Link href="/settings">Settings</Link>
                                 </MenuItem>
-                                <MenuItem onClick={auth.logout}>Log Out</MenuItem>
+                                <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem>
                             </Menu>
                         </>
                     )}
                 </div>
             </aside>
             {auth.token && (
-                <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={auth.token} />
+                <>
+                    <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={auth.token} />
+                    <LogOutDialog open={isLogOutOpen} handleLogOutClose={handleLogOutClose} logout={auth.logout} />
+                </>
             )}
         </>
     );

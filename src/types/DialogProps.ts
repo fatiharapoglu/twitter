@@ -15,3 +15,9 @@ export type NewTweetDialogProps = {
     handleNewTweetClose: () => void;
     token: AuthorProps;
 };
+
+export type LogOutDialogProps = {
+    open: boolean;
+    handleLogOutClose: () => void;
+    logout: () => void;
+};
