@@ -91,6 +91,18 @@ body {
     margin: 4rem 2rem;
 }
 
+.global-loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--twitter-blue);
+
+    img {
+        animation: pulsate-fwd 0.5s ease-in-out infinite both;
+    }
+}
+
 .text-muted {
     font-size: 15px;
     color: var(--twitter-muted);
@@ -654,5 +666,17 @@ body {
         &:hover {
             color: var(--twitter-light-gray);
         }
+    }
+}
+
+@keyframes pulsate-fwd {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }

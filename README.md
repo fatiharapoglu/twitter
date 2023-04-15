@@ -20,13 +20,14 @@
 -   [x] break-word for description
 -   [x] add env.example
 -   [x] add modal for logout
+-   [x] think about test account
+-   [x] global loading
 -   [ ] handle errors like "user already exists"
 -   [ ] add auth, also provide auth from google + apple
 -   [ ] visually copy everything
 -   [ ] emote and photo upload to new tweet
 -   [ ] add hidden/locked profile
 -   [ ] add dark mode
--   [ ] think about test account
 -   [ ] lazy load tweets
 -   [ ] avatar logic/ image logic in tweets
 -   [ ] make it responsive
@@ -38,3 +39,4 @@
 -   [ ] handle tweet text html-like breaks
 
 You can just look around just like real twitter, but only get full access if you are logged in.
+acknowledgements : animista css https://animista.net/
