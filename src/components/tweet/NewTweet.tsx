@@ -24,11 +24,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const formik = useFormik({
         initialValues: {
             text: "",
-            author: {
-                connect: {
-                    id: token.id,
-                },
-            },
+            authorId: token.id,
         },
         validationSchema: validationSchema,
         onSubmit: async (values, { resetForm }) => {
