@@ -36,3 +36,5 @@
 -   [ ] add twitter blue tick
 -   [ ] make profile back arrow sticky | fixed
 -   [ ] handle tweet text html-like breaks
+
+You can just look around just like real twitter, but only get full access if you are logged in.

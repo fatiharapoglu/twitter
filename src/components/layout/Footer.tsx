@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link";
 
+import useAuth from "@/hooks/useAuth";
+
 export default function Footer() {
+    const auth = useAuth();
+
+    if (auth.token) return null;
+
     return (
         <footer className="footer">
             <div>

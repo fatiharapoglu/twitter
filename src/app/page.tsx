@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Tooltip } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 
 import SignUpDialog from "@/components/dialog/SignUpDialog";
 import LogInDialog from "@/components/dialog/LogInDialog";
 import { logInAsTest } from "@/utilities/fetch";
-import { Tooltip } from "@mui/material";
 
 export default function RootPage() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -49,7 +50,7 @@ export default function RootPage() {
                             Sign in
                         </button>
                         <Tooltip
-                            title="You can log in as test account to get full user priviliges if you don't have time to sign up."
+                            title="You can log in as test account to get full user priviliges if you don't have time to sign up. You can ALSO just look around without even being logged in, just like real Twitter!"
                             placement="bottom"
                         >
                             <button
@@ -69,6 +70,9 @@ export default function RootPage() {
             </main>
             <SignUpDialog open={isSignUpOpen} handleSignUpClose={handleSignUpClose} />
             <LogInDialog open={isLogInOpen} handleLogInClose={handleLogInClose} />
+            <Link className="fixed-link text-muted" href="/home">
+                Explore without signing in
+            </Link>
         </>
     );
 }
