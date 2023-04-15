@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import SignUpDialog from "@/components/dialog/SignUpDialog";
 import LogInDialog from "@/components/dialog/LogInDialog";
+import { logInAsTest } from "@/utilities/fetch";
+import { Tooltip } from "@mui/material";
 
 export default function RootPage() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [isLogInOpen, setIsLogInOpen] = useState(false);
+
+    const router = useRouter();
 
     const handleSignUpClick = () => {
         setIsSignUpOpen(true);
@@ -43,9 +48,22 @@ export default function RootPage() {
                         <button className="btn btn-light" onClick={handleLogInClick}>
                             Sign in
                         </button>
-                        <button className="btn btn-light">
-                            Test account <span>(?)</span>
-                        </button>
+                        <Tooltip
+                            title="You can log in as test account to get full user priviliges if you don't have time to sign up."
+                            placement="bottom"
+                        >
+                            <button
+                                onClick={async () => {
+                                    const json = await logInAsTest();
+                                    if (!json.success) return alert("Something went wrong. Try again.");
+                                    // snackbar here
+                                    router.push("/home");
+                                }}
+                                className="btn btn-light"
+                            >
+                                <span>Test account (Hover here!)</span>
+                            </button>
+                        </Tooltip>
                     </div>
                 </div>
             </main>

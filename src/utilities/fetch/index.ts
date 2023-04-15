@@ -38,6 +38,14 @@ export const logIn = async (candidate: string) => {
     return response.json();
 };
 
+export const logInAsTest = async () => {
+    const testAccount = {
+        username: "test",
+        password: "123456789",
+    };
+    return await logIn(JSON.stringify(testAccount));
+};
+
 export const createUser = async (newUser: string) => {
     const response = await fetch(`/api/users/create`, {
         method: "POST",
