@@ -22,6 +22,8 @@
 -   [x] add modal for logout
 -   [x] think about test account
 -   [x] global loading
+-   [x] add global loading as twitter bird with animation
+-   [x] tweak useAuth, add loading state for auth loading instead of null
 -   [ ] handle errors like "user already exists"
 -   [ ] add auth, also provide auth from google + apple
 -   [ ] visually copy everything
@@ -31,7 +33,6 @@
 -   [ ] lazy load tweets
 -   [ ] avatar logic/ image logic in tweets
 -   [ ] make it responsive
--   [ ] add first entering the site, animation with twitter logo
 -   [ ] progress bar for 280 characters
 -   [ ] add card when hover on tweet profile & username
 -   [ ] add twitter blue tick
@@ -39,7 +40,11 @@
 -   [ ] handle tweet text html-like breaks
 -   [ ] change explore to home, home only followings
 -   [ ] add delete options for users tweets
--   [ ] tweak useAuth, add loading state for auth loading instead of null
 -   [ ] optimistic update on likes
+-   [ ] unlike
+-   [ ] animation on click ? react spring?
+-   [ ] add skeletons for loading such as ... Tweets, description
+-   [ ] animations on tweets
+-   [ ] tooltips for likes/retweets and so on
 
 You can just look around just like real twitter, but only get full access if you are logged in.

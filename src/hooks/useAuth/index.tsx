@@ -17,12 +17,14 @@ export default function useAuth() {
     const router = useRouter();
 
     const [token, setToken] = React.useState<VerifiedToken>(null);
+    const [isPending, setIsPending] = React.useState<boolean>(true);
 
     const getVerifiedToken = async () => {
         const cookies = new Cookies();
         const token = cookies.get("token") ?? null;
         const verifiedToken = token && (await verifyJwtToken(token));
         setToken(verifiedToken);
+        setIsPending(false);
     };
 
     React.useEffect(() => {
@@ -36,7 +38,7 @@ export default function useAuth() {
         router.push("/");
     };
 
-    return { token, logout };
+    return { token, isPending, logout };
 }
 
 useAuth.fromServer = fromServer;

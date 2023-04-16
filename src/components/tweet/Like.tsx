@@ -36,7 +36,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
             <button onClick={handleLike} className="icon like">
                 <FaRegHeart />
                 <span className="count">
-                    {tweet.isFetched && tweet.data?.tweet.likedBy?.length === 0 ? "" : tweet.data?.tweet.likedBy?.length}
+                    {tweet.isFetched && tweet.data?.tweet?.likedBy?.length === 0 ? "" : tweet.data?.tweet?.likedBy?.length}
                 </span>
             </button>
         </div>

@@ -12,6 +12,8 @@ export default function HomePage() {
     const auth = useAuth();
     const tweetsQuery = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
+    if (auth.isPending) return Loading();
+
     return (
         <main>
             <h1 className="page-name">Home</h1>

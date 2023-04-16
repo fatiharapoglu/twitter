@@ -15,7 +15,6 @@ import TweetArrayLength from "../tweet/TweetArrayLength";
 export default function Profile({ params, profile }: { params: any; profile: AuthorProps }) {
     const auth = useAuth();
     const pathname = usePathname();
-    const tempLength = 15;
 
     return (
         <main>
