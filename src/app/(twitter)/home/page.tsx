@@ -10,15 +10,16 @@ import useAuth from "@/hooks/useAuth";
 
 export default function HomePage() {
     const auth = useAuth();
-    const tweetsQuery = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
+    const { isLoading, error, data } = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
     if (auth.isPending) return Loading();
+    if (error) return null; //global error
 
     return (
         <main>
             <h1 className="page-name">Home</h1>
             {auth.token && <NewTweet token={auth.token} />}
-            {tweetsQuery.isLoading ? <Loading /> : <Tweets tweets={tweetsQuery.data.tweets} />}
+            {isLoading ? <Loading /> : <Tweets tweets={data.tweets} />}
         </main>
     );
 }

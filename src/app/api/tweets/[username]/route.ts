@@ -12,6 +12,7 @@ export async function GET(request: Request, { params }: any) {
             },
             include: {
                 author: true,
+                likedBy: true,
             },
             orderBy: [
                 {

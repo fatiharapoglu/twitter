@@ -7,10 +7,12 @@ import Loading from "@/components/layout/Loading";
 import { getUserTweets } from "@/utilities/fetch";
 
 export default function UserTweets({ params }: any) {
-    const userTweetsQuery = useQuery({
+    const { isLoading, error, data } = useQuery({
         queryKey: ["tweets", params.username],
         queryFn: () => getUserTweets(params.username),
     });
 
-    return <>{userTweetsQuery.isLoading ? <Loading /> : <Tweets tweets={userTweetsQuery.data.tweets} />}</>;
+    if (error) return null; //global error
+
+    return <>{isLoading ? <Loading /> : <Tweets tweets={data.tweets} />}</>;
 }

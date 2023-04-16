@@ -6,10 +6,25 @@ export type TweetProps = {
     createdAt: Date;
     author: AuthorProps;
     authorId: string;
-    likedById: null | string;
+    likedBy: AuthorProps[];
     parentId: null | string;
 };
 
 export type TweetsArray = {
     tweets: TweetProps[];
+};
+
+export type TweetResponse = {
+    success: boolean;
+    tweet: TweetProps;
+};
+
+export type TweetOptionsProps = {
+    tweetId: string;
+    tweetAuthor: string;
+};
+
+export type NewTweetProps = {
+    token: AuthorProps;
+    handleSubmit?: () => void;
 };

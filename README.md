@@ -46,5 +46,6 @@
 -   [ ] add skeletons for loading such as ... Tweets, description
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
+-   [ ] global-error
 
 You can just look around just like real twitter, but only get full access if you are logged in.

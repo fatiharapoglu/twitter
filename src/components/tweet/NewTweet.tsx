@@ -6,7 +6,7 @@ import { FaRegImage, FaRegSmile } from "react-icons/fa";
 
 import Loading from "../layout/Loading";
 import { createTweet } from "@/utilities/fetch";
-import { NewTweetProps } from "@/types/NewTweetProps";
+import { NewTweetProps } from "@/types/TweetProps";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const queryClient = useQueryClient();
