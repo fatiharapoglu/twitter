@@ -40,5 +40,6 @@
 -   [ ] change explore to home, home only followings
 -   [ ] add delete options for users tweets
 -   [ ] tweak useAuth, add loading state for auth loading instead of null
+-   [ ] optimistic update on likes
 
 You can just look around just like real twitter, but only get full access if you are logged in.

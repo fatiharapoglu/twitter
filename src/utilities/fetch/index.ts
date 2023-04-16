@@ -16,6 +16,15 @@ export const getUserTweets = async (username: string) => {
     return response.json();
 };
 
+export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
 export const createTweet = async (tweet: string) => {
     const response = await fetch(`/api/tweets/create`, {
         method: "POST",
@@ -62,6 +71,17 @@ export const getUser = async (username: string) => {
         next: {
             revalidate: 0,
         },
+    });
+    return response.json();
+};
+
+export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/like`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: tokenOwnerId,
     });
     return response.json();
 };

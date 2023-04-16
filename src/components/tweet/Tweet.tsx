@@ -35,7 +35,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                 <div className="tweet-bottom">
                     <Reply />
                     <Retweet />
-                    <Like />
+                    <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                     <Share />
                 </div>
             </div>

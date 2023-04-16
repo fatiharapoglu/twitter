@@ -29,8 +29,7 @@ model Tweet {
     createdAt DateTime  @default(now())
     author    User      @relation("userTweets", fields: [authorId], references: [id])
     authorId  String
-    likedBy   User?     @relation("userLikes", fields: [likedById], references: [id])
-    likedById String?
+    likedBy   User[]    @relation("userLikes")
     parent    Tweet?    @relation("tweetReplies", fields: [parentId], references: [id])
     parentId  String?
     replies   Tweet[]   @relation("tweetReplies")
