@@ -504,11 +504,25 @@ body {
                     &:hover {
                         cursor: pointer;
                     }
+
+                    .count {
+                        padding-left: 0.25rem;
+                    }
+
+                    span {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
                 }
 
                 .like {
                     &:hover {
                         background-color: rgba(249, 24, 128, 0.1);
+                        color: rgba(249, 24, 128, 0.75);
+                    }
+
+                    &.active {
                         color: rgba(249, 24, 128, 0.75);
                     }
                 }

@@ -47,6 +47,6 @@
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
 -   [ ] global-error
--   [ ] exlude password in prisma includes:{}
+-   [ ] exlude password in prisma includes:{}, fix types accordingly
 
 You can just look around just like real twitter, but only get full access if you are logged in.

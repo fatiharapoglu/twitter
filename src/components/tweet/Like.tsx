@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import { TweetOptionsProps, TweetResponse } from "@/types/TweetProps";
 import { getUserTweet, updateTweetLikes } from "@/utilities/fetch";
@@ -100,9 +101,24 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     }, [auth.isPending, isFetched]);
 
     return (
-        <button onClick={handleLike} className="icon like">
-            {isLiked ? <FaHeart /> : <FaRegHeart />}
+        <motion.button
+            className={`icon like ${isLiked ? "active" : ""}`}
+            onClick={handleLike}
+            whileTap={{ scale: 0.9 }}
+            animate={{ scale: isLiked ? [1, 1.5, 1.2, 1] : 1 }}
+            transition={{ duration: 0.25 }}
+        >
+            {isLiked ? (
+                <motion.span animate={{ scale: [1, 1.5, 1.2, 1] }} transition={{ duration: 0.25 }}>
+                    <FaHeart />
+                </motion.span>
+            ) : (
+                <motion.span animate={{ scale: [1, 0.8, 1] }} transition={{ duration: 0.25 }}>
+                    <FaRegHeart />
+                </motion.span>
+            )}
+            <motion.span animate={{ scale: isLiked ? [0, 1.2, 1] : 0 }} transition={{ duration: 0.25 }} />
             <span className="count">{data?.tweet?.likedBy?.length === 0 ? "" : data?.tweet?.likedBy?.length}</span>
-        </button>
+        </motion.button>
     );
 }
