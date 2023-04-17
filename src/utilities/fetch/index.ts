@@ -75,8 +75,9 @@ export const getUser = async (username: string) => {
     return response.json();
 };
 
-export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/like`, {
+export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isLiked: boolean) => {
+    const route = isLiked ? "unlike" : "like";
+    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -2,21 +2,23 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 
-export async function GET(request: Request, { params }: any) {
+export async function POST(request: Request, { params }: any) {
+    const tokenOwnerId = await request.json();
+
     try {
-        const tweet = await prisma.tweet.findUnique({
+        await prisma.tweet.update({
             where: {
                 id: params.tweetId,
             },
-            include: {
+            data: {
                 likedBy: {
-                    select: {
-                        id: true,
+                    disconnect: {
+                        id: tokenOwnerId,
                     },
                 },
             },
         });
-        return NextResponse.json({ success: true, tweet });
+        return NextResponse.json({ success: true });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });
     }

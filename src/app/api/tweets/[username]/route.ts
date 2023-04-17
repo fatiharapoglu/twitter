@@ -11,8 +11,18 @@ export async function GET(request: Request, { params }: any) {
                 },
             },
             include: {
-                author: true,
-                likedBy: true,
+                author: {
+                    select: {
+                        id: true,
+                        username: true,
+                        name: true,
+                    },
+                },
+                likedBy: {
+                    select: {
+                        id: true,
+                    },
+                },
             },
             orderBy: [
                 {

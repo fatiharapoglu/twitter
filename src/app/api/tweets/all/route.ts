@@ -6,8 +6,18 @@ export async function GET(request: Request) {
     try {
         const tweets = await prisma.tweet.findMany({
             include: {
-                author: true,
-                likedBy: true,
+                author: {
+                    select: {
+                        id: true,
+                        username: true,
+                        name: true,
+                    },
+                },
+                likedBy: {
+                    select: {
+                        id: true,
+                    },
+                },
             },
             orderBy: [
                 {
