@@ -16,6 +16,15 @@ export const getUserTweets = async (username: string) => {
     return response.json();
 };
 
+export const getUserLikes = async (username: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${username}/likes`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
 export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
     const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}`, {
         next: {

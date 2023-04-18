@@ -24,6 +24,9 @@
 -   [x] global loading
 -   [x] add global loading as twitter bird with animation
 -   [x] tweak useAuth, add loading state for auth loading instead of null
+-   [x] optimistic update on likes
+-   [x] unlike
+-   [x] animation on click ? react spring?
 -   [ ] handle errors like "user already exists"
 -   [ ] add auth, also provide auth from google + apple
 -   [ ] visually copy everything
@@ -40,9 +43,6 @@
 -   [ ] handle tweet text html-like breaks
 -   [ ] change explore to home, home only followings
 -   [ ] add delete options for users tweets
--   [ ] optimistic update on likes
--   [ ] unlike
--   [ ] animation on click ? react spring?
 -   [ ] add skeletons for loading such as ... Tweets, description
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on

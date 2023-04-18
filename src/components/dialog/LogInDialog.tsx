@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
 import { logIn } from "@/utilities/fetch";
-import Loading from "../layout/Loading";
+import CircularLoading from "../layout/CircularLoading";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const router = useRouter();
@@ -82,7 +82,7 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
                     </div>
                 </DialogContent>
                 {formik.isSubmitting ? (
-                    <Loading />
+                    <CircularLoading />
                 ) : (
                     <button className="btn btn-dark" type="submit">
                         Log In

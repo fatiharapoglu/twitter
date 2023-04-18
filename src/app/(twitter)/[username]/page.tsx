@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import Tweets from "@/components/tweet/Tweets";
-import Loading from "@/components/layout/Loading";
+import CircularLoading from "@/components/layout/CircularLoading";
 import { getUserTweets } from "@/utilities/fetch";
 
 export default function UserTweets({ params }: any) {
@@ -14,5 +14,5 @@ export default function UserTweets({ params }: any) {
 
     if (error) return null; //global error
 
-    return <>{isLoading ? <Loading /> : <Tweets tweets={data.tweets} />}</>;
+    return <>{isLoading ? <CircularLoading /> : <Tweets tweets={data.tweets} />}</>;
 }

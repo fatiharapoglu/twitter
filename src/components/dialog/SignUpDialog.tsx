@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
 import { createUser } from "@/utilities/fetch";
-import Loading from "../layout/Loading";
+import CircularLoading from "../layout/CircularLoading";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
     const router = useRouter();
@@ -97,7 +97,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                     </div>
                 </DialogContent>
                 {formik.isSubmitting ? (
-                    <Loading />
+                    <CircularLoading />
                 ) : (
                     <button className="btn btn-dark" type="submit">
                         Create

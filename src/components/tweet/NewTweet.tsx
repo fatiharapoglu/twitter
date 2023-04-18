@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegImage, FaRegSmile } from "react-icons/fa";
 
-import Loading from "../layout/Loading";
+import CircularLoading from "../layout/CircularLoading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
 
@@ -35,7 +35,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     });
 
     if (mutation.isLoading) {
-        return <Loading />;
+        return <CircularLoading />;
     }
 
     return (

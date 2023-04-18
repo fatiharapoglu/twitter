@@ -95,7 +95,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
         if (!auth.isPending && isFetched) {
             const tokenOwnerId = JSON.stringify(auth?.token?.id);
             const likedBy = data?.tweet?.likedBy;
-            const isLikedByTokenOwner = likedBy.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
+            const isLikedByTokenOwner = likedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
             setIsLiked(isLikedByTokenOwner);
         }
     }, [auth.isPending, isFetched]);
