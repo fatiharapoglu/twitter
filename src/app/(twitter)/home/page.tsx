@@ -12,7 +12,7 @@ export default function HomePage() {
     const auth = useAuth();
     const { isLoading, error, data } = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
-    if (auth.isPending) return Loading();
+    if (auth.isPending) return <Loading />;
     if (error) return null; //global error
 
     return (

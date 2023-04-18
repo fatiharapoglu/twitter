@@ -107,6 +107,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
             whileTap={{ scale: 0.9 }}
             animate={{ scale: isLiked ? [1, 1.5, 1.2, 1] : 1 }}
             transition={{ duration: 0.25 }}
+            disabled={likeMutation.isLoading || unlikeMutation.isLoading}
         >
             {isLiked ? (
                 <motion.span animate={{ scale: [1, 1.5, 1.2, 1] }} transition={{ duration: 0.25 }}>

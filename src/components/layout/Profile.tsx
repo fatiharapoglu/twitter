@@ -23,11 +23,11 @@ export default function Profile({ params, profile }: { params: any; profile: Aut
                     <FaArrowLeft />
                 </Link>
                 <div className="top">
-                    <span className="top-username">{params.username}</span>
-                    <TweetArrayLength username={params.username} />
+                    <span className="top-username">{profile.username}</span>
+                    <TweetArrayLength username={profile.username} />
                 </div>
             </div>
-            <section className="profile">
+            <div className="profile">
                 <div className="profile-header">
                     <Image alt="" src="https://picsum.photos/600/200" fill />
                     <div className="avatar-wrapper">
@@ -56,11 +56,11 @@ export default function Profile({ params, profile }: { params: any; profile: Aut
                             <span className="count">77</span> <span className="text-muted">Followers</span>
                         </div>
                     </div>
-                    {auth.token?.username === params.username ? (
+                    {auth.token?.username === profile.username ? (
                         <button className="btn btn-white edit-profile-btn">Edit profile</button>
                     ) : null}
                 </div>
-            </section>
+            </div>
             <nav className="profile-nav">
                 <Link
                     className={`profile-nav-link ${pathname === `/${params.username}` ? "active" : ""}`}
