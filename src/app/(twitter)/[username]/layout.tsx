@@ -3,8 +3,14 @@ import { notFound } from "next/navigation";
 import Profile from "@/components/layout/Profile";
 import { getUser } from "@/utilities/fetch";
 
-export default async function ProfileLayout({ children, params }: { children: React.ReactNode; params: any }) {
-    const { user } = await getUser(params.username);
+export default async function ProfileLayout({
+    children,
+    params: { username },
+}: {
+    children: React.ReactNode;
+    params: { username: string };
+}) {
+    const { user } = await getUser(username);
 
     if (!user) {
         notFound();
@@ -12,7 +18,7 @@ export default async function ProfileLayout({ children, params }: { children: Re
 
     return (
         <div className="profile-layout">
-            {<Profile params={params} profile={user} />}
+            {<Profile username={username} profile={user} />}
             {children}
         </div>
     );

@@ -6,10 +6,10 @@ import Tweets from "@/components/tweet/Tweets";
 import { getUserLikes } from "@/utilities/fetch";
 import CircularLoading from "@/components/layout/CircularLoading";
 
-export default function Likes({ params }: any) {
+export default function Likes({ params: { username } }: { params: { username: string } }) {
     const { isLoading, error, data } = useQuery({
-        queryKey: ["tweets", params.username, "likes"],
-        queryFn: () => getUserLikes(params.username),
+        queryKey: ["tweets", username, "likes"],
+        queryFn: () => getUserLikes(username),
     });
 
     if (error) return null; //global error

@@ -451,129 +451,127 @@ body {
     }
 }
 
-.tweets-wrapper {
-    .tweet {
-        border-bottom: 1px solid var(--border-color);
-        padding: 1rem;
+.tweet {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: var(--hover);
+    }
+
+    .tweet-avatar {
+        margin-bottom: auto;
+    }
+
+    .tweet-main {
         display: flex;
-        align-items: center;
-        gap: 1rem;
-        overflow: hidden;
-        transition: background-color 0.2s ease;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
 
-        &:hover {
-            background-color: var(--hover);
+        .tweet-text {
+            overflow-wrap: anywhere;
+            line-height: normal;
+            font-size: 14px;
+            font-family: var(--font-poppins);
         }
 
-        .tweet-avatar {
-            margin-bottom: auto;
-        }
-
-        .tweet-main {
+        .tweet-bottom {
+            max-width: 400px;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            width: 100%;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            transform: translate(-6px, -6px);
 
-            .tweet-text {
-                overflow-wrap: anywhere;
-                line-height: normal;
-                font-size: 14px;
-                font-family: var(--font-poppins);
-            }
-
-            .tweet-bottom {
-                max-width: 400px;
+            .icon {
+                opacity: 0.75;
+                color: var(--twitter-muted);
+                border: none;
+                border-radius: 5rem;
+                transition: all 0.2s ease;
+                padding: 0.5rem;
                 display: flex;
-                justify-content: space-between;
-                margin-top: 0.5rem;
-                transform: translate(-6px, -6px);
+                justify-content: center;
+                align-items: center;
+                background-color: inherit;
 
-                .icon {
-                    opacity: 0.75;
-                    color: var(--twitter-muted);
-                    border: none;
-                    border-radius: 5rem;
-                    transition: all 0.2s ease;
-                    padding: 0.5rem;
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .count {
+                    padding-left: 0.25rem;
+                }
+
+                span {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background-color: inherit;
+                }
+            }
 
-                    &:hover {
-                        cursor: pointer;
-                    }
-
-                    .count {
-                        padding-left: 0.25rem;
-                    }
-
-                    span {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+            .like {
+                &:hover {
+                    background-color: rgba(249, 24, 128, 0.1);
+                    color: rgba(249, 24, 128, 0.75);
                 }
 
-                .like {
-                    &:hover {
-                        background-color: rgba(249, 24, 128, 0.1);
-                        color: rgba(249, 24, 128, 0.75);
-                    }
-
-                    &.active {
-                        color: rgba(249, 24, 128, 0.75);
-                    }
+                &.active {
+                    color: rgba(249, 24, 128, 0.75);
                 }
+            }
 
-                .retweet {
-                    &:hover {
-                        background-color: rgba(19, 226, 157, 0.1);
-                        color: rgba(2, 37, 26, 0.75);
-                    }
+            .retweet {
+                &:hover {
+                    background-color: rgba(19, 226, 157, 0.1);
+                    color: rgba(2, 37, 26, 0.75);
                 }
+            }
 
-                .reply {
-                    &:hover {
-                        background-color: rgba(21, 140, 209, 0.1);
-                        color: var(--twitter-dark-blue);
-                    }
+            .reply {
+                &:hover {
+                    background-color: rgba(21, 140, 209, 0.1);
+                    color: var(--twitter-dark-blue);
                 }
+            }
 
-                .share {
-                    &:hover {
-                        background-color: rgba(21, 140, 209, 0.1);
-                        color: var(--twitter-dark-blue);
-                    }
+            .share {
+                &:hover {
+                    background-color: rgba(21, 140, 209, 0.1);
+                    color: var(--twitter-dark-blue);
                 }
             }
         }
+    }
 
-        .tweet-author-section {
+    .tweet-author-section {
+        display: flex;
+        align-items: center;
+
+        .tweet-author-link {
             display: flex;
             align-items: center;
+            gap: 0.35rem;
+        }
 
-            .tweet-author-link {
-                display: flex;
-                align-items: center;
-                gap: 0.35rem;
-            }
+        .tweet-author-link:hover .tweet-author {
+            text-decoration: underline;
+        }
 
-            .tweet-author-link:hover .tweet-author {
-                text-decoration: underline;
-            }
+        .tweet-author {
+            font-weight: bold;
+            font-size: 15px;
+        }
 
-            .tweet-author {
-                font-weight: bold;
-                font-size: 15px;
-            }
-
-            .text-muted.date {
-                font-size: 0.75rem;
-                opacity: 0.75;
-                cursor: pointer;
-            }
+        .text-muted.date {
+            font-size: 0.75rem;
+            opacity: 0.75;
+            cursor: pointer;
         }
     }
 }

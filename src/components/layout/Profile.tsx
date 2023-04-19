@@ -12,7 +12,7 @@ import { AuthorProps } from "@/types/AuthorProps";
 import { formatDateForProfile } from "@/utilities/date";
 import TweetArrayLength from "../tweet/TweetArrayLength";
 
-export default function Profile({ params, profile }: { params: any; profile: AuthorProps }) {
+export default function Profile({ username, profile }: { username: string; profile: AuthorProps }) {
     const auth = useAuth();
     const pathname = usePathname();
 
@@ -62,27 +62,24 @@ export default function Profile({ params, profile }: { params: any; profile: Aut
                 </div>
             </div>
             <nav className="profile-nav">
-                <Link
-                    className={`profile-nav-link ${pathname === `/${params.username}` ? "active" : ""}`}
-                    href={`/${params.username}`}
-                >
+                <Link className={`profile-nav-link ${pathname === `/${username}` ? "active" : ""}`} href={`/${username}`}>
                     <span>Tweets</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${params.username}/replies` ? "active" : ""}`}
-                    href={`/${params.username}/replies`}
+                    className={`profile-nav-link ${pathname === `/${username}/replies` ? "active" : ""}`}
+                    href={`/${username}/replies`}
                 >
                     <span>Replies</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${params.username}/media` ? "active" : ""}`}
-                    href={`/${params.username}/media`}
+                    className={`profile-nav-link ${pathname === `/${username}/media` ? "active" : ""}`}
+                    href={`/${username}/media`}
                 >
                     <span>Media</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${params.username}/likes` ? "active" : ""}`}
-                    href={`/${params.username}/likes`}
+                    className={`profile-nav-link ${pathname === `/${username}/likes` ? "active" : ""}`}
+                    href={`/${username}/likes`}
                 >
                     <span>Likes</span>
                 </Link>
