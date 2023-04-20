@@ -19,11 +19,13 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                 likedBy: {
                     select: {
                         id: true,
+                        username: true,
+                        name: true,
+                        description: true,
                     },
                 },
             },
         });
-
         return NextResponse.json({ success: true, tweet });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });

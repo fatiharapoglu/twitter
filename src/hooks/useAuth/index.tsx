@@ -34,7 +34,6 @@ export default function useAuth() {
     const logout = () => {
         const cookies = new Cookies();
         cookies.remove("token");
-        setToken(null);
         router.push("/");
     };
 

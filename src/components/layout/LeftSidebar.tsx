@@ -115,11 +115,11 @@ export default function LeftSidebar() {
                                     <Avatar alt="" src="https://picsum.photos/200/300" />
                                 </div>
                                 <div>
-                                    <p className="token-name">
+                                    <div className="token-name">
                                         {auth.token.name !== "" ? auth.token.name : auth.token.username}{" "}
                                         {tempIsLocked ? <FaLock /> : null}
-                                    </p>
-                                    <p className="text-muted token-username">@{auth.token.username}</p>
+                                    </div>
+                                    <div className="text-muted token-username">@{auth.token.username}</div>
                                 </div>
                                 <div className="three-dots">
                                     <FaEllipsisH />

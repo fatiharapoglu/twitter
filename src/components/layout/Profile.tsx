@@ -17,13 +17,13 @@ export default function Profile({ username, profile }: { username: string; profi
     const pathname = usePathname();
 
     return (
-        <main>
-            <div className="back-to-home">
+        <>
+            <div className="back-to">
                 <Link className="icon-hoverable" href="/home">
                     <FaArrowLeft />
                 </Link>
                 <div className="top">
-                    <span className="top-username">{profile.username}</span>
+                    <span className="top-title">{profile.username}</span>
                     <TweetArrayLength username={profile.username} />
                 </div>
             </div>
@@ -39,7 +39,7 @@ export default function Profile({ username, profile }: { username: string; profi
                         <h1>{profile.name !== "" ? profile.name : profile.username}</h1>
                         <div className="text-muted">@{profile.username}</div>
                     </div>
-                    <p className="profile-info-desc">Description placeholder</p>
+                    <div className="profile-info-desc">Description placeholder</div>
                     <div className="profile-info-optional text-muted">
                         <div>
                             <BsBalloon /> Born date placeholder
@@ -84,6 +84,6 @@ export default function Profile({ username, profile }: { username: string; profi
                     <span>Likes</span>
                 </Link>
             </nav>
-        </main>
+        </>
     );
 }

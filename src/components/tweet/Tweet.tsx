@@ -30,7 +30,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     </Tooltip>
                 </section>
                 <Link href={`/${tweet.author.username}/tweets/${tweet.id}`} className="tweet-text">
-                    <p>{tweet.text}</p>
+                    <div>{tweet.text}</div>
                 </Link>
                 <div className="tweet-bottom">
                     <Reply />

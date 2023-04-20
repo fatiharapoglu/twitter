@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { FaArrowLeft } from "react-icons/fa";
 
 import { getUserTweet } from "@/utilities/fetch";
 import CircularLoading from "@/components/layout/CircularLoading";
@@ -18,5 +20,17 @@ export default function SingleTweetPage({
         queryFn: () => getUserTweet(tweetId, username),
     });
 
-    return <>{isLoading ? <CircularLoading /> : <SingleTweet tweet={data.tweet} />}</>;
+    return (
+        <div>
+            <div className="back-to">
+                <Link className="icon-hoverable" href={`/${username}`}>
+                    <FaArrowLeft />
+                </Link>
+                <div className="top">
+                    <span className="top-title">Tweet</span>
+                </div>
+            </div>
+            {isLoading ? <CircularLoading /> : <SingleTweet tweet={data.tweet} />}
+        </div>
+    );
 }
