@@ -72,5 +72,8 @@
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add snackbar for some feedback, copy from twitter
 -   [ ] maybe tweets should be a markdown-like files for links/other stuff?
+-   [ ] fix middleware, make it useful
+
+check own twitter messages
 
 
