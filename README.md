@@ -73,6 +73,7 @@
 -   [ ] add snackbar for some feedback, copy from twitter
 -   [ ] maybe tweets should be a markdown-like files for links/other stuff?
 -   [ ] fix middleware, make it useful
+-   [ ] is it ok to use useQuery with same keys multiple times in different components? if not refactor to make less api calls
 
 check own twitter messages
 
