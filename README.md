@@ -62,7 +62,7 @@
 -   [ ] handle loadings better, maybe add local next loading files?
 -   [ ] change localhost to env or however next handles this
 -   [ ] handle users trying to message themselves
--   [ ] add a most basic chatbot to show off messaging feature
+-   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
 -   [ ] complete profile reminder, edit page like /username/edit not modal
 -   [ ] organize overall code/folders
 -   [ ] admin privilages
