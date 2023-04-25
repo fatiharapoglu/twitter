@@ -9,6 +9,7 @@ import { AuthContext } from "@/app/providers";
 
 export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isLiked, setIsLiked] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const { token, isPending } = useContext(AuthContext);
 
@@ -24,6 +25,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const likeMutation = useMutation({
         mutationFn: (tokenOwnerId: string) => updateTweetLikes(tweetId, tweetAuthor, tokenOwnerId, false),
         onMutate: async (tokenOwnerId: string) => {
+            setIsButtonDisabled(true);
             await queryClient.cancelQueries({ queryKey: queryKey });
             const previousTweet = queryClient.getQueryData<TweetResponse>(queryKey);
             setIsLiked(true);
@@ -51,6 +53,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const unlikeMutation = useMutation({
         mutationFn: (tokenOwnerId) => updateTweetLikes(tweetId, tweetAuthor, tokenOwnerId, true),
         onMutate: async (tokenOwnerId: string) => {
+            setIsButtonDisabled(true);
             await queryClient.cancelQueries({ queryKey: queryKey });
             const previousTweet = queryClient.getQueryData<TweetResponse>(queryKey);
             setIsLiked(false);
@@ -85,10 +88,12 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
         const likedBy = data.tweet?.likedBy;
         const isLikedByTokenOwner = likedBy.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
 
-        if (isLikedByTokenOwner) {
-            unlikeMutation.mutate(tokenOwnerId);
-        } else {
-            likeMutation.mutate(tokenOwnerId);
+        if (!likeMutation.isLoading && !unlikeMutation.isLoading) {
+            if (isLikedByTokenOwner) {
+                unlikeMutation.mutate(tokenOwnerId);
+            } else {
+                likeMutation.mutate(tokenOwnerId);
+            }
         }
     };
 
@@ -101,6 +106,14 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
         }
     }, [isPending, isFetched]);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsButtonDisabled(false);
+        }, 1500);
+
+        return () => clearTimeout(timer);
+    }, [isButtonDisabled]);
+
     return (
         <motion.button
             className={`icon like ${isLiked ? "active" : ""}`}
@@ -108,7 +121,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
             whileTap={{ scale: 0.9 }}
             animate={{ scale: isLiked ? [1, 1.5, 1.2, 1] : 1 }}
             transition={{ duration: 0.25 }}
-            disabled={likeMutation.isLoading || unlikeMutation.isLoading}
+            disabled={isButtonDisabled}
         >
             {isLiked ? (
                 <motion.span animate={{ scale: [1, 1.5, 1.2, 1] }} transition={{ duration: 0.25 }}>
