@@ -79,3 +79,4 @@
 -   [ ] is it ok to use useQuery with same keys multiple times in different components? if not refactor to make less api calls
 -   [ ] useDeferredValue for search if react query has not have it
 -   [ ] lazy in react, hover for profiles with suspense
+-   [ ] make all fn arrow

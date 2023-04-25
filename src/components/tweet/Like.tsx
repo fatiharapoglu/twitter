@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 import { TweetOptionsProps, TweetResponse } from "@/types/TweetProps";
 import { getUserTweet, updateTweetLikes } from "@/utilities/fetch";
-import useAuth from "@/hooks/useAuth";
+import { AuthContext } from "@/app/providers";
 
 export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isLiked, setIsLiked] = useState(false);
 
+    const { token, isPending } = useContext(AuthContext);
+
     const queryClient = useQueryClient();
-    const auth = useAuth();
 
     const queryKey = ["tweets", tweetAuthor, tweetId];
 
@@ -75,12 +76,12 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     });
 
     const handleLike = () => {
-        if (!auth.token) {
+        if (!token) {
             return alert("You are not logged in, you can't do that before log in.");
             // snackbar or modal here
         }
 
-        const tokenOwnerId = JSON.stringify(auth.token.id);
+        const tokenOwnerId = JSON.stringify(token.id);
         const likedBy = data.tweet?.likedBy;
         const isLikedByTokenOwner = likedBy.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
 
@@ -92,13 +93,13 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     };
 
     useEffect(() => {
-        if (!auth.isPending && isFetched) {
-            const tokenOwnerId = JSON.stringify(auth?.token?.id);
+        if (!isPending && isFetched) {
+            const tokenOwnerId = JSON.stringify(token?.id);
             const likedBy = data?.tweet?.likedBy;
             const isLikedByTokenOwner = likedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
             setIsLiked(isLikedByTokenOwner);
         }
-    }, [auth.isPending, isFetched]);
+    }, [isPending, isFetched]);
 
     return (
         <motion.button

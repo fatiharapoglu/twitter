@@ -2,27 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaLock, FaEllipsisH } from "react-icons/fa";
 
-import useAuth from "@/hooks/useAuth";
 import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
+import { AuthContext } from "@/app/providers";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isNewTweetOpen, setIsNewTweetOpen] = useState(false);
     const [isLogOutOpen, setIsLogOutOpen] = useState(false);
 
-    const auth = useAuth();
+    const { token } = useContext(AuthContext);
+
     const pathname = usePathname();
 
     const tempIsLocked = true;
 
-    const handleAnchorClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
+    const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(e.currentTarget);
     };
     const handleAnchorClose = () => {
         setAnchorEl(null);
@@ -63,7 +64,7 @@ export default function LeftSidebar() {
                                     </div>
                                 </Link>
                             </li>
-                            {auth.token && (
+                            {token && (
                                 <>
                                     <li>
                                         <Link href="/notifications">
@@ -84,10 +85,10 @@ export default function LeftSidebar() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={`/${auth.token.username}`}>
+                                        <Link href={`/${token.username}`}>
                                             <div
                                                 className={`nav-link ${
-                                                    pathname.startsWith(`/${auth.token.username}`) ? "active" : ""
+                                                    pathname.startsWith(`/${token.username}`) ? "active" : ""
                                                 }`}
                                             >
                                                 <FaUser /> Profile
@@ -105,7 +106,7 @@ export default function LeftSidebar() {
                             )}
                         </ul>
                     </nav>
-                    {auth.token && (
+                    {token && (
                         <>
                             <button onClick={handleNewTweetClick} className="btn btn-tweet">
                                 Tweet
@@ -116,10 +117,9 @@ export default function LeftSidebar() {
                                 </div>
                                 <div>
                                     <div className="token-name">
-                                        {auth.token.name !== "" ? auth.token.name : auth.token.username}{" "}
-                                        {tempIsLocked ? <FaLock /> : null}
+                                        {token.name !== "" ? token.name : token.username} {tempIsLocked ? <FaLock /> : null}
                                     </div>
-                                    <div className="text-muted token-username">@{auth.token.username}</div>
+                                    <div className="text-muted token-username">@{token.username}</div>
                                 </div>
                                 <div className="three-dots">
                                     <FaEllipsisH />
@@ -139,7 +139,7 @@ export default function LeftSidebar() {
                                 }}
                             >
                                 <MenuItem onClick={handleAnchorClose}>
-                                    <Link href={`/${auth.token.username}`}>Profile</Link>
+                                    <Link href={`/${token.username}`}>Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleAnchorClose}>
                                     <Link href="/settings">Settings</Link>
@@ -150,10 +150,16 @@ export default function LeftSidebar() {
                     )}
                 </div>
             </aside>
-            {auth.token && (
+            {token && (
                 <>
-                    <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={auth.token} />
-                    <LogOutDialog open={isLogOutOpen} handleLogOutClose={handleLogOutClose} logout={auth.logout} />
+                    <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={token} />
+                    <LogOutDialog
+                        open={isLogOutOpen}
+                        handleLogOutClose={handleLogOutClose}
+                        logout={() => {
+                            console.log("logout");
+                        }}
+                    />
                 </>
             )}
         </>

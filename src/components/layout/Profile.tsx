@@ -2,18 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import { usePathname } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 import { Avatar } from "@mui/material";
 import { BsBalloon, BsCalendar3 } from "react-icons/bs";
 
-import useAuth from "@/hooks/useAuth";
 import { AuthorProps } from "@/types/AuthorProps";
 import { formatDateForProfile } from "@/utilities/date";
+import { AuthContext } from "@/app/providers";
 import TweetArrayLength from "../tweet/TweetArrayLength";
 
 export default function Profile({ username, profile }: { username: string; profile: AuthorProps }) {
-    const auth = useAuth();
+    const { token } = useContext(AuthContext);
+
     const pathname = usePathname();
 
     return (
@@ -56,7 +58,7 @@ export default function Profile({ username, profile }: { username: string; profi
                             <span className="count">77</span> <span className="text-muted">Followers</span>
                         </div>
                     </div>
-                    {auth.token?.username === profile.username ? (
+                    {token?.username === profile.username ? (
                         <button className="btn btn-white edit-profile-btn">Edit profile</button>
                     ) : null}
                 </div>

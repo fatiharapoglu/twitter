@@ -2,7 +2,7 @@ import React from "react";
 import Cookies from "universal-cookie";
 
 import { verifyJwtToken } from "@/utilities/auth";
-import { VerifiedToken } from "@/types/Token";
+import { VerifiedToken } from "@/types/TokenProps";
 
 const fromServer = async () => {
     const cookies = require("next/headers").cookies;
@@ -13,9 +13,6 @@ const fromServer = async () => {
 };
 
 export default function useAuth() {
-    const useRouter = require("next/navigation").useRouter;
-    const router = useRouter();
-
     const [token, setToken] = React.useState<VerifiedToken>(null);
     const [isPending, setIsPending] = React.useState<boolean>(true);
 
@@ -31,13 +28,7 @@ export default function useAuth() {
         getVerifiedToken();
     }, []);
 
-    const logout = () => {
-        const cookies = new Cookies();
-        cookies.remove("token");
-        router.push("/");
-    };
-
-    return { token, isPending, logout };
+    return { token, isPending };
 }
 
 useAuth.fromServer = fromServer;

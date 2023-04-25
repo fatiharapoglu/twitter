@@ -1,24 +1,26 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 
 import { getAllTweets } from "@/utilities/fetch";
 import NewTweet from "@/components/tweet/NewTweet";
 import Tweets from "@/components/tweet/Tweets";
 import CircularLoading from "@/components/layout/CircularLoading";
-import useAuth from "@/hooks/useAuth";
+import { AuthContext } from "@/app/providers";
 
 export default function HomePage() {
-    const auth = useAuth();
+    const { token, isPending } = useContext(AuthContext);
+
     const { isLoading, error, data } = useQuery({ queryKey: ["tweets"], queryFn: getAllTweets });
 
-    if (auth.isPending) return <CircularLoading />;
+    if (isPending) return <CircularLoading />;
     if (error) return null; //global error
 
     return (
         <main>
             <h1 className="page-name">Home</h1>
-            {auth.token && <NewTweet token={auth.token} />}
+            {token && <NewTweet token={token} />}
             {isLoading ? <CircularLoading /> : <Tweets tweets={data.tweets} />}
         </main>
     );

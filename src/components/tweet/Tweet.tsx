@@ -16,14 +16,18 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
         router.push(`/${tweet.author.username}/tweets/${tweet.id}`);
     };
 
+    const handlePropagation = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
+
     return (
         <div onClick={handleTweetClick} className="tweet div-link">
-            <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
+            <Link onClick={handlePropagation} className="tweet-avatar" href={`/${tweet.author.username}`}>
                 <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
             </Link>
             <div className="tweet-main">
                 <section className="tweet-author-section">
-                    <Link className="tweet-author-link" href={`/${tweet.author.username}`}>
+                    <Link onClick={handlePropagation} className="tweet-author-link" href={`/${tweet.author.username}`}>
                         <span className="tweet-author">
                             {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
                         </span>
@@ -37,7 +41,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     </Tooltip>
                 </section>
                 <div className="tweet-text">{tweet.text}</div>
-                <div className="tweet-bottom">
+                <div onClick={handlePropagation} className="tweet-bottom">
                     <Reply />
                     <Retweet />
                     <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
