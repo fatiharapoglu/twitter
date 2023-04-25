@@ -3,6 +3,7 @@
 ## Roadmap
 
 -   [x] add hash to passwords when creating
+-   [x] add auth
 -   [x] if auth, return to /home | /explore
 -   [x] add regex validation to usernames / yup docs
 -   [x] list tweets as last tweeted first
@@ -19,51 +20,54 @@
 -   [x] optimistic update on likes
 -   [x] unlike feature
 -   [x] animation on click ? react spring/framer
--   [ ] handle errors like "user already exists"
--   [ ] add auth, also provide auth from google + apple
--   [ ] emote and photo upload to new tweet
--   [ ] add hidden/locked profile
--   [ ] add dark mode
--   [ ] lazy load tweets / react query implementation for lazy loading
--   [ ] avatar logic / image logic in tweets
--   [ ] make it responsive
--   [ ] progress bar for 280 characters
--   [ ] add card when hover on tweet profile & username
--   [ ] add twitter blue tick
--   [ ] make profile back arrow sticky | fixed
+-   [x] div onClick and cursor pointer for tweets
+-   [ ] useContext in useAuth?
+-   [ ] fix the logout sometimes not working as expected
+-   [ ] authorization for create/delete/like/follow and other api calls find out how next handles these, middleware?
+-   [ ] fix middleware, make it useful
 -   [ ] handle tweet text html-like breaks
--   [ ] change explore to home, home only followings
+-   [ ] emote and photo upload to new tweet
+-   [ ] supabase storage is ok to use for avatars and images? if not use aws
+-   [ ] avatar logic / image logic in tweets
+-   [ ] handle default avatar / twitter egg
+-   [ ] follow/unfollow feature
+-   [ ] make a modal for unfollow confirmation
+-   [ ] optimistic update on follow/unfollow
+-   [ ] handle errors like "user already exists"
+-   [ ] lazy load tweets / react query implementation for lazy loading
+-   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
+-   [ ] add retweet and delete tweet logic
+-   [ ] change explore to home, home only followings
+-   [ ] global-error / error handling detailed
+-   [ ] handle loadings better, maybe add local next loading files?
+-   [ ] think about handling related errors in the fetch folder
+-   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
+-   [ ] single tweet page shows all replies or only first degree replies?
+-   [ ] complete profile reminder, edit page like /username/edit not modal
+-   [ ] add card when hover on tweet profile & username
+-   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
+-   [ ] message logic / socket io? feathers? how in next
+-   [ ] progress bar for 280 characters
+-   [ ] how to add notifications? if really complex, hang it for later
+-   [ ] make profile back arrow sticky | fixed
 -   [ ] add skeletons for loading such as ... Tweets, description, images
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
--   [ ] global-error / error handling detailed
--   [ ] exlude password in prisma includes:{}, fix types accordingly
--   [ ] authorization for create/delete/like/follow and other api calls find out how next handles these, middleware?
--   [ ] follow/unfollow feature
--   [ ] message logic / socket io? feathers? how in next
--   [ ] cascade in postgresql / how to handle deleted tweets
--   [ ] supabase storage is ok to use for avatars and images? if not use aws
--   [ ] handle default avatar / twitter egg
--   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
--   [ ] optimistic update on follow/unfollow
--   [ ] fix the logout sometimes not working as expected / ask gpt to how to make it more stable
--   [ ] single tweet page shows all replies or only first degree replies?
--   [ ] add a bar under the avatar if the tweet replies > 0
--   [ ] think about handling related errors in the fetch folder
--   [ ] block/unblock feature (optional, maybe in roadmap?)
--   [ ] how to add notifications? if really complex, hang it for later
--   [ ] search mechanism, only for users / users and tweets would be better
--   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
--   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
--   [ ] add retweet and delete tweet logic
--   [ ] make a modal for unfollow confirmation
--   [ ] handle speed, somehow it feels slow, maybe it is different in production but nevertheless
--   [ ] handle loadings better, maybe add local next loading files?
 -   [ ] change localhost to env or however next handles this
+-   [ ] make it responsive
+-   [ ] disable prefetch if causes slow pathing?
+-   [ ] add dark mode
+-   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
+-   [ ] add a bar under the avatar if the tweet replies > 0
+-   [ ] add twitter blue tick
+-   [ ] search mechanism, only for users / users and tweets would be better
+-   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
+-   [ ] block/unblock feature (optional, maybe in roadmap?)
+-   [ ] add hidden/locked profile
+-   [ ] handle speed, somehow it feels slow, maybe it is different in production but nevertheless
 -   [ ] handle users trying to message themselves
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
--   [ ] complete profile reminder, edit page like /username/edit not modal
 -   [ ] organize overall code/folders
 -   [ ] admin privilages
 -   [ ] material ui custom colors
@@ -72,14 +76,6 @@
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add snackbar for some feedback, copy from twitter
 -   [ ] maybe tweets should be a markdown-like files for links/other stuff?
--   [ ] fix middleware, make it useful
 -   [ ] is it ok to use useQuery with same keys multiple times in different components? if not refactor to make less api calls
--   [ ] useContext in useAuth?
 -   [ ] useDeferredValue for search if react query has not have it
 -   [ ] lazy in react, hover for profiles with suspense
--   [ ] disable hover loading for every tweet link
--   [ ] div onClick and cursor pointer for tweets
-
-check own twitter messages
-
-
