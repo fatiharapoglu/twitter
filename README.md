@@ -25,7 +25,7 @@
 -   [x] fix the logout sometimes not working as expected
 -   [x] authorization wall for create/like/unlike
 -   [x] fix middleware, make it useful
--   [ ] handle tweet text html-like breaks
+-   [x] handle tweet text html-like breaks
 -   [ ] emote and photo upload to new tweet
 -   [ ] supabase storage is ok to use for avatars and images? if not use aws
 -   [ ] avatar logic / image logic in tweets
