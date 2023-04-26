@@ -28,6 +28,7 @@
 -   [x] handle tweet text html-like breaks
 -   [x] emote picker in new tweet
 -   [ ] photo upload in new tweet
+-   [ ] more compact uploader for photo upload,
 -   [ ] supabase storage is ok to use for avatars and images? if not use aws
 -   [ ] avatar logic / image logic in tweets
 -   [ ] handle default avatar / twitter egg
@@ -42,6 +43,7 @@
 -   [ ] add retweet and delete tweet logic
 -   [ ] change explore to home, home only followings
 -   [ ] global-error / error handling detailed
+-   [ ] find throw new Errors, console.logs, message:, error:, snackbar here
 -   [ ] handle loadings better, maybe add local next loading files?
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
