@@ -162,6 +162,11 @@ body {
     cursor: pointer;
 }
 
+.emoji-picker {
+    position: absolute;
+    z-index: 10;
+}
+
 .back-to {
     padding: 1rem;
     display: flex;
@@ -465,6 +470,10 @@ body {
             font-size: 20px;
             color: var(--twitter-blue);
             padding-top: 0.5rem;
+
+            svg:hover {
+                cursor: pointer;
+            }
 
             .btn {
                 margin-left: auto;

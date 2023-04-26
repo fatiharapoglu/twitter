@@ -26,7 +26,8 @@
 -   [x] authorization wall for create/like/unlike
 -   [x] fix middleware, make it useful
 -   [x] handle tweet text html-like breaks
--   [ ] emote and photo upload to new tweet
+-   [x] emote picker in new tweet
+-   [ ] photo upload in new tweet
 -   [ ] supabase storage is ok to use for avatars and images? if not use aws
 -   [ ] avatar logic / image logic in tweets
 -   [ ] handle default avatar / twitter egg

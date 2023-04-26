@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { TextField, Avatar } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegImage, FaRegSmile } from "react-icons/fa";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 import CircularLoading from "../layout/CircularLoading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
+    const [showPicker, setShowPicker] = useState(false);
+
     const queryClient = useQueryClient();
     const mutation = useMutation({
         mutationFn: createTweet,
@@ -59,11 +64,24 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                 </div>
                 <div className="input-additions">
                     <FaRegImage />
-                    <FaRegSmile />
+                    <FaRegSmile onClick={() => setShowPicker(!showPicker)} />
                     <button className="btn" type="submit">
                         Tweet
                     </button>
                 </div>
+                {showPicker && (
+                    <div className="emoji-picker">
+                        <Picker
+                            data={data}
+                            onEmojiSelect={(emoji: any) => {
+                                formik.setFieldValue("text", formik.values.text + emoji.native);
+                                setShowPicker(false);
+                            }}
+                            onClickOutside={() => setShowPicker(false)}
+                            previewPosition="none"
+                        />
+                    </div>
+                )}
             </form>
         </div>
     );
