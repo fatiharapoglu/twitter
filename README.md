@@ -22,9 +22,9 @@
 -   [x] animation on click ? react spring/framer
 -   [x] div onClick and cursor pointer for tweets
 -   [x] useContext in useAuth?
--   [ ] fix the logout sometimes not working as expected
--   [ ] authorization for create/delete/like/follow and other api calls find out how next handles these, middleware?
--   [ ] fix middleware, make it useful
+-   [x] fix the logout sometimes not working as expected
+-   [x] authorization wall for create/like/unlike
+-   [x] fix middleware, make it useful
 -   [ ] handle tweet text html-like breaks
 -   [ ] emote and photo upload to new tweet
 -   [ ] supabase storage is ok to use for avatars and images? if not use aws
@@ -37,6 +37,7 @@
 -   [ ] lazy load tweets / react query implementation for lazy loading
 -   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
+-   [ ] authorization wall for delete/follow/unfollow
 -   [ ] add retweet and delete tweet logic
 -   [ ] change explore to home, home only followings
 -   [ ] global-error / error handling detailed
@@ -80,3 +81,4 @@
 -   [ ] useDeferredValue for search if react query has not have it
 -   [ ] lazy in react, hover for profiles with suspense
 -   [ ] make all fn arrow
+-   [ ] change all request to nextRequest
