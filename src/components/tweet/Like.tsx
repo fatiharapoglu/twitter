@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { TweetOptionsProps, TweetResponse } from "@/types/TweetProps";
 import { getUserTweet, updateTweetLikes } from "@/utilities/fetch";
-import { AuthContext } from "@/app/providers";
+import { AuthContext } from "@/app/(twitter)/layout";
 
 export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isLiked, setIsLiked] = useState(false);

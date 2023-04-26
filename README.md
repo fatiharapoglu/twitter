@@ -21,7 +21,7 @@
 -   [x] unlike feature
 -   [x] animation on click ? react spring/framer
 -   [x] div onClick and cursor pointer for tweets
--   [ ] useContext in useAuth?
+-   [x] useContext in useAuth?
 -   [ ] fix the logout sometimes not working as expected
 -   [ ] authorization for create/delete/like/follow and other api calls find out how next handles these, middleware?
 -   [ ] fix middleware, make it useful

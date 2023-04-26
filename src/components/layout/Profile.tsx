@@ -10,8 +10,8 @@ import { BsBalloon, BsCalendar3 } from "react-icons/bs";
 
 import { AuthorProps } from "@/types/AuthorProps";
 import { formatDateForProfile } from "@/utilities/date";
-import { AuthContext } from "@/app/providers";
 import TweetArrayLength from "../tweet/TweetArrayLength";
+import { AuthContext } from "@/app/(twitter)/layout";
 
 export default function Profile({ username, profile }: { username: string; profile: AuthorProps }) {
     const { token } = useContext(AuthContext);

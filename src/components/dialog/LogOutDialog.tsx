@@ -1,5 +1,5 @@
-import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import Image from "next/image";
+import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
 import { LogOutDialogProps } from "@/types/DialogProps";
 

@@ -7,7 +7,7 @@ import { getAllTweets } from "@/utilities/fetch";
 import NewTweet from "@/components/tweet/NewTweet";
 import Tweets from "@/components/tweet/Tweets";
 import CircularLoading from "@/components/layout/CircularLoading";
-import { AuthContext } from "@/app/providers";
+import { AuthContext } from "../layout";
 
 export default function HomePage() {
     const { token, isPending } = useContext(AuthContext);

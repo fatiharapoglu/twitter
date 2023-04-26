@@ -17,6 +17,7 @@ export default function useAuth() {
     const [isPending, setIsPending] = React.useState<boolean>(true);
 
     const getVerifiedToken = async () => {
+        setIsPending(true);
         const cookies = new Cookies();
         const token = cookies.get("token") ?? null;
         const verifiedToken = token && (await verifyJwtToken(token));

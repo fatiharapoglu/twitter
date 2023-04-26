@@ -3,13 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaLock, FaEllipsisH } from "react-icons/fa";
 
 import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
-import { AuthContext } from "@/app/providers";
+import { logout } from "@/utilities/fetch";
+import { AuthContext } from "@/app/(twitter)/layout";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -18,9 +19,15 @@ export default function LeftSidebar() {
 
     const { token } = useContext(AuthContext);
 
+    const router = useRouter();
     const pathname = usePathname();
 
     const tempIsLocked = true;
+
+    const handleLogout = async () => {
+        await logout();
+        router.push("/");
+    };
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(e.currentTarget);
@@ -153,13 +160,7 @@ export default function LeftSidebar() {
             {token && (
                 <>
                     <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={token} />
-                    <LogOutDialog
-                        open={isLogOutOpen}
-                        handleLogOutClose={handleLogOutClose}
-                        logout={() => {
-                            console.log("logout");
-                        }}
-                    />
+                    <LogOutDialog open={isLogOutOpen} handleLogOutClose={handleLogOutClose} logout={handleLogout} />
                 </>
             )}
         </>

@@ -64,6 +64,14 @@ export const logInAsTest = async () => {
     return await logIn(JSON.stringify(testAccount));
 };
 
+export const logout = async () => {
+    await fetch(`http://localhost:3000/api/auth/logout`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+};
+
 export const createUser = async (newUser: string) => {
     const response = await fetch(`/api/users/create`, {
         method: "POST",
