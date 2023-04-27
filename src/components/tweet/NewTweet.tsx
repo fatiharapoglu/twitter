@@ -6,17 +6,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegImage, FaRegSmile } from "react-icons/fa";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import Image from "next/image";
 
 import CircularLoading from "../layout/CircularLoading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
-import { uploadFile } from "@/utilities/storage";
+import Uploader from "../misc/Uploader";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const [showPicker, setShowPicker] = useState(false);
+    const [showDropzone, setShowDropzone] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
-    const [image, setImage] = useState<string | Blob | null>(null);
 
     const queryClient = useQueryClient();
     const mutation = useMutation({
@@ -43,21 +42,6 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
         },
     });
 
-    const handleImageUpload = async (e: any) => {
-        e.preventDefault();
-        if (!image) throw new Error("No image selected.");
-        const formData = new FormData();
-        formData.append("image", image);
-        const path: string | void = await uploadFile(formData);
-        if (!path) throw new Error("Error uploading image.");
-        const url = `https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${path}`;
-        setImageUrl(url);
-    };
-
-    const handleImageChange = (e: any) => {
-        setImage(e.target.files[0]);
-    };
-
     if (mutation.isLoading) {
         return <CircularLoading />;
     }
@@ -82,17 +66,12 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                     />
                 </div>
                 <div className="input-additions">
-                    <FaRegImage onClick={() => {}} />
+                    <FaRegImage onClick={() => setShowDropzone(true)} />
                     <FaRegSmile onClick={() => setShowPicker(!showPicker)} />
                     <button className="btn" type="submit">
                         Tweet
                     </button>
                 </div>
-                {imageUrl !== "" && (
-                    <div className="image">
-                        <Image src={imageUrl} alt="" fill />
-                    </div>
-                )}
                 {showPicker && (
                     <div className="emoji-picker">
                         <Picker
@@ -106,11 +85,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                         />
                     </div>
                 )}
-            </form>
-
-            <form onSubmit={handleImageUpload}>
-                <input type="file" accept="image/*" onChange={handleImageChange} />
-                <button type="submit">Upload</button>
+                {showDropzone && <Uploader setImageUrl={setImageUrl} />}
             </form>
         </div>
     );

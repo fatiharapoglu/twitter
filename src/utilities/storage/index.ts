@@ -7,8 +7,8 @@ if (!URL || !KEY) throw new Error("Supabase credentials are not provided.");
 
 export const supabase = createClient(URL, KEY);
 
-export const uploadFile = async (file: FormData) => {
-    const { data, error } = await supabase.storage.from("media").upload(`${Date.now()}.jpg`, file);
+export const uploadFile = async (file: File) => {
+    const { data, error } = await supabase.storage.from("media").upload(`${Date.now()}`, file);
     if (error) {
         return console.log(error);
     }
