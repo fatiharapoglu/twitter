@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { uploadFile } from "@/utilities/storage";
 
-export default function Uploader({ setImageUrl }: { setImageUrl: (url: string) => void }) {
+export default function Uploader({ handlePhotoUrlChange }: { handlePhotoUrlChange: (url: string) => void }) {
     const [preview, setPreview] = useState<File | null>(null);
 
     const onDrop = async (acceptedFiles: File[]) => {
@@ -12,7 +12,7 @@ export default function Uploader({ setImageUrl }: { setImageUrl: (url: string) =
         setPreview(file);
         const path: string | void = await uploadFile(file);
         if (!path) throw new Error("Error uploading image.");
-        setImageUrl(path);
+        handlePhotoUrlChange(path);
     };
 
     const { getRootProps, getInputProps } = useDropzone({

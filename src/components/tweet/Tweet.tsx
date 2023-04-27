@@ -1,6 +1,7 @@
 import { Avatar, Tooltip } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDate, formatDateExtended } from "@/utilities/date";
@@ -41,6 +42,16 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     </Tooltip>
                 </section>
                 <div className="tweet-text">{tweet.text}</div>
+                {tweet.photoUrl && (
+                    <div className="tweet-image">
+                        <Image
+                            src={`https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${tweet.photoUrl}`}
+                            alt="tweet image"
+                            height={400}
+                            width={500}
+                        />
+                    </div>
+                )}
                 <div onClick={handlePropagation} className="tweet-bottom">
                     <Reply />
                     <Retweet />

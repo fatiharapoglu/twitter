@@ -15,7 +15,6 @@ import Uploader from "../misc/Uploader";
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const [showPicker, setShowPicker] = useState(false);
     const [showDropzone, setShowDropzone] = useState(false);
-    const [imageUrl, setImageUrl] = useState("");
 
     const queryClient = useQueryClient();
     const mutation = useMutation({
@@ -33,14 +32,20 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
         initialValues: {
             text: "",
             authorId: token.id,
+            photoUrl: null,
         },
         validationSchema: validationSchema,
         onSubmit: async (values, { resetForm }) => {
             mutation.mutate(JSON.stringify(values));
             resetForm();
+            setShowDropzone(false);
             if (handleSubmit) handleSubmit();
         },
     });
+
+    const handlePhotoUrlChange = (newPhotoUrl: string) => {
+        formik.setFieldValue("photoUrl", newPhotoUrl);
+    };
 
     if (mutation.isLoading) {
         return <CircularLoading />;
@@ -85,7 +90,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                         />
                     </div>
                 )}
-                {showDropzone && <Uploader setImageUrl={setImageUrl} />}
+                {showDropzone && <Uploader handlePhotoUrlChange={handlePhotoUrlChange} />}
             </form>
         </div>
     );

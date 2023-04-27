@@ -4,7 +4,7 @@ import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
 
 export async function POST(request: NextRequest) {
-    const { authorId, text } = await request.json();
+    const { authorId, text, photoUrl } = await request.json();
 
     const token = request.cookies.get("token")?.value;
     const verifiedToken = token && (await verifyJwtToken(token));
@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
         await prisma.tweet.create({
             data: {
                 text,
+                photoUrl,
                 author: {
                     connect: {
                         id: authorId,

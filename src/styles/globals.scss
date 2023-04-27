@@ -539,6 +539,16 @@ body {
             white-space: pre-line;
         }
 
+        .tweet-image {
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            overflow: hidden;
+
+            img {
+                object-fit: cover;
+            }
+        }
+
         .tweet-bottom {
             max-width: 400px;
             display: flex;

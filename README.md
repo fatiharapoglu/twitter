@@ -27,9 +27,10 @@
 -   [x] fix middleware, make it useful
 -   [x] handle tweet text html-like breaks
 -   [x] emote picker in new tweet
--   [ ] photo upload in new tweet
--   [ ] more compact uploader for photo upload,
--   [ ] supabase storage is ok to use for avatars and images? if not use aws
+-   [x] photo upload in new tweet
+-   [x] more compact uploader for photo upload,
+-   [x] supabase storage is ok to use for avatars and images? if not use aws
+-   [ ] clicking images should open full screen images
 -   [ ] avatar logic / image logic in tweets
 -   [ ] handle default avatar / twitter egg
 -   [ ] follow/unfollow feature
@@ -48,7 +49,9 @@
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
 -   [ ] single tweet page shows all replies or only first degree replies?
+-   [ ] complete edit profile page
 -   [ ] complete profile reminder, edit page like /username/edit not modal
+-   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username
 -   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
 -   [ ] message logic / socket io? feathers? how in next

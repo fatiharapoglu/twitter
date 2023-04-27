@@ -6,6 +6,7 @@ export type TweetProps = {
     createdAt: Date;
     author: AuthorProps;
     authorId: string;
+    photoUrl: string;
     likedBy: AuthorProps[];
     parentId: null | string;
 };

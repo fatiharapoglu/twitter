@@ -11,6 +11,7 @@ model User {
     id            String    @id @default(uuid())
     name          String?   @db.VarChar(50)
     description   String?   @db.VarChar(280)
+    photoUrl      String
     age           DateTime?
     username      String    @unique @db.VarChar(20)
     password      String
@@ -29,6 +30,7 @@ model Tweet {
     createdAt DateTime  @default(now())
     author    User      @relation("userTweets", fields: [authorId], references: [id])
     authorId  String
+    photoUrl  String
     likedBy   User[]    @relation("userLikes")
     parent    Tweet?    @relation("tweetReplies", fields: [parentId], references: [id])
     parentId  String?
