@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { getAllTweets } from "@/utilities/fetch";
 import NewTweet from "@/components/tweet/NewTweet";
 import Tweets from "@/components/tweet/Tweets";
-import CircularLoading from "@/components/layout/CircularLoading";
 import { AuthContext } from "../layout";
+import CircularLoading from "@/components/misc/CircularLoading";
 
 export default function HomePage() {
     const { token, isPending } = useContext(AuthContext);

@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FaArrowLeft } from "react-icons/fa";
 
 import { getUserTweet } from "@/utilities/fetch";
-import CircularLoading from "@/components/layout/CircularLoading";
 import SingleTweet from "@/components/tweet/SingleTweet";
+import CircularLoading from "@/components/misc/CircularLoading";
 
 export default function SingleTweetPage({
     params: { username, tweetId },

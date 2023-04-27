@@ -47,7 +47,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         <Image
                             src={`https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${tweet.photoUrl}`}
                             alt="tweet image"
-                            height={400}
+                            height={500}
                             width={500}
                         />
                     </div>

@@ -34,7 +34,7 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                 <DialogContent sx={{ paddingX: 0 }}>
                     <div className="user-list">
                         {tweet.likedBy.map((user) => (
-                            <div className="user-wrapper" key={user.id}>
+                            <div className="user-wrapper" key={"like-" + user.id}>
                                 <User user={user} />
                             </div>
                         ))}

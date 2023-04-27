@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
 import { logIn } from "@/utilities/fetch";
-import CircularLoading from "../layout/CircularLoading";
+import CircularLoading from "../misc/CircularLoading";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
     const router = useRouter();

@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
 import { createUser } from "@/utilities/fetch";
-import CircularLoading from "../layout/CircularLoading";
+import CircularLoading from "../misc/CircularLoading";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
     const router = useRouter();

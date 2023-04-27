@@ -541,11 +541,12 @@ body {
 
         .tweet-image {
             border: 1px solid var(--border-color);
-            border-radius: 2rem;
+            border-radius: 1.5rem;
             overflow: hidden;
+            margin-top: 0.5rem;
 
             img {
-                object-fit: cover;
+                object-fit: contain;
             }
         }
 

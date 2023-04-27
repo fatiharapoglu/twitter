@@ -7,7 +7,7 @@ import { FaRegImage, FaRegSmile } from "react-icons/fa";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
-import CircularLoading from "../layout/CircularLoading";
+import CircularLoading from "../misc/CircularLoading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
 import Uploader from "../misc/Uploader";
