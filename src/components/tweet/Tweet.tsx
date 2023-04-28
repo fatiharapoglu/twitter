@@ -1,24 +1,38 @@
 import { Avatar, Tooltip } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDate, formatDateExtended } from "@/utilities/date";
+import { shimmer } from "@/utilities/misc/shimmer";
 import Reply from "./Reply";
 import Retweet from "./Retweet";
 import Like from "./Like";
 import Share from "./Share";
+import PreviewDialog from "../dialog/PreviewDialog";
 
 export default function Tweet({ tweet }: { tweet: TweetProps }) {
+    const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
     const router = useRouter();
 
     const handleTweetClick = () => {
         router.push(`/${tweet.author.username}/tweets/${tweet.id}`);
     };
-
     const handlePropagation = (e: React.MouseEvent) => {
         e.stopPropagation();
+    };
+    const handleImageClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        handlePreviewClick();
+    };
+    const handlePreviewClick = () => {
+        setIsPreviewOpen(true);
+    };
+    const handlePreviewClose = () => {
+        setIsPreviewOpen(false);
     };
 
     return (
@@ -43,13 +57,19 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                 </section>
                 <div className="tweet-text">{tweet.text}</div>
                 {tweet.photoUrl && (
-                    <div className="tweet-image">
-                        <Image
-                            src={`https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${tweet.photoUrl}`}
-                            alt="tweet image"
-                            height={500}
-                            width={500}
-                        />
+                    <div onClick={handlePropagation}>
+                        <div className="tweet-image">
+                            <Image
+                                onClick={handleImageClick}
+                                src={`https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${tweet.photoUrl}`}
+                                alt="tweet image"
+                                placeholder="blur"
+                                blurDataURL={shimmer(500, 500)}
+                                height={500}
+                                width={500}
+                            />
+                        </div>
+                        <PreviewDialog open={isPreviewOpen} handlePreviewClose={handlePreviewClose} url={tweet.photoUrl} />
                     </div>
                 )}
                 <div onClick={handlePropagation} className="tweet-bottom">

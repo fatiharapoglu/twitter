@@ -314,6 +314,27 @@ body {
     }
 }
 
+.preview-dialog {
+    background-color: var(--twitter-black);
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    margin: auto 5vh;
+
+    .btn-close {
+        position: absolute;
+        left: 1rem;
+        top: 0.5rem;
+    }
+
+    .image-wrapper {
+        img {
+            object-fit: none;
+            display: block;
+        }
+    }
+}
+
 .left-sidebar {
     border-right: 1px solid var(--border-color);
     margin-left: auto;
@@ -546,7 +567,8 @@ body {
             margin-top: 0.5rem;
 
             img {
-                object-fit: contain;
+                object-fit: cover;
+                display: block;
             }
         }
 

@@ -21,3 +21,9 @@ export type LogOutDialogProps = {
     handleLogOutClose: () => void;
     logout: () => void;
 };
+
+export type PreviewDialogProps = {
+    open: boolean;
+    handlePreviewClose: () => void;
+    url: string;
+};
