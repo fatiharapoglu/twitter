@@ -12,7 +12,6 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const { token, isPending } = useContext(AuthContext);
-
     const queryClient = useQueryClient();
 
     const queryKey = ["tweets", tweetAuthor, tweetId];

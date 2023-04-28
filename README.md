@@ -83,6 +83,7 @@
 -   [ ] handle users trying to message themselves
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
 -   [ ] organize overall code/folders
+-   [ ] use "use client" if possible
 -   [ ] admin privilages
 -   [ ] material ui custom colors
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js

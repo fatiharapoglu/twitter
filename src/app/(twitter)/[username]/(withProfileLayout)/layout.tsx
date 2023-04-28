@@ -1,24 +1,29 @@
-import { notFound } from "next/navigation";
+"use client";
 
+import { useQuery } from "@tanstack/react-query";
+
+import NotFound from "@/app/not-found";
 import Profile from "@/components/layout/Profile";
+import CircularLoading from "@/components/misc/CircularLoading";
 import { getUser } from "@/utilities/fetch";
 
-export default async function ProfileLayout({
+export default function ProfileLayout({
     children,
     params: { username },
 }: {
     children: React.ReactNode;
     params: { username: string };
 }) {
-    const { user } = await getUser(username);
+    const { isLoading, error, data } = useQuery({
+        queryKey: ["users", username],
+        queryFn: () => getUser(username),
+    });
 
-    if (!user) {
-        notFound();
-    }
+    if (error) return NotFound();
 
     return (
         <div className="profile-layout">
-            {<Profile profile={user} />}
+            {isLoading ? <CircularLoading /> : <Profile profile={data.user} />}
             {children}
         </div>
     );

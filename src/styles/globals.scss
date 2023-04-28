@@ -859,12 +859,17 @@ body {
             gap: 1rem;
             position: relative;
 
-            .edit-profile-btn {
+            .edit-profile-section {
                 position: absolute;
                 right: 1rem;
                 top: -4.5rem;
                 font-weight: 600;
                 font-size: 15px;
+            }
+
+            .flex {
+                display: flex;
+                gap: 0.5rem;
             }
 
             .profile-info-main {

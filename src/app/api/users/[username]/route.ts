@@ -18,6 +18,8 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 age: true,
                 photoUrl: true,
                 headerUrl: true,
+                followers: true,
+                following: true,
             },
         });
         return NextResponse.json({ success: true, user });

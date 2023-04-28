@@ -8,4 +8,6 @@ export type AuthorProps = {
     updatedAt: Date;
     photoUrl?: string;
     headerUrl?: string;
+    followers: AuthorProps[];
+    following: AuthorProps[];
 };
