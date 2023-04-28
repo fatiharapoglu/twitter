@@ -6,4 +6,6 @@ export type AuthorProps = {
     age?: string;
     createdAt: Date;
     updatedAt: Date;
+    photoUrl?: string;
+    headerUrl?: string;
 };

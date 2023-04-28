@@ -7,7 +7,7 @@ export default function User({ user }: { user: AuthorProps }) {
     return (
         <>
             <Link href={`/${user.username}`}>
-                <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
+                <Avatar sx={{ width: 50, height: 50 }} alt="" src={user.photoUrl ? user.photoUrl : "/assets/egg.jpg"} />
             </Link>
             <div className="user">
                 <Link className="user-profile" href={`/${user.username}`}>

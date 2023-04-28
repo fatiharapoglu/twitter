@@ -120,7 +120,7 @@ export default function LeftSidebar() {
                             </button>
                             <button onClick={handleAnchorClick} className="side-profile">
                                 <div>
-                                    <Avatar alt="" src="https://picsum.photos/200/300" />
+                                    <Avatar alt="" src={token.photoUrl ? token.photoUrl : "/assets/egg.jpg"} />
                                 </div>
                                 <div>
                                     <div className="token-name">

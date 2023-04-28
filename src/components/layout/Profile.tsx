@@ -13,7 +13,7 @@ import { formatDateForProfile } from "@/utilities/date";
 import TweetArrayLength from "../tweet/TweetArrayLength";
 import { AuthContext } from "@/app/(twitter)/layout";
 
-export default function Profile({ username, profile }: { username: string; profile: AuthorProps }) {
+export default function Profile({ profile }: { profile: AuthorProps }) {
     const { token } = useContext(AuthContext);
 
     const pathname = usePathname();
@@ -31,9 +31,13 @@ export default function Profile({ username, profile }: { username: string; profi
             </div>
             <div className="profile">
                 <div className="profile-header">
-                    <Image alt="" src="https://picsum.photos/600/200" fill />
+                    <Image alt="" src={profile.headerUrl ? profile.headerUrl : "/assets/header.jpg"} fill />
                     <div className="avatar-wrapper">
-                        <Avatar sx={{ width: 125, height: 125 }} alt="" src="https://picsum.photos/125/125" />
+                        <Avatar
+                            sx={{ width: 125, height: 125 }}
+                            alt=""
+                            src={profile.photoUrl ? profile.photoUrl : "/assets/egg.jpg"}
+                        />
                     </div>
                 </div>
                 <div className="profile-info">
@@ -64,24 +68,27 @@ export default function Profile({ username, profile }: { username: string; profi
                 </div>
             </div>
             <nav className="profile-nav">
-                <Link className={`profile-nav-link ${pathname === `/${username}` ? "active" : ""}`} href={`/${username}`}>
+                <Link
+                    className={`profile-nav-link ${pathname === `/${profile.username}` ? "active" : ""}`}
+                    href={`/${profile.username}`}
+                >
                     <span>Tweets</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${username}/replies` ? "active" : ""}`}
-                    href={`/${username}/replies`}
+                    className={`profile-nav-link ${pathname === `/${profile.username}/replies` ? "active" : ""}`}
+                    href={`/${profile.username}/replies`}
                 >
                     <span>Replies</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${username}/media` ? "active" : ""}`}
-                    href={`/${username}/media`}
+                    className={`profile-nav-link ${pathname === `/${profile.username}/media` ? "active" : ""}`}
+                    href={`/${profile.username}/media`}
                 >
                     <span>Media</span>
                 </Link>
                 <Link
-                    className={`profile-nav-link ${pathname === `/${username}/likes` ? "active" : ""}`}
-                    href={`/${username}/likes`}
+                    className={`profile-nav-link ${pathname === `/${profile.username}/likes` ? "active" : ""}`}
+                    href={`/${profile.username}/likes`}
                 >
                     <span>Likes</span>
                 </Link>

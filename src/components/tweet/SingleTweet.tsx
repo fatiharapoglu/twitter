@@ -15,7 +15,11 @@ export default function SingleTweet({ tweet }: { tweet: TweetProps }) {
             <div className="single-tweet-author-section">
                 <div>
                     <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
-                        <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
+                        <Avatar
+                            sx={{ width: 50, height: 50 }}
+                            alt=""
+                            src={tweet.author.photoUrl ? tweet.author.photoUrl : "/assets/egg.jpg"}
+                        />
                     </Link>
                 </div>
                 <div className="tweet-author-section">

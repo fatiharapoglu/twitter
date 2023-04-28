@@ -21,7 +21,10 @@ export async function POST(request: Request) {
             id: newUser.id,
             username: newUser.username,
             name: newUser.name,
+            description: newUser.description,
+            age: newUser.age,
             createdAt: newUser.createdAt,
+            photoUrl: newUser.photoUrl,
         })
             .setProtectedHeader({
                 alg: "HS256",

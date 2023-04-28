@@ -53,7 +53,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
 
     return (
         <div className="new-tweet-form">
-            <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
+            <Avatar sx={{ width: 50, height: 50 }} alt="" src={token.photoUrl ? token.photoUrl : "/assets/egg.jpg"} />
             <form onSubmit={formik.handleSubmit}>
                 <div className="input">
                     <TextField

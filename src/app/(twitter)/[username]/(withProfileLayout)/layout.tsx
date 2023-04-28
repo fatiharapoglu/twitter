@@ -18,7 +18,7 @@ export default async function ProfileLayout({
 
     return (
         <div className="profile-layout">
-            {<Profile username={username} profile={user} />}
+            {<Profile profile={user} />}
             {children}
         </div>
     );

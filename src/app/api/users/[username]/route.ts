@@ -14,6 +14,10 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 username: true,
                 createdAt: true,
                 updatedAt: true,
+                description: true,
+                age: true,
+                photoUrl: true,
+                headerUrl: true,
             },
         });
         return NextResponse.json({ success: true, user });

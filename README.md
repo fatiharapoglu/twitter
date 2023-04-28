@@ -31,8 +31,8 @@
 -   [x] more compact uploader for photo upload,
 -   [x] supabase storage is ok to use for avatars and images? if not use aws
 -   [x] clicking images should open full screen images
--   [ ] avatar logic / image logic in tweets
--   [ ] handle default avatar / twitter egg
+-   [x] avatar logic
+-   [x] handle default avatar / twitter egg
 -   [ ] follow/unfollow feature
 -   [ ] make a modal for unfollow confirmation
 -   [ ] optimistic update on follow/unfollow
@@ -50,6 +50,8 @@
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
 -   [ ] single tweet page shows all replies or only first degree replies?
 -   [ ] complete edit profile page
+-   [ ] profile pic, header pic change in profile
+-   [ ] header and profile picture click fullscreen preview
 -   [ ] complete profile reminder, edit page like /username/edit not modal
 -   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username

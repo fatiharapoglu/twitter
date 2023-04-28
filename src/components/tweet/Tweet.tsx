@@ -38,7 +38,11 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
     return (
         <div onClick={handleTweetClick} className="tweet div-link">
             <Link onClick={handlePropagation} className="tweet-avatar" href={`/${tweet.author.username}`}>
-                <Avatar sx={{ width: 50, height: 50 }} alt="" src="https://picsum.photos/200/300" />
+                <Avatar
+                    sx={{ width: 50, height: 50 }}
+                    alt=""
+                    src={tweet.author.photoUrl ? tweet.author.photoUrl : "/assets/egg.jpg"}
+                />
             </Link>
             <div className="tweet-main">
                 <section className="tweet-author-section">
