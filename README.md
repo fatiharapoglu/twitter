@@ -30,7 +30,7 @@
 -   [x] photo upload in new tweet
 -   [x] more compact uploader for photo upload,
 -   [x] supabase storage is ok to use for avatars and images? if not use aws
--   [ ] clicking images should open full screen images
+-   [x] clicking images should open full screen images
 -   [ ] avatar logic / image logic in tweets
 -   [ ] handle default avatar / twitter egg
 -   [ ] follow/unfollow feature

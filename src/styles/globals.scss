@@ -315,21 +315,26 @@ body {
 }
 
 .preview-dialog {
-    background-color: var(--twitter-black);
-    position: relative;
-    width: 90vw;
-    height: 90vh;
-    margin: auto 5vh;
-
     .btn-close {
         position: absolute;
         left: 1rem;
-        top: 0.5rem;
+        top: 0.75rem;
+        z-index: 9999;
+        color: var(--twitter-white);
+        background-color: var(--twitter-light-black);
+        font-size: x-large;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--twitter-black);
+            background-color: var(--hover);
+        }
     }
 
     .image-wrapper {
         img {
-            object-fit: none;
+            object-fit: contain;
             display: block;
         }
     }

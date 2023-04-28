@@ -1,4 +1,4 @@
-import { Dialog } from "@mui/material";
+import { Modal } from "@mui/material";
 import { AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 
@@ -8,13 +8,13 @@ export default function PreviewDialog({ open, handlePreviewClose, url }: Preview
     const fullUrl = `https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${url}`;
 
     return (
-        <Dialog open={open} scroll="body">
-            <div className="preview-dialog">
-                <AiOutlineClose className="btn-close" onClick={handlePreviewClose} />
+        <Modal className="preview-dialog" open={open}>
+            <div>
+                <AiOutlineClose className="btn-close icon-hoverable" onClick={handlePreviewClose} />
                 <div className="image-wrapper">
                     <Image src={fullUrl} alt="" fill />
                 </div>
             </div>
-        </Dialog>
+        </Modal>
     );
 }
