@@ -33,6 +33,8 @@
 -   [x] clicking images should open full screen images
 -   [x] avatar logic
 -   [x] handle default avatar / twitter egg
+-   [x] fix emoji not opening in the modal
+-   [x] complete media link in profile
 -   [ ] follow/unfollow feature
 -   [ ] make a modal for unfollow confirmation
 -   [ ] optimistic update on follow/unfollow
@@ -49,8 +51,11 @@
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
 -   [ ] single tweet page shows all replies or only first degree replies?
+-   [ ] single tweet page refactor with images
+-   [ ] isUploading feature
 -   [ ] complete edit profile page
 -   [ ] profile pic, header pic change in profile
+-   [ ] fix url for photos (only short url exist for now, will give error)
 -   [ ] header and profile picture click fullscreen preview
 -   [ ] complete profile reminder, edit page like /username/edit not modal
 -   [ ] handle profile header img

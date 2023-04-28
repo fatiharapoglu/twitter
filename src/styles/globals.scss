@@ -164,7 +164,7 @@ body {
 
 .emoji-picker {
     position: absolute;
-    z-index: 10;
+    z-index: 9999;
 }
 
 .dropzone {
@@ -172,7 +172,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 2px dashed var(--border-color);
+    border: 2px dashed var(--border-color) !important;
     border-radius: 2px;
     color: var(--twitter-gray);
     outline: none;
@@ -294,9 +294,15 @@ body {
     }
 
     .new-tweet-wrapper {
+        position: relative;
         width: 30vw;
         min-width: 550px;
         padding: 0.5rem;
+
+        .emoji-picker {
+            position: static;
+            z-index: 9999;
+        }
 
         * {
             border: none;

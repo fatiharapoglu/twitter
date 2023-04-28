@@ -85,7 +85,6 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                                 formik.setFieldValue("text", formik.values.text + emoji.native);
                                 setShowPicker(false);
                             }}
-                            onClickOutside={() => setShowPicker(false)}
                             previewPosition="none"
                         />
                     </div>
