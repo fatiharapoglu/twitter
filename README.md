@@ -37,8 +37,8 @@
 -   [x] complete media link in profile
 -   [x] follow/unfollow feature
 -   [x] optimistic update on follow/unfollow
--   [ ] lazy load tweets / react query implementation for lazy loading
--   [ ] tweetsarraylength is unnecessary, calculate it in server side with prisma .count()
+-   [x] lazy load tweets / react query implementation for lazy loading
+-   [ ] add is following you feature
 -   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
 -   [ ] authorization wall for delete/follow/unfollow

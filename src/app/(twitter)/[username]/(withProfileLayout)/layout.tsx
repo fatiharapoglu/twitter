@@ -14,12 +14,12 @@ export default function ProfileLayout({
     children: React.ReactNode;
     params: { username: string };
 }) {
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, data } = useQuery({
         queryKey: ["users", username],
         queryFn: () => getUser(username),
     });
 
-    if (error) return NotFound();
+    if (!isLoading && !data.user) return NotFound();
 
     return (
         <div className="profile-layout">

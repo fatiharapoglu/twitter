@@ -18,8 +18,44 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 age: true,
                 photoUrl: true,
                 headerUrl: true,
-                followers: true,
-                following: true,
+                followers: {
+                    select: {
+                        id: true,
+                        name: true,
+                        username: true,
+                        description: true,
+                        photoUrl: true,
+                        followers: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        following: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                    },
+                },
+                following: {
+                    select: {
+                        id: true,
+                        name: true,
+                        username: true,
+                        description: true,
+                        photoUrl: true,
+                        followers: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        following: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                    },
+                },
             },
         });
         return NextResponse.json({ success: true, user });

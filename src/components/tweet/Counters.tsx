@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 import { TweetProps } from "@/types/TweetProps";
 import User from "../user/User";
+import { AuthContext } from "@/app/(twitter)/layout";
 
 export default function Counters({ tweet }: { tweet: TweetProps }) {
     const [isOpen, setIsOpen] = useState(false);
 
+    const { token } = useContext(AuthContext);
+
     const handleClick = () => {
+        if (!token) {
+            return alert("You are not logged in, you can't do that before log in.");
+            // snackbar or modal here
+        }
         setIsOpen(true);
     };
     const handleClose = () => {

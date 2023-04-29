@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaArrowLeft, FaRegEnvelope } from "react-icons/fa";
-import { Avatar } from "@mui/material";
+import { Avatar, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { BsBalloon, BsCalendar3 } from "react-icons/bs";
 
 import { formatDateForProfile } from "@/utilities/date";
@@ -13,10 +13,34 @@ import { AuthContext } from "@/app/(twitter)/layout";
 import { UserProps } from "@/types/UserProps";
 import TweetArrayLength from "../tweet/TweetArrayLength";
 import Follow from "../user/Follow";
+import User from "../user/User";
 
 export default function Profile({ profile }: { profile: UserProps }) {
+    const [dialogType, setDialogType] = useState("");
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
     const { token } = useContext(AuthContext);
     const pathname = usePathname();
+
+    const handleDialogOpen = (type: string) => {
+        if (!token) {
+            return alert("You are not logged in, you can't do that before log in.");
+            // snackbar or modal here
+        }
+
+        if (type === "following" && profile.following.length === 0) return;
+        if (type === "followers" && profile.followers.length === 0) return;
+
+        console.log(profile.following);
+
+        setDialogType(type);
+        setIsDialogOpen(true);
+    };
+
+    const handleDialogClose = () => {
+        setDialogType("");
+        setIsDialogOpen(false);
+    };
 
     return (
         <>
@@ -55,11 +79,13 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         </div>
                     </div>
                     <div className="profile-info-popularity">
-                        <div>
-                            <span className="count">46</span> <span className="text-muted">Following</span>
+                        <div onClick={() => handleDialogOpen("following")}>
+                            <span className="count">{profile.following.length}</span>{" "}
+                            <span className="text-muted">Following</span>
                         </div>
-                        <div>
-                            <span className="count">77</span> <span className="text-muted">Followers</span>
+                        <div onClick={() => handleDialogOpen("followers")}>
+                            <span className="count">{profile.followers.length}</span>{" "}
+                            <span className="text-muted">Followers</span>
                         </div>
                     </div>
                     {token?.username === profile.username ? (
@@ -100,6 +126,28 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     <span>Likes</span>
                 </Link>
             </nav>
+            {isDialogOpen && (
+                <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} fullWidth>
+                    <DialogTitle className="title">
+                        {dialogType === "following" ? "Following" : dialogType === "followers" ? "Followers" : ""}
+                    </DialogTitle>
+                    <DialogContent sx={{ paddingX: 0 }}>
+                        <div className="user-list">
+                            {dialogType === "following"
+                                ? profile.following.map((user) => (
+                                      <div className="user-wrapper" key={"following" + user.id}>
+                                          <User user={user} />
+                                      </div>
+                                  ))
+                                : profile.followers.map((user) => (
+                                      <div className="user-wrapper" key={"followers" + user.id}>
+                                          <User user={user} />
+                                      </div>
+                                  ))}
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            )}
         </>
     );
 }
