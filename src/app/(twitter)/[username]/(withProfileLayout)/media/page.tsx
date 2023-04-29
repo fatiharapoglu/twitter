@@ -6,7 +6,7 @@ import Tweets from "@/components/tweet/Tweets";
 import { getUserMedia } from "@/utilities/fetch";
 import CircularLoading from "@/components/misc/CircularLoading";
 
-export default function Likes({ params: { username } }: { params: { username: string } }) {
+export default function MediaPage({ params: { username } }: { params: { username: string } }) {
     const { isLoading, error, data } = useQuery({
         queryKey: ["tweets", username, "media"],
         queryFn: () => getUserMedia(username),

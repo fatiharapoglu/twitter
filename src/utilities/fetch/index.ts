@@ -1,5 +1,5 @@
-export const getAllTweets = async () => {
-    const response = await fetch("http://localhost:3000/api/tweets/all", {
+export const getAllTweets = async (page = "1") => {
+    const response = await fetch(`http://localhost:3000/api/tweets/all?page=${page}`, {
         next: {
             revalidate: 0,
         },
