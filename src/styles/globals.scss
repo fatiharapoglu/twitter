@@ -897,7 +897,7 @@ body {
                 .is-following {
                     font-size: 0.7rem;
                     font-weight: 500;
-                    background-color: var(--hover);
+                    background-color: var(--twitter-white);
                     padding: 0.1rem 0.25rem;
                     border-radius: 0.5rem;
                     vertical-align: top;
@@ -932,6 +932,14 @@ body {
 
                 .count {
                     font-weight: 900;
+                }
+
+                .popularity-section {
+                    cursor: pointer;
+
+                    &:hover .text-muted {
+                        text-decoration: underline;
+                    }
                 }
             }
         }

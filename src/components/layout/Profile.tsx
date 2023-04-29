@@ -85,11 +85,11 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         </div>
                     </div>
                     <div className="profile-info-popularity">
-                        <div onClick={() => handleDialogOpen("following")}>
+                        <div onClick={() => handleDialogOpen("following")} className="popularity-section">
                             <span className="count">{profile.following.length}</span>{" "}
                             <span className="text-muted">Following</span>
                         </div>
-                        <div onClick={() => handleDialogOpen("followers")}>
+                        <div onClick={() => handleDialogOpen("followers")} className="popularity-section">
                             <span className="count">{profile.followers.length}</span>{" "}
                             <span className="text-muted">Followers</span>
                         </div>
