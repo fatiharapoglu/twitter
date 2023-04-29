@@ -22,6 +22,7 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         username: true,
                         name: true,
                         description: true,
+                        followers: true,
                     },
                 },
             },
