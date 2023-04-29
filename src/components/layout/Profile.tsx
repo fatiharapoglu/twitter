@@ -31,8 +31,6 @@ export default function Profile({ profile }: { profile: UserProps }) {
         if (type === "following" && profile.following.length === 0) return;
         if (type === "followers" && profile.followers.length === 0) return;
 
-        console.log(profile.following);
-
         setDialogType(type);
         setIsDialogOpen(true);
     };
@@ -40,6 +38,12 @@ export default function Profile({ profile }: { profile: UserProps }) {
     const handleDialogClose = () => {
         setDialogType("");
         setIsDialogOpen(false);
+    };
+
+    const isFollowingUser = () => {
+        if (profile.following.length === 0 || !token) return;
+        const isFollowing = profile.following.some((user) => user.id === token.id);
+        return isFollowing;
     };
 
     return (
@@ -67,7 +71,9 @@ export default function Profile({ profile }: { profile: UserProps }) {
                 <div className="profile-info">
                     <div className="profile-info-main">
                         <h1>{profile.name !== "" ? profile.name : profile.username}</h1>
-                        <div className="text-muted">@{profile.username}</div>
+                        <div className="text-muted">
+                            @{profile.username} {isFollowingUser() && <span className="is-following">Follows you</span>}
+                        </div>
                     </div>
                     <div className="profile-info-desc">Description placeholder</div>
                     <div className="profile-info-optional text-muted">

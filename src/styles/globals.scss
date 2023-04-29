@@ -894,6 +894,15 @@ body {
                 flex-direction: column;
                 gap: 0.33rem;
 
+                .is-following {
+                    font-size: 0.7rem;
+                    font-weight: 500;
+                    background-color: var(--hover);
+                    padding: 0.1rem 0.25rem;
+                    border-radius: 0.5rem;
+                    vertical-align: top;
+                }
+
                 h1 {
                     font-size: larger;
                     font-weight: 900;
