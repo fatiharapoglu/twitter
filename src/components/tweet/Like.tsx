@@ -54,22 +54,22 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
         onMutate: async (tokenOwnerId: string) => {
             setIsButtonDisabled(true);
             await queryClient.cancelQueries({ queryKey: queryKey });
-            const previousTweet = queryClient.getQueryData<TweetResponse>(queryKey);
+            const previous = queryClient.getQueryData<TweetResponse>(queryKey);
             setIsLiked(false);
-            if (previousTweet) {
+            if (previous) {
                 queryClient.setQueryData(queryKey, {
-                    ...previousTweet,
+                    ...previous,
                     tweet: {
-                        ...previousTweet.tweet,
-                        likedBy: previousTweet.tweet.likedBy.filter((user) => JSON.stringify(user.id) !== tokenOwnerId),
+                        ...previous.tweet,
+                        likedBy: previous.tweet.likedBy.filter((user) => JSON.stringify(user.id) !== tokenOwnerId),
                     },
                 });
             }
-            return { previousTweet };
+            return { previous };
         },
         onError: (err, variables, context) => {
-            if (context?.previousTweet) {
-                queryClient.setQueryData<TweetResponse>(queryKey, context.previousTweet);
+            if (context?.previous) {
+                queryClient.setQueryData<TweetResponse>(queryKey, context.previous);
             }
         },
         onSuccess: () => {

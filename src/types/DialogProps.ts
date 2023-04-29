@@ -1,4 +1,4 @@
-import { AuthorProps } from "./AuthorProps";
+import { UserProps } from "./UserProps";
 
 export type LogInDialogProps = {
     open: boolean;
@@ -13,7 +13,7 @@ export type SignUpDialogProps = {
 export type NewTweetDialogProps = {
     open: boolean;
     handleNewTweetClose: () => void;
-    token: AuthorProps;
+    token: UserProps;
 };
 
 export type LogOutDialogProps = {

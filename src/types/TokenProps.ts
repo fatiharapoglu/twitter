@@ -1,6 +1,6 @@
-import { AuthorProps } from "./AuthorProps";
+import { UserProps } from "./UserProps";
 
-export type VerifiedToken = AuthorProps | null;
+export type VerifiedToken = UserProps | null;
 
 export type AuthProps = {
     token: VerifiedToken;

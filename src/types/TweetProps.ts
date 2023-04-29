@@ -1,13 +1,13 @@
-import { AuthorProps } from "./AuthorProps";
+import { UserProps } from "./UserProps";
 
 export type TweetProps = {
     id: string;
     text: string;
     createdAt: Date;
-    author: AuthorProps;
+    author: UserProps;
     authorId: string;
     photoUrl: string;
-    likedBy: AuthorProps[];
+    likedBy: UserProps[];
     parentId: null | string;
 };
 
@@ -26,6 +26,6 @@ export type TweetOptionsProps = {
 };
 
 export type NewTweetProps = {
-    token: AuthorProps;
+    token: UserProps;
     handleSubmit?: () => void;
 };

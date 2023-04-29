@@ -1,9 +1,9 @@
 import { Avatar } from "@mui/material";
 import Link from "next/link";
 
-import { AuthorProps } from "@/types/AuthorProps";
+import { UserProps } from "@/types/UserProps";
 
-export default function User({ user }: { user: AuthorProps }) {
+export default function User({ user }: { user: UserProps }) {
     return (
         <>
             <Link href={`/${user.username}`}>

@@ -1,4 +1,4 @@
-export type AuthorProps = {
+export type UserProps = {
     id: string;
     name: string;
     username: string;
@@ -8,6 +8,11 @@ export type AuthorProps = {
     updatedAt: Date;
     photoUrl?: string;
     headerUrl?: string;
-    followers: AuthorProps[];
-    following: AuthorProps[];
+    followers: UserProps[];
+    following: UserProps[];
+};
+
+export type UserResponse = {
+    success: boolean;
+    user: UserProps;
 };
