@@ -8,6 +8,7 @@ import { UserProps, UserResponse } from "@/types/UserProps";
 export default function Follow({ profile }: { profile: UserProps }) {
     const [isFollowed, setIsFollowed] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const { token, isPending } = useContext(AuthContext);
     const queryClient = useQueryClient();
@@ -70,7 +71,9 @@ export default function Follow({ profile }: { profile: UserProps }) {
         },
     });
 
-    const handleFollowclick = () => {
+    const handleFollowclick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+
         if (!token) {
             return alert("You are not logged in, you can't do that before log in.");
             // snackbar or modal here
@@ -87,6 +90,14 @@ export default function Follow({ profile }: { profile: UserProps }) {
                 followMutation.mutate(tokenOwnerId);
             }
         }
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
     };
 
     useEffect(() => {
@@ -108,9 +119,18 @@ export default function Follow({ profile }: { profile: UserProps }) {
         return () => clearTimeout(timer);
     }, [isButtonDisabled]);
 
+    const conditionalText = isFollowed ? (isHovered ? "Unfollow" : "Following") : "Follow";
+    const conditionalClass = isFollowed ? (isHovered ? "btn btn-danger" : "btn btn-white") : "btn btn-dark";
+
     return (
-        <button onClick={handleFollowclick} className="btn btn-dark" disabled={isButtonDisabled}>
-            {isFollowed ? "Following" : "Follow"}
+        <button
+            onClick={handleFollowclick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className={conditionalClass}
+            disabled={isButtonDisabled}
+        >
+            {conditionalText}
         </button>
     );
 }

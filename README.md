@@ -35,10 +35,8 @@
 -   [x] handle default avatar / twitter egg
 -   [x] fix emoji not opening in the modal
 -   [x] complete media link in profile
--   [ ] follow/unfollow feature
--   [ ] make a modal for unfollow confirmation
--   [ ] optimistic update on follow/unfollow
--   [ ] handle errors like "user already exists"
+-   [x] follow/unfollow feature
+-   [x] optimistic update on follow/unfollow
 -   [ ] lazy load tweets / react query implementation for lazy loading
 -   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
@@ -52,6 +50,7 @@
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
 -   [ ] single tweet page shows all replies or only first degree replies?
 -   [ ] single tweet page refactor with images
+-   [ ] handle errors like "user already exists"
 -   [ ] isUploading feature
 -   [ ] complete edit profile page
 -   [ ] profile pic, header pic change in profile
@@ -60,6 +59,8 @@
 -   [ ] complete profile reminder, edit page like /username/edit not modal
 -   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username
+-   [ ] complete profile, remove placeholders, desc images and everything
+-   [ ] add age, name, stuff, required in the sign up.
 -   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
 -   [ ] message logic / socket io? feathers? how in next
 -   [ ] progress bar for 280 characters

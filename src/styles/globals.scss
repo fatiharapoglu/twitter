@@ -8,6 +8,8 @@
     --twitter-light-gray: #d1dce4;
     --twitter-black: #14171a;
     --twitter-light-black: #282e32;
+    --twitter-red: #e0245e;
+    --twitter-light-red: #fdc9ce;
     --twitter-white: #f5f8fa;
     --twitter-muted: #536471;
     --hover: #efefef;
@@ -73,6 +75,17 @@ body {
     &:hover {
         background-color: var(--hover);
         color: var(--twitter-black);
+    }
+}
+
+.btn-danger {
+    background-color: var(--twitter-white);
+    color: var(--twitter-red);
+    border: 1px solid var(--twitter-red);
+
+    &:hover {
+        background-color: var(--twitter-light-red);
+        color: var(--twitter-red);
     }
 }
 
@@ -764,6 +777,7 @@ body {
 
     .user {
         width: 100%;
+        cursor: pointer;
 
         .user-profile {
             display: flex;
