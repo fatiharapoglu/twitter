@@ -2,17 +2,13 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 
-import { uploadFile } from "@/utilities/storage";
-
-export default function Uploader({ handlePhotoUrlChange }: { handlePhotoUrlChange: (url: string) => void }) {
+export default function Uploader({ handlePhotoChange }: { handlePhotoChange: (file: File) => void }) {
     const [preview, setPreview] = useState<File | null>(null);
 
     const onDrop = async (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
         setPreview(file);
-        const path: string | void = await uploadFile(file);
-        if (!path) throw new Error("Error uploading image.");
-        handlePhotoUrlChange(path);
+        handlePhotoChange(file);
     };
 
     const { getRootProps, getInputProps } = useDropzone({

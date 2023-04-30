@@ -41,6 +41,7 @@
 -   [x] add is following you feature
 -   [x] complete edit profile page
 -   [x] cascade in postgresql / how to handle deleted tweets
+-   [x] refactor uploader in new tweet to prevent unnecessary uploads to the server, only upload if user tweets
 -   [ ] add delete options for users tweets
 -   [ ] authorization wall for delete/follow/unfollow/edit
 -   [ ] add retweet and delete tweet logic
@@ -48,7 +49,6 @@
 -   [ ] single tweet page shows all replies or only first degree replies?
 -   [ ] single tweet page refactor with images
 -   [ ] handle errors like "user already exists"
--   [ ] isUploading feature
 -   [ ] profile pic, header pic change in profile
 -   [ ] fix url for photos (only short url exist for now, will give error)
 -   [ ] header and profile picture click fullscreen preview

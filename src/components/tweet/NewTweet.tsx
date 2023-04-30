@@ -12,18 +12,25 @@ import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
 import Uploader from "../misc/Uploader";
 import { getFullURL } from "@/utilities/misc/getFullURL";
+import { uploadFile } from "@/utilities/storage";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const [showPicker, setShowPicker] = useState(false);
     const [showDropzone, setShowDropzone] = useState(false);
+    const [photoFile, setPhotoFile] = useState<File | null>(null);
 
     const queryClient = useQueryClient();
+
     const mutation = useMutation({
         mutationFn: createTweet,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["tweets"] });
         },
     });
+
+    const handlePhotoChange = (file: File) => {
+        setPhotoFile(file);
+    };
 
     const validationSchema = yup.object({
         text: yup.string().max(280, "Tweet should be of maximum 280 characters length.").required("Tweet is required."),
@@ -33,10 +40,16 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
         initialValues: {
             text: "",
             authorId: token.id,
-            photoUrl: null,
+            photoUrl: "",
         },
         validationSchema: validationSchema,
         onSubmit: async (values, { resetForm }) => {
+            if (photoFile) {
+                const path: string | void = await uploadFile(photoFile);
+                if (!path) throw new Error("Error uploading image.");
+                values.photoUrl = path;
+                setPhotoFile(null);
+            }
             mutation.mutate(JSON.stringify(values));
             resetForm();
             setShowDropzone(false);
@@ -44,11 +57,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
         },
     });
 
-    const handlePhotoUrlChange = (newPhotoUrl: string) => {
-        formik.setFieldValue("photoUrl", newPhotoUrl);
-    };
-
-    if (mutation.isLoading) {
+    if (formik.isSubmitting) {
         return <CircularLoading />;
     }
 
@@ -94,7 +103,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                         />
                     </div>
                 )}
-                {showDropzone && <Uploader handlePhotoUrlChange={handlePhotoUrlChange} />}
+                {showDropzone && <Uploader handlePhotoChange={handlePhotoChange} />}
             </form>
         </div>
     );
