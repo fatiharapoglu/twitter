@@ -39,10 +39,10 @@
 -   [x] optimistic update on follow/unfollow
 -   [x] lazy load tweets / react query implementation for lazy loading
 -   [x] add is following you feature
--   [ ] complete edit profile page
+-   [x] complete edit profile page
 -   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
--   [ ] authorization wall for delete/follow/unfollow
+-   [ ] authorization wall for delete/follow/unfollow/edit
 -   [ ] add retweet and delete tweet logic
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
 -   [ ] single tweet page shows all replies or only first degree replies?
@@ -80,7 +80,7 @@
 -   [ ] search mechanism, only for users / users and tweets would be better
 -   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
--   [ ] add hidden/locked profile
+-   [ ] add hidden/locked profile, deal with temp keyword in search
 -   [ ] handle speed, somehow it feels slow, maybe it is different in production but nevertheless
 -   [ ] handle users trying to message themselves
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
