@@ -12,8 +12,8 @@ import { formatDateForProfile } from "@/utilities/date";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { UserProps } from "@/types/UserProps";
 import TweetArrayLength from "../tweet/TweetArrayLength";
-import Follow from "../user/Follow";
-import User from "../user/User";
+import Follow from "./Follow";
+import User from "./User";
 
 export default function Profile({ profile }: { profile: UserProps }) {
     const [dialogType, setDialogType] = useState("");
@@ -40,7 +40,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
         setIsDialogOpen(false);
     };
 
-    const isFollowingUser = () => {
+    const isFollowingTokenOwner = () => {
         if (profile.following.length === 0 || !token) return;
         const isFollowing = profile.following.some((user) => user.id === token.id);
         return isFollowing;
@@ -72,7 +72,8 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     <div className="profile-info-main">
                         <h1>{profile.name !== "" ? profile.name : profile.username}</h1>
                         <div className="text-muted">
-                            @{profile.username} {isFollowingUser() && <span className="is-following">Follows you</span>}
+                            @{profile.username}{" "}
+                            {isFollowingTokenOwner() && <span className="is-following">Follows you</span>}
                         </div>
                     </div>
                     <div className="profile-info-desc">Description placeholder</div>
@@ -95,7 +96,9 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         </div>
                     </div>
                     {token?.username === profile.username ? (
-                        <button className="btn btn-white edit-profile-section">Edit profile</button>
+                        <Link href={`/${profile.username}/edit`} className="btn btn-white edit-profile-section">
+                            Edit profile
+                        </Link>
                     ) : (
                         <div className="edit-profile-section flex">
                             <button className="btn btn-white icon-hoverable">

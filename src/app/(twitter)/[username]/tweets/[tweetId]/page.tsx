@@ -27,7 +27,7 @@ export default function SingleTweetPage({
                     <FaArrowLeft />
                 </Link>
                 <div className="top">
-                    <span className="top-title">Tweet</span>
+                    <span className="top-title">{username}</span>
                 </div>
             </div>
             {isLoading ? <CircularLoading /> : <SingleTweet tweet={data.tweet} />}

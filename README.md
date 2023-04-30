@@ -39,21 +39,16 @@
 -   [x] optimistic update on follow/unfollow
 -   [x] lazy load tweets / react query implementation for lazy loading
 -   [x] add is following you feature
+-   [ ] complete edit profile page
 -   [ ] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
 -   [ ] authorization wall for delete/follow/unfollow
 -   [ ] add retweet and delete tweet logic
--   [ ] change explore to home, home only followings
--   [ ] global-error / error handling detailed
--   [ ] find throw new Errors, console.logs, message:, error:, snackbar here
--   [ ] handle loadings better, maybe add local next loading files?
--   [ ] think about handling related errors in the fetch folder
--   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes
+-   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
 -   [ ] single tweet page shows all replies or only first degree replies?
 -   [ ] single tweet page refactor with images
 -   [ ] handle errors like "user already exists"
 -   [ ] isUploading feature
--   [ ] complete edit profile page
 -   [ ] profile pic, header pic change in profile
 -   [ ] fix url for photos (only short url exist for now, will give error)
 -   [ ] header and profile picture click fullscreen preview
@@ -61,6 +56,11 @@
 -   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username
 -   [ ] complete profile, remove placeholders, desc images and everything
+-   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(),
+-   [ ] think about handling related errors in the fetch folder
+-   [ ] use try catch in awaits
+-   [ ] global-error / error handling detailed
+-   [ ] change explore to home, home only followings
 -   [ ] add age, name, stuff, required in the sign up.
 -   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
 -   [ ] message logic / socket io? feathers? how in next
@@ -98,3 +98,6 @@
 -   [ ] lazy in react, hover for profiles with suspense
 -   [ ] make all fn arrow
 -   [ ] change all request to nextRequest
+-   [ ] auto follow 1 profile after user creates,
+-   [ ] create changelog md
+-   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render

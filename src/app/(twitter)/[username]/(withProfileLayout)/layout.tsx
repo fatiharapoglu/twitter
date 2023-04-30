@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import NotFound from "@/app/not-found";
-import Profile from "@/components/layout/Profile";
+import Profile from "@/components/user/Profile";
 import CircularLoading from "@/components/misc/CircularLoading";
 import { getUser } from "@/utilities/fetch";
 

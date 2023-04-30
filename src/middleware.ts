@@ -5,7 +5,7 @@ export const middleware = async (request: NextRequest) => {
     const { cookies, nextUrl, url } = request;
     const { value: token } = cookies.get("token") ?? { value: null };
 
-    const protectedRoutes = ["/like", "/unlike", "/create", "/follow", "/unfollow"];
+    const protectedRoutes = ["/like", "/unlike", "/create", "/follow", "/unfollow", "/edit"];
 
     const hasVerifiedToken = token && (await verifyJwtToken(token));
 

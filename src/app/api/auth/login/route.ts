@@ -37,6 +37,7 @@ export async function POST(request: Request) {
             age: user.age,
             createdAt: user.createdAt,
             photoUrl: user.photoUrl,
+            headerUrl: user.headerUrl,
         })
             .setProtectedHeader({
                 alg: "HS256",
