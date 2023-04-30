@@ -14,6 +14,7 @@ import { UserProps } from "@/types/UserProps";
 import TweetArrayLength from "../tweet/TweetArrayLength";
 import Follow from "./Follow";
 import User from "./User";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function Profile({ profile }: { profile: UserProps }) {
     const [dialogType, setDialogType] = useState("");
@@ -59,12 +60,12 @@ export default function Profile({ profile }: { profile: UserProps }) {
             </div>
             <div className="profile">
                 <div className="profile-header">
-                    <Image alt="" src={profile.headerUrl ? profile.headerUrl : "/assets/header.jpg"} fill />
+                    <Image alt="" src={profile.headerUrl ? getFullURL(profile.headerUrl) : "/assets/header.jpg"} fill />
                     <div className="avatar-wrapper">
                         <Avatar
                             sx={{ width: 125, height: 125 }}
                             alt=""
-                            src={profile.photoUrl ? profile.photoUrl : "/assets/egg.jpg"}
+                            src={profile.photoUrl ? getFullURL(profile.photoUrl) : "/assets/egg.jpg"}
                         />
                     </div>
                 </div>

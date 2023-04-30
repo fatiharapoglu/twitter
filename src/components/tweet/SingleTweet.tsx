@@ -8,6 +8,7 @@ import Retweet from "./Retweet";
 import Like from "./Like";
 import Share from "./Share";
 import Counters from "./Counters";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function SingleTweet({ tweet }: { tweet: TweetProps }) {
     return (
@@ -18,7 +19,7 @@ export default function SingleTweet({ tweet }: { tweet: TweetProps }) {
                         <Avatar
                             sx={{ width: 50, height: 50 }}
                             alt=""
-                            src={tweet.author.photoUrl ? tweet.author.photoUrl : "/assets/egg.jpg"}
+                            src={tweet.author.photoUrl ? getFullURL(tweet.author.photoUrl) : "/assets/egg.jpg"}
                         />
                     </Link>
                 </div>

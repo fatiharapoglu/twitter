@@ -5,7 +5,7 @@ const nextConfig = {
         appDir: true,
     },
     images: {
-        domains: ["picsum.photos", "nifemmkaxhltrtqltltq.supabase.co"],
+        domains: ["nifemmkaxhltrtqltltq.supabase.co"],
     },
 };
 

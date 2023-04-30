@@ -866,6 +866,10 @@ body {
                 border: 4px solid var(--twitter-white);
                 border-radius: 5rem;
             }
+
+            img {
+                object-fit: cover;
+            }
         }
 
         .profile-info {
@@ -942,6 +946,60 @@ body {
                     }
                 }
             }
+        }
+    }
+}
+
+.edit-profile {
+    .profile-header {
+        width: 100%;
+        height: 200px;
+        position: relative;
+
+        .avatar-wrapper {
+            position: absolute;
+            bottom: -70px;
+            left: 1.5rem;
+            border: 4px solid var(--twitter-white);
+            border-radius: 5rem;
+        }
+
+        .add-photo {
+            position: absolute;
+            font-size: 1.5rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+        }
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .input-group {
+        margin: 6.5rem 2rem 0;
+
+        .input {
+            padding: 0.5rem;
+            min-width: 20vw;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-size: 1.33rem;
+            padding: 0 0 1.25rem 0.7rem;
+        }
+
+        .save {
+            float: right;
+            margin: 0.5rem;
         }
     }
 }

@@ -11,11 +11,14 @@ import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
 import { logout } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
+import { getFullURL } from "@/utilities/misc/getFullURL";
+import GlobalLoading from "../misc/GlobalLoading";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isNewTweetOpen, setIsNewTweetOpen] = useState(false);
     const [isLogOutOpen, setIsLogOutOpen] = useState(false);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     const { token } = useContext(AuthContext);
 
@@ -25,6 +28,7 @@ export default function LeftSidebar() {
     const tempIsLocked = true;
 
     const handleLogout = async () => {
+        setIsLoggingOut(true);
         await logout();
         router.push("/");
     };
@@ -47,6 +51,8 @@ export default function LeftSidebar() {
     const handleLogOutClose = () => {
         setIsLogOutOpen(false);
     };
+
+    if (isLoggingOut) return <GlobalLoading />;
 
     return (
         <>
@@ -120,7 +126,7 @@ export default function LeftSidebar() {
                             </button>
                             <button onClick={handleAnchorClick} className="side-profile">
                                 <div>
-                                    <Avatar alt="" src={token.photoUrl ? token.photoUrl : "/assets/egg.jpg"} />
+                                    <Avatar alt="" src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"} />
                                 </div>
                                 <div>
                                     <div className="token-name">

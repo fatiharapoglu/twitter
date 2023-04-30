@@ -3,16 +3,15 @@ import { AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 
 import { PreviewDialogProps } from "@/types/DialogProps";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function PreviewDialog({ open, handlePreviewClose, url }: PreviewDialogProps) {
-    const fullUrl = `https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${url}`;
-
     return (
         <Modal className="preview-dialog" open={open}>
             <div>
                 <AiOutlineClose className="btn-close icon-hoverable" onClick={handlePreviewClose} />
                 <div className="image-wrapper">
-                    <Image src={fullUrl} alt="" fill />
+                    <Image src={getFullURL(url)} alt="" fill />
                 </div>
             </div>
         </Modal>

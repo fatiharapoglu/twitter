@@ -22,6 +22,7 @@ export async function GET(request: Request, { params: { username } }: { params: 
                         id: true,
                         username: true,
                         name: true,
+                        photoUrl: true,
                     },
                 },
                 likedBy: {

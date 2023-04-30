@@ -23,6 +23,7 @@ export default function HomePage() {
             },
         }
     );
+
     const tweetsResponse = useMemo(
         () =>
             data?.pages.reduce((prev, page) => {

@@ -3,7 +3,6 @@ export type UserProps = {
     name: string;
     username: string;
     description?: string;
-    age?: string;
     location?: string;
     createdAt: Date;
     updatedAt: Date;

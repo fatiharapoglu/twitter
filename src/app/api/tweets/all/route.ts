@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
                         id: true,
                         username: true,
                         name: true,
+                        photoUrl: true,
                     },
                 },
                 likedBy: {

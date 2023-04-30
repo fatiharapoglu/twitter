@@ -11,6 +11,7 @@ import CircularLoading from "../misc/CircularLoading";
 import { createTweet } from "@/utilities/fetch";
 import { NewTweetProps } from "@/types/TweetProps";
 import Uploader from "../misc/Uploader";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const [showPicker, setShowPicker] = useState(false);
@@ -53,7 +54,11 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
 
     return (
         <div className="new-tweet-form">
-            <Avatar sx={{ width: 50, height: 50 }} alt="" src={token.photoUrl ? token.photoUrl : "/assets/egg.jpg"} />
+            <Avatar
+                sx={{ width: 50, height: 50 }}
+                alt=""
+                src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"}
+            />
             <form onSubmit={formik.handleSubmit}>
                 <div className="input">
                     <TextField

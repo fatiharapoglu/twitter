@@ -12,6 +12,7 @@ import Retweet from "./Retweet";
 import Like from "./Like";
 import Share from "./Share";
 import PreviewDialog from "../dialog/PreviewDialog";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function Tweet({ tweet }: { tweet: TweetProps }) {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                 <Avatar
                     sx={{ width: 50, height: 50 }}
                     alt=""
-                    src={tweet.author.photoUrl ? tweet.author.photoUrl : "/assets/egg.jpg"}
+                    src={tweet.author.photoUrl ? getFullURL(tweet.author.photoUrl) : "/assets/egg.jpg"}
                 />
             </Link>
             <div className="tweet-main">
@@ -65,7 +66,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         <div className="tweet-image">
                             <Image
                                 onClick={handleImageClick}
-                                src={`https://nifemmkaxhltrtqltltq.supabase.co/storage/v1/object/public/media/${tweet.photoUrl}`}
+                                src={getFullURL(tweet.photoUrl)}
                                 alt="tweet image"
                                 placeholder="blur"
                                 blurDataURL={shimmer(500, 500)}

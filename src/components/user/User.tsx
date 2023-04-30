@@ -6,6 +6,7 @@ import Link from "next/link";
 import { UserProps } from "@/types/UserProps";
 import { AuthContext } from "@/app/(twitter)/layout";
 import Follow from "./Follow";
+import { getFullURL } from "@/utilities/misc/getFullURL";
 
 export default function User({ user }: { user: UserProps }) {
     const { token } = useContext(AuthContext);
@@ -19,7 +20,11 @@ export default function User({ user }: { user: UserProps }) {
     return (
         <>
             <Link href={`/${user.username}`}>
-                <Avatar sx={{ width: 50, height: 50 }} alt="" src={user.photoUrl ? user.photoUrl : "/assets/egg.jpg"} />
+                <Avatar
+                    sx={{ width: 50, height: 50 }}
+                    alt=""
+                    src={user.photoUrl ? getFullURL(user.photoUrl) : "/assets/egg.jpg"}
+                />
             </Link>
             <div onClick={handleProfileClick} className="user">
                 <div className="user-profile">

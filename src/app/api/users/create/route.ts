@@ -22,7 +22,7 @@ export async function POST(request: Request) {
             username: newUser.username,
             name: newUser.name,
             description: newUser.description,
-            age: newUser.age,
+            location: newUser.location,
             createdAt: newUser.createdAt,
             photoUrl: newUser.photoUrl,
             headerUrl: newUser.headerUrl,

@@ -14,6 +14,7 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         id: true,
                         username: true,
                         name: true,
+                        photoUrl: true,
                     },
                 },
                 likedBy: {
@@ -23,6 +24,7 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         name: true,
                         description: true,
                         followers: true,
+                        photoUrl: true,
                     },
                 },
             },

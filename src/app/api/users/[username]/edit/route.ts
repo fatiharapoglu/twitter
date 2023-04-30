@@ -1,35 +1,29 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { SignJWT } from "jose";
 
 import { prisma } from "@/prisma/client";
-import { comparePasswords } from "@/utilities/bcrypt";
-import { getJwtSecretKey } from "@/utilities/auth";
+import { getJwtSecretKey, verifyJwtToken } from "@/utilities/auth";
 
-export async function POST(request: Request) {
-    const { username, password } = await request.json();
+export async function POST(request: NextRequest, { params: { username } }: { params: { username: string } }) {
+    const data = await request.json();
+    const token = request.cookies.get("token")?.value;
+    const verifiedToken = token && (await verifyJwtToken(token));
+
+    if (!verifiedToken)
+        return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
+
+    if (verifiedToken.username !== username)
+        return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
 
     try {
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.update({
             where: {
                 username: username,
             },
+            data: data,
         });
-        if (!user) {
-            return NextResponse.json({
-                success: false,
-                message: "Username or password is not correct.",
-            });
-        }
 
-        const isPasswordValid = await comparePasswords(password, user.password);
-        if (!isPasswordValid) {
-            return NextResponse.json({
-                success: false,
-                message: "Username or password is not correct.",
-            });
-        }
-
-        const token = await new SignJWT({
+        const newToken = await new SignJWT({
             id: user.id,
             username: user.username,
             name: user.name,
@@ -51,7 +45,7 @@ export async function POST(request: Request) {
         });
         response.cookies.set({
             name: "token",
-            value: token,
+            value: newToken,
             path: "/",
         });
 
