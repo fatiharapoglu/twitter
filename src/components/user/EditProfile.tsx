@@ -4,6 +4,7 @@ import { Avatar, TextField } from "@mui/material";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import * as yup from "yup";
 import Image from "next/image";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { UserProps } from "@/types/UserProps";
 import CircularLoading from "../misc/CircularLoading";
@@ -11,7 +12,7 @@ import { uploadFile } from "@/utilities/storage";
 import { editUser } from "@/utilities/fetch";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 
-export default function EditProfile({ profile }: { profile: UserProps }) {
+export default function EditProfile({ profile, refreshToken }: { profile: UserProps; refreshToken: () => void }) {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
     const [headerPreview, setHeaderPreview] = useState<string | null>(null);
     const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -19,6 +20,8 @@ export default function EditProfile({ profile }: { profile: UserProps }) {
 
     const headerUploadInputRef = useRef<HTMLInputElement>(null);
     const photoUploadInputRef = useRef<HTMLInputElement>(null);
+
+    const queryClient = useQueryClient();
 
     const handleHeaderChange = (event: any) => {
         const file = event.target.files[0];
@@ -72,7 +75,8 @@ export default function EditProfile({ profile }: { profile: UserProps }) {
                 return alert("Something went wrong");
             }
             alert("Profile updated successfully");
-            window.location.reload();
+            refreshToken();
+            queryClient.invalidateQueries(["users", profile.username]);
         },
     });
 

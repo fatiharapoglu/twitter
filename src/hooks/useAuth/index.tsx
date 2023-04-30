@@ -25,11 +25,18 @@ export default function useAuth() {
         setIsPending(false);
     };
 
+    const refreshToken = async () => {
+        const cookies = new Cookies();
+        const token = cookies.get("token") ?? null;
+        const verifiedToken = token && (await verifyJwtToken(token));
+        setToken(verifiedToken);
+    };
+
     React.useEffect(() => {
         getVerifiedToken();
     }, []);
 
-    return { token, isPending };
+    return { token, isPending, refreshToken };
 }
 
 useAuth.fromServer = fromServer;

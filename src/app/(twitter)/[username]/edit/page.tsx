@@ -9,7 +9,7 @@ import CircularLoading from "@/components/misc/CircularLoading";
 import EditProfile from "@/components/user/EditProfile";
 
 export default function EditPage({ params: { username } }: { params: { username: string } }) {
-    const { token, isPending } = useContext(AuthContext);
+    const { token, isPending, refreshToken } = useContext(AuthContext);
 
     if (isPending) return <CircularLoading />;
 
@@ -26,7 +26,7 @@ export default function EditPage({ params: { username } }: { params: { username:
                     <span className="top-title">{username}</span>
                 </div>
             </div>
-            <EditProfile profile={token} />
+            <EditProfile profile={token} refreshToken={refreshToken} />
         </div>
     );
 }

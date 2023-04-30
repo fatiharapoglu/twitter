@@ -40,7 +40,7 @@
 -   [x] lazy load tweets / react query implementation for lazy loading
 -   [x] add is following you feature
 -   [x] complete edit profile page
--   [ ] cascade in postgresql / how to handle deleted tweets
+-   [x] cascade in postgresql / how to handle deleted tweets
 -   [ ] add delete options for users tweets
 -   [ ] authorization wall for delete/follow/unfollow/edit
 -   [ ] add retweet and delete tweet logic
