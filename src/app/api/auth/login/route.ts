@@ -14,6 +14,7 @@ export async function POST(request: Request) {
                 username: username,
             },
         });
+
         if (!user) {
             return NextResponse.json({
                 success: false,
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
         }
 
         const isPasswordValid = await comparePasswords(password, user.password);
+
         if (!isPasswordValid) {
             return NextResponse.json({
                 success: false,
@@ -49,6 +51,7 @@ export async function POST(request: Request) {
         const response = NextResponse.json({
             success: true,
         });
+
         response.cookies.set({
             name: "token",
             value: token,

@@ -72,7 +72,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                 <Counters tweet={tweet} />
                 <div className="tweet-bottom">
                     <Reply />
-                    <Retweet />
+                    <Retweet tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                     <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                     <Share />
                 </div>
