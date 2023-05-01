@@ -43,9 +43,12 @@
 -   [x] cascade in postgresql / how to handle deleted tweets
 -   [x] refactor uploader in new tweet to prevent unnecessary uploads to the server, only upload if user tweets
 -   [x] add delete options for users tweets
+-   [x] handle tweet not found error
+-   [x] handle user not found error
+-   [x] authorization wall for delete/follow/unfollow/edit
 -   [ ] find a better way to delete tweets other than window.location.replace()
--   [ ] authorization wall for delete/follow/unfollow/edit
--   [ ] add retweet and delete tweet logic
+-   [ ] add retweet feature
+-   [ ] add reply feature
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
 -   [ ] single tweet page shows all replies or only first degree replies?
 -   [ ] single tweet page refactor with images
@@ -60,6 +63,7 @@
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] use try catch in awaits
+-   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [ ] global-error / error handling detailed
 -   [ ] change explore to home, home only followings
 -   [ ] add age, name, stuff, required in the sign up.

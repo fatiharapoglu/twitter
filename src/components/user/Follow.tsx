@@ -39,7 +39,7 @@ export default function Follow({ profile }: { profile: UserProps }) {
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: queryKey });
+            queryClient.invalidateQueries({ queryKey: ["users"] });
         },
     });
 
@@ -67,7 +67,7 @@ export default function Follow({ profile }: { profile: UserProps }) {
             }
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: queryKey });
+            queryClient.invalidateQueries({ queryKey: ["users"] });
         },
     });
 

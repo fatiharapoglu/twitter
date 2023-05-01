@@ -12,7 +12,6 @@ import LogOutDialog from "../dialog/LogOutDialog";
 import { logout } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { getFullURL } from "@/utilities/misc/getFullURL";
-import GlobalLoading from "../misc/GlobalLoading";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -51,8 +50,6 @@ export default function LeftSidebar() {
     const handleLogOutClose = () => {
         setIsLogOutOpen(false);
     };
-
-    if (isLoggingOut) return <GlobalLoading />;
 
     return (
         <>
@@ -155,6 +152,9 @@ export default function LeftSidebar() {
                                     <Link href={`/${token.username}`}>Profile</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleAnchorClose}>
+                                    <Link href={`/${token.username}/edit`}>Edit Profile</Link>
+                                </MenuItem>
+                                <MenuItem onClick={handleAnchorClose}>
                                     <Link href="/settings">Settings</Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleLogOutClick}>Log Out</MenuItem>
@@ -166,7 +166,12 @@ export default function LeftSidebar() {
             {token && (
                 <>
                     <NewTweetDialog open={isNewTweetOpen} handleNewTweetClose={handleNewTweetClose} token={token} />
-                    <LogOutDialog open={isLogOutOpen} handleLogOutClose={handleLogOutClose} logout={handleLogout} />
+                    <LogOutDialog
+                        open={isLogOutOpen}
+                        handleLogOutClose={handleLogOutClose}
+                        logout={handleLogout}
+                        isLoggingOut={isLoggingOut}
+                    />
                 </>
             )}
         </>

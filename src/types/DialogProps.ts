@@ -20,6 +20,7 @@ export type LogOutDialogProps = {
     open: boolean;
     handleLogOutClose: () => void;
     logout: () => void;
+    isLoggingOut: boolean;
 };
 
 export type PreviewDialogProps = {

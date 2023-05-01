@@ -9,6 +9,7 @@ import { getUserTweet } from "@/utilities/fetch";
 import SingleTweet from "@/components/tweet/SingleTweet";
 import CircularLoading from "@/components/misc/CircularLoading";
 import { AuthContext } from "@/app/(twitter)/layout";
+import NotFound from "@/app/not-found";
 
 export default function SingleTweetPage({
     params: { username, tweetId },
@@ -23,6 +24,8 @@ export default function SingleTweetPage({
     });
 
     const { token, isPending } = useContext(AuthContext);
+
+    if (!isLoading && !data.tweet) return NotFound();
 
     return (
         <div>
