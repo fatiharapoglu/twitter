@@ -15,10 +15,12 @@ import TweetArrayLength from "../tweet/TweetArrayLength";
 import Follow from "./Follow";
 import User from "./User";
 import { getFullURL } from "@/utilities/misc/getFullURL";
+import PreviewDialog from "../dialog/PreviewDialog";
 
 export default function Profile({ profile }: { profile: UserProps }) {
     const [dialogType, setDialogType] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [preview, setPreview] = useState({ open: false, url: "" });
 
     const { token } = useContext(AuthContext);
     const pathname = usePathname();
@@ -41,6 +43,24 @@ export default function Profile({ profile }: { profile: UserProps }) {
         setIsDialogOpen(false);
     };
 
+    const handleImageClick = (e: any) => {
+        const clickedElement = e.target;
+        if (clickedElement.alt === "profile-header") {
+            handlePreviewClick(profile.headerUrl ? profile.headerUrl : "/assets/header.jpg");
+        }
+        if (clickedElement.alt === "profile-photo") {
+            handlePreviewClick(profile.photoUrl ? profile.photoUrl : "/assets/egg.jpg");
+        }
+    };
+
+    const handlePreviewClick = (url: string) => {
+        setPreview({ open: true, url });
+    };
+
+    const handlePreviewClose = () => {
+        setPreview({ open: false, url: "" });
+    };
+
     const isFollowingTokenOwner = () => {
         if (profile.following.length === 0 || !token) return;
         const isFollowing = profile.following.some((user) => user.id === token.id);
@@ -60,11 +80,19 @@ export default function Profile({ profile }: { profile: UserProps }) {
             </div>
             <div className="profile">
                 <div className="profile-header">
-                    <Image alt="" src={profile.headerUrl ? getFullURL(profile.headerUrl) : "/assets/header.jpg"} fill />
+                    <Image
+                        onClick={handleImageClick}
+                        className="div-link"
+                        alt="profile-header"
+                        src={profile.headerUrl ? getFullURL(profile.headerUrl) : "/assets/header.jpg"}
+                        fill
+                    />
                     <div className="avatar-wrapper">
                         <Avatar
+                            className="div-link"
+                            onClick={handleImageClick}
                             sx={{ width: 125, height: 125 }}
-                            alt=""
+                            alt="profile-photo"
                             src={profile.photoUrl ? getFullURL(profile.photoUrl) : "/assets/egg.jpg"}
                         />
                     </div>
@@ -158,6 +186,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     </DialogContent>
                 </Dialog>
             )}
+            <PreviewDialog open={preview.open} handlePreviewClose={handlePreviewClose} url={preview.url} />
         </>
     );
 }
