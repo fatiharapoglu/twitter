@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { Avatar, Menu, MenuItem } from "@mui/material";
@@ -13,15 +14,28 @@ import Counters from "./Counters";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import { VerifiedToken } from "@/types/TokenProps";
 import { deleteTweet } from "@/utilities/fetch";
+import PreviewDialog from "../dialog/PreviewDialog";
+import { shimmer } from "@/utilities/misc/shimmer";
 
 export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token: VerifiedToken }) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(e.currentTarget);
     };
     const handleAnchorClose = () => {
         setAnchorEl(null);
+    };
+    const handleImageClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        handlePreviewClick();
+    };
+    const handlePreviewClick = () => {
+        setIsPreviewOpen(true);
+    };
+    const handlePreviewClose = () => {
+        setIsPreviewOpen(false);
     };
 
     const handleDelete = async () => {
@@ -68,6 +82,22 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             </div>
             <div className="tweet-main">
                 <div className="tweet-text">{tweet.text}</div>
+                {tweet.photoUrl && (
+                    <>
+                        <div className="tweet-image">
+                            <Image
+                                onClick={handleImageClick}
+                                src={getFullURL(tweet.photoUrl)}
+                                alt="tweet image"
+                                placeholder="blur"
+                                blurDataURL={shimmer(500, 500)}
+                                height={500}
+                                width={500}
+                            />
+                        </div>
+                        <PreviewDialog open={isPreviewOpen} handlePreviewClose={handlePreviewClose} url={tweet.photoUrl} />
+                    </>
+                )}
                 <span className="text-muted date">{formatDateExtended(tweet.createdAt)}</span>
                 <Counters tweet={tweet} />
                 <div className="tweet-bottom">

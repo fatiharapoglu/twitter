@@ -603,10 +603,12 @@ body {
             border-radius: 1.5rem;
             overflow: hidden;
             margin-top: 0.5rem;
+            width: fit-content;
 
             img {
                 object-fit: cover;
                 display: block;
+                cursor: pointer;
             }
         }
 

@@ -61,14 +61,11 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                                           <User user={user} />
                                       </div>
                                   ))
-                                : tweet.retweets.map((retweet) => {
-                                      console.log(retweet);
-                                      return (
-                                          <div className="user-wrapper" key={"retweet-" + retweet.retweetedBy.id}>
-                                              <User user={retweet.retweetedBy} />
-                                          </div>
-                                      );
-                                  })}
+                                : tweet.retweets.map((retweet) => (
+                                      <div className="user-wrapper" key={"retweet-" + retweet.retweetedBy.id}>
+                                          <User user={retweet.retweetedBy} />
+                                      </div>
+                                  ))}
                         </div>
                     </DialogContent>
                 </Dialog>
