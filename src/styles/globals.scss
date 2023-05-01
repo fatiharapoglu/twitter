@@ -3,6 +3,7 @@
 :root {
     --background-primary: #ffffff;
     --twitter-blue: #1da1f2;
+    --twitter-light-blue: #dae7ee;
     --twitter-dark-blue: #1b90dd;
     --twitter-gray: #657786;
     --twitter-light-gray: #d1dce4;
@@ -142,6 +143,14 @@ body {
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
+}
+
+.delete {
+    border: none;
+    background-color: inherit;
+    color: var(--twitter-red);
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .icon-hoverable {
@@ -702,11 +711,28 @@ body {
     .single-tweet-author-section {
         display: flex;
         gap: 0.75rem;
+        width: 100%;
 
-        .tweet-author-link {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        .tweet-author-section {
+            width: 100%;
+
+            .tweet-author-link {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .three-dots.icon-hoverable {
+                margin-left: auto;
+                cursor: pointer;
+                border: none;
+                background: inherit;
+                font-size: 1.25rem;
+
+                &:hover {
+                    background-color: var(--twitter-light-blue);
+                }
+            }
         }
     }
 

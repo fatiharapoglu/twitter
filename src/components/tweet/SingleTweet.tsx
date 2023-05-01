@@ -1,5 +1,7 @@
-import { Avatar } from "@mui/material";
+import { useState } from "react";
 import Link from "next/link";
+import { RxDotsHorizontal } from "react-icons/rx";
+import { Avatar, Menu, MenuItem } from "@mui/material";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDateExtended } from "@/utilities/date";
@@ -9,8 +11,28 @@ import Like from "./Like";
 import Share from "./Share";
 import Counters from "./Counters";
 import { getFullURL } from "@/utilities/misc/getFullURL";
+import { VerifiedToken } from "@/types/TokenProps";
+import { deleteTweet } from "@/utilities/fetch";
 
-export default function SingleTweet({ tweet }: { tweet: TweetProps }) {
+export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token: VerifiedToken }) {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(e.currentTarget);
+    };
+    const handleAnchorClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleDelete = async () => {
+        if (confirm("Are you sure you want to delete this tweet?") === false) return handleAnchorClose();
+        if (!token) return alert("You must be logged in to delete tweets...");
+        handleAnchorClose();
+        const jsonId = JSON.stringify(token.id);
+        await deleteTweet(tweet.id, tweet.authorId, jsonId);
+        window.location.replace(`/${token.username}`);
+    };
+
     return (
         <div className="single-tweet tweet">
             <div className="single-tweet-author-section">
@@ -30,6 +52,18 @@ export default function SingleTweet({ tweet }: { tweet: TweetProps }) {
                         </span>
                         <span className="text-muted">@{tweet.author.username}</span>
                     </Link>
+                    {token && token.username === tweet.author.username && (
+                        <>
+                            <button className="three-dots icon-hoverable" onClick={handleAnchorClick}>
+                                <RxDotsHorizontal />
+                            </button>
+                            <Menu anchorEl={anchorEl} onClose={handleAnchorClose} open={Boolean(anchorEl)}>
+                                <MenuItem onClick={handleDelete} className="delete">
+                                    Delete
+                                </MenuItem>
+                            </Menu>
+                        </>
+                    )}
                 </div>
             </div>
             <div className="tweet-main">

@@ -42,7 +42,8 @@
 -   [x] complete edit profile page
 -   [x] cascade in postgresql / how to handle deleted tweets
 -   [x] refactor uploader in new tweet to prevent unnecessary uploads to the server, only upload if user tweets
--   [ ] add delete options for users tweets
+-   [x] add delete options for users tweets
+-   [ ] find a better way to delete tweets other than window.location.replace()
 -   [ ] authorization wall for delete/follow/unfollow/edit
 -   [ ] add retweet and delete tweet logic
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
@@ -56,7 +57,7 @@
 -   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username
 -   [ ] complete profile, remove placeholders, desc images and everything
--   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(),
+-   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] use try catch in awaits
 -   [ ] global-error / error handling detailed

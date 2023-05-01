@@ -1,5 +1,6 @@
 "use client";
 
+import { useContext } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { FaArrowLeft } from "react-icons/fa";
@@ -7,6 +8,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { getUserTweet } from "@/utilities/fetch";
 import SingleTweet from "@/components/tweet/SingleTweet";
 import CircularLoading from "@/components/misc/CircularLoading";
+import { AuthContext } from "@/app/(twitter)/layout";
 
 export default function SingleTweetPage({
     params: { username, tweetId },
@@ -20,6 +22,8 @@ export default function SingleTweetPage({
         queryFn: () => getUserTweet(tweetId, username),
     });
 
+    const { token, isPending } = useContext(AuthContext);
+
     return (
         <div>
             <div className="back-to">
@@ -30,7 +34,7 @@ export default function SingleTweetPage({
                     <span className="top-title">{username}</span>
                 </div>
             </div>
-            {isLoading ? <CircularLoading /> : <SingleTweet tweet={data.tweet} />}
+            {isLoading || isPending ? <CircularLoading /> : <SingleTweet tweet={data.tweet} token={token} />}
         </div>
     );
 }

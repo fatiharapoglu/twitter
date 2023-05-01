@@ -135,3 +135,14 @@ export const updateUserFollows = async (followedUsername: string, tokenOwnerId: 
     });
     return response.json();
 };
+
+export const deleteTweet = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/delete`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: tokenOwnerId,
+    });
+    return response.json();
+};
