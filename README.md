@@ -40,23 +40,23 @@
 -   [x] lazy load tweets / react query implementation for lazy loading
 -   [x] add is following you feature
 -   [x] complete edit profile page
+-   [x] fix url for photos (only short url exist for now, will give error)
+-   [x] profile pic, header pic change in profile
 -   [x] cascade in postgresql / how to handle deleted tweets
 -   [x] refactor uploader in new tweet to prevent unnecessary uploads to the server, only upload if user tweets
 -   [x] add delete options for users tweets
 -   [x] handle tweet not found error
 -   [x] handle user not found error
 -   [x] authorization wall for delete/follow/unfollow/edit
--   [ ] add retweet feature
+-   [x] add retweet feature
+-   [x] single tweet page refactor with images
+-   [x] header and profile picture click fullscreen preview
+-   [ ] show retweets in the main flood
 -   [ ] add reply feature
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
+-   [ ] console log every useQuery to find out if any password leaking
 -   [ ] single tweet page shows all replies or only first degree replies?
--   [ ] single tweet page refactor with images
 -   [ ] handle errors like "user already exists"
--   [ ] profile pic, header pic change in profile
--   [ ] fix url for photos (only short url exist for now, will give error)
--   [ ] header and profile picture click fullscreen preview
--   [ ] complete profile reminder, edit page like /username/edit not modal
--   [ ] handle profile header img
 -   [ ] add card when hover on tweet profile & username
 -   [ ] complete profile, remove placeholders, desc images and everything
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
@@ -71,7 +71,6 @@
 -   [ ] progress bar for 280 characters
 -   [ ] how to add notifications? if really complex, hang it for later
 -   [ ] make profile back arrow sticky | fixed
--   [ ] add skeletons for loading such as ... Tweets, description, images
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
 -   [ ] change localhost to env or however next handles this
@@ -80,7 +79,7 @@
 -   [ ] add dark mode
 -   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
 -   [ ] add a bar under the avatar if the tweet replies > 0
--   [ ] add twitter blue tick
+-   [ ] add twitter blue tick in edit profile
 -   [ ] search mechanism, only for users / users and tweets would be better
 -   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
@@ -93,11 +92,9 @@
 -   [ ] admin privilages
 -   [ ] material ui custom colors
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
--   [ ] add report tweet feature, make the response automated somehow?
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add snackbar for some feedback, copy from twitter
 -   [ ] maybe tweets should be a markdown-like files for links/other stuff?
--   [ ] is it ok to use useQuery with same keys multiple times in different components? if not refactor to make less api calls
 -   [ ] useDeferredValue for search if react query has not have it
 -   [ ] lazy in react, hover for profiles with suspense
 -   [ ] make all fn arrow
