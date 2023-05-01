@@ -23,8 +23,38 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         username: true,
                         name: true,
                         description: true,
-                        followers: true,
+                        followers: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                photoUrl: true,
+                            },
+                        },
                         photoUrl: true,
+                    },
+                },
+                retweets: {
+                    select: {
+                        id: true,
+                        tweetOrigin: true,
+                        retweetedBy: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                description: true,
+                                followers: {
+                                    select: {
+                                        id: true,
+                                        username: true,
+                                        name: true,
+                                        photoUrl: true,
+                                    },
+                                },
+                                photoUrl: true,
+                            },
+                        },
                     },
                 },
             },

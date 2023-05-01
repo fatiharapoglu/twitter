@@ -46,7 +46,6 @@
 -   [x] handle tweet not found error
 -   [x] handle user not found error
 -   [x] authorization wall for delete/follow/unfollow/edit
--   [ ] find a better way to delete tweets other than window.location.replace()
 -   [ ] add retweet feature
 -   [ ] add reply feature
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
@@ -106,3 +105,4 @@
 -   [ ] auto follow 1 profile after user creates,
 -   [ ] create changelog md
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
+-   [ ] find a better way to delete tweets other than window.location.replace()

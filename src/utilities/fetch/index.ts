@@ -124,6 +124,18 @@ export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tok
     return response.json();
 };
 
+export const updateRetweets = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isRetweeted: boolean) => {
+    const route = isRetweeted ? "unretweet" : "retweet";
+    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: tokenOwnerId,
+    });
+    return response.json();
+};
+
 export const updateUserFollows = async (followedUsername: string, tokenOwnerId: string, isFollowed: boolean) => {
     const route = isFollowed ? "unfollow" : "follow";
     const response = await fetch(`http://localhost:3000/api/users/${followedUsername}/${route}`, {

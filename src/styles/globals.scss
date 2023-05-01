@@ -185,6 +185,10 @@ body {
     cursor: pointer;
 }
 
+.retweet-svg {
+    width: 1rem;
+}
+
 .emoji-picker {
     position: absolute;
     z-index: 9999;
@@ -638,6 +642,10 @@ body {
                     justify-content: center;
                     align-items: center;
                 }
+
+                &.active {
+                    font-weight: 900;
+                }
             }
 
             .like {
@@ -655,6 +663,10 @@ body {
                 &:hover {
                     background-color: rgba(19, 226, 157, 0.1);
                     color: rgba(2, 37, 26, 0.75);
+                }
+
+                &.active {
+                    color: rgb(0, 186, 124);
                 }
             }
 
@@ -757,7 +769,6 @@ body {
             justify-content: space-around;
 
             .icon {
-                font-size: 1rem;
                 opacity: inherit;
             }
         }

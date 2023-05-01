@@ -132,7 +132,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
                 </motion.span>
             )}
             <motion.span animate={{ scale: isLiked ? [0, 1.2, 1] : 0 }} transition={{ duration: 0.25 }} />
-            <span className="count">{data?.tweet?.likedBy?.length === 0 ? "" : data?.tweet?.likedBy?.length}</span>
+            {data?.tweet?.likedBy?.length === 0 ? null : <span className="count">{data?.tweet?.likedBy?.length}</span>}
         </motion.button>
     );
 }
