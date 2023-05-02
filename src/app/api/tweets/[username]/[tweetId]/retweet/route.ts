@@ -15,13 +15,35 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
 
     try {
-        const retweet = await prisma.retweet.create({
+        await prisma.tweet.update({
+            where: {
+                id: tweetId,
+            },
             data: {
-                retweetedBy: { connect: { id: tokenOwnerId } },
-                tweetOrigin: { connect: { id: tweetId } },
+                retweetedBy: {
+                    connect: {
+                        id: tokenOwnerId,
+                    },
+                },
             },
         });
-        return NextResponse.json({ success: true, retweet });
+        await prisma.tweet.create({
+            data: {
+                isRetweet: true,
+                text: "",
+                author: {
+                    connect: {
+                        id: tokenOwnerId,
+                    },
+                },
+                retweetOf: {
+                    connect: {
+                        id: tweetId,
+                    },
+                },
+            },
+        });
+        return NextResponse.json({ success: true });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });
     }

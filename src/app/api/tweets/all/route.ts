@@ -30,6 +30,38 @@ export async function GET(request: NextRequest) {
                         id: true,
                     },
                 },
+                retweetedBy: {
+                    select: {
+                        id: true,
+                    },
+                },
+                retweetOf: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                photoUrl: true,
+                            },
+                        },
+                        authorId: true,
+                        createdAt: true,
+                        likedBy: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        retweetedBy: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        photoUrl: true,
+                        text: true,
+                    },
+                },
             },
             orderBy: [
                 {

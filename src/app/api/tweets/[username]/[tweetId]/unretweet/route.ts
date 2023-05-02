@@ -15,22 +15,40 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
 
     try {
-        const retweet = await prisma.retweet.findFirst({
+        const retweet = await prisma.tweet.findFirst({
             where: {
-                retweetedById: tokenOwnerId,
-                tweetOriginId: tweetId,
+                retweetedBy: {
+                    some: {
+                        id: tokenOwnerId,
+                    },
+                },
+            },
+            include: {
+                retweets: true,
             },
         });
 
-        if (!retweet) {
-            throw new Error("Retweet not found.");
-        }
-
-        await prisma.retweet.delete({
+        await prisma.tweet.update({
             where: {
-                id: retweet.id,
+                id: tweetId,
+            },
+            data: {
+                retweetedBy: {
+                    disconnect: {
+                        id: tokenOwnerId,
+                    },
+                },
             },
         });
+
+        const retweetId = retweet?.retweets.find((retweet) => retweet.authorId === tokenOwnerId)?.id;
+
+        await prisma.tweet.delete({
+            where: {
+                id: retweetId,
+            },
+        });
+
         return NextResponse.json({ success: true });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });

@@ -73,6 +73,7 @@
 -   [ ] make profile back arrow sticky | fixed
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
+-   [ ] mutual connections feature in profile
 -   [ ] change localhost to env or however next handles this
 -   [ ] make it responsive
 -   [ ] disable prefetch if causes slow pathing?
@@ -103,3 +104,6 @@
 -   [ ] create changelog md
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
 -   [ ] find a better way to delete tweets other than window.location.replace()
+-   [ ] make all response data equal includes for performance
+-   [ ] optimistic update on retweets
+-   [ ] hover effect on avatars

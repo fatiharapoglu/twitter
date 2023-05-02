@@ -28,8 +28,8 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKey });
-            setIsRetweeted(!isRetweeted);
             setIsButtonDisabled(false);
+            setIsRetweeted(!isRetweeted);
         },
         onError: () => {
             console.log("Something went wrong while retweeting");
@@ -50,14 +50,8 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
     useEffect(() => {
         if (!isPending && isFetched) {
             const tokenOwnerId = JSON.stringify(token?.id);
-            const retweets = data?.tweet?.retweets;
-            const isRetweetedBy = retweets?.some(
-                (retweet: {
-                    retweetedBy: {
-                        id: string;
-                    };
-                }) => JSON.stringify(retweet.retweetedBy.id) === tokenOwnerId
-            );
+            const retweetedBy = data?.tweet?.retweetedBy;
+            const isRetweetedBy = retweetedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
             setIsRetweeted(isRetweetedBy);
         }
     }, [isPending, isFetched]);
@@ -75,7 +69,9 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
                 <RetweetIcon />
             </motion.span>
             <motion.span animate={{ scale: isRetweeted ? [0, 1.2, 1] : 0 }} transition={{ duration: 0.25 }} />
-            {data?.tweet?.retweets?.length === 0 ? null : <span className="count">{data?.tweet?.retweets?.length}</span>}
+            {data?.tweet?.retweetedBy?.length === 0 ? null : (
+                <span className="count">{data?.tweet?.retweetedBy?.length}</span>
+            )}
         </motion.button>
     );
 }

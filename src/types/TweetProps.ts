@@ -8,17 +8,9 @@ export type TweetProps = {
     authorId: string;
     photoUrl: string;
     likedBy: UserProps[];
-    retweets: RetweetProps[];
-    parentId: null | string;
-};
-
-export type RetweetProps = {
-    id: string;
-    createdAt: Date;
-    retweetedBy: UserProps;
-    retweetedById: string;
-    tweetOrigin: TweetProps;
-    tweetOriginId: string;
+    retweetedBy: UserProps[];
+    isRetweet: boolean;
+    retweetOf: TweetProps;
 };
 
 export type TweetsArray = {

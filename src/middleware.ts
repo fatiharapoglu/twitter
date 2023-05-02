@@ -5,7 +5,17 @@ export const middleware = async (request: NextRequest) => {
     const { cookies, nextUrl, url } = request;
     const { value: token } = cookies.get("token") ?? { value: null };
 
-    const protectedRoutes = ["/like", "/unlike", "/create", "/follow", "/unfollow", "/edit", "/delete"];
+    const protectedRoutes = [
+        "/like",
+        "/unlike",
+        "/create",
+        "/follow",
+        "/unfollow",
+        "/edit",
+        "/delete",
+        "/retweet",
+        "/unretweet",
+    ];
     const staticRoutesPrivate = ["/notifications", "/messages"];
     const staticRoutesExtendted = ["/notifications", "/messages", "/explore", "/home", "/settings"];
 

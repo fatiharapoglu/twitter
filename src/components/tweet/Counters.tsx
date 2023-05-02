@@ -28,13 +28,13 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
 
     return (
         <>
-            {tweet.likedBy.length === 0 && tweet.retweets.length === 0 ? null : (
+            {tweet.likedBy.length === 0 && tweet.retweetedBy.length === 0 ? null : (
                 <div className="tweet-stats">
                     <div className="counters">
-                        {tweet.retweets.length > 0 && (
+                        {tweet.retweetedBy.length > 0 && (
                             <button className="counter-btn" onClick={() => handleDialogOpen("retweets")}>
                                 <span className="count">
-                                    {tweet.retweets.length} <span className="text-muted">Retweets</span>
+                                    {tweet.retweetedBy.length} <span className="text-muted">Retweets</span>
                                 </span>
                             </button>
                         )}
@@ -61,9 +61,9 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                                           <User user={user} />
                                       </div>
                                   ))
-                                : tweet.retweets.map((retweet) => (
-                                      <div className="user-wrapper" key={"retweet-" + retweet.retweetedBy.id}>
-                                          <User user={retweet.retweetedBy} />
+                                : tweet.retweetedBy.map((user) => (
+                                      <div className="user-wrapper" key={"retweet-" + user.id}>
+                                          <User user={user} />
                                       </div>
                                   ))}
                         </div>

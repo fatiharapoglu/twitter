@@ -777,6 +777,27 @@ body {
     }
 }
 
+.retweet.tweet {
+    padding: 2rem 1rem 1rem 1rem;
+    position: relative;
+
+    .retweeted-by {
+        position: absolute;
+        top: 0.5rem;
+        left: 3.1rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--twitter-muted);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 .counters {
     .counter-btn {
         border: none;
@@ -941,7 +962,6 @@ body {
                     background-color: var(--twitter-white);
                     padding: 0.1rem 0.25rem;
                     border-radius: 0.5rem;
-                    vertical-align: top;
                 }
 
                 h1 {

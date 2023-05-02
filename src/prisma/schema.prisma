@@ -8,42 +8,49 @@ datasource db {
 }
 
 model User {
-    id            String    @id @default(uuid())
-    name          String?   @db.VarChar(50)
-    description   String?   @db.VarChar(160)
-    location      String?   @db.VarChar(30)
-    photoUrl      String?
-    headerUrl     String?
-    username      String    @unique @db.VarChar(20)
-    password      String
-    createdAt     DateTime  @default(now())
-    updatedAt     DateTime  @default(now()) @updatedAt
-    createdTweets Tweet[]   @relation("userTweets")
-    likedTweets   Tweet[]   @relation("userLikes")
-    retweets      Retweet[] @relation("userRetweets")
-    following     User[]    @relation("userFollows")
-    followers     User[]    @relation("userFollows")
+    id             String   @id @default(uuid())
+    name           String?  @db.VarChar(50)
+    description    String?  @db.VarChar(160)
+    location       String?  @db.VarChar(30)
+    photoUrl       String?
+    headerUrl      String?
+    username       String   @unique @db.VarChar(20)
+    password       String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @default(now()) @updatedAt
+    createdTweets  Tweet[]  @relation("userTweets")
+    createdReplies Reply[]  @relation("userReplies")
+    retweets       Tweet[]  @relation("userRetweets")
+    likedTweets    Tweet[]  @relation("userLikes")
+    likedReplies   Reply[]  @relation("userReplyLikes")
+    following      User[]   @relation("userFollows")
+    followers      User[]   @relation("userFollows")
 }
 
 model Tweet {
-    id        String    @id @default(uuid())
-    text      String    @db.VarChar(280)
-    createdAt DateTime  @default(now())
-    author    User      @relation("userTweets", fields: [authorId], references: [id])
-    authorId  String
-    photoUrl  String?
-    likedBy   User[]    @relation("userLikes")
-    parent    Tweet?    @relation("tweetReplies", fields: [parentId], references: [id])
-    parentId  String?
-    replies   Tweet[]   @relation("tweetReplies")
-    retweets  Retweet[] @relation("retweetOf")
+    id          String   @id @default(uuid())
+    text        String   @db.VarChar(280)
+    createdAt   DateTime @default(now())
+    author      User     @relation("userTweets", fields: [authorId], references: [id])
+    authorId    String
+    photoUrl    String?
+    likedBy     User[]   @relation("userLikes")
+    retweetedBy User[]   @relation("userRetweets")
+    replies     Reply[]  @relation("tweetReplies")
+    retweets    Tweet[]  @relation("retweetOf")
+    isRetweet   Boolean  @default(false)
+    retweetOf   Tweet?   @relation("retweetOf", fields: [retweetOfId], references: [id])
+    retweetOfId String?
 }
 
-model Retweet {
-    id            String   @id @default(uuid())
-    createdAt     DateTime @default(now())
-    retweetedBy   User     @relation("userRetweets", fields: [retweetedById], references: [id])
-    retweetedById String
-    tweetOrigin   Tweet    @relation("retweetOf", fields: [tweetOriginId], references: [id])
-    tweetOriginId String
+model Reply {
+    id        String   @id @default(uuid())
+    text      String   @db.VarChar(280)
+    createdAt DateTime @default(now())
+    author    User     @relation("userReplies", fields: [authorId], references: [id])
+    authorId  String
+    photoUrl  String?
+    likedBy   User[]   @relation("userReplyLikes")
+    parent    Tweet?   @relation("tweetReplies", fields: [parentId], references: [id])
+    parentId  String?
 }
