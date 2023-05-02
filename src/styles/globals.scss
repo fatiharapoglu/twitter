@@ -798,6 +798,26 @@ body {
     }
 }
 
+.new-reply {
+    border-top: none;
+    padding-top: 3rem;
+    position: relative;
+
+    .reply-to {
+        position: absolute;
+        top: 1.5rem;
+        font-weight: 300;
+        color: var(--twitter-muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+
+    .mention {
+        font-weight: 400;
+        color: var(--twitter-dark-blue);
+    }
+}
+
 .counters {
     .counter-btn {
         border: none;

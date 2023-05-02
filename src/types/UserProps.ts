@@ -2,12 +2,12 @@ export type UserProps = {
     id: string;
     name: string;
     username: string;
-    description?: string;
-    location?: string;
+    description: string;
+    location: string;
     createdAt: Date;
     updatedAt: Date;
-    photoUrl?: string;
-    headerUrl?: string;
+    photoUrl: string;
+    headerUrl: string;
     followers: UserProps[];
     following: UserProps[];
 };

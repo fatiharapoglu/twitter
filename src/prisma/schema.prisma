@@ -51,6 +51,6 @@ model Reply {
     authorId  String
     photoUrl  String?
     likedBy   User[]   @relation("userReplyLikes")
-    parent    Tweet?   @relation("tweetReplies", fields: [parentId], references: [id])
-    parentId  String?
+    parent    Tweet    @relation("tweetReplies", fields: [parentId], references: [id])
+    parentId  String
 }

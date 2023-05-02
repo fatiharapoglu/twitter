@@ -11,6 +11,7 @@ export type TweetProps = {
     retweetedBy: UserProps[];
     isRetweet: boolean;
     retweetOf: TweetProps;
+    replies: TweetProps[];
 };
 
 export type TweetsArray = {

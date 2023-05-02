@@ -27,7 +27,7 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
             setIsButtonDisabled(true);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: queryKey });
+            queryClient.invalidateQueries({ queryKey: ["tweets"] });
             setIsButtonDisabled(false);
             setIsRetweeted(!isRetweeted);
         },

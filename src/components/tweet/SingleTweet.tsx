@@ -16,6 +16,8 @@ import { VerifiedToken } from "@/types/TokenProps";
 import { deleteTweet } from "@/utilities/fetch";
 import PreviewDialog from "../dialog/PreviewDialog";
 import { shimmer } from "@/utilities/misc/shimmer";
+import NewReply from "./NewReply";
+import Replies from "./Replies";
 
 export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token: VerifiedToken }) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -48,65 +50,73 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
     };
 
     return (
-        <div className="single-tweet tweet">
-            <div className="single-tweet-author-section">
-                <div>
-                    <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
-                        <Avatar
-                            sx={{ width: 50, height: 50 }}
-                            alt=""
-                            src={tweet.author.photoUrl ? getFullURL(tweet.author.photoUrl) : "/assets/egg.jpg"}
-                        />
-                    </Link>
+        <div>
+            <div className="single-tweet tweet">
+                <div className="single-tweet-author-section">
+                    <div>
+                        <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
+                            <Avatar
+                                sx={{ width: 50, height: 50 }}
+                                alt=""
+                                src={tweet.author.photoUrl ? getFullURL(tweet.author.photoUrl) : "/assets/egg.jpg"}
+                            />
+                        </Link>
+                    </div>
+                    <div className="tweet-author-section">
+                        <Link className="tweet-author-link" href={`/${tweet.author.username}`}>
+                            <span className="tweet-author">
+                                {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
+                            </span>
+                            <span className="text-muted">@{tweet.author.username}</span>
+                        </Link>
+                        {token && token.username === tweet.author.username && (
+                            <>
+                                <button className="three-dots icon-hoverable" onClick={handleAnchorClick}>
+                                    <RxDotsHorizontal />
+                                </button>
+                                <Menu anchorEl={anchorEl} onClose={handleAnchorClose} open={Boolean(anchorEl)}>
+                                    <MenuItem onClick={handleDelete} className="delete">
+                                        Delete
+                                    </MenuItem>
+                                </Menu>
+                            </>
+                        )}
+                    </div>
                 </div>
-                <div className="tweet-author-section">
-                    <Link className="tweet-author-link" href={`/${tweet.author.username}`}>
-                        <span className="tweet-author">
-                            {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
-                        </span>
-                        <span className="text-muted">@{tweet.author.username}</span>
-                    </Link>
-                    {token && token.username === tweet.author.username && (
+                <div className="tweet-main">
+                    <div className="tweet-text">{tweet.text}</div>
+                    {tweet.photoUrl && (
                         <>
-                            <button className="three-dots icon-hoverable" onClick={handleAnchorClick}>
-                                <RxDotsHorizontal />
-                            </button>
-                            <Menu anchorEl={anchorEl} onClose={handleAnchorClose} open={Boolean(anchorEl)}>
-                                <MenuItem onClick={handleDelete} className="delete">
-                                    Delete
-                                </MenuItem>
-                            </Menu>
+                            <div className="tweet-image">
+                                <Image
+                                    onClick={handleImageClick}
+                                    src={getFullURL(tweet.photoUrl)}
+                                    alt="tweet image"
+                                    placeholder="blur"
+                                    blurDataURL={shimmer(500, 500)}
+                                    height={500}
+                                    width={500}
+                                />
+                            </div>
+                            <PreviewDialog
+                                open={isPreviewOpen}
+                                handlePreviewClose={handlePreviewClose}
+                                url={tweet.photoUrl}
+                            />
                         </>
                     )}
+                    <span className="text-muted date">{formatDateExtended(tweet.createdAt)}</span>
+                    <Counters tweet={tweet} />
+                    <div className="tweet-bottom">
+                        <Reply />
+                        <Retweet tweetId={tweet.id} tweetAuthor={tweet.author.username} />
+                        <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
+                        <Share />
+                    </div>
                 </div>
             </div>
-            <div className="tweet-main">
-                <div className="tweet-text">{tweet.text}</div>
-                {tweet.photoUrl && (
-                    <>
-                        <div className="tweet-image">
-                            <Image
-                                onClick={handleImageClick}
-                                src={getFullURL(tweet.photoUrl)}
-                                alt="tweet image"
-                                placeholder="blur"
-                                blurDataURL={shimmer(500, 500)}
-                                height={500}
-                                width={500}
-                            />
-                        </div>
-                        <PreviewDialog open={isPreviewOpen} handlePreviewClose={handlePreviewClose} url={tweet.photoUrl} />
-                    </>
-                )}
-                <span className="text-muted date">{formatDateExtended(tweet.createdAt)}</span>
-                <Counters tweet={tweet} />
-                <div className="tweet-bottom">
-                    <Reply />
-                    <Retweet tweetId={tweet.id} tweetAuthor={tweet.author.username} />
-                    <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
-                    <Share />
-                </div>
-            </div>
+            {token && <NewReply token={token} tweet={tweet} />}
+            {tweet.replies.length > 0 && <Replies tweetId={tweet.id} tweetAuthor={tweet.author.username} />}
         </div>
     );
 }

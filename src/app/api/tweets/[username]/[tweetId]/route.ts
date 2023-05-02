@@ -51,6 +51,11 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         photoUrl: true,
                     },
                 },
+                replies: {
+                    select: {
+                        authorId: true,
+                    },
+                },
             },
         });
         return NextResponse.json({ success: true, tweet });
