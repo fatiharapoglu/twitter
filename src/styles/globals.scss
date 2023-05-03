@@ -540,7 +540,7 @@ body {
 
         .input textarea {
             font-size: 20px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0.25rem 0;
         }
 
         .input ::before,
@@ -554,7 +554,8 @@ body {
             gap: 1rem;
             font-size: 20px;
             color: var(--twitter-blue);
-            padding-top: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
 
             svg:hover {
                 cursor: pointer;

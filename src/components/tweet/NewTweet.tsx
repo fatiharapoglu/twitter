@@ -33,7 +33,10 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     };
 
     const validationSchema = yup.object({
-        text: yup.string().max(280, "Tweet should be of maximum 280 characters length.").required("Tweet is required."),
+        text: yup
+            .string()
+            .max(280, "Tweet text should be of maximum 280 characters length.")
+            .required("Tweet text can't be empty."),
     });
 
     const formik = useFormik({
@@ -71,10 +74,10 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
             <form onSubmit={formik.handleSubmit}>
                 <div className="input">
                     <TextField
-                        label="What's happening?"
                         placeholder="What's happening?"
                         multiline
-                        rows={4}
+                        hiddenLabel
+                        rows={3}
                         variant="standard"
                         fullWidth
                         name="text"

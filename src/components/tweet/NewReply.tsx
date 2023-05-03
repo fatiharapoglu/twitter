@@ -35,7 +35,10 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
     };
 
     const validationSchema = yup.object({
-        text: yup.string().max(280, "Tweet should be of maximum 280 characters length.").required("Tweet is required."),
+        text: yup
+            .string()
+            .max(280, "Reply text should be of maximum 280 characters length.")
+            .required("Reply text can't be empty."),
     });
 
     const formik = useFormik({
@@ -72,10 +75,9 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
             <form onSubmit={formik.handleSubmit}>
                 <div className="input">
                     <TextField
-                        label="Tweet your reply"
                         placeholder="Tweet your reply"
                         multiline
-                        rows={2}
+                        rows={1}
                         variant="standard"
                         fullWidth
                         name="text"
@@ -83,6 +85,7 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
                         onChange={formik.handleChange}
                         error={formik.touched.text && Boolean(formik.errors.text)}
                         helperText={formik.touched.text && formik.errors.text}
+                        hiddenLabel
                     />
                 </div>
                 <div className="input-additions">

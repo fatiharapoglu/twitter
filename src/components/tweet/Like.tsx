@@ -103,7 +103,7 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
             const isLikedByTokenOwner = likedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
             setIsLiked(isLikedByTokenOwner);
         }
-    }, [isPending, isFetched, data]);
+    }, [isPending, isFetched]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
