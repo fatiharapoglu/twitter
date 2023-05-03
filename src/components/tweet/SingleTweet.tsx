@@ -51,7 +51,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
 
     return (
         <div>
-            <div className="single-tweet tweet">
+            <div className={`single-tweet tweet ${tweet.isReply && "reply"}`}>
                 <div className="single-tweet-author-section">
                     <div>
                         <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
@@ -84,7 +84,14 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                     </div>
                 </div>
                 <div className="tweet-main">
-                    <div className="tweet-text">{tweet.text}</div>
+                    <div className="tweet-text">
+                        {tweet.isReply && (
+                            <Link href={`/${tweet.repliedTo.author.username}`} className="reply-to">
+                                <span className="mention">@{tweet.repliedTo.author.username} </span>
+                            </Link>
+                        )}
+                        {tweet.text}
+                    </div>
                     {tweet.photoUrl && (
                         <>
                             <div className="tweet-image">

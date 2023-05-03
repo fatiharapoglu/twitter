@@ -16,6 +16,9 @@ export async function GET(request: NextRequest) {
 
     try {
         const tweets = await prisma.tweet.findMany({
+            where: {
+                isReply: false,
+            },
             include: {
                 author: {
                     select: {
@@ -60,6 +63,20 @@ export async function GET(request: NextRequest) {
                         },
                         photoUrl: true,
                         text: true,
+                        isReply: true,
+                        repliedTo: {
+                            select: {
+                                id: true,
+                                author: {
+                                    select: {
+                                        id: true,
+                                        username: true,
+                                        name: true,
+                                        description: true,
+                                    },
+                                },
+                            },
+                        },
                     },
                 },
             },

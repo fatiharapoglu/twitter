@@ -52,7 +52,7 @@
 -   [x] single tweet page refactor with images
 -   [x] header and profile picture click fullscreen preview
 -   [x] show retweets in the main flood
--   [ ] add reply feature
+-   [x] add reply feature
 -   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
 -   [ ] console log every useQuery to find out if any password leaking
 -   [ ] single tweet page shows all replies or only first degree replies?
@@ -109,3 +109,4 @@
 -   [ ] hover effect on avatars
 -   [ ] custom scrollbar
 -   [ ] try html dialog for confirmations
+-   [ ] autofocus in modals

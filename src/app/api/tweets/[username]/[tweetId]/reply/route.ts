@@ -36,6 +36,19 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                         },
                     },
                 },
+                repliedTo: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                description: true,
+                            },
+                        },
+                    },
+                },
             },
             orderBy: {
                 createdAt: "desc",

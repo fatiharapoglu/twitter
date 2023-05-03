@@ -46,7 +46,10 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
     };
 
     return (
-        <div onClick={handleTweetClick} className={tweet.isRetweet ? "tweet div-link retweet" : "tweet div-link"}>
+        <div
+            onClick={handleTweetClick}
+            className={`tweet div-link ${tweet.isRetweet && "retweet"} ${displayedTweet.isReply && "reply"}`}
+        >
             <Link onClick={handlePropagation} className="tweet-avatar" href={`/${displayedTweet.author.username}`}>
                 <Avatar
                     sx={{ width: 50, height: 50 }}
@@ -73,7 +76,18 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         </span>
                     </Tooltip>
                 </section>
-                <div className="tweet-text">{displayedTweet.text}</div>
+                <div className="tweet-text">
+                    {displayedTweet.isReply && (
+                        <Link
+                            onClick={handlePropagation}
+                            href={`/${displayedTweet.repliedTo.author.username}`}
+                            className="reply-to"
+                        >
+                            <span className="mention">@{displayedTweet.repliedTo.author.username} </span>
+                        </Link>
+                    )}
+                    {displayedTweet.text}
+                </div>
                 {displayedTweet.photoUrl && (
                     <div onClick={handlePropagation}>
                         <div className="tweet-image">

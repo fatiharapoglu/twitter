@@ -9,6 +9,7 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 author: {
                     username: username,
                 },
+                isReply: false,
             },
             include: {
                 author: {
