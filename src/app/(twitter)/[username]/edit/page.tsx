@@ -1,12 +1,11 @@
 "use client";
 
 import { useContext } from "react";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
 
 import { AuthContext } from "../../layout";
 import CircularLoading from "@/components/misc/CircularLoading";
 import EditProfile from "@/components/user/EditProfile";
+import BackToArrow from "@/components/misc/BackToArrow";
 
 export default function EditPage({ params: { username } }: { params: { username: string } }) {
     const { token, isPending, refreshToken } = useContext(AuthContext);
@@ -18,14 +17,7 @@ export default function EditPage({ params: { username } }: { params: { username:
 
     return (
         <div>
-            <div className="back-to">
-                <Link className="icon-hoverable" href={`/${username}`}>
-                    <FaArrowLeft />
-                </Link>
-                <div className="top">
-                    <span className="top-title">{username}</span>
-                </div>
-            </div>
+            <BackToArrow title={username} url={`/${username}`} />
             <EditProfile profile={token} refreshToken={refreshToken} />
         </div>
     );

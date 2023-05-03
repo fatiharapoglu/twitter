@@ -23,10 +23,12 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
 
     const queryClient = useQueryClient();
 
+    const queryKey = ["tweets", tweet.author.username, tweet.id];
+
     const mutation = useMutation({
-        mutationFn: (reply: string) => createReply(reply, tweet.author.id, tweet.id),
+        mutationFn: (reply: string) => createReply(reply, tweet.author.username, tweet.id),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["replies", tweet.id] });
+            queryClient.invalidateQueries({ queryKey: queryKey });
         },
     });
 

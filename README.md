@@ -108,3 +108,4 @@
 -   [ ] optimistic update on retweets
 -   [ ] hover effect on avatars
 -   [ ] custom scrollbar
+-   [ ] try html dialog for confirmations

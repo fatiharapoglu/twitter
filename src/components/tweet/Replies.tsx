@@ -6,8 +6,10 @@ import CircularLoading from "../misc/CircularLoading";
 import Tweet from "./Tweet";
 
 export default function Replies({ tweetId, tweetAuthor }: TweetOptionsProps) {
+    const queryKey = ["tweets", tweetAuthor, tweetId, "replies"];
+
     const { isLoading, data } = useQuery({
-        queryKey: ["replies", tweetId],
+        queryKey: queryKey,
         queryFn: () => getReplies(tweetAuthor, tweetId),
     });
 
@@ -15,9 +17,9 @@ export default function Replies({ tweetId, tweetAuthor }: TweetOptionsProps) {
 
     return (
         <div>
-            {data.replies &&
-                data.replies.map((reply: TweetProps) => {
-                    return <Tweet key={reply.id} tweet={reply} />;
+            {data.tweets &&
+                data.tweets.map((tweet: TweetProps) => {
+                    return <Tweet key={tweet.id} tweet={tweet} />;
                 })}
         </div>
     );

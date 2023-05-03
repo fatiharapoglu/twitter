@@ -5,9 +5,10 @@ import { verifyJwtToken } from "@/utilities/auth";
 
 export async function GET(request: NextRequest, { params: { tweetId } }: { params: { tweetId: string } }) {
     try {
-        const replies = await prisma.reply.findMany({
+        const tweets = await prisma.tweet.findMany({
             where: {
-                parentId: tweetId,
+                isReply: true,
+                repliedToId: tweetId,
             },
             include: {
                 author: {
@@ -24,6 +25,7 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                         username: true,
                         name: true,
                         description: true,
+                        photoUrl: true,
                         followers: {
                             select: {
                                 id: true,
@@ -32,7 +34,6 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                                 photoUrl: true,
                             },
                         },
-                        photoUrl: true,
                     },
                 },
             },
@@ -40,7 +41,7 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                 createdAt: "desc",
             },
         });
-        return NextResponse.json({ success: true, replies });
+        return NextResponse.json({ success: true, tweets });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });
     }
@@ -59,8 +60,9 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
 
     try {
-        await prisma.reply.create({
+        await prisma.tweet.create({
             data: {
+                isReply: true,
                 text,
                 photoUrl,
                 author: {
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
                         id: authorId,
                     },
                 },
-                parent: {
+                repliedTo: {
                     connect: {
                         id: tweetId,
                     },

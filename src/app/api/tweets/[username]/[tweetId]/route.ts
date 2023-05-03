@@ -51,6 +51,19 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         photoUrl: true,
                     },
                 },
+                repliedTo: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                description: true,
+                            },
+                        },
+                    },
+                },
                 replies: {
                     select: {
                         authorId: true,

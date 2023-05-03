@@ -8,10 +8,15 @@ export type TweetProps = {
     authorId: string;
     photoUrl: string;
     likedBy: UserProps[];
-    retweetedBy: UserProps[];
-    isRetweet: boolean;
-    retweetOf: TweetProps;
+    retweets: TweetProps[];
     replies: TweetProps[];
+    isRetweet: boolean;
+    retweetedBy: UserProps[];
+    retweetedById: string;
+    retweetOf: TweetProps;
+    isReply: boolean;
+    repliedTo: TweetProps;
+    repliedToId: string;
 };
 
 export type TweetsArray = {
