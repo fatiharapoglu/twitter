@@ -34,6 +34,15 @@ export const getUserMedia = async (username: string) => {
     return response.json();
 };
 
+export const getUserReplies = async (username: string) => {
+    const response = await fetch(`http://localhost:3000/api/tweets/${username}/replies`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
 export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
     const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}`, {
         next: {
