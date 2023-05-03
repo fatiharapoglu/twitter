@@ -9,6 +9,7 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 author: {
                     username: username,
                 },
+                isRetweet: false,
                 NOT: {
                     photoUrl: null,
                 },
@@ -28,6 +29,75 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 likedBy: {
                     select: {
                         id: true,
+                    },
+                },
+                retweetedBy: {
+                    select: {
+                        id: true,
+                    },
+                },
+                retweetOf: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                photoUrl: true,
+                            },
+                        },
+                        authorId: true,
+                        createdAt: true,
+                        likedBy: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        retweetedBy: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                        photoUrl: true,
+                        text: true,
+                        isReply: true,
+                        repliedTo: {
+                            select: {
+                                id: true,
+                                author: {
+                                    select: {
+                                        id: true,
+                                        username: true,
+                                        name: true,
+                                        description: true,
+                                    },
+                                },
+                            },
+                        },
+                        replies: {
+                            select: {
+                                authorId: true,
+                            },
+                        },
+                    },
+                },
+                replies: {
+                    select: {
+                        id: true,
+                    },
+                },
+                repliedTo: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                description: true,
+                            },
+                        },
                     },
                 },
             },

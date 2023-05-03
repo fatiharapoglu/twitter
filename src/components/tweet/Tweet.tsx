@@ -109,7 +109,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     </div>
                 )}
                 <div onClick={handlePropagation} className="tweet-bottom">
-                    <Reply />
+                    <Reply tweet={displayedTweet} />
                     <Retweet tweetId={displayedTweet.id} tweetAuthor={displayedTweet.author.username} />
                     <Like tweetId={displayedTweet.id} tweetAuthor={displayedTweet.author.username} />
                     <Share />

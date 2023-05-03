@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { TweetProps } from "@/types/TweetProps";
 import User from "../user/User";
 import { AuthContext } from "@/app/(twitter)/layout";
+import { scrollToBottom } from "@/utilities/misc/scrollToBottom";
 
 export default function Counters({ tweet }: { tweet: TweetProps }) {
     const [dialogType, setDialogType] = useState("");
@@ -31,6 +32,13 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
             {tweet.likedBy.length === 0 && tweet.retweetedBy.length === 0 ? null : (
                 <div className="tweet-stats">
                     <div className="counters">
+                        {tweet.replies.length > 0 && (
+                            <button className="counter-btn" onClick={scrollToBottom}>
+                                <span className="count">
+                                    {tweet.replies.length} <span className="text-muted">Replies</span>
+                                </span>
+                            </button>
+                        )}
                         {tweet.retweetedBy.length > 0 && (
                             <button className="counter-btn" onClick={() => handleDialogOpen("retweets")}>
                                 <span className="count">

@@ -55,6 +55,43 @@ export async function GET(request: Request, { params: { username } }: { params: 
                         },
                         photoUrl: true,
                         text: true,
+                        isReply: true,
+                        repliedTo: {
+                            select: {
+                                id: true,
+                                author: {
+                                    select: {
+                                        id: true,
+                                        username: true,
+                                        name: true,
+                                        description: true,
+                                    },
+                                },
+                            },
+                        },
+                        replies: {
+                            select: {
+                                authorId: true,
+                            },
+                        },
+                    },
+                },
+                replies: {
+                    select: {
+                        id: true,
+                    },
+                },
+                repliedTo: {
+                    select: {
+                        id: true,
+                        author: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                description: true,
+                            },
+                        },
                     },
                 },
             },

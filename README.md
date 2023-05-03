@@ -110,3 +110,4 @@
 -   [ ] custom scrollbar
 -   [ ] try html dialog for confirmations
 -   [ ] autofocus in modals
+-   [ ] header photo with twitter bird

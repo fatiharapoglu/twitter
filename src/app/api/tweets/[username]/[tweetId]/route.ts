@@ -23,6 +23,7 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         username: true,
                         name: true,
                         description: true,
+                        photoUrl: true,
                         followers: {
                             select: {
                                 id: true,
@@ -31,7 +32,6 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                                 photoUrl: true,
                             },
                         },
-                        photoUrl: true,
                     },
                 },
                 retweetedBy: {
@@ -40,6 +40,7 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         username: true,
                         name: true,
                         description: true,
+                        photoUrl: true,
                         followers: {
                             select: {
                                 id: true,
@@ -48,7 +49,6 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                                 photoUrl: true,
                             },
                         },
-                        photoUrl: true,
                     },
                 },
                 retweetOf: {
@@ -77,6 +77,11 @@ export async function GET(request: Request, { params: { tweetId } }: { params: {
                         photoUrl: true,
                         text: true,
                         isReply: true,
+                        replies: {
+                            select: {
+                                authorId: true,
+                            },
+                        },
                     },
                 },
                 repliedTo: {

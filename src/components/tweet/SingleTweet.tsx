@@ -115,7 +115,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                     <span className="text-muted date">{formatDateExtended(tweet.createdAt)}</span>
                     <Counters tweet={tweet} />
                     <div className="tweet-bottom">
-                        <Reply />
+                        <Reply tweet={tweet} />
                         <Retweet tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                         <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                         <Share />
