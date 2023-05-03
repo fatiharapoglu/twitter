@@ -107,3 +107,4 @@
 -   [ ] make all response data equal includes for performance
 -   [ ] optimistic update on retweets
 -   [ ] hover effect on avatars
+-   [ ] custom scrollbar

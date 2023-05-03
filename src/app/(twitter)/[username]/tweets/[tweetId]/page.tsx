@@ -30,7 +30,7 @@ export default function SingleTweetPage({
     return (
         <div>
             <div className="back-to">
-                <Link className="icon-hoverable" href={`/${username}`}>
+                <Link className="icon-hoverable" href="/home">
                     <FaArrowLeft />
                 </Link>
                 <div className="top">

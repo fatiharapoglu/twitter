@@ -1090,7 +1090,7 @@ body {
     min-height: 100vh;
     background-color: var(--twitter-blue);
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     inset: 0;
 
     h1 {

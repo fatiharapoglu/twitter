@@ -15,13 +15,9 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
 
     try {
-        const retweet = await prisma.tweet.findFirst({
+        const originalTweet = await prisma.tweet.findFirst({
             where: {
-                retweetedBy: {
-                    some: {
-                        id: tokenOwnerId,
-                    },
-                },
+                id: tweetId,
             },
             include: {
                 retweets: true,
@@ -41,7 +37,7 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
             },
         });
 
-        const retweetId = retweet?.retweets.find((retweet) => retweet.authorId === tokenOwnerId)?.id;
+        const retweetId = originalTweet?.retweets.find((retweet) => retweet.authorId === tokenOwnerId)?.id;
 
         await prisma.tweet.delete({
             where: {
