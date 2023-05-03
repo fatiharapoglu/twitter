@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { AuthContext } from "@/app/(twitter)/layout";
-import { updateUserFollows } from "@/utilities/fetch";
+import { getUser, updateUserFollows } from "@/utilities/fetch";
 import { UserProps, UserResponse } from "@/types/UserProps";
 
 export default function Follow({ profile }: { profile: UserProps }) {
@@ -14,6 +14,11 @@ export default function Follow({ profile }: { profile: UserProps }) {
     const queryClient = useQueryClient();
 
     const queryKey = ["users", profile.username];
+
+    const { data } = useQuery({
+        queryKey: queryKey,
+        queryFn: () => getUser(profile.username),
+    });
 
     const followMutation = useMutation({
         mutationFn: (tokenOwnerId: string) => updateUserFollows(profile.username, tokenOwnerId, false),
@@ -109,7 +114,7 @@ export default function Follow({ profile }: { profile: UserProps }) {
             );
             setIsFollowed(isFollowedByTokenOwner);
         }
-    }, [isPending]);
+    }, [isPending, data]);
 
     useEffect(() => {
         const timer = setTimeout(() => {

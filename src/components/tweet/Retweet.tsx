@@ -43,7 +43,14 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
             // snackbar or modal here
         }
 
-        const tokenOwnerId = JSON.stringify(token.id);
+        if (mutation.isLoading) return;
+
+        const tokenOwnerId = JSON.stringify(token?.id);
+        const retweetedBy = data?.tweet?.retweetedBy;
+        const isRetweetedBy = retweetedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
+
+        if (isRetweeted !== isRetweetedBy) setIsRetweeted(isRetweetedBy);
+
         mutation.mutate(tokenOwnerId);
     };
 
@@ -54,7 +61,7 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
             const isRetweetedBy = retweetedBy?.some((user: { id: string }) => JSON.stringify(user.id) === tokenOwnerId);
             setIsRetweeted(isRetweetedBy);
         }
-    }, [isPending, isFetched]);
+    }, [isPending, isFetched, data]);
 
     return (
         <motion.button
