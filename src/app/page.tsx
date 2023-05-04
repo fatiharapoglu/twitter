@@ -56,8 +56,8 @@ export default function RootPage() {
                         >
                             <button
                                 onClick={async () => {
-                                    const json = await logInAsTest();
-                                    if (!json.success) return alert("Something went wrong. Try again.");
+                                    const response = await logInAsTest();
+                                    if (!response.success) return alert("Something went wrong. Try again.");
                                     // snackbar here
                                     router.push("/home");
                                 }}

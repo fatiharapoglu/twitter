@@ -8,13 +8,13 @@ export const middleware = async (request: NextRequest) => {
     const protectedRoutes = [
         "/like",
         "/unlike",
-        "/create",
         "/follow",
         "/unfollow",
         "/edit",
         "/delete",
         "/retweet",
         "/unretweet",
+        "/tweets/create",
     ];
     const staticRoutesPrivate = ["/notifications", "/messages"];
     const staticRoutesExtendted = ["/notifications", "/messages", "/explore", "/home", "/settings"];

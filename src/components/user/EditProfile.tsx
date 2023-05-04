@@ -69,10 +69,10 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                 values.photoUrl = path;
             }
             const jsonValues = JSON.stringify(values);
-            const json = await editUser(jsonValues, profile.username);
-            if (!json.success) {
-                console.log(json);
-                return alert("Something went wrong");
+            const response = await editUser(jsonValues, profile.username);
+            if (!response.success) {
+                console.log(response);
+                return alert("Something went wrong. Please try again.");
             }
             alert("Profile updated successfully");
             refreshToken();

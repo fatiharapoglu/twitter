@@ -53,10 +53,10 @@
 -   [x] header and profile picture click fullscreen preview
 -   [x] show retweets in the main flood
 -   [x] add reply feature
--   [ ] exlude password in prisma includes:{}, fix types and what includes for all api routes, chance include to select, more readable
--   [ ] console log every useQuery to find out if any password leaking
--   [ ] single tweet page shows all replies or only first degree replies?
--   [ ] handle errors like "user already exists"
+-   [x] single tweet page shows all replies or only first degree replies?
+-   [x] console log every useQuery to find out if any password leaking
+-   [x] exlude password in prisma includes:{}, fix types and what includes for all api routes
+-   [x] handle errors like "user already exists"
 -   [ ] add card when hover on tweet profile & username
 -   [ ] complete profile, remove placeholders, desc images and everything
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
@@ -66,7 +66,6 @@
 -   [ ] global-error / error handling detailed
 -   [ ] change explore to home, home only followings
 -   [ ] add age, name, stuff, required in the sign up.
--   [ ] make another prisma schema for replies, it needs to not count as a regular tweet
 -   [ ] message logic / socket io? feathers? how in next
 -   [ ] progress bar for 280 characters
 -   [ ] how to add notifications? if really complex, hang it for later

@@ -32,15 +32,15 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
         },
         validationSchema: validationSchema,
         onSubmit: async (values, { resetForm }) => {
-            const json = await logIn(JSON.stringify(values));
-            if (!json.success) {
-                console.log(json);
-                return alert("Something went wrong");
+            const response = await logIn(JSON.stringify(values));
+            if (!response.success) {
+                console.log(response);
+                return alert("Something went wrong. Please try again.");
                 // snackbar here
             }
             resetForm();
             handleLogInClose();
-            console.log("Logged in successfully");
+            console.log("Logged in successfully.");
             router.push("/home");
         },
     });

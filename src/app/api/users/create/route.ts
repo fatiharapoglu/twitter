@@ -10,6 +10,19 @@ export async function POST(request: Request) {
     const hashedPassword = await hashPassword(userData.password);
 
     try {
+        const userExists = await prisma.user.findUnique({
+            where: {
+                username: userData.username,
+            },
+        });
+
+        if (userExists) {
+            return NextResponse.json({
+                success: false,
+                message: "Username already exists.",
+            });
+        }
+
         const newUser = await prisma.user.create({
             data: {
                 ...userData,

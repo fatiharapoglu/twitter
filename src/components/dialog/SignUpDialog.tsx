@@ -34,10 +34,11 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
         },
         validationSchema: validationSchema,
         onSubmit: async (values, { resetForm }) => {
-            const json = await createUser(JSON.stringify(values));
-            if (!json.success) {
-                console.log(json);
-                return alert("Something went wrong");
+            const response = await createUser(JSON.stringify(values));
+            if (!response.success) {
+                console.log(response);
+                if (response.message === "Username already exists.") return alert("Username already exists.");
+                return alert("Something went wrong. Please try again.");
             }
             resetForm();
             handleSignUpClose();
