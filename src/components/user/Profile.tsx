@@ -62,7 +62,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
     };
 
     const isFollowingTokenOwner = () => {
-        if (profile.following.length === 0 || !token) return;
+        if (profile.following.length === 0 || !token) return false;
         const isFollowing = profile.following.some((user) => user.id === token.id);
         return isFollowing;
     };
@@ -105,7 +105,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                             {isFollowingTokenOwner() && <span className="is-following">Follows you</span>}
                         </div>
                     </div>
-                    <div className="profile-info-desc">Description placeholder</div>
+                    {profile.description && <div className="profile-info-desc">{profile.description}</div>}
                     <div className="profile-info-optional text-muted">
                         <div>
                             <BsBalloon /> Born date placeholder

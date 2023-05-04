@@ -970,6 +970,7 @@ body {
                     font-weight: 900;
                 }
             }
+
             .profile-info-desc {
                 font-size: 15px;
                 line-height: normal;
@@ -1004,6 +1005,55 @@ body {
                     }
                 }
             }
+        }
+    }
+}
+
+.profile-card {
+    padding: 1.25rem 1rem;
+    width: clamp(150px, 25vw, 300px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .avatar-wrapper {
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .profile-info-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.33rem;
+
+        .is-following {
+            font-size: 0.7rem;
+            font-weight: 500;
+            background-color: var(--twitter-white);
+            padding-left: 0.25rem;
+            border-radius: 0.5rem;
+        }
+
+        h1 {
+            font-size: larger;
+            font-weight: 900;
+        }
+    }
+
+    .profile-info-desc {
+        font-size: 0.9rem;
+        line-height: normal;
+        overflow-wrap: anywhere;
+        font-family: var(--font-poppins);
+    }
+
+    .profile-info-popularity {
+        display: flex;
+        gap: 1rem;
+
+        .count {
+            font-weight: 900;
         }
     }
 }

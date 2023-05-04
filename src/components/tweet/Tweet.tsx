@@ -1,4 +1,4 @@
-import { Avatar, Tooltip } from "@mui/material";
+import { Avatar, Popover, Tooltip } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import Link from "next/link";
@@ -15,9 +15,12 @@ import PreviewDialog from "../dialog/PreviewDialog";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import { AuthContext } from "@/app/(twitter)/layout";
 import RetweetIcon from "../misc/RetweetIcon";
+import ProfileCard from "../user/ProfileCard";
 
 export default function Tweet({ tweet }: { tweet: TweetProps }) {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [hoveredProfile, setHoveredProfile] = useState("");
 
     const { token } = useContext(AuthContext);
     const router = useRouter();
@@ -44,13 +47,34 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
     const handlePreviewClose = () => {
         setIsPreviewOpen(false);
     };
+    const handlePopoverOpen = (e: React.MouseEvent<HTMLElement>, type: "default" | "mention" | "retweet" = "default") => {
+        if (type === "mention") {
+            setHoveredProfile(displayedTweet.repliedTo.author.username);
+        }
+        if (type === "retweet") {
+            setHoveredProfile(tweet.author.username);
+        }
+        if (type === "default") {
+            setHoveredProfile(displayedTweet.author.username);
+        }
+        setAnchorEl(e.currentTarget);
+    };
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <div
             onClick={handleTweetClick}
             className={`tweet div-link ${tweet.isRetweet && "retweet"} ${displayedTweet.isReply && "reply"}`}
         >
-            <Link onClick={handlePropagation} className="tweet-avatar" href={`/${displayedTweet.author.username}`}>
+            <Link
+                onClick={handlePropagation}
+                className="tweet-avatar"
+                href={`/${displayedTweet.author.username}`}
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
+            >
                 <Avatar
                     sx={{ width: 50, height: 50 }}
                     alt=""
@@ -63,6 +87,8 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         onClick={handlePropagation}
                         className="tweet-author-link"
                         href={`/${displayedTweet.author.username}`}
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
                     >
                         <span className="tweet-author">
                             {displayedTweet.author.name !== "" ? displayedTweet.author.name : displayedTweet.author.username}
@@ -83,9 +109,15 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                             href={`/${displayedTweet.repliedTo.author.username}`}
                             className="reply-to"
                         >
-                            <span className="mention">@{displayedTweet.repliedTo.author.username} </span>
+                            <span
+                                className="mention"
+                                onMouseEnter={(e) => handlePopoverOpen(e, "mention")}
+                                onMouseLeave={handlePopoverClose}
+                            >
+                                @{displayedTweet.repliedTo.author.username}
+                            </span>
                         </Link>
-                    )}
+                    )}{" "}
                     {displayedTweet.text}
                 </div>
                 {displayedTweet.photoUrl && (
@@ -121,10 +153,35 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         <RetweetIcon /> You retweeted.
                     </Link>
                 ) : (
-                    <Link onClick={handlePropagation} href={`/${tweet.author.username}`} className="retweeted-by">
-                        <RetweetIcon /> {`${tweet.author.name} retweeted.`}
+                    <Link
+                        onClick={handlePropagation}
+                        href={`/${tweet.author.username}`}
+                        className="retweeted-by"
+                        onMouseEnter={(e) => handlePopoverOpen(e, "retweet")}
+                        onMouseLeave={handlePopoverClose}
+                    >
+                        <RetweetIcon /> {`${tweet.author.name ? tweet.author.name : tweet.author.username} retweeted.`}
                     </Link>
                 ))}
+            <Popover
+                sx={{
+                    pointerEvents: "none",
+                }}
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                }}
+                transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                }}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+            >
+                <ProfileCard username={hoveredProfile} token={token} />
+            </Popover>
         </div>
     );
 }
