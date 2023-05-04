@@ -44,6 +44,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
         name: yup.string().max(50, "Name should be of maximum 50 characters length."),
         description: yup.string().max(160, "Description should be of maximum 160 characters length."),
         location: yup.string().max(30, "Location should be of maximum 30 characters length."),
+        website: yup.string().max(30, "Website should be of maximum 30 characters length."),
         photoUrl: yup.string(),
         headerUrl: yup.string(),
     });
@@ -53,6 +54,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
             name: profile.name ?? "",
             description: profile.description ?? "",
             location: profile.location ?? "",
+            website: profile.website ?? "",
             headerUrl: profile.headerUrl ?? "",
             photoUrl: profile.photoUrl ?? "",
         },
@@ -158,6 +160,17 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                             onChange={formik.handleChange}
                             error={formik.touched.location && Boolean(formik.errors.location)}
                             helperText={formik.touched.location && formik.errors.location}
+                        />
+                    </div>
+                    <div className="input">
+                        <TextField
+                            fullWidth
+                            name="website"
+                            label="Website"
+                            value={formik.values.website}
+                            onChange={formik.handleChange}
+                            error={formik.touched.website && Boolean(formik.errors.website)}
+                            helperText={formik.touched.website && formik.errors.website}
                         />
                     </div>
                     {formik.isSubmitting ? (

@@ -6,8 +6,9 @@ import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaArrowLeft, FaRegEnvelope } from "react-icons/fa";
 import { Avatar, Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { BsCalendar3 } from "react-icons/bs";
+import { BiCalendarCheck } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
+import { AiOutlineLink } from "react-icons/ai";
 
 import { formatDateForProfile } from "@/utilities/date";
 import { AuthContext } from "@/app/(twitter)/layout";
@@ -57,7 +58,6 @@ export default function Profile({ profile }: { profile: UserProps }) {
     const handlePreviewClick = (url: string) => {
         setPreview({ open: true, url });
     };
-
     const handlePreviewClose = () => {
         setPreview({ open: false, url: "" });
     };
@@ -113,8 +113,16 @@ export default function Profile({ profile }: { profile: UserProps }) {
                                 <GoLocation /> {profile.location}
                             </div>
                         )}
+                        {profile.website && (
+                            <div>
+                                <AiOutlineLink />{" "}
+                                <a className="mention" href={"https://" + profile.website} target="_blank">
+                                    {profile.website}
+                                </a>
+                            </div>
+                        )}
                         <div>
-                            <BsCalendar3 /> Joined {formatDateForProfile(profile.createdAt)}
+                            <BiCalendarCheck /> Joined {formatDateForProfile(profile.createdAt)}
                         </div>
                     </div>
                     <div className="profile-info-popularity">

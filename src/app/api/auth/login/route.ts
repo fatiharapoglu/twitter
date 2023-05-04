@@ -37,6 +37,7 @@ export async function POST(request: Request) {
             name: user.name,
             description: user.description,
             location: user.location,
+            website: user.website,
             createdAt: user.createdAt,
             photoUrl: user.photoUrl,
             headerUrl: user.headerUrl,

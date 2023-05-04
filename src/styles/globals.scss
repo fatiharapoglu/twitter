@@ -1160,12 +1160,6 @@ body {
     .reply-to {
         position: static;
     }
-
-    .mention {
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 
 .reply-to {
@@ -1180,6 +1174,10 @@ body {
 .mention {
     font-weight: 400;
     color: var(--twitter-dark-blue);
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 @keyframes zoom-in {

@@ -16,6 +16,7 @@ export async function GET(request: Request, { params: { username } }: { params: 
                 updatedAt: true,
                 description: true,
                 location: true,
+                website: true,
                 photoUrl: true,
                 headerUrl: true,
                 followers: {

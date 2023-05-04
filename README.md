@@ -58,7 +58,7 @@
 -   [x] exlude password in prisma includes:{}, fix types and what includes for all api routes
 -   [x] handle errors like "user already exists"
 -   [x] add card when hover on tweet profile & username & who retweeted & mentioned
--   [ ] complete profile, remove placeholders, desc images and everything
+-   [x] complete profile, remove placeholders, desc images and everything
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] think about handling related errors in the fetch folder
 -   [ ] use try catch in awaits

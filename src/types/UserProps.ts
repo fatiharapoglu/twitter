@@ -4,6 +4,7 @@ export type UserProps = {
     username: string;
     description: string;
     location: string;
+    website: string;
     createdAt: Date;
     updatedAt: Date;
     photoUrl: string;

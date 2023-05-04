@@ -13,6 +13,7 @@ model User {
     name          String?  @db.VarChar(50)
     description   String?  @db.VarChar(160)
     location      String?  @db.VarChar(30)
+    website       String?  @db.VarChar(30)
     photoUrl      String?
     headerUrl     String?
     username      String   @unique @db.VarChar(20)
