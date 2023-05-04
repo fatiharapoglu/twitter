@@ -6,7 +6,8 @@ import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaArrowLeft, FaRegEnvelope } from "react-icons/fa";
 import { Avatar, Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { BsBalloon, BsCalendar3 } from "react-icons/bs";
+import { BsCalendar3 } from "react-icons/bs";
+import { GoLocation } from "react-icons/go";
 
 import { formatDateForProfile } from "@/utilities/date";
 import { AuthContext } from "@/app/(twitter)/layout";
@@ -107,9 +108,11 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     </div>
                     {profile.description && <div className="profile-info-desc">{profile.description}</div>}
                     <div className="profile-info-optional text-muted">
-                        <div>
-                            <BsBalloon /> Born date placeholder
-                        </div>
+                        {profile.location && (
+                            <div>
+                                <GoLocation /> {profile.location}
+                            </div>
+                        )}
                         <div>
                             <BsCalendar3 /> Joined {formatDateForProfile(profile.createdAt)}
                         </div>

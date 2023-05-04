@@ -194,6 +194,14 @@ body {
     z-index: 9999;
 }
 
+.nothing-to-show {
+    text-align: center;
+    padding: 5rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--twitter-muted);
+}
+
 .dropzone {
     display: flex;
     flex-direction: column;
