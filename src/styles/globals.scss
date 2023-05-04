@@ -1222,6 +1222,23 @@ body {
     }
 }
 
+::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--twitter-light-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--twitter-blue);
+    border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--twitter-dark-blue);
+}
+
 @keyframes zoom-in {
     0% {
         transform: scale(1);
