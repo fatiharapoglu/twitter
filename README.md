@@ -69,7 +69,7 @@
 -   [x] change explore to home, home only followings
 -   [x] make settings public, home private
 -   [x] progress bar for 280 characters
--   [ ] animations on tweets
+-   [x] animations on tweets
 -   [ ] hover effect on avatars
 -   [ ] custom scrollbar
 -   [ ] header photo with twitter bird

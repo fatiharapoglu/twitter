@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDate, formatDateExtended } from "@/utilities/date";
@@ -64,9 +65,12 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
     };
 
     return (
-        <div
+        <motion.div
             onClick={handleTweetClick}
             className={`tweet div-link ${tweet.isRetweet && "retweet"} ${displayedTweet.isReply && "reply"}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
         >
             <Link
                 onClick={handlePropagation}
@@ -182,6 +186,6 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
             >
                 <ProfileCard username={hoveredProfile} token={token} />
             </Popover>
-        </div>
+        </motion.div>
     );
 }
