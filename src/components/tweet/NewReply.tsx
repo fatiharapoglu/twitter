@@ -77,6 +77,7 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
     return (
         <div className="new-tweet-form new-reply">
             <Avatar
+                className="avatar div-link"
                 sx={{ width: 50, height: 50 }}
                 alt=""
                 src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"}

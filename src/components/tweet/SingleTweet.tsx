@@ -56,6 +56,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                     <div>
                         <Link className="tweet-avatar" href={`/${tweet.author.username}`}>
                             <Avatar
+                                className="avatar"
                                 sx={{ width: 50, height: 50 }}
                                 alt=""
                                 src={tweet.author.photoUrl ? getFullURL(tweet.author.photoUrl) : "/assets/egg.jpg"}

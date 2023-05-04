@@ -107,6 +107,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                 </div>
                 <div className="avatar-wrapper">
                     <Avatar
+                        className="avatar"
                         sx={{ width: 125, height: 125 }}
                         alt=""
                         src={

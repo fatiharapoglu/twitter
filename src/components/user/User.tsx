@@ -21,6 +21,7 @@ export default function User({ user }: { user: UserProps }) {
         <>
             <Link href={`/${user.username}`}>
                 <Avatar
+                    className="avatar"
                     sx={{ width: 50, height: 50 }}
                     alt=""
                     src={user.photoUrl ? getFullURL(user.photoUrl) : "/assets/egg.jpg"}

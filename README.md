@@ -70,7 +70,7 @@
 -   [x] make settings public, home private
 -   [x] progress bar for 280 characters
 -   [x] animations on tweets
--   [ ] hover effect on avatars
+-   [x] hover effect on avatars
 -   [ ] custom scrollbar
 -   [ ] header photo with twitter bird
 -   [ ] tooltips for likes/retweets and so on

@@ -90,7 +90,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     />
                     <div className="avatar-wrapper">
                         <Avatar
-                            className="div-link"
+                            className="div-link avatar"
                             onClick={handleImageClick}
                             sx={{ width: 125, height: 125 }}
                             alt="profile-photo"

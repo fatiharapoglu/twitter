@@ -125,7 +125,11 @@ export default function LeftSidebar() {
                             </button>
                             <button onClick={handleAnchorClick} className="side-profile">
                                 <div>
-                                    <Avatar alt="" src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"} />
+                                    <Avatar
+                                        className="avatar"
+                                        alt=""
+                                        src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"}
+                                    />
                                 </div>
                                 <div>
                                     <div className="token-name">

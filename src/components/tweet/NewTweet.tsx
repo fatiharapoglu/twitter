@@ -75,6 +75,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     return (
         <div className="new-tweet-form">
             <Avatar
+                className="avatar div-link"
                 sx={{ width: 50, height: 50 }}
                 alt=""
                 src={token.photoUrl ? getFullURL(token.photoUrl) : "/assets/egg.jpg"}

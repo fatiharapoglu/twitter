@@ -158,7 +158,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
         background-color: var(--hover);
@@ -173,7 +173,7 @@ body {
     color: var(--twitter-dark-blue);
     display: flex;
     gap: 0.5rem;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
         text-decoration: underline;
@@ -192,6 +192,16 @@ body {
 .emoji-picker {
     position: absolute;
     z-index: 9999;
+}
+
+.avatar {
+    img {
+        transition: filter 0.2s ease-in-out;
+
+        &:hover {
+            filter: brightness(80%);
+        }
+    }
 }
 
 .nothing-to-show {
@@ -364,7 +374,7 @@ body {
         color: var(--twitter-white);
         background-color: var(--twitter-light-black);
         font-size: x-large;
-        transition: all 0.2s ease;
+        transition: all 0.2s ease-in-out;
         cursor: pointer;
 
         &:hover {
@@ -397,7 +407,7 @@ body {
             & > img {
                 border-radius: 5rem;
                 padding: 0.25rem;
-                transition: background-color 0.2s ease;
+                transition: background-color 0.2s ease-in-out;
 
                 &:hover {
                     background-color: var(--hover);
@@ -417,7 +427,7 @@ body {
                         padding: 0.75rem;
                         border-radius: 5rem;
                         display: inline-flex;
-                        transition: background-color 0.2s ease;
+                        transition: background-color 0.2s ease-in-out;
 
                         &:hover {
                             background-color: var(--hover);
@@ -594,7 +604,7 @@ body {
     align-items: center;
     gap: 1rem;
     overflow: hidden;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
         background-color: var(--hover);
@@ -644,7 +654,7 @@ body {
                 color: var(--twitter-muted);
                 border: none;
                 border-radius: 5rem;
-                transition: all 0.2s ease;
+                transition: all 0.2s ease-in-out;
                 padding: 0.5rem;
                 display: flex;
                 justify-content: center;
@@ -849,7 +859,7 @@ body {
         gap: 0.75rem;
         min-height: 90px;
         padding: 0 1rem;
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease-in-out;
 
         &:hover {
             background-color: var(--hover);
@@ -912,7 +922,7 @@ body {
             justify-content: center;
             flex: 1;
             padding: 1rem 2rem 0.25rem;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease-in-out;
             color: var(--twitter-muted);
             font-weight: 500;
 
@@ -1154,7 +1164,7 @@ body {
         color: var(--twitter-white);
         font-size: 1.5rem;
         font-weight: 900;
-        transition: color 0.2s ease;
+        transition: color 0.2s ease-in-out;
 
         &:hover {
             color: var(--twitter-light-gray);

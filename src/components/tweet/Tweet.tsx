@@ -80,6 +80,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                 onMouseLeave={handlePopoverClose}
             >
                 <Avatar
+                    className="avatar"
                     sx={{ width: 50, height: 50 }}
                     alt=""
                     src={displayedTweet.author.photoUrl ? getFullURL(displayedTweet.author.photoUrl) : "/assets/egg.jpg"}
