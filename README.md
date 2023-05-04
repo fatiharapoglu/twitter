@@ -61,48 +61,45 @@
 -   [x] complete profile, remove placeholders, desc images and everything
 -   [x] think about handling related errors in the fetch folder
 -   [x] add global-error.tsx
+-   [x] use "use client" if possible
+-   [x] change all request type to nextRequest
+-   [x] organize overall code/folders
+-   [ ] autofocus in modals
 -   [ ] change explore to home, home only followings
+-   [ ] make settings public, home private
+-   [ ] start working on right sidebar
+-   [ ] search mechanism, only for users / users and tweets would be better
+-   [ ] useDeferredValue for search if react query has not have it
+-   [ ] add snackbar for some feedback, copy from twitter
+-   [ ] try html dialog for confirmations
+-   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [ ] progress bar for 280 characters
 -   [ ] animations on tweets
+-   [ ] hover effect on avatars
+-   [ ] custom scrollbar
+-   [ ] header photo with twitter bird
 -   [ ] tooltips for likes/retweets and so on
 -   [ ] mutual connections feature in profile
 -   [ ] add a bar under the avatar if the tweet replies > 0
+-   [ ] add twitter blue tick in edit profile
 -   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
 -   [ ] change localhost to env or however next handles this
 -   [ ] message logic / socket io? feathers? how in next
--   [ ] how to add notifications? if really complex, hang it for later
--   [ ] make it responsive
--   [ ] add dark mode
--   [ ] add twitter blue tick in edit profile
--   [ ] search mechanism, only for users / users and tweets would be better
--   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
--   [ ] block/unblock feature (optional, maybe in roadmap?)
--   [ ] add hidden/locked profile, deal with temp keyword in search
--   [ ] handle speed, somehow it feels slow, maybe it is different in production but nevertheless
 -   [ ] handle users trying to message themselves
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
--   [ ] organize overall code/folders
--   [ ] use "use client" if possible
--   [ ] admin privilages
--   [ ] material ui custom colors
--   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
+-   [ ] how to add notifications? if really complex, hang it for later
+-   [ ] get auto follower 1 profile after user creates, seeing a notification after creating might bee cool
+-   [ ] welcome notification at least
+-   [ ] make it responsive
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
--   [ ] add snackbar for some feedback, copy from twitter
--   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
--   [ ] maybe tweets should be a markdown-like files for links/other stuff?
--   [ ] useDeferredValue for search if react query has not have it
--   [ ] lazy in react, hover for profiles with suspense
--   [ ] make all fn arrow
--   [ ] change all request to nextRequest
--   [ ] auto follow 1 profile after user creates,
--   [ ] create changelog md
+-   [ ] add dark mode
+-   [ ] material ui custom colors
+-   [ ] block/unblock feature (optional, maybe in roadmap?)
+-   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
 -   [ ] find a better way to delete tweets other than window.location.replace()
--   [ ] make all response data equal includes for performance
--   [ ] optimistic update on retweets
--   [ ] hover effect on avatars
--   [ ] custom scrollbar
--   [ ] try html dialog for confirmations
--   [ ] autofocus in modals
--   [ ] header photo with twitter bird
+-   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
+-   [ ] if after deploy still slow, get info from user query, clean up tweet responses
+-   [ ] choose database and vercel serverless locations close
+-   [ ] create changelog md

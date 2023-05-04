@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 
-export async function GET(request: Request, { params: { tweetId } }: { params: { tweetId: string } }) {
+export async function GET(request: NextRequest, { params: { tweetId } }: { params: { tweetId: string } }) {
     try {
         const tweet = await prisma.tweet.findUnique({
             where: {

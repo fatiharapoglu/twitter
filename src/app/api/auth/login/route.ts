@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { SignJWT } from "jose";
 
 import { prisma } from "@/prisma/client";
 import { comparePasswords } from "@/utilities/bcrypt";
 import { getJwtSecretKey } from "@/utilities/auth";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     try {
