@@ -59,26 +59,21 @@
 -   [x] handle errors like "user already exists"
 -   [x] add card when hover on tweet profile & username & who retweeted & mentioned
 -   [x] complete profile, remove placeholders, desc images and everything
--   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
--   [ ] think about handling related errors in the fetch folder
--   [ ] use try catch in awaits
--   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
--   [ ] global-error / error handling detailed
+-   [x] think about handling related errors in the fetch folder
+-   [x] add global-error.tsx
 -   [ ] change explore to home, home only followings
--   [ ] add age, name, stuff, required in the sign up.
--   [ ] message logic / socket io? feathers? how in next
+-   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [ ] progress bar for 280 characters
--   [ ] how to add notifications? if really complex, hang it for later
--   [ ] make profile back arrow sticky | fixed
 -   [ ] animations on tweets
 -   [ ] tooltips for likes/retweets and so on
 -   [ ] mutual connections feature in profile
--   [ ] change localhost to env or however next handles this
--   [ ] make it responsive
--   [ ] disable prefetch if causes slow pathing?
--   [ ] add dark mode
--   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
 -   [ ] add a bar under the avatar if the tweet replies > 0
+-   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
+-   [ ] change localhost to env or however next handles this
+-   [ ] message logic / socket io? feathers? how in next
+-   [ ] how to add notifications? if really complex, hang it for later
+-   [ ] make it responsive
+-   [ ] add dark mode
 -   [ ] add twitter blue tick in edit profile
 -   [ ] search mechanism, only for users / users and tweets would be better
 -   [ ] if possible and not too complex, add hashtags, @usernames and have a clickable link
@@ -94,6 +89,7 @@
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add snackbar for some feedback, copy from twitter
+-   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] maybe tweets should be a markdown-like files for links/other stuff?
 -   [ ] useDeferredValue for search if react query has not have it
 -   [ ] lazy in react, hover for profiles with suspense

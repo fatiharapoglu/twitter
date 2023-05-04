@@ -1126,7 +1126,7 @@ body {
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     background-color: var(--twitter-blue);
     z-index: 1000;
     position: fixed;
@@ -1147,6 +1147,26 @@ body {
         &:hover {
             color: var(--twitter-light-gray);
         }
+    }
+}
+
+.error-global {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--twitter-blue);
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 300;
+        color: var(--twitter-white);
+    }
+
+    .btn-dark {
+        width: 10rem;
     }
 }
 
