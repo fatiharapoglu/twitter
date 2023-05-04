@@ -11,7 +11,12 @@ export default function PreviewDialog({ open, handlePreviewClose, url }: Preview
             <div>
                 <AiOutlineClose className="btn-close icon-hoverable" onClick={handlePreviewClose} />
                 <div className="image-wrapper">
-                    <Image src={getFullURL(url)} alt="" fill priority={false} />
+                    <Image
+                        src={url === "/assets/header.jpg" || url === "/assets/egg.jpg" ? url : getFullURL(url)}
+                        alt=""
+                        fill
+                        priority={false}
+                    />
                 </div>
             </div>
         </Modal>

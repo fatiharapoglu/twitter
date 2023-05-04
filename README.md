@@ -71,8 +71,8 @@
 -   [x] progress bar for 280 characters
 -   [x] animations on tweets
 -   [x] hover effect on avatars
--   [ ] custom scrollbar
--   [ ] header photo with twitter bird
+-   [x] custom scrollbar
+-   [x] header photo with twitter bird
 -   [ ] tooltips for likes/retweets and so on
 -   [ ] mutual connections feature in profile
 -   [ ] add a bar under the avatar if the tweet replies > 0
