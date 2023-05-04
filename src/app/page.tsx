@@ -64,7 +64,7 @@ export default function RootPage() {
                                     const response = await logInAsTest();
                                     if (!response.success) return alert("Something went wrong. Try again.");
                                     // snackbar here
-                                    router.push("/home");
+                                    router.push("/explore");
                                 }}
                                 className="btn btn-light"
                             >
@@ -76,7 +76,7 @@ export default function RootPage() {
             </main>
             <SignUpDialog open={isSignUpOpen} handleSignUpClose={handleSignUpClose} />
             <LogInDialog open={isLogInOpen} handleLogInClose={handleLogInClose} />
-            <Link className="fixed-link text-muted" href="/home">
+            <Link className="fixed-link text-muted" href="/explore">
                 Explore without signing in <FaArrowRight />
             </Link>
         </>

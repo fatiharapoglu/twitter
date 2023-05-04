@@ -41,7 +41,7 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
             resetForm();
             handleLogInClose();
             console.log("Logged in successfully.");
-            router.push("/home");
+            router.push("/explore");
         },
     });
 

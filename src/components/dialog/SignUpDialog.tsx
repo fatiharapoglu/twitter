@@ -42,7 +42,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
             }
             resetForm();
             handleSignUpClose();
-            router.push("/home");
+            router.push("/explore");
         },
     });
 

@@ -66,8 +66,8 @@
 -   [x] organize overall code/folders
 -   [x] autofocus in modals
 -   [x] add loading when logging as test account
--   [ ] change explore to home, home only followings
--   [ ] make settings public, home private
+-   [x] change explore to home, home only followings
+-   [x] make settings public, home private
 -   [ ] start working on right sidebar
 -   [ ] search mechanism, only for users / users and tweets would be better
 -   [ ] useDeferredValue for search if react query has not have it

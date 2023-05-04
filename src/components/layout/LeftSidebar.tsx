@@ -55,18 +55,20 @@ export default function LeftSidebar() {
         <>
             <aside className="left-sidebar">
                 <div className="fixed">
-                    <Link href="/home" className="twitter-icon">
+                    <Link href="/explore" className="twitter-icon">
                         <Image src="/assets/favicon.png" alt="" width={40} height={40} />
                     </Link>
                     <nav>
                         <ul>
-                            <li>
-                                <Link href="/home">
-                                    <div className={`nav-link ${pathname.startsWith("/home") ? "active" : ""}`}>
-                                        <FaHome /> Home
-                                    </div>
-                                </Link>
-                            </li>
+                            {token && (
+                                <li>
+                                    <Link href="/home">
+                                        <div className={`nav-link ${pathname.startsWith("/home") ? "active" : ""}`}>
+                                            <FaHome /> Home
+                                        </div>
+                                    </Link>
+                                </li>
+                            )}
                             <li>
                                 <Link href="/explore">
                                     <div className={`nav-link ${pathname.startsWith("/explore") ? "active" : ""}`}>
@@ -105,15 +107,15 @@ export default function LeftSidebar() {
                                             </div>
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link href="/settings">
-                                            <div className={`nav-link ${pathname.startsWith("/settings") ? "active" : ""}`}>
-                                                <FaCog /> Settings
-                                            </div>
-                                        </Link>
-                                    </li>
                                 </>
                             )}
+                            <li>
+                                <Link href="/settings">
+                                    <div className={`nav-link ${pathname.startsWith("/settings") ? "active" : ""}`}>
+                                        <FaCog /> Settings
+                                    </div>
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                     {token && (

@@ -10,7 +10,7 @@ import Tweets from "@/components/tweet/Tweets";
 import { AuthContext } from "../layout";
 import CircularLoading from "@/components/misc/CircularLoading";
 
-export default function HomePage() {
+export default function ExplorePage() {
     const { token, isPending } = useContext(AuthContext);
 
     const { data, error, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery(
@@ -41,7 +41,7 @@ export default function HomePage() {
 
     return (
         <main>
-            <h1 className="page-name">Home</h1>
+            <h1 className="page-name">Explore</h1>
             {token && <NewTweet token={token} />}
             {isLoading ? (
                 <CircularLoading />

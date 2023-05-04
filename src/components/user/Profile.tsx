@@ -71,7 +71,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
     return (
         <>
             <div className="back-to">
-                <Link className="icon-hoverable" href="/home">
+                <Link className="icon-hoverable" href="/explore">
                     <FaArrowLeft />
                 </Link>
                 <div className="top">
