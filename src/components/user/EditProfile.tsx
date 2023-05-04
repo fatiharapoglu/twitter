@@ -144,7 +144,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                             name="description"
                             label="Description"
                             multiline
-                            rows={3}
+                            minRows={3}
                             value={formik.values.description}
                             onChange={formik.handleChange}
                             error={formik.touched.description && Boolean(formik.errors.description)}

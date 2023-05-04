@@ -569,8 +569,19 @@ body {
                 cursor: pointer;
             }
 
-            .btn {
+            .progress-circle {
+                display: flex;
                 margin-left: auto;
+                align-items: center;
+                gap: 0.5rem;
+
+                .progress-text {
+                    font-size: 0.75rem;
+                }
+
+                .error {
+                    color: red;
+                }
             }
         }
     }

@@ -15,11 +15,13 @@ import { getFullURL } from "@/utilities/misc/getFullURL";
 import { uploadFile } from "@/utilities/storage";
 import { UserProps } from "@/types/UserProps";
 import { TweetProps } from "@/types/TweetProps";
+import ProgressCircle from "../misc/ProgressCircle";
 
 export default function NewReply({ token, tweet }: { token: UserProps; tweet: TweetProps }) {
     const [showPicker, setShowPicker] = useState(false);
     const [showDropzone, setShowDropzone] = useState(false);
     const [photoFile, setPhotoFile] = useState<File | null>(null);
+    const [count, setCount] = useState(0);
 
     const queryClient = useQueryClient();
 
@@ -63,6 +65,11 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
         },
     });
 
+    const customHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCount(e.target.value.length);
+        formik.handleChange(e);
+    };
+
     if (formik.isSubmitting) {
         return <CircularLoading />;
     }
@@ -79,12 +86,12 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
                     <TextField
                         placeholder="Tweet your reply"
                         multiline
-                        rows={1}
+                        minRows={1}
                         variant="standard"
                         fullWidth
                         name="text"
                         value={formik.values.text}
-                        onChange={formik.handleChange}
+                        onChange={customHandleChange}
                         error={formik.touched.text && Boolean(formik.errors.text)}
                         helperText={formik.touched.text && formik.errors.text}
                         hiddenLabel
@@ -93,6 +100,7 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
                 <div className="input-additions">
                     <FaRegImage onClick={() => setShowDropzone(true)} />
                     <FaRegSmile onClick={() => setShowPicker(!showPicker)} />
+                    <ProgressCircle maxChars={280} count={count} />
                     <button className="btn" type="submit">
                         Reply
                     </button>

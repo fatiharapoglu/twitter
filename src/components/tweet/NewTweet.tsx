@@ -13,11 +13,13 @@ import { NewTweetProps } from "@/types/TweetProps";
 import Uploader from "../misc/Uploader";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import { uploadFile } from "@/utilities/storage";
+import ProgressCircle from "../misc/ProgressCircle";
 
 export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
     const [showPicker, setShowPicker] = useState(false);
     const [showDropzone, setShowDropzone] = useState(false);
     const [photoFile, setPhotoFile] = useState<File | null>(null);
+    const [count, setCount] = useState(0);
 
     const queryClient = useQueryClient();
 
@@ -55,10 +57,16 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
             }
             mutation.mutate(JSON.stringify(values));
             resetForm();
+            setCount(0);
             setShowDropzone(false);
             if (handleSubmit) handleSubmit();
         },
     });
+
+    const customHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCount(e.target.value.length);
+        formik.handleChange(e);
+    };
 
     if (formik.isSubmitting) {
         return <CircularLoading />;
@@ -77,12 +85,12 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                         placeholder="What's happening?"
                         multiline
                         hiddenLabel
-                        rows={3}
+                        minRows={3}
                         variant="standard"
                         fullWidth
                         name="text"
                         value={formik.values.text}
-                        onChange={formik.handleChange}
+                        onChange={customHandleChange}
                         error={formik.touched.text && Boolean(formik.errors.text)}
                         helperText={formik.touched.text && formik.errors.text}
                     />
@@ -90,6 +98,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                 <div className="input-additions">
                     <FaRegImage onClick={() => setShowDropzone(true)} />
                     <FaRegSmile onClick={() => setShowPicker(!showPicker)} />
+                    <ProgressCircle maxChars={280} count={count} />
                     <button className="btn" type="submit">
                         Tweet
                     </button>
@@ -101,6 +110,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                             onEmojiSelect={(emoji: any) => {
                                 formik.setFieldValue("text", formik.values.text + emoji.native);
                                 setShowPicker(false);
+                                setCount(count + emoji.native.length);
                             }}
                             previewPosition="none"
                         />
