@@ -10,10 +10,12 @@ import Link from "next/link";
 import SignUpDialog from "@/components/dialog/SignUpDialog";
 import LogInDialog from "@/components/dialog/LogInDialog";
 import { logInAsTest } from "@/utilities/fetch";
+import GlobalLoading from "@/components/misc/GlobalLoading";
 
 export default function RootPage() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [isLogInOpen, setIsLogInOpen] = useState(false);
+    const [isLoggingAsTest, setIsLoggingAsTest] = useState(false);
 
     const router = useRouter();
 
@@ -29,6 +31,8 @@ export default function RootPage() {
     const handleLogInClose = () => {
         setIsLogInOpen(false);
     };
+
+    if (isLoggingAsTest) return <GlobalLoading />;
 
     return (
         <>
@@ -56,6 +60,7 @@ export default function RootPage() {
                         >
                             <button
                                 onClick={async () => {
+                                    setIsLoggingAsTest(true);
                                     const response = await logInAsTest();
                                     if (!response.success) return alert("Something went wrong. Try again.");
                                     // snackbar here

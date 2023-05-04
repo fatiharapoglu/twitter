@@ -68,6 +68,7 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                                 onChange={formik.handleChange}
                                 error={formik.touched.username && Boolean(formik.errors.username)}
                                 helperText={formik.touched.username && formik.errors.username}
+                                autoFocus
                             />
                         </div>
                         <div className="input">

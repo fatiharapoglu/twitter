@@ -64,7 +64,8 @@
 -   [x] use "use client" if possible
 -   [x] change all request type to nextRequest
 -   [x] organize overall code/folders
--   [ ] autofocus in modals
+-   [x] autofocus in modals
+-   [x] add loading when logging as test account
 -   [ ] change explore to home, home only followings
 -   [ ] make settings public, home private
 -   [ ] start working on right sidebar
