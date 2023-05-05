@@ -36,7 +36,7 @@ export default function User({ user }: { user: UserProps }) {
                         </div>
                         {token && user.username !== token.username && <Follow profile={user} />}
                     </div>
-                    <span className="user-desc">{user.description} ykuC</span>
+                    <span className="user-desc">{user.description}</span>
                 </div>
             </div>
         </>

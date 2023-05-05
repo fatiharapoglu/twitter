@@ -77,12 +77,12 @@
 -   [x] start working on right sidebar
 -   [x] search mechanism, only for users / users and tweets would be better
 -   [x] useDeferredValue for search if react query has not have it
+-   [x] if auth, show random non-followed 3 people with avatars for user to follow in right side
 -   [ ] add snackbar for some feedback, copy from twitter
 -   [ ] try html dialog for confirmations
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [ ] add twitter blue tick in edit profile
--   [ ] if auth, show random non-followed 3 people with avatars and has more than 1 followers for user to follow in right side
 -   [ ] change localhost to env or however next handles this
 -   [ ] message logic / socket io? feathers? how in next
 -   [ ] complete share button in tweet component

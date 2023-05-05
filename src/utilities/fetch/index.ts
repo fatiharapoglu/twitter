@@ -192,3 +192,8 @@ export const search = async (text: string) => {
     const response = await fetch(`http://localhost:3000/api/search?q=${text}`);
     return response.json();
 };
+
+export const getRandomThreeUsers = async () => {
+    const response = await fetch("http://localhost:3000/api/users/random");
+    return response.json();
+};

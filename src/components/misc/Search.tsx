@@ -15,17 +15,15 @@ export default function Search() {
     };
 
     return (
-        <div>
-            <form className="search" onSubmit={onSearch}>
-                <input
-                    className="search-input"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Twitter"
-                    required
-                />
-                <BsSearch />
-            </form>
-        </div>
+        <form className="search" onSubmit={onSearch}>
+            <input
+                className="search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search Twitter"
+                required
+            />
+            <BsSearch />
+        </form>
     );
 }

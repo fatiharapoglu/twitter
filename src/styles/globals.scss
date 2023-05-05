@@ -491,11 +491,9 @@ body {
     .fixed {
         position: fixed;
         display: flex;
-        height: 100%;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-        padding: 2.5rem;
+        gap: 1rem;
+        padding: 1rem;
         border-left: 1px solid var(--border-color);
     }
 
@@ -503,7 +501,7 @@ body {
         position: relative;
 
         .search-input {
-            border: 1px solid var(--twitter-light-blue);
+            border: 1px solid var(--border-color);
             border-radius: 5rem;
             background-color: var(--twitter-white);
             padding: 0.5rem 1rem 0.5rem 3rem;
@@ -511,7 +509,6 @@ body {
             font-weight: 400;
             line-height: 1.5;
             color: var(--twitter-black);
-            max-width: 250px;
 
             &:focus {
                 outline: none;
@@ -529,6 +526,76 @@ body {
             top: 50%;
             transform: translateY(-50%);
             color: var(--twitter-blue);
+        }
+    }
+
+    .who-to-follow {
+        border: 1px solid var(--border-color);
+        border-radius: 1rem;
+        background-color: var(--twitter-white);
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+
+        .follow-close {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 4px;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .user-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            .btn {
+                scale: 0.9;
+            }
+
+            .user {
+                width: 100%;
+                cursor: pointer;
+
+                .user-profile {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.15rem;
+
+                    .flex {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .flex-left {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            gap: 0.15rem;
+                        }
+                    }
+
+                    .user-name {
+                        font-weight: bold;
+                        font-size: 15px;
+                        overflow-wrap: anywhere;
+                    }
+
+                    .user-desc {
+                        display: none;
+                    }
+
+                    .user-name:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 }

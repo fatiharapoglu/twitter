@@ -1,14 +1,14 @@
 "use client";
 
 import Search from "../misc/Search";
+import WhoToFollow from "../misc/WhoToFollow";
 
 export default function RightSidebar() {
     return (
         <aside className="right-sidebar">
             <div className="fixed">
                 <Search />
-                <div>Who to follow</div>
-                <div>New to twitter?</div>
+                <WhoToFollow />
             </div>
         </aside>
     );
