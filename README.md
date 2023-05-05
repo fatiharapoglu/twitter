@@ -73,8 +73,8 @@
 -   [x] hover effect on avatars
 -   [x] custom scrollbar
 -   [x] header photo with twitter bird
--   [ ] tooltips for likes/retweets and so on
--   [ ] mutual connections feature in profile
+-   [x] you are not authorized seen as json, do a page for that
+-   [ ] add isError, error in useQuery
 -   [ ] add a bar under the avatar if the tweet replies > 0
 -   [ ] start working on right sidebar
 -   [ ] search mechanism, only for users / users and tweets would be better

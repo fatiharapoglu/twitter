@@ -22,7 +22,7 @@ export const middleware = async (request: NextRequest) => {
     const hasVerifiedToken = token && (await verifyJwtToken(token));
 
     if (!hasVerifiedToken && protectedRoutes.some((route) => nextUrl.pathname.endsWith(route))) {
-        return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
+        return NextResponse.redirect(new URL("/not-authorized", url));
     }
 
     if (!hasVerifiedToken && staticRoutesPrivate.some((route) => nextUrl.pathname.startsWith(route))) {
