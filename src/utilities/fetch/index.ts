@@ -187,3 +187,8 @@ export const getReplies = async (tweetAuthor: string, tweetId: string) => {
     });
     return response.json();
 };
+
+export const search = async (text: string) => {
+    const response = await fetch(`http://localhost:3000/api/search?q=${text}`);
+    return response.json();
+};
