@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { Avatar } from "@mui/material";
 import Link from "next/link";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 import { UserProps } from "@/types/UserProps";
 import { AuthContext } from "@/app/(twitter)/layout";
@@ -31,7 +32,14 @@ export default function User({ user }: { user: UserProps }) {
                 <div className="user-profile">
                     <div className="flex">
                         <div className="flex-left">
-                            <span className="user-name">{user.name !== "" ? user.name : user.username}</span>
+                            <span className="user-name">
+                                {user.name !== "" ? user.name : user.username}
+                                {user.isPremium && (
+                                    <span className="blue-tick">
+                                        <AiFillTwitterCircle />
+                                    </span>
+                                )}
+                            </span>
                             <span className="text-muted">@{user.username}</span>
                         </div>
                         {token && user.username !== token.username && <Follow profile={user} />}

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
-import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaLock, FaEllipsisH } from "react-icons/fa";
+import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaEllipsisH } from "react-icons/fa";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
@@ -23,8 +24,6 @@ export default function LeftSidebar() {
 
     const router = useRouter();
     const pathname = usePathname();
-
-    const tempIsLocked = true;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
@@ -133,7 +132,12 @@ export default function LeftSidebar() {
                                 </div>
                                 <div>
                                     <div className="token-name">
-                                        {token.name !== "" ? token.name : token.username} {tempIsLocked ? <FaLock /> : null}
+                                        {token.name !== "" ? token.name : token.username}
+                                        {token.isPremium && (
+                                            <span className="blue-tick">
+                                                <AiFillTwitterCircle />
+                                            </span>
+                                        )}
                                     </div>
                                     <div className="text-muted token-username">@{token.username}</div>
                                 </div>

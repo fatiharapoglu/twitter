@@ -74,7 +74,7 @@ export default function CompleteProfileReminder({ token }: { token: UserProps })
                                 </Tooltip>
                             )}
                         </ol>
-                        <Link href={`/${token.username}/edit`} className="btn btn-white">
+                        <Link href={`/${token.username}/edit`} className="btn btn-dark">
                             Edit Profile
                         </Link>
                     </div>

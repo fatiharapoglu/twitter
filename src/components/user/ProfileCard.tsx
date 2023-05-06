@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 import { getUser } from "@/utilities/fetch";
 import { getFullURL } from "@/utilities/misc/getFullURL";
@@ -31,7 +32,14 @@ export default function ProfileCard({ username, token }: { username: string; tok
                 />
             </div>
             <div className="profile-info-main">
-                <h1>{data.user.name !== "" ? data.user.name : data.user.username}</h1>
+                <h1>
+                    {data.user.name !== "" ? data.user.name : data.user.username}
+                    {data.user.isPremium && (
+                        <span className="blue-tick">
+                            <AiFillTwitterCircle />
+                        </span>
+                    )}
+                </h1>
                 <div className="text-muted">
                     @{data.user.username} {isFollowingTokenOwner() && <span className="is-following">Follows you</span>}
                 </div>

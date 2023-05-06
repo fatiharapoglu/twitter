@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { Avatar, Menu, MenuItem } from "@mui/material";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDateExtended } from "@/utilities/date";
@@ -104,6 +105,11 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                         <Link className="tweet-author-link" href={`/${tweet.author.username}`}>
                             <span className="tweet-author">
                                 {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
+                                {tweet.author.isPremium && (
+                                    <span className="blue-tick">
+                                        <AiFillTwitterCircle />
+                                    </span>
+                                )}
                             </span>
                             <span className="text-muted">@{tweet.author.username}</span>
                         </Link>

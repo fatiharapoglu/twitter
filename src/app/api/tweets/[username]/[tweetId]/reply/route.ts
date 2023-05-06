@@ -16,6 +16,8 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                         id: true,
                         username: true,
                         name: true,
+                        description: true,
+                        isPremium: true,
                         photoUrl: true,
                     },
                 },
@@ -25,6 +27,7 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                         username: true,
                         name: true,
                         description: true,
+                        isPremium: true,
                         photoUrl: true,
                         followers: {
                             select: {
@@ -44,6 +47,7 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
                                 id: true,
                                 username: true,
                                 name: true,
+                                isPremium: true,
                                 description: true,
                             },
                         },

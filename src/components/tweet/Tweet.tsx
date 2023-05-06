@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 import { TweetProps } from "@/types/TweetProps";
 import { formatDate, formatDateExtended } from "@/utilities/date";
@@ -97,6 +98,11 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     >
                         <span className="tweet-author">
                             {displayedTweet.author.name !== "" ? displayedTweet.author.name : displayedTweet.author.username}
+                            {displayedTweet.author.isPremium && (
+                                <span className="blue-tick">
+                                    <AiFillTwitterCircle />
+                                </span>
+                            )}
                         </span>
                         <span className="text-muted">@{displayedTweet.author.username}</span>
                     </Link>

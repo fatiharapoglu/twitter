@@ -316,7 +316,6 @@ body {
                 font-weight: bold;
                 padding-bottom: 0.25rem;
                 display: flex;
-                gap: 0.5rem;
                 text-align: left;
             }
 
@@ -510,7 +509,7 @@ body {
                 list-style: initial;
                 list-style-type: decimal;
                 list-style-position: inside;
-                line-height: 2;
+                line-height: 1.5;
                 cursor: help;
             }
         }
@@ -793,6 +792,8 @@ body {
         .tweet-author {
             font-weight: bold;
             font-size: 15px;
+            display: flex;
+            align-items: center;
         }
 
         .text-muted.date {
@@ -1567,6 +1568,13 @@ body {
             scale: 1.1;
         }
     }
+}
+
+.blue-tick {
+    vertical-align: top;
+    color: var(--twitter-blue);
+    padding-left: 2px;
+    display: inline-flex;
 }
 
 ::-webkit-scrollbar {

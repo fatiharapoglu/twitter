@@ -17,6 +17,7 @@ export async function GET(request: NextRequest, { params: { username } }: { para
                 description: true,
                 location: true,
                 website: true,
+                isPremium: true,
                 photoUrl: true,
                 headerUrl: true,
                 followers: {
@@ -25,6 +26,7 @@ export async function GET(request: NextRequest, { params: { username } }: { para
                         name: true,
                         username: true,
                         description: true,
+                        isPremium: true,
                         photoUrl: true,
                         followers: {
                             select: {
@@ -44,6 +46,7 @@ export async function GET(request: NextRequest, { params: { username } }: { para
                         name: true,
                         username: true,
                         description: true,
+                        isPremium: true,
                         photoUrl: true,
                         followers: {
                             select: {

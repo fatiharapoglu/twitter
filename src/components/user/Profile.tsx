@@ -8,7 +8,7 @@ import { FaArrowLeft, FaRegEnvelope } from "react-icons/fa";
 import { Avatar, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { BiCalendarCheck } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineLink } from "react-icons/ai";
+import { AiFillTwitterCircle, AiOutlineLink } from "react-icons/ai";
 
 import { formatDateForProfile } from "@/utilities/date";
 import { AuthContext } from "@/app/(twitter)/layout";
@@ -106,7 +106,14 @@ export default function Profile({ profile }: { profile: UserProps }) {
                 </div>
                 <div className="profile-info">
                     <div className="profile-info-main">
-                        <h1>{profile.name !== "" ? profile.name : profile.username}</h1>
+                        <h1>
+                            {profile.name !== "" ? profile.name : profile.username}
+                            {profile.isPremium && (
+                                <span className="blue-tick">
+                                    <AiFillTwitterCircle />
+                                </span>
+                            )}
+                        </h1>
                         <div className="text-muted">
                             @{profile.username}{" "}
                             {isFollowingTokenOwner() && <span className="is-following">Follows you</span>}

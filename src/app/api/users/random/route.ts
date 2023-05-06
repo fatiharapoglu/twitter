@@ -69,6 +69,7 @@ export async function GET(request: NextRequest) {
                 location: true,
                 website: true,
                 photoUrl: true,
+                isPremium: true,
                 headerUrl: true,
                 followers: {
                     select: {
@@ -76,6 +77,7 @@ export async function GET(request: NextRequest) {
                         name: true,
                         username: true,
                         description: true,
+                        isPremium: true,
                         photoUrl: true,
                         followers: {
                             select: {
@@ -95,6 +97,7 @@ export async function GET(request: NextRequest) {
                         name: true,
                         username: true,
                         description: true,
+                        isPremium: true,
                         photoUrl: true,
                         followers: {
                             select: {
