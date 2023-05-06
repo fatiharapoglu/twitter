@@ -13,18 +13,30 @@ export async function GET(request: NextRequest) {
 
     const usersCount = await prisma.user.count({
         where: {
-            NOT: {
-                photoUrl: null,
-            },
+            NOT: [
+                {
+                    photoUrl: null,
+                },
+                {
+                    username: username,
+                },
+                {
+                    followers: {
+                        some: {
+                            username: username,
+                        },
+                    },
+                },
+            ],
             photoUrl: {
                 not: "",
             },
         },
     });
 
-    let skip = Math.floor(Math.random() * usersCount);
+    let skip = Math.floor(Math.random() * (usersCount - 3));
 
-    if (usersCount - skip < 3) skip = Math.floor(Math.random() * 3);
+    if (skip < 0) skip = 0;
 
     try {
         const users = await prisma.user.findMany({
