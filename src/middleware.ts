@@ -17,7 +17,6 @@ export const middleware = async (request: NextRequest) => {
         "/tweets/create",
     ];
     const staticRoutesPrivate = ["/notifications", "/messages", "/home"];
-    const staticRoutesExtendted = ["/notifications", "/messages", "/explore", "/home", "/settings"];
 
     const hasVerifiedToken = token && (await verifyJwtToken(token));
 
@@ -31,6 +30,18 @@ export const middleware = async (request: NextRequest) => {
 
     if (hasVerifiedToken && nextUrl.pathname === "/") {
         return NextResponse.redirect(new URL("/explore", url));
+    }
+
+    if (
+        hasVerifiedToken &&
+        (nextUrl.pathname === "/notifications/edit" ||
+            nextUrl.pathname === "/messages/edit" ||
+            nextUrl.pathname === "/explore/edit" ||
+            nextUrl.pathname === "/home/edit" ||
+            nextUrl.pathname === "/settings/edit")
+    ) {
+        const route = nextUrl.pathname.split("/")[1];
+        return NextResponse.redirect(new URL(`/${route}`, url));
     }
 
     return NextResponse.next();

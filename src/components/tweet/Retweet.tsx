@@ -34,10 +34,6 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
             setIsRetweeted(!isRetweeted);
             queryClient.invalidateQueries({ queryKey: ["tweets"] });
         },
-        onError: () => {
-            console.log("Something went wrong while retweeting");
-            setIsButtonDisabled(false);
-        },
     });
 
     const handleRetweet = () => {
