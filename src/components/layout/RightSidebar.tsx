@@ -7,6 +7,7 @@ import { AuthContext } from "@/app/(twitter)/layout";
 import Search from "../misc/Search";
 import WhoToFollow from "../misc/WhoToFollow";
 import CompleteProfileReminder from "../misc/CompleteProfileReminder";
+import Legal from "../misc/Legal";
 
 export default function RightSidebar() {
     const { token, isPending } = useContext(AuthContext);
@@ -31,6 +32,7 @@ export default function RightSidebar() {
                         </div>
                     </div>
                 )}
+                <Legal />
             </div>
         </aside>
     );
