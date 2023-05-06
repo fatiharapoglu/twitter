@@ -126,7 +126,7 @@ export default function Follow({ profile }: { profile: UserProps }) {
     }, [isButtonDisabled]);
 
     const conditionalText = isFollowed ? (isHovered ? "Unfollow" : "Following") : "Follow";
-    const conditionalClass = isFollowed ? (isHovered ? "btn btn-danger" : "btn btn-white") : "btn btn-dark";
+    const conditionalClass = isFollowed ? (isHovered ? "btn btn-danger-outline" : "btn btn-white") : "btn btn-dark";
 
     return (
         <>

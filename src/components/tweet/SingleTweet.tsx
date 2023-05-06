@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -20,11 +22,34 @@ import NewReply from "./NewReply";
 import Replies from "./Replies";
 import CustomSnackbar from "../misc/CustomSnackbar";
 import { SnackbarProps } from "@/types/SnackbarProps";
+import CircularLoading from "../misc/CircularLoading";
+import { sleepFunction } from "@/utilities/misc/sleep";
 
 export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token: VerifiedToken }) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+    const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
+
+    const queryClient = useQueryClient();
+    const router = useRouter();
+
+    const mutation = useMutation({
+        mutationFn: (jsonId: string) => deleteTweet(tweet.id, tweet.authorId, jsonId),
+        onSuccess: async () => {
+            setIsConfirmationOpen(false);
+            setIsDeleting(false);
+            setSnackbar({
+                message: "Tweet deleted successfully.",
+                severity: "success",
+                open: true,
+            });
+            await sleepFunction(); // for waiting snackbar to acknowledge delete for better user experience
+            queryClient.invalidateQueries(["tweets", tweet.author.username]);
+            router.replace(`/${tweet.author.username}`);
+        },
+    });
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(e.currentTarget);
@@ -42,9 +67,12 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
     const handlePreviewClose = () => {
         setIsPreviewOpen(false);
     };
+    const handleConfirmationClick = () => {
+        handleAnchorClose();
+        setIsConfirmationOpen(true);
+    };
 
     const handleDelete = async () => {
-        if (confirm("Are you sure you want to delete this tweet?") === false) return handleAnchorClose();
         if (!token) {
             return setSnackbar({
                 message: "You must be logged in to delete tweets...",
@@ -53,9 +81,9 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             });
         }
         handleAnchorClose();
+        setIsDeleting(true);
         const jsonId = JSON.stringify(token.id);
-        await deleteTweet(tweet.id, tweet.authorId, jsonId);
-        window.location.replace(`/${token.username}`);
+        mutation.mutate(jsonId);
     };
 
     return (
@@ -85,7 +113,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                                     <RxDotsHorizontal />
                                 </button>
                                 <Menu anchorEl={anchorEl} onClose={handleAnchorClose} open={Boolean(anchorEl)}>
-                                    <MenuItem onClick={handleDelete} className="delete">
+                                    <MenuItem onClick={handleConfirmationClick} className="delete">
                                         Delete
                                     </MenuItem>
                                 </Menu>
@@ -136,6 +164,29 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             {tweet.replies.length > 0 && <Replies tweetId={tweet.id} tweetAuthor={tweet.author.username} />}
             {snackbar.open && (
                 <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
+            {isConfirmationOpen && (
+                <div className="html-modal-wrapper">
+                    <dialog open>
+                        <h1>Delete Tweet?</h1>
+                        <p>
+                            This can’t be undone and it will be removed from your profile, the timeline of any accounts that
+                            follow you, and from Twitter search results.
+                        </p>
+                        {isDeleting ? (
+                            <CircularLoading />
+                        ) : (
+                            <>
+                                <button className="btn btn-danger" onClick={handleDelete}>
+                                    Delete
+                                </button>
+                                <button className="btn btn-white" onClick={() => setIsConfirmationOpen(false)}>
+                                    Cancel
+                                </button>
+                            </>
+                        )}
+                    </dialog>
+                </div>
             )}
         </div>
     );

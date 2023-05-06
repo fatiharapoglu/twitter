@@ -80,8 +80,9 @@
 -   [x] if auth, show random non-followed 3 people with avatars for user to follow in right side
 -   [x] add complete profile reminder
 -   [x] add snackbar for some feedback, copy from twitter
--   [ ] add footer-like twitter info, github
--   [ ] try html dialog for confirmations
+-   [x] add footer-like twitter info, github
+-   [x] add html dialog for confirmations
+-   [x] find a better way to delete tweets other than window.location.replace()
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [ ] add twitter blue tick in edit profile
@@ -100,7 +101,6 @@
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
--   [ ] find a better way to delete tweets other than window.location.replace()
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
 -   [ ] if after deploy still slow, get info from user query, clean up tweet responses
 -   [ ] choose database and vercel serverless locations close
