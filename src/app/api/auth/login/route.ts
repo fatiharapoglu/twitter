@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
             description: user.description,
             location: user.location,
             website: user.website,
+            isPremium: user.isPremium,
             createdAt: user.createdAt,
             photoUrl: user.photoUrl,
             headerUrl: user.headerUrl,

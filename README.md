@@ -85,7 +85,7 @@
 -   [x] find a better way to delete tweets other than window.location.replace()
 -   [x] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [x] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
--   [ ] add twitter blue tick in edit profile
+-   [x] add twitter blue tick in edit profile
 -   [ ] change localhost to env or however next handles this
 -   [ ] message logic / socket io? feathers? how in next
 -   [ ] complete share button in tweet component

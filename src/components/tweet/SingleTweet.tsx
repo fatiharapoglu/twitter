@@ -167,7 +167,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             )}
             {isConfirmationOpen && (
                 <div className="html-modal-wrapper">
-                    <dialog open>
+                    <dialog open className="confirm">
                         <h1>Delete Tweet?</h1>
                         <p>
                             This can’t be undone and it will be removed from your profile, the timeline of any accounts that

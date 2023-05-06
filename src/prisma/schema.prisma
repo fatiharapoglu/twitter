@@ -18,6 +18,7 @@ model User {
     headerUrl     String?
     username      String   @unique @db.VarChar(20)
     password      String
+    isPremium     Boolean  @default(false)
     createdAt     DateTime @default(now())
     updatedAt     DateTime @default(now()) @updatedAt
     createdTweets Tweet[]  @relation("userTweets")

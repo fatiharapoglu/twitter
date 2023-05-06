@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
 import { useFormik } from "formik";
+import { useQueryClient } from "@tanstack/react-query";
 import { Avatar, TextField } from "@mui/material";
 import { MdOutlineAddAPhoto } from "react-icons/md";
+import { FaTwitter } from "react-icons/fa";
 import * as yup from "yup";
 import Image from "next/image";
-import { useQueryClient } from "@tanstack/react-query";
 
 import { UserProps } from "@/types/UserProps";
 import CircularLoading from "../misc/CircularLoading";
@@ -13,6 +14,7 @@ import { editUser } from "@/utilities/fetch";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import CustomSnackbar from "../misc/CustomSnackbar";
 import { SnackbarProps } from "@/types/SnackbarProps";
+import { checkBlue } from "@/utilities/auth";
 
 export default function EditProfile({ profile, refreshToken }: { profile: UserProps; refreshToken: () => void }) {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -20,6 +22,9 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
     const [photoFile, setPhotoFile] = useState<File | null>(null);
     const [headerFile, setHeaderFile] = useState<File | null>(null);
     const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
+    const [isBlueOpen, setIsBlueOpen] = useState(false);
+    const [blueInput, setBlueInput] = useState("");
+    const [isBlueLoading, setIsBlueLoading] = useState(false);
 
     const headerUploadInputRef = useRef<HTMLInputElement>(null);
     const photoUploadInputRef = useRef<HTMLInputElement>(null);
@@ -77,7 +82,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
             const response = await editUser(jsonValues, profile.username);
             if (!response.success) {
                 return setSnackbar({
-                    message: "Something went wrong while updating profile. Please try again",
+                    message: "Something went wrong while updating profile. Please try again.",
                     severity: "error",
                     open: true,
                 });
@@ -92,9 +97,43 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
         },
     });
 
+    const handleBlueSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (blueInput === "") return;
+        setIsBlueLoading(true);
+        const checkResponse = checkBlue(blueInput);
+        if (!checkResponse) {
+            setIsBlueLoading(false);
+            return setSnackbar({ message: "Invalid blue code.", severity: "error", open: true });
+        }
+        const response = await editUser(JSON.stringify({ isPremium: true }), profile.username);
+        if (!response.success) {
+            setIsBlueLoading(false);
+            return setSnackbar({
+                message: "Something went wrong while getting your blue. Please try again.",
+                severity: "error",
+                open: true,
+            });
+        }
+        setSnackbar({
+            message: "You got your blue successfully. Congrats!",
+            severity: "success",
+            open: true,
+        });
+        setIsBlueLoading(false);
+        setIsBlueOpen(false);
+        refreshToken();
+        queryClient.invalidateQueries(["users", profile.username]);
+    };
+
     return (
         <div className="edit-profile">
             <div className="profile-header">
+                <div className="get-blue">
+                    <button onClick={() => setIsBlueOpen(true)}>
+                        Twitter Blue? <FaTwitter />
+                    </button>
+                </div>
                 <Image
                     alt=""
                     src={
@@ -195,6 +234,72 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
             </form>
             {snackbar.open && (
                 <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
+            {isBlueOpen && (
+                <div className="html-modal-wrapper">
+                    <dialog open className="get-blue-modal">
+                        {profile.isPremium ? (
+                            <div className="blue-user">
+                                <Image src="/assets/favicon.png" alt="" width={75} height={75} />
+                                <h1>You have already got Blue status.</h1>
+                                <p>Thank you for caring.</p>
+                                <button
+                                    className="btn btn-white"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setIsBlueOpen(false);
+                                    }}
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <h1>
+                                    Want Twitter Blue? <FaTwitter />
+                                </h1>
+                                <p>
+                                    With Twitter Blue, you will have a little twitter bird next you your name, thats it! Dive
+                                    right in!
+                                </p>
+                                <p>
+                                    You can get the code from
+                                    <a href="https://github.com/fatiharapoglu/twitter" target="_blank">
+                                        {" "}
+                                        here{" "}
+                                    </a>
+                                    if you want.
+                                </p>
+                                {isBlueLoading ? (
+                                    <CircularLoading />
+                                ) : (
+                                    <form onSubmit={handleBlueSubmit}>
+                                        <input
+                                            type="text"
+                                            className="blue-input"
+                                            onChange={(e) => setBlueInput(e.target.value)}
+                                            value={blueInput}
+                                            placeholder="Enter your code"
+                                            autoFocus
+                                        />
+                                        <button className="btn btn-dark" type="submit">
+                                            Submit
+                                        </button>
+                                        <button
+                                            className="btn btn-white"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setIsBlueOpen(false);
+                                            }}
+                                        >
+                                            Close
+                                        </button>
+                                    </form>
+                                )}
+                            </>
+                        )}
+                    </dialog>
+                </div>
             )}
         </div>
     );
