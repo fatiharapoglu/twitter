@@ -20,7 +20,8 @@ export default function RightSidebar() {
                 {!isPending && !token && (
                     <div className="reminder">
                         <h1>Don’t miss what’s happening</h1>
-                        <div>
+                        <p>People on Twitter are the first to know.</p>
+                        <div className="reminder-buttons">
                             <Link href="/" className="btn btn-white">
                                 Log In
                             </Link>

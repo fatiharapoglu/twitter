@@ -11,12 +11,15 @@ import CircularLoading from "../misc/CircularLoading";
 import { uploadFile } from "@/utilities/storage";
 import { editUser } from "@/utilities/fetch";
 import { getFullURL } from "@/utilities/misc/getFullURL";
+import CustomSnackbar from "../misc/CustomSnackbar";
+import { SnackbarProps } from "@/types/SnackbarProps";
 
 export default function EditProfile({ profile, refreshToken }: { profile: UserProps; refreshToken: () => void }) {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
     const [headerPreview, setHeaderPreview] = useState<string | null>(null);
     const [photoFile, setPhotoFile] = useState<File | null>(null);
     const [headerFile, setHeaderFile] = useState<File | null>(null);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
     const headerUploadInputRef = useRef<HTMLInputElement>(null);
     const photoUploadInputRef = useRef<HTMLInputElement>(null);
@@ -73,10 +76,17 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
             const jsonValues = JSON.stringify(values);
             const response = await editUser(jsonValues, profile.username);
             if (!response.success) {
-                console.log(response);
-                return alert("Something went wrong. Please try again.");
+                return setSnackbar({
+                    message: "Something went wrong while updating profile. Please try again",
+                    severity: "error",
+                    open: true,
+                });
             }
-            alert("Profile updated successfully");
+            setSnackbar({
+                message: "Profile updated successfully.",
+                severity: "success",
+                open: true,
+            });
             refreshToken();
             queryClient.invalidateQueries(["users", profile.username]);
         },
@@ -183,6 +193,9 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                     )}
                 </div>
             </form>
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
         </div>
     );
 }

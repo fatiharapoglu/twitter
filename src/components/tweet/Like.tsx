@@ -6,10 +6,13 @@ import { motion } from "framer-motion";
 import { TweetOptionsProps, TweetResponse } from "@/types/TweetProps";
 import { getUserTweet, updateTweetLikes } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
+import { SnackbarProps } from "@/types/SnackbarProps";
+import CustomSnackbar from "../misc/CustomSnackbar";
 
 export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isLiked, setIsLiked] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
     const { token, isPending } = useContext(AuthContext);
     const queryClient = useQueryClient();
@@ -79,8 +82,11 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
 
     const handleLike = () => {
         if (!token) {
-            return alert("You are not logged in, you can't do that before log in.");
-            // snackbar or modal here
+            return setSnackbar({
+                message: "You need to login to like a tweet.",
+                severity: "info",
+                open: true,
+            });
         }
 
         const tokenOwnerId = JSON.stringify(token.id);
@@ -114,25 +120,30 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     }, [isButtonDisabled]);
 
     return (
-        <motion.button
-            className={`icon like ${isLiked ? "active" : ""}`}
-            onClick={handleLike}
-            whileTap={{ scale: 0.9 }}
-            animate={{ scale: isLiked ? [1, 1.5, 1.2, 1] : 1 }}
-            transition={{ duration: 0.25 }}
-            disabled={isButtonDisabled}
-        >
-            {isLiked ? (
-                <motion.span animate={{ scale: [1, 1.5, 1.2, 1] }} transition={{ duration: 0.25 }}>
-                    <FaHeart />
-                </motion.span>
-            ) : (
-                <motion.span animate={{ scale: [1, 0.8, 1] }} transition={{ duration: 0.25 }}>
-                    <FaRegHeart />
-                </motion.span>
+        <>
+            <motion.button
+                className={`icon like ${isLiked ? "active" : ""}`}
+                onClick={handleLike}
+                whileTap={{ scale: 0.9 }}
+                animate={{ scale: isLiked ? [1, 1.5, 1.2, 1] : 1 }}
+                transition={{ duration: 0.25 }}
+                disabled={isButtonDisabled}
+            >
+                {isLiked ? (
+                    <motion.span animate={{ scale: [1, 1.5, 1.2, 1] }} transition={{ duration: 0.25 }}>
+                        <FaHeart />
+                    </motion.span>
+                ) : (
+                    <motion.span animate={{ scale: [1, 0.8, 1] }} transition={{ duration: 0.25 }}>
+                        <FaRegHeart />
+                    </motion.span>
+                )}
+                <motion.span animate={{ scale: isLiked ? [0, 1.2, 1] : 0 }} transition={{ duration: 0.25 }} />
+                {data?.tweet?.likedBy?.length === 0 ? null : <span className="count">{data?.tweet?.likedBy?.length}</span>}
+            </motion.button>
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
             )}
-            <motion.span animate={{ scale: isLiked ? [0, 1.2, 1] : 0 }} transition={{ duration: 0.25 }} />
-            {data?.tweet?.likedBy?.length === 0 ? null : <span className="count">{data?.tweet?.likedBy?.length}</span>}
-        </motion.button>
+        </>
     );
 }

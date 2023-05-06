@@ -78,7 +78,9 @@
 -   [x] search mechanism, only for users / users and tweets would be better
 -   [x] useDeferredValue for search if react query has not have it
 -   [x] if auth, show random non-followed 3 people with avatars for user to follow in right side
--   [ ] add snackbar for some feedback, copy from twitter
+-   [x] add complete profile reminder
+-   [x] add snackbar for some feedback, copy from twitter
+-   [ ] add footer-like twitter info, github
 -   [ ] try html dialog for confirmations
 -   [ ] find throw new Errors, console.logs, message:, error:, snackbar here, alert(), confirm(),
 -   [ ] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method

@@ -18,10 +18,13 @@ import PreviewDialog from "../dialog/PreviewDialog";
 import { shimmer } from "@/utilities/misc/shimmer";
 import NewReply from "./NewReply";
 import Replies from "./Replies";
+import CustomSnackbar from "../misc/CustomSnackbar";
+import { SnackbarProps } from "@/types/SnackbarProps";
 
 export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token: VerifiedToken }) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(e.currentTarget);
@@ -42,7 +45,13 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
 
     const handleDelete = async () => {
         if (confirm("Are you sure you want to delete this tweet?") === false) return handleAnchorClose();
-        if (!token) return alert("You must be logged in to delete tweets...");
+        if (!token) {
+            return setSnackbar({
+                message: "You must be logged in to delete tweets...",
+                severity: "info",
+                open: true,
+            });
+        }
         handleAnchorClose();
         const jsonId = JSON.stringify(token.id);
         await deleteTweet(tweet.id, tweet.authorId, jsonId);
@@ -88,9 +97,9 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                     <div className="tweet-text">
                         {tweet.isReply && (
                             <Link href={`/${tweet.repliedTo.author.username}`} className="reply-to">
-                                <span className="mention">@{tweet.repliedTo.author.username} </span>
+                                <span className="mention">@{tweet.repliedTo.author.username}</span>
                             </Link>
-                        )}
+                        )}{" "}
                         {tweet.text}
                     </div>
                     {tweet.photoUrl && (
@@ -125,6 +134,9 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             </div>
             {token && <NewReply token={token} tweet={tweet} />}
             {tweet.replies.length > 0 && <Replies tweetId={tweet.id} tweetAuthor={tweet.author.username} />}
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
         </div>
     );
 }

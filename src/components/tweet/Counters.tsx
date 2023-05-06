@@ -5,17 +5,23 @@ import { TweetProps } from "@/types/TweetProps";
 import User from "../user/User";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { scrollToBottom } from "@/utilities/misc/scrollToBottom";
+import CustomSnackbar from "../misc/CustomSnackbar";
+import { SnackbarProps } from "@/types/SnackbarProps";
 
 export default function Counters({ tweet }: { tweet: TweetProps }) {
     const [dialogType, setDialogType] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
     const { token } = useContext(AuthContext);
 
     const handleDialogOpen = (type: string) => {
         if (!token) {
-            return alert("You are not logged in, you can't do that before log in.");
-            // snackbar or modal here
+            return setSnackbar({
+                message: "You need to log in to view likes or retweets.",
+                severity: "info",
+                open: true,
+            });
         }
 
         setDialogType(type);
@@ -77,6 +83,9 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                         </div>
                     </DialogContent>
                 </Dialog>
+            )}
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
             )}
         </>
     );

@@ -1,14 +1,19 @@
-import Image from "next/image";
-import { Dialog, DialogContent, DialogTitle, TextField, InputAdornment } from "@mui/material";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTitle, TextField, InputAdornment } from "@mui/material";
+import Image from "next/image";
 import * as yup from "yup";
 
 import { LogInDialogProps } from "@/types/DialogProps";
 import { logIn } from "@/utilities/fetch";
 import CircularLoading from "../misc/CircularLoading";
+import { SnackbarProps } from "@/types/SnackbarProps";
+import CustomSnackbar from "../misc/CustomSnackbar";
 
 export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps) {
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
+
     const router = useRouter();
 
     const validationSchema = yup.object({
@@ -34,13 +39,11 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
         onSubmit: async (values, { resetForm }) => {
             const response = await logIn(JSON.stringify(values));
             if (!response.success) {
-                console.log(response);
-                return alert("Something went wrong. Please try again.");
-                // snackbar here
+                setSnackbar({ message: response.message, severity: "error", open: true });
+                return;
             }
             resetForm();
             handleLogInClose();
-            console.log("Logged in successfully.");
             router.push("/explore");
         },
     });
@@ -90,6 +93,9 @@ export default function LogInDialog({ open, handleLogInClose }: LogInDialogProps
                     </button>
                 )}
             </form>
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
         </Dialog>
     );
 }

@@ -444,19 +444,27 @@ body {
         display: flex;
         flex-direction: column;
         position: relative;
-        align-items: center;
-        text-align: center;
-        height: 100px;
-        justify-content: space-around;
+        gap: 1rem;
 
         h1 {
             font-weight: 800;
             font-size: 1.25rem;
         }
 
+        p {
+            font-size: smaller;
+        }
+
         .btn {
             margin: 0.25rem;
             margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .reminder-buttons {
+            scale: 0.75;
+            margin-bottom: -1rem;
         }
     }
 
@@ -476,7 +484,7 @@ body {
         }
 
         p {
-            font-size: 0.85rem;
+            font-size: smaller;
             line-height: 1.25;
         }
 
@@ -544,7 +552,6 @@ body {
 .new-tweet-form {
     display: flex;
     padding: 1rem;
-    border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
 
     form {
@@ -1216,6 +1223,7 @@ body {
     padding: 2rem 1rem;
     font-size: 1.25rem;
     font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .button-group {
@@ -1325,6 +1333,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
 
     .top {
         display: flex;

@@ -1,14 +1,19 @@
-import Image from "next/image";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Dialog, DialogContent, DialogTitle, InputAdornment, TextField } from "@mui/material";
 import { useFormik } from "formik";
+import { Dialog, DialogContent, DialogTitle, InputAdornment, TextField } from "@mui/material";
 import * as yup from "yup";
+import Image from "next/image";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
 import { createUser } from "@/utilities/fetch";
 import CircularLoading from "../misc/CircularLoading";
+import CustomSnackbar from "../misc/CustomSnackbar";
+import { SnackbarProps } from "@/types/SnackbarProps";
 
 export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogProps) {
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
+
     const router = useRouter();
 
     const validationSchema = yup.object({
@@ -36,9 +41,18 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
         onSubmit: async (values, { resetForm }) => {
             const response = await createUser(JSON.stringify(values));
             if (!response.success) {
-                console.log(response);
-                if (response.message === "Username already exists.") return alert("Username already exists.");
-                return alert("Something went wrong. Please try again.");
+                if (response.message === "Username already exists.") {
+                    return setSnackbar({
+                        message: "Username already exists.",
+                        severity: "error",
+                        open: true,
+                    });
+                }
+                return setSnackbar({
+                    message: "Something went wrong. Please try again.",
+                    severity: "error",
+                    open: true,
+                });
             }
             resetForm();
             handleSignUpClose();
@@ -106,6 +120,9 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                     </button>
                 )}
             </form>
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
         </Dialog>
     );
 }

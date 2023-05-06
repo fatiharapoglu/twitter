@@ -18,19 +18,25 @@ import Follow from "./Follow";
 import User from "./User";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import PreviewDialog from "../dialog/PreviewDialog";
+import { SnackbarProps } from "@/types/SnackbarProps";
+import CustomSnackbar from "../misc/CustomSnackbar";
 
 export default function Profile({ profile }: { profile: UserProps }) {
     const [dialogType, setDialogType] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [preview, setPreview] = useState({ open: false, url: "" });
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
     const { token } = useContext(AuthContext);
     const pathname = usePathname();
 
     const handleDialogOpen = (type: string) => {
         if (!token) {
-            return alert("You are not logged in, you can't do that before log in.");
-            // snackbar or modal here
+            return setSnackbar({
+                message: "You need to login to see the followers.",
+                severity: "info",
+                open: true,
+            });
         }
 
         if (type === "following" && profile.following.length === 0) return;
@@ -198,6 +204,9 @@ export default function Profile({ profile }: { profile: UserProps }) {
                 </Dialog>
             )}
             <PreviewDialog open={preview.open} handlePreviewClose={handlePreviewClose} url={preview.url} />
+            {snackbar.open && (
+                <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
+            )}
         </>
     );
 }
