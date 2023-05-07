@@ -1,5 +1,7 @@
+const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
+
 export const getAllTweets = async (page = "1") => {
-    const response = await fetch(`http://localhost:3000/api/tweets/all?page=${page}`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/all?page=${page}`, {
         next: {
             revalidate: 0,
         },
@@ -8,7 +10,7 @@ export const getAllTweets = async (page = "1") => {
 };
 
 export const getUserTweets = async (username: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${username}`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${username}`, {
         next: {
             revalidate: 0,
         },
@@ -17,7 +19,7 @@ export const getUserTweets = async (username: string) => {
 };
 
 export const getUserLikes = async (username: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${username}/likes`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${username}/likes`, {
         next: {
             revalidate: 0,
         },
@@ -26,7 +28,7 @@ export const getUserLikes = async (username: string) => {
 };
 
 export const getUserMedia = async (username: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${username}/media`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${username}/media`, {
         next: {
             revalidate: 0,
         },
@@ -35,7 +37,7 @@ export const getUserMedia = async (username: string) => {
 };
 
 export const getUserReplies = async (username: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${username}/replies`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${username}/replies`, {
         next: {
             revalidate: 0,
         },
@@ -44,7 +46,7 @@ export const getUserReplies = async (username: string) => {
 };
 
 export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}`, {
         next: {
             revalidate: 0,
         },
@@ -53,7 +55,7 @@ export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
 };
 
 export const createTweet = async (tweet: string) => {
-    const response = await fetch(`/api/tweets/create`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -64,7 +66,7 @@ export const createTweet = async (tweet: string) => {
 };
 
 export const logIn = async (candidate: string) => {
-    const response = await fetch(`/api/auth/login`, {
+    const response = await fetch(`${HOST_URL}/api/auth/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -83,7 +85,7 @@ export const logInAsTest = async () => {
 };
 
 export const logout = async () => {
-    await fetch(`http://localhost:3000/api/auth/logout`, {
+    await fetch(`${HOST_URL}/api/auth/logout`, {
         next: {
             revalidate: 0,
         },
@@ -91,7 +93,7 @@ export const logout = async () => {
 };
 
 export const createUser = async (newUser: string) => {
-    const response = await fetch(`/api/users/create`, {
+    const response = await fetch(`${HOST_URL}/api/users/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -102,7 +104,7 @@ export const createUser = async (newUser: string) => {
 };
 
 export const getUser = async (username: string) => {
-    const response = await fetch(`http://localhost:3000/api/users/${username}`, {
+    const response = await fetch(`${HOST_URL}/api/users/${username}`, {
         next: {
             revalidate: 0,
         },
@@ -111,7 +113,7 @@ export const getUser = async (username: string) => {
 };
 
 export const editUser = async (updatedUser: string, username: string) => {
-    const response = await fetch(`http://localhost:3000/api/users/${username}/edit`, {
+    const response = await fetch(`${HOST_URL}/api/users/${username}/edit`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -123,7 +125,7 @@ export const editUser = async (updatedUser: string, username: string) => {
 
 export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isLiked: boolean) => {
     const route = isLiked ? "unlike" : "like";
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -135,7 +137,7 @@ export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tok
 
 export const updateRetweets = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isRetweeted: boolean) => {
     const route = isRetweeted ? "unretweet" : "retweet";
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}/${route}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -147,7 +149,7 @@ export const updateRetweets = async (tweetId: string, tweetAuthor: string, token
 
 export const updateUserFollows = async (followedUsername: string, tokenOwnerId: string, isFollowed: boolean) => {
     const route = isFollowed ? "unfollow" : "follow";
-    const response = await fetch(`http://localhost:3000/api/users/${followedUsername}/${route}`, {
+    const response = await fetch(`${HOST_URL}/api/users/${followedUsername}/${route}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -158,7 +160,7 @@ export const updateUserFollows = async (followedUsername: string, tokenOwnerId: 
 };
 
 export const deleteTweet = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/delete`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}/delete`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -169,7 +171,7 @@ export const deleteTweet = async (tweetId: string, tweetAuthor: string, tokenOwn
 };
 
 export const createReply = async (reply: string, tweetAuthor: string, tweetId: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/reply`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}/reply`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -180,7 +182,7 @@ export const createReply = async (reply: string, tweetAuthor: string, tweetId: s
 };
 
 export const getReplies = async (tweetAuthor: string, tweetId: string) => {
-    const response = await fetch(`http://localhost:3000/api/tweets/${tweetAuthor}/${tweetId}/reply`, {
+    const response = await fetch(`${HOST_URL}/api/tweets/${tweetAuthor}/${tweetId}/reply`, {
         next: {
             revalidate: 0,
         },
@@ -189,11 +191,11 @@ export const getReplies = async (tweetAuthor: string, tweetId: string) => {
 };
 
 export const search = async (text: string) => {
-    const response = await fetch(`http://localhost:3000/api/search?q=${text}`);
+    const response = await fetch(`${HOST_URL}/api/search?q=${text}`);
     return response.json();
 };
 
 export const getRandomThreeUsers = async () => {
-    const response = await fetch("http://localhost:3000/api/users/random");
+    const response = await fetch(`${HOST_URL}/api/users/random`);
     return response.json();
 };

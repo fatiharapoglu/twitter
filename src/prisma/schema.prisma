@@ -40,9 +40,9 @@ model Tweet {
     replies     Tweet[]  @relation("tweetReplies")
     retweets    Tweet[]  @relation("retweetOf")
     isRetweet   Boolean  @default(false)
-    retweetOf   Tweet?   @relation("retweetOf", fields: [retweetOfId], references: [id])
+    retweetOf   Tweet?   @relation("retweetOf", fields: [retweetOfId], references: [id], onDelete: Cascade)
     retweetOfId String?
     isReply     Boolean  @default(false)
-    repliedTo   Tweet?   @relation("tweetReplies", fields: [repliedToId], references: [id])
+    repliedTo   Tweet?   @relation("tweetReplies", fields: [repliedToId], references: [id], onDelete: Cascade)
     repliedToId String?
 }

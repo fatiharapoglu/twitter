@@ -1,5 +1,7 @@
 const verifyTokenFromServer = async (token: string) => {
-    const response = await fetch("http://localhost:3000/api/auth/verify", {
+    const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
+
+    const response = await fetch(`${HOST_URL}/api/auth/verify`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

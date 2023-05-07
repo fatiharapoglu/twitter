@@ -13,7 +13,7 @@ import CircularLoading from "@/components/misc/CircularLoading";
 export default function ExplorePage() {
     const { token, isPending } = useContext(AuthContext);
 
-    const { data, error, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery(
+    const { data, fetchNextPage, isLoading, hasNextPage } = useInfiniteQuery(
         ["tweets"],
         async ({ pageParam = 1 }) => getAllTweets(pageParam),
         {
@@ -37,8 +37,6 @@ export default function ExplorePage() {
 
     if (isPending) return <CircularLoading />;
 
-    if (error) return null; //global error
-
     return (
         <main>
             <h1 className="page-name">Explore</h1>
@@ -52,7 +50,7 @@ export default function ExplorePage() {
                     hasMore={!!hasNextPage}
                     loader={<CircularLoading />}
                 >
-                    <Tweets tweets={tweetsResponse ? tweetsResponse.tweets : []} />
+                    <Tweets tweets={tweetsResponse && tweetsResponse.tweets} />
                 </InfiniteScroll>
             )}
         </main>
