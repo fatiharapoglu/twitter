@@ -14,9 +14,3 @@ export const verifyJwtToken = async (token: string) => {
         return null;
     }
 };
-
-export const checkBlue = (input: string) => {
-    const secret = process.env.NEXT_PUBLIC_BLUE_SECRET_KEY;
-    if (secret !== input) return false;
-    return true;
-};

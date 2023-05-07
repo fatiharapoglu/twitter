@@ -2,7 +2,7 @@
 
 const nextConfig = {
     experimental: {
-        appDir: true,
+        serverActions: true,
     },
     images: {
         domains: ["nifemmkaxhltrtqltltq.supabase.co"],

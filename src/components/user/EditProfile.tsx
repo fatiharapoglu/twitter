@@ -14,7 +14,7 @@ import { editUser } from "@/utilities/fetch";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import CustomSnackbar from "../misc/CustomSnackbar";
 import { SnackbarProps } from "@/types/SnackbarProps";
-import { checkBlue } from "@/utilities/auth";
+import { checkBlueFromServer } from "@/utilities/misc/checkBlue";
 
 export default function EditProfile({ profile, refreshToken }: { profile: UserProps; refreshToken: () => void }) {
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -101,7 +101,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
         e.preventDefault();
         if (blueInput === "") return;
         setIsBlueLoading(true);
-        const checkResponse = checkBlue(blueInput);
+        const checkResponse = await checkBlueFromServer(blueInput);
         if (!checkResponse) {
             setIsBlueLoading(false);
             return setSnackbar({ message: "Invalid blue code.", severity: "error", open: true });
