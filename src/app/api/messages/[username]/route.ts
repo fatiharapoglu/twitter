@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
+import { Conversation } from "@/types/MessageProps";
 
 export async function GET(request: NextRequest, { params: { username } }: { params: { username: string } }) {
     const token = request.cookies.get("token")?.value;
@@ -29,13 +30,51 @@ export async function GET(request: NextRequest, { params: { username } }: { para
                     },
                 ],
             },
+            include: {
+                sender: {
+                    select: {
+                        name: true,
+                        username: true,
+                        photoUrl: true,
+                        isPremium: true,
+                    },
+                },
+                recipient: {
+                    select: {
+                        name: true,
+                        username: true,
+                        photoUrl: true,
+                        isPremium: true,
+                    },
+                },
+            },
             orderBy: [
                 {
                     createdAt: "asc",
                 },
             ],
         });
-        return NextResponse.json({ success: true, messages });
+
+        const conversations: Record<string, Conversation> = {};
+
+        messages.forEach((message) => {
+            const sender = message.sender.username;
+            const recipient = message.recipient.username;
+            const conversationKey = [sender, recipient].sort().join("-");
+
+            if (!conversations.hasOwnProperty(conversationKey)) {
+                conversations[conversationKey] = {
+                    participants: [sender, recipient],
+                    messages: [],
+                };
+            }
+
+            conversations[conversationKey].messages.push(message);
+        });
+
+        const formattedConversations: Conversation[] = Object.values(conversations);
+
+        return NextResponse.json({ success: true, formattedConversations });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });
     }

@@ -9,6 +9,7 @@ import NewMessageDialog from "@/components/dialog/NewMessageDialog";
 import { AuthContext } from "../layout";
 import CircularLoading from "@/components/misc/CircularLoading";
 import { getUserMessages } from "@/utilities/fetch";
+import Conversation from "@/components/message/Conversation";
 
 export default function MessagesPage() {
     const [isNewMessageOpen, setIsNewMessageOpen] = useState(false);
@@ -25,7 +26,9 @@ export default function MessagesPage() {
         setIsNewMessageOpen(false);
     };
 
-    if (isPending || !token) return <CircularLoading />;
+    if (isPending || !token || isLoading) return <CircularLoading />;
+
+    const conversations = data.formattedConversations;
 
     return (
         <>
@@ -37,15 +40,11 @@ export default function MessagesPage() {
                     </button>
                 </h1>
                 {isFetched && !data && <NothingToShow />}
-                {isLoading ? (
-                    <CircularLoading />
-                ) : (
-                    data?.messages.map((message) => (
-                        <div key={message.id} className="message">
-                            <div className="message-content">{message.text}</div>
-                        </div>
-                    ))
-                )}
+                <div>
+                    {conversations.map((conversation) => {
+                        return <Conversation conversation={conversation} token={token} />;
+                    })}
+                </div>
             </main>
             <NewMessageDialog handleNewMessageClose={handleNewMessageClose} open={isNewMessageOpen} token={token} />
         </>
