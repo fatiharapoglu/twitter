@@ -87,8 +87,10 @@
 -   [x] handle home/edit explore/edit and this kind of paths, redirect if requested. or catch all method
 -   [x] add twitter blue tick in edit profile
 -   [x] change localhost to env or however next handles this
+-   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] message logic / socket io? feathers? how in next
 -   [ ] complete share button in tweet component
+-   [ ] handle users message click without auth
 -   [ ] handle users trying to message themselves
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
 -   [ ] how to add notifications? if really complex, hang it for later

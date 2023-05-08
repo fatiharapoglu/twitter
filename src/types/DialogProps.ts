@@ -28,3 +28,9 @@ export type PreviewDialogProps = {
     handlePreviewClose: () => void;
     url: string;
 };
+
+export type NewMessageDialogProps = {
+    open: boolean;
+    handleNewMessageClose: () => void;
+    token: UserProps;
+};

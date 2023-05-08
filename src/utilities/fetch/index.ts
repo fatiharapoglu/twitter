@@ -199,3 +199,28 @@ export const getRandomThreeUsers = async () => {
     const response = await fetch(`${HOST_URL}/api/users/random`);
     return response.json();
 };
+
+export const createMessage = async (message: string) => {
+    const response = await fetch(`${HOST_URL}/api/messages/create`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: message,
+    });
+
+    const json = await response.json();
+
+    if (!json.success) throw new Error(json.message);
+
+    return json;
+};
+
+export const getUserMessages = async (username: string) => {
+    const response = await fetch(`${HOST_URL}/api/messages/${username}`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};

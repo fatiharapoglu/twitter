@@ -188,14 +188,14 @@ body {
         min-width: 550px;
         padding: 0.5rem;
 
-        .emoji-picker {
-            position: static;
-            z-index: 9999;
-        }
-
         * {
             border: none;
         }
+    }
+
+    .emoji-picker {
+        position: static;
+        z-index: 9999;
     }
 
     .logout-buttons {
@@ -205,6 +205,31 @@ body {
 
         .btn {
             width: 75%;
+        }
+    }
+
+    .new-message-form {
+        .title {
+            margin-bottom: -1rem;
+        }
+
+        .dropzone {
+            transform: none;
+            margin-right: inherit;
+        }
+
+        .input-additions {
+            border-top: none;
+            justify-content: center;
+        }
+
+        .btn {
+            width: 50%;
+        }
+
+        .emoji-picker {
+            display: flex;
+            justify-content: center;
         }
     }
 }
@@ -558,6 +583,35 @@ body {
     }
 }
 
+.input-additions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 20px;
+    color: var(--twitter-blue);
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+
+    svg:hover {
+        cursor: pointer;
+    }
+
+    .progress-circle {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        gap: 0.5rem;
+
+        .progress-text {
+            font-size: 0.75rem;
+        }
+
+        .error {
+            color: red;
+        }
+    }
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -621,35 +675,6 @@ body {
         .input ::before,
         .input:hover ::before {
             border: none;
-        }
-
-        .input-additions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 20px;
-            color: var(--twitter-blue);
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-
-            svg:hover {
-                cursor: pointer;
-            }
-
-            .progress-circle {
-                display: flex;
-                margin-left: auto;
-                align-items: center;
-                gap: 0.5rem;
-
-                .progress-text {
-                    font-size: 0.75rem;
-                }
-
-                .error {
-                    color: red;
-                }
-            }
         }
     }
 }
@@ -1354,8 +1379,17 @@ body {
     text-align: center;
     padding: 5rem 0;
     font-size: 1.5rem;
-    font-weight: 300;
     color: var(--twitter-muted);
+
+    h1 {
+        font-weight: 300;
+    }
+
+    p {
+        font-size: x-large;
+        padding-top: 2rem;
+        font-family: cursive;
+    }
 }
 
 .dropzone {
@@ -1367,7 +1401,6 @@ body {
     border-radius: 2px;
     color: var(--twitter-gray);
     outline: none;
-    transition: border 0.2s ease-in-out;
     margin-top: 1rem;
     transform: translateX(-65px);
     margin-right: -4rem;
@@ -1575,6 +1608,18 @@ body {
     color: var(--twitter-blue);
     padding-left: 2px;
     display: inline-flex;
+}
+
+.messages {
+    .page-name {
+        position: relative;
+
+        .new-message {
+            position: absolute;
+            right: 1rem;
+            top: 1.5rem;
+        }
+    }
 }
 
 ::-webkit-scrollbar {

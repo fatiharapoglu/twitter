@@ -15,6 +15,7 @@ export const middleware = async (request: NextRequest) => {
         "/retweet",
         "/unretweet",
         "/tweets/create",
+        "/messages/create",
     ];
     const staticRoutesPrivate = ["/notifications", "/messages", "/home"];
 
