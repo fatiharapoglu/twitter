@@ -7,16 +7,15 @@ import { getFullURL } from "@/utilities/misc/getFullURL";
 import { formatDate, formatDateExtended } from "@/utilities/date";
 import ProfileCard from "../user/ProfileCard";
 import { BsThreeDots } from "react-icons/bs";
+import { ConversationProps } from "@/types/MessageProps";
 
-export default function Conversation({ conversation, token }: { conversation: any; token: any }) {
+export default function Conversation({ conversation, token, handleConversations }: ConversationProps) {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-    console.log(conversation);
-
-    const conversationedUsername = conversation.participants.find((user: any) => user !== token.username);
+    const recipient = conversation.participants.find((user) => user !== token.username);
 
     const { name, username, photoUrl, isPremium } =
-        conversation.messages[conversation.messages.length - 1].recipient.username === conversationedUsername
+        conversation.messages[conversation.messages.length - 1].recipient.username === recipient
             ? conversation.messages[conversation.messages.length - 1].recipient
             : conversation.messages[conversation.messages.length - 1].sender;
 
@@ -28,9 +27,12 @@ export default function Conversation({ conversation, token }: { conversation: an
     const handlePopoverClose = () => {
         setAnchorEl(null);
     };
+    const handleConversationClick = () => {
+        handleConversations(true, conversation.messages);
+    };
 
     return (
-        <div className="conversation">
+        <div className="conversation" onClick={handleConversationClick}>
             <Link href={`/${username}`} onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
                 <Avatar
                     className="avatar"

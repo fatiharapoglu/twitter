@@ -1630,6 +1630,7 @@ body {
         transition: background-color 0.2s ease-in-out;
         height: 65px;
         cursor: pointer;
+        border-bottom: 1px solid var(--border-color);
 
         &:hover {
             background-color: var(--hover);

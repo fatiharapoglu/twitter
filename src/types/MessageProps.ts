@@ -1,13 +1,20 @@
-export type Message = {
-    sender: {
-        username: string;
-    };
-    recipient: {
-        username: string;
-    };
+import { UserProps } from "./UserProps";
+
+export type MessageProps = {
+    sender: UserProps;
+    recipient: UserProps;
+    text: string;
+    createdAt: Date;
+    photoUrl: string;
 };
 
-export type Conversation = {
+export type ConversationResponse = {
     participants: string[];
-    messages: Message[];
+    messages: MessageProps[];
+};
+
+export type ConversationProps = {
+    conversation: ConversationResponse;
+    token: UserProps;
+    handleConversations: (isSelected: boolean, messages: any) => void;
 };

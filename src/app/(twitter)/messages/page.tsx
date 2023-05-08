@@ -10,9 +10,12 @@ import { AuthContext } from "../layout";
 import CircularLoading from "@/components/misc/CircularLoading";
 import { getUserMessages } from "@/utilities/fetch";
 import Conversation from "@/components/message/Conversation";
+import { ConversationResponse } from "@/types/MessageProps";
+import Messages from "@/components/message/Messages";
 
 export default function MessagesPage() {
     const [isNewMessageOpen, setIsNewMessageOpen] = useState(false);
+    const [isConversationSelected, setIsConversationSelected] = useState({ selected: false, messages: [] });
 
     const { token, isPending } = useContext(AuthContext);
 
@@ -24,6 +27,10 @@ export default function MessagesPage() {
 
     const handleNewMessageClose = () => {
         setIsNewMessageOpen(false);
+    };
+
+    const handleConversations = (isSelected: boolean, messages: any = []) => {
+        setIsConversationSelected({ selected: isSelected, messages });
     };
 
     if (isPending || !token || isLoading) return <CircularLoading />;
@@ -40,11 +47,23 @@ export default function MessagesPage() {
                     </button>
                 </h1>
                 {isFetched && !data && <NothingToShow />}
-                <div>
-                    {conversations.map((conversation) => {
-                        return <Conversation conversation={conversation} token={token} />;
-                    })}
-                </div>
+                {!isConversationSelected.selected && (
+                    <div>
+                        {conversations.map((conversation: ConversationResponse) => {
+                            return (
+                                <Conversation
+                                    key={conversation.participants.join("+")}
+                                    conversation={conversation}
+                                    token={token}
+                                    handleConversations={handleConversations}
+                                />
+                            );
+                        })}
+                    </div>
+                )}
+                {isConversationSelected.selected && (
+                    <Messages selectedMessages={isConversationSelected.messages} handleConversations={handleConversations} />
+                )}
             </main>
             <NewMessageDialog handleNewMessageClose={handleNewMessageClose} open={isNewMessageOpen} token={token} />
         </>
