@@ -26,3 +26,10 @@ export type MessagesProps = {
     handleConversations: (isSelected: boolean, messages?: MessageProps[], messagedUsername?: string) => void;
     token: UserProps;
 };
+
+export type MessageFormProps = {
+    token: UserProps;
+    messagedUsername: string;
+    setFreshMessages: any;
+    freshMessages: MessageProps[];
+};

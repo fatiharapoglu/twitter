@@ -1,10 +1,17 @@
+import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 import Message from "./Message";
 import NewMessageBox from "./NewMessageBox";
-import { MessagesProps } from "@/types/MessageProps";
+import { MessageProps, MessagesProps } from "@/types/MessageProps";
 
 export default function Messages({ selectedMessages, messagedUsername, handleConversations, token }: MessagesProps) {
+    const [freshMessages, setFreshMessages] = useState([] as MessageProps[]);
+
+    useEffect(() => {
+        setFreshMessages(selectedMessages);
+    }, [selectedMessages]);
+
     return (
         <main className="messages-container">
             <div className="back-to">
@@ -16,11 +23,17 @@ export default function Messages({ selectedMessages, messagedUsername, handleCon
                 </div>
             </div>
             <div className="messages-wrapper">
-                {selectedMessages.map((message) => (
-                    <Message key={message.id} message={message} messagedUsername={messagedUsername} />
-                ))}
+                {freshMessages.length > 0 &&
+                    freshMessages.map((message) => (
+                        <Message key={message.id} message={message} messagedUsername={messagedUsername} />
+                    ))}
             </div>
-            <NewMessageBox messagedUsername={messagedUsername} token={token} />
+            <NewMessageBox
+                messagedUsername={messagedUsername}
+                token={token}
+                setFreshMessages={setFreshMessages}
+                freshMessages={freshMessages}
+            />
         </main>
     );
 }
