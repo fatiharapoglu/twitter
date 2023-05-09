@@ -1648,19 +1648,32 @@ body {
                     width: fit-content;
                     max-width: 310px;
                     overflow-wrap: anywhere;
+                    font-size: 0.9rem;
+                }
+
+                .message-image {
+                    border: 1px solid var(--border-color);
+                    border-radius: 1.5rem;
+                    overflow: hidden;
+                    margin-top: 0.5rem;
+                    width: fit-content;
+
+                    img {
+                        object-fit: cover;
+                        display: block;
+                        cursor: pointer;
+                    }
                 }
 
                 &.message-right {
                     margin-left: auto;
+                    text-align: end;
 
                     .message-text {
                         border-bottom-right-radius: 0;
                         background-color: var(--twitter-blue);
                         color: var(--twitter-white);
-                    }
-
-                    .message-date {
-                        text-align: end;
+                        margin-left: auto;
                     }
                 }
 
@@ -1702,7 +1715,7 @@ body {
             display: flex;
             flex-direction: column;
             height: 45px;
-            gap: 0.33rem;
+            gap: 0.25rem;
 
             .last-message {
                 white-space: nowrap;
@@ -1710,6 +1723,7 @@ body {
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-family: var(--font-poppins);
+                line-height: 1.5;
             }
 
             .user-section {
