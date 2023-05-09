@@ -88,6 +88,8 @@
 -   [x] add twitter blue tick in edit profile
 -   [x] change localhost to env or however next handles this
 -   [x] add messages feature
+-   [x] add images for messaging
+-   [ ] handle username is not found error with snackbar while messaging
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] handle users message click without auth

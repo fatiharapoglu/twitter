@@ -28,7 +28,9 @@ export default function WhoToFollow() {
                 <div className="who-to-follow">
                     <h1>
                         Who to follow
-                        <AiOutlineClose className="btn-close icon-hoverable right-sidebar-close" onClick={handleClose} />
+                        <button className="btn-close icon-hoverable right-sidebar-close" onClick={handleClose}>
+                            <AiOutlineClose />
+                        </button>
                     </h1>
                     <div className="user-wrapper">
                         <User user={data.users[0]} />

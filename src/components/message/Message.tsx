@@ -10,10 +10,6 @@ import { shimmer } from "@/utilities/misc/shimmer";
 export default function Message({ message, messagedUsername }: { message: MessageProps; messagedUsername: string }) {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-    const handleImageClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        handlePreviewClick();
-    };
     const handlePreviewClick = () => {
         setIsPreviewOpen(true);
     };
@@ -28,7 +24,7 @@ export default function Message({ message, messagedUsername }: { message: Messag
                 <>
                     <div className="message-image">
                         <Image
-                            onClick={handleImageClick}
+                            onClick={handlePreviewClick}
                             src={getFullURL(message.photoUrl)}
                             alt="message image"
                             placeholder="blur"

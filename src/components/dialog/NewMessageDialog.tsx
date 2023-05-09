@@ -104,8 +104,24 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                             />
                         </div>
                         <div className="input-additions">
-                            <FaRegImage onClick={() => setShowDropzone(true)} />
-                            <FaRegSmile onClick={() => setShowPicker(!showPicker)} />
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowDropzone(true);
+                                }}
+                                className="icon-hoverable"
+                            >
+                                <FaRegImage />
+                            </button>
+                            <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowPicker(!showPicker);
+                                }}
+                                className="icon-hoverable"
+                            >
+                                <FaRegSmile />
+                            </button>
                         </div>
                     </div>
                     {showPicker && (

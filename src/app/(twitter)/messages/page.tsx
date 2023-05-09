@@ -10,14 +10,14 @@ import { AuthContext } from "../layout";
 import CircularLoading from "@/components/misc/CircularLoading";
 import { getUserMessages } from "@/utilities/fetch";
 import Conversation from "@/components/message/Conversation";
-import { ConversationResponse } from "@/types/MessageProps";
+import { ConversationResponse, MessageProps } from "@/types/MessageProps";
 import Messages from "@/components/message/Messages";
 
 export default function MessagesPage() {
     const [isNewMessageOpen, setIsNewMessageOpen] = useState(false);
     const [isConversationSelected, setIsConversationSelected] = useState({
         selected: false,
-        messages: [],
+        messages: [] as MessageProps[],
         messagedUsername: "",
     });
 
@@ -33,7 +33,7 @@ export default function MessagesPage() {
         setIsNewMessageOpen(false);
     };
 
-    const handleConversations = (isSelected: boolean, messages: any = [], messagedUsername: string = "") => {
+    const handleConversations = (isSelected: boolean, messages: MessageProps[] = [], messagedUsername: string = "") => {
         setIsConversationSelected({ selected: isSelected, messages, messagedUsername });
     };
 
@@ -48,6 +48,7 @@ export default function MessagesPage() {
                     selectedMessages={isConversationSelected.messages}
                     messagedUsername={isConversationSelected.messagedUsername}
                     handleConversations={handleConversations}
+                    token={token}
                 />
             ) : (
                 <>

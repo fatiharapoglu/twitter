@@ -24,7 +24,9 @@ export default function CompleteProfileReminder({ token }: { token: UserProps })
                     <div className="complete-reminder">
                         <h1>
                             Complete your profile
-                            <AiOutlineClose className="btn-close icon-hoverable right-sidebar-close" onClick={handleClose} />
+                            <button className="btn-close icon-hoverable right-sidebar-close" onClick={handleClose}>
+                                <AiOutlineClose />
+                            </button>
                         </h1>
                         <p>
                             Complete your Twitter profile to make the most of your presence! Here are a few things you have

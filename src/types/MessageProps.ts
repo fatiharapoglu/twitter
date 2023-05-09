@@ -16,5 +16,12 @@ export type ConversationResponse = {
 export type ConversationProps = {
     conversation: ConversationResponse;
     token: UserProps;
-    handleConversations: (isSelected: boolean, messages: any, messagedUser: string | undefined) => void;
+    handleConversations: (isSelected: boolean, messages?: MessageProps[], messagedUsername?: string) => void;
+};
+
+export type MessagesProps = {
+    selectedMessages: MessageProps[];
+    messagedUsername: string;
+    handleConversations: (isSelected: boolean, messages?: MessageProps[], messagedUsername?: string) => void;
+    token: UserProps;
 };

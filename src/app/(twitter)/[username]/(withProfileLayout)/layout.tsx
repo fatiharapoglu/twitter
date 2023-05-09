@@ -14,16 +14,18 @@ export default function ProfileLayout({
     children: React.ReactNode;
     params: { username: string };
 }) {
-    const { isLoading, data } = useQuery({
+    const { isLoading, isFetched, data } = useQuery({
         queryKey: ["users", username],
         queryFn: () => getUser(username),
     });
 
-    if (!isLoading && !data.user) return NotFound();
+    if (isLoading) return <CircularLoading />;
+
+    if (isFetched && !data.user) return NotFound();
 
     return (
         <div className="profile-layout">
-            {isLoading ? <CircularLoading /> : <Profile profile={data.user} />}
+            {isFetched && <Profile profile={data.user} />}
             {children}
         </div>
     );

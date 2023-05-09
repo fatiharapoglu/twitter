@@ -2,8 +2,9 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import Message from "./Message";
 import NewMessageBox from "./NewMessageBox";
+import { MessagesProps } from "@/types/MessageProps";
 
-export default function Messages({ selectedMessages, messagedUsername, handleConversations }: any) {
+export default function Messages({ selectedMessages, messagedUsername, handleConversations, token }: MessagesProps) {
     return (
         <main className="messages-container">
             <div className="back-to">
@@ -19,7 +20,7 @@ export default function Messages({ selectedMessages, messagedUsername, handleCon
                     <Message key={message.id} message={message} messagedUsername={messagedUsername} />
                 ))}
             </div>
-            <NewMessageBox />
+            <NewMessageBox messagedUsername={messagedUsername} token={token} />
         </main>
     );
 }

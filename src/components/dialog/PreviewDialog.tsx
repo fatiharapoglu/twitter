@@ -9,7 +9,9 @@ export default function PreviewDialog({ open, handlePreviewClose, url }: Preview
     return (
         <Modal className="preview-dialog" open={open}>
             <div>
-                <AiOutlineClose className="btn-close icon-hoverable" onClick={handlePreviewClose} />
+                <button className="btn-close icon-hoverable" onClick={handlePreviewClose}>
+                    <AiOutlineClose />
+                </button>
                 <div className="image-wrapper">
                     <Image
                         src={url === "/assets/header.jpg" || url === "/assets/egg.jpg" ? url : getFullURL(url)}

@@ -100,18 +100,6 @@ body {
     }
 }
 
-.three-dots.icon-hoverable {
-    margin-left: auto;
-    cursor: pointer;
-    border: none;
-    background: inherit;
-    font-size: 1.25rem;
-
-    &:hover {
-        background-color: var(--twitter-light-blue);
-    }
-}
-
 .root {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -219,31 +207,6 @@ body {
             width: 75%;
         }
     }
-
-    .new-message-form {
-        .title {
-            margin-bottom: -1rem;
-        }
-
-        .dropzone {
-            transform: none;
-            margin-right: inherit;
-        }
-
-        .input-additions {
-            border-top: none;
-            justify-content: center;
-        }
-
-        .btn {
-            width: 50%;
-        }
-
-        .emoji-picker {
-            display: flex;
-            justify-content: center;
-        }
-    }
 }
 
 .preview-dialog {
@@ -256,7 +219,6 @@ body {
         background-color: var(--twitter-light-black);
         font-size: x-large;
         transition: all 0.2s ease-in-out;
-        cursor: pointer;
 
         &:hover {
             color: var(--twitter-black);
@@ -383,7 +345,6 @@ body {
     }
 
     .right-sidebar-close {
-        cursor: pointer;
         position: absolute;
         right: 0;
         top: 4px;
@@ -603,10 +564,6 @@ body {
     color: var(--twitter-blue);
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
-
-    svg:hover {
-        cursor: pointer;
-    }
 
     .progress-circle {
         display: flex;
@@ -1192,7 +1149,6 @@ body {
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            cursor: pointer;
             background-color: rgba(0, 0, 0, 0.25);
 
             &:hover {
@@ -1319,11 +1275,11 @@ body {
     background-color: inherit;
     color: var(--twitter-red);
     font-weight: bold;
-    cursor: pointer;
 }
 
-.icon-hoverable {
+a.icon-hoverable {
     border-radius: 5rem;
+    cursor: pointer;
     aspect-ratio: 1;
     padding: 0.75rem;
     display: flex;
@@ -1333,6 +1289,34 @@ body {
 
     &:hover {
         background-color: var(--hover);
+    }
+}
+
+button.icon-hoverable {
+    border: none;
+    cursor: pointer;
+    background: inherit;
+    color: inherit;
+    border-radius: 5rem;
+    aspect-ratio: 1;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+        background-color: var(--hover);
+    }
+}
+
+.three-dots.icon-hoverable {
+    margin-left: auto;
+    font-size: 1.25rem;
+
+    &:hover {
+        background-color: var(--twitter-light-blue);
     }
 }
 
@@ -1614,6 +1598,31 @@ body {
     display: inline-flex;
 }
 
+.new-message-form {
+    .title {
+        margin-bottom: -1rem;
+    }
+
+    .dropzone {
+        transform: none;
+        margin-right: inherit;
+    }
+
+    .input-additions {
+        border-top: none;
+        justify-content: center;
+    }
+
+    .btn {
+        width: 50%;
+    }
+
+    .emoji-picker {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 .messages-page {
     .page-name {
         position: relative;
@@ -1629,6 +1638,23 @@ body {
         display: grid;
         grid-template-rows: auto minmax(300px, 1fr) 60px;
         height: 100vh;
+
+        .new-message-box {
+            padding: 0.75rem;
+            position: relative;
+
+            .new-message-form {
+                .input {
+                    display: inline;
+                }
+
+                .btn {
+                    width: auto;
+                    border: none;
+                    color: var(--twitter-blue);
+                }
+            }
+        }
 
         .messages-wrapper {
             display: flex;

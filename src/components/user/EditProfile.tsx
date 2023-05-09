@@ -146,7 +146,9 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                     fill
                 />
                 <div>
-                    <MdOutlineAddAPhoto className="icon-hoverable add-photo" onClick={handleHeaderClick} />
+                    <button className="icon-hoverable add-photo" onClick={handleHeaderClick}>
+                        <MdOutlineAddAPhoto />
+                    </button>
                     <input
                         ref={headerUploadInputRef}
                         type="file"
@@ -164,7 +166,9 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                         }
                     />
                     <div>
-                        <MdOutlineAddAPhoto className="icon-hoverable add-photo" onClick={handlePhotoClick} />
+                        <button className="icon-hoverable add-photo" onClick={handlePhotoClick}>
+                            <MdOutlineAddAPhoto />
+                        </button>
                         <input
                             ref={photoUploadInputRef}
                             type="file"
