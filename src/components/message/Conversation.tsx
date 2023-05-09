@@ -12,10 +12,10 @@ import { ConversationProps } from "@/types/MessageProps";
 export default function Conversation({ conversation, token, handleConversations }: ConversationProps) {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-    const recipient = conversation.participants.find((user) => user !== token.username);
+    const messagedUsername = conversation.participants.find((user) => user !== token.username);
 
     const { name, username, photoUrl, isPremium } =
-        conversation.messages[conversation.messages.length - 1].recipient.username === recipient
+        conversation.messages[conversation.messages.length - 1].recipient.username === messagedUsername
             ? conversation.messages[conversation.messages.length - 1].recipient
             : conversation.messages[conversation.messages.length - 1].sender;
 
@@ -28,7 +28,7 @@ export default function Conversation({ conversation, token, handleConversations 
         setAnchorEl(null);
     };
     const handleConversationClick = () => {
-        handleConversations(true, conversation.messages);
+        handleConversations(true, conversation.messages, messagedUsername);
     };
 
     return (

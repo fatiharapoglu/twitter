@@ -15,7 +15,11 @@ import Messages from "@/components/message/Messages";
 
 export default function MessagesPage() {
     const [isNewMessageOpen, setIsNewMessageOpen] = useState(false);
-    const [isConversationSelected, setIsConversationSelected] = useState({ selected: false, messages: [] });
+    const [isConversationSelected, setIsConversationSelected] = useState({
+        selected: false,
+        messages: [],
+        messagedUsername: "",
+    });
 
     const { token, isPending } = useContext(AuthContext);
 
@@ -29,8 +33,8 @@ export default function MessagesPage() {
         setIsNewMessageOpen(false);
     };
 
-    const handleConversations = (isSelected: boolean, messages: any = []) => {
-        setIsConversationSelected({ selected: isSelected, messages });
+    const handleConversations = (isSelected: boolean, messages: any = [], messagedUsername: string = "") => {
+        setIsConversationSelected({ selected: isSelected, messages, messagedUsername });
     };
 
     if (isPending || !token || isLoading) return <CircularLoading />;
@@ -38,16 +42,25 @@ export default function MessagesPage() {
     const conversations = data.formattedConversations;
 
     return (
-        <>
-            <main className="messages">
-                <h1 className="page-name">
-                    Messages
-                    <button onClick={() => setIsNewMessageOpen(true)} className="btn btn-white icon-hoverable new-message">
-                        <BsEnvelopePlus />
-                    </button>
-                </h1>
-                {isFetched && !data && <NothingToShow />}
-                {!isConversationSelected.selected && (
+        <main className="messages-page">
+            {isConversationSelected.selected ? (
+                <Messages
+                    selectedMessages={isConversationSelected.messages}
+                    messagedUsername={isConversationSelected.messagedUsername}
+                    handleConversations={handleConversations}
+                />
+            ) : (
+                <>
+                    <h1 className="page-name">
+                        Messages
+                        <button
+                            onClick={() => setIsNewMessageOpen(true)}
+                            className="btn btn-white icon-hoverable new-message"
+                        >
+                            <BsEnvelopePlus />
+                        </button>
+                    </h1>
+                    {isFetched && !data && <NothingToShow />}
                     <div>
                         {conversations.map((conversation: ConversationResponse) => {
                             return (
@@ -60,12 +73,9 @@ export default function MessagesPage() {
                             );
                         })}
                     </div>
-                )}
-                {isConversationSelected.selected && (
-                    <Messages selectedMessages={isConversationSelected.messages} handleConversations={handleConversations} />
-                )}
-            </main>
+                </>
+            )}
             <NewMessageDialog handleNewMessageClose={handleNewMessageClose} open={isNewMessageOpen} token={token} />
-        </>
+        </main>
     );
 }

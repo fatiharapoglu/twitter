@@ -1434,6 +1434,10 @@ body {
             font-size: 1.33rem;
         }
     }
+
+    .btn {
+        border: none;
+    }
 }
 
 .new-reply {
@@ -1610,7 +1614,7 @@ body {
     display: inline-flex;
 }
 
-.messages {
+.messages-page {
     .page-name {
         position: relative;
 
@@ -1618,6 +1622,59 @@ body {
             position: absolute;
             right: 1rem;
             top: 1.5rem;
+        }
+    }
+
+    .messages-container {
+        display: grid;
+        grid-template-rows: auto minmax(300px, 1fr) 60px;
+        height: 100vh;
+
+        .messages-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            overflow: auto;
+            border-bottom: 1px solid var(--border-color);
+
+            .message {
+                .message-text {
+                    white-space: pre-line;
+                    font-family: var(--font-poppins);
+                    background-color: var(--hover);
+                    border-radius: 1.25rem;
+                    padding: 0.75rem 1rem;
+                    width: fit-content;
+                    max-width: 310px;
+                    overflow-wrap: anywhere;
+                }
+
+                &.message-right {
+                    margin-left: auto;
+
+                    .message-text {
+                        border-bottom-right-radius: 0;
+                        background-color: var(--twitter-blue);
+                        color: var(--twitter-white);
+                    }
+
+                    .message-date {
+                        text-align: end;
+                    }
+                }
+
+                &.message-left {
+                    .message-text {
+                        border-bottom-left-radius: 0;
+                    }
+                }
+
+                .message-date {
+                    padding-top: 0.25rem;
+                    font-size: 0.75rem;
+                }
+            }
         }
     }
 
@@ -1691,7 +1748,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--twitter-light-black);
+    background-color: var(--twitter-light-gray);
 }
 
 ::-webkit-scrollbar-thumb {

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
-import { ConversationProps } from "@/types/MessageProps";
 
 export async function GET(request: NextRequest, { params: { username } }: { params: { username: string } }) {
     const token = request.cookies.get("token")?.value;
@@ -73,6 +72,19 @@ export async function GET(request: NextRequest, { params: { username } }: { para
         });
 
         const formattedConversations = Object.values(conversations);
+
+        formattedConversations.sort((a: any, b: any) => {
+            const lastMessageA = a.messages[a.messages.length - 1];
+            const lastMessageB = b.messages[b.messages.length - 1];
+
+            if (lastMessageA.createdAt > lastMessageB.createdAt) {
+                return -1;
+            } else if (lastMessageA.createdAt < lastMessageB.createdAt) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
 
         return NextResponse.json({ success: true, formattedConversations });
     } catch (error: unknown) {
