@@ -16,7 +16,7 @@ export default function Messages({ selectedMessages, messagedUsername, handleCon
                 </div>
             </div>
             <div className="messages-wrapper">
-                {selectedMessages.map((message: any) => (
+                {selectedMessages.map((message) => (
                     <Message key={message.id} message={message} messagedUsername={messagedUsername} />
                 ))}
             </div>

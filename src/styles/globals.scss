@@ -235,10 +235,12 @@ body {
 }
 
 .left-sidebar {
-    border-right: 1px solid var(--border-color);
+    position: relative;
     margin-left: auto;
-    padding: 2vh 5vw;
+    padding: 0 5vw;
     min-width: 190px;
+    border-right: 1px solid var(--border-color);
+    height: 100%;
 
     .fixed {
         position: fixed;
@@ -1636,12 +1638,11 @@ button.icon-hoverable {
 
     .messages-container {
         display: grid;
-        grid-template-rows: auto minmax(300px, 1fr) 60px;
+        grid-template-rows: auto minmax(300px, 1fr) minmax(90px, auto);
         height: 100vh;
 
         .new-message-box {
             padding: 0.75rem;
-            position: relative;
 
             .new-message-form {
                 .input {
@@ -1652,7 +1653,29 @@ button.icon-hoverable {
                     width: auto;
                     border: none;
                     color: var(--twitter-blue);
+                    display: inline-flex;
+                    transform: translate(10px, 5px);
                 }
+            }
+
+            .dropzone {
+                transform: none;
+                margin-right: inherit;
+                max-height: 90px;
+                overflow: auto;
+            }
+
+            .input-additions {
+                border-top: none;
+                transform: translate(455px, -65px);
+                display: inline-flex;
+                flex-direction: row-reverse;
+                position: absolute;
+            }
+
+            .emoji-picker {
+                position: absolute;
+                transform: translate(90%, -110%);
             }
         }
 

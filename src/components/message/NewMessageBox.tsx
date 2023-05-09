@@ -70,7 +70,7 @@ export default function NewMessageBox({ messagedUsername, token }: { token: User
                         hiddenLabel
                         variant="outlined"
                         name="text"
-                        sx={{ width: "75%" }}
+                        sx={{ width: "65%" }}
                         value={formik.values.text}
                         onChange={formik.handleChange}
                         error={formik.touched.text && Boolean(formik.errors.text)}
@@ -114,6 +114,7 @@ export default function NewMessageBox({ messagedUsername, token }: { token: User
                             setShowPicker(false);
                         }}
                         previewPosition="none"
+                        onClickOutside={() => setShowPicker(false)}
                     />
                 </div>
             )}

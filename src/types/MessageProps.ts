@@ -1,6 +1,7 @@
 import { UserProps } from "./UserProps";
 
 export type MessageProps = {
+    id: string;
     sender: UserProps;
     recipient: UserProps;
     text: string;
