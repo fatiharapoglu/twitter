@@ -1608,6 +1608,28 @@ button.icon-hoverable {
     color: var(--twitter-blue);
     padding-left: 2px;
     display: inline-flex;
+    position: relative;
+
+    &::after {
+        content: attr(data-blue);
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 4px 8px;
+        background-color: var(--twitter-blue);
+        color: var(--twitter-white);
+        font-size: 0.75rem;
+        white-space: nowrap;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
 }
 
 .new-message-form {

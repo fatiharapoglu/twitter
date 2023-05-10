@@ -35,7 +35,7 @@ export default function User({ user }: { user: UserProps }) {
                             <span className="user-name">
                                 {user.name !== "" ? user.name : user.username}
                                 {user.isPremium && (
-                                    <span className="blue-tick">
+                                    <span className="blue-tick" data-blue="Verified Blue">
                                         <AiFillTwitterCircle />
                                     </span>
                                 )}

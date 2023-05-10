@@ -106,7 +106,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                             <span className="tweet-author">
                                 {tweet.author.name !== "" ? tweet.author.name : tweet.author.username}
                                 {tweet.author.isPremium && (
-                                    <span className="blue-tick">
+                                    <span className="blue-tick" data-blue="Verified Blue">
                                         <AiFillTwitterCircle />
                                     </span>
                                 )}

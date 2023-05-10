@@ -98,6 +98,7 @@
 -   [x] handle users message click without auth
 -   [x] add delete conversations logic
 -   [x] finish /home (only followings and user's tweets)
+-   [x] add css tooltip for verified blue tick
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] how to add notifications? if really complex, hang it for later
@@ -114,3 +115,4 @@
 -   [ ] if after deploy still slow, get info from user query, clean up tweet responses
 -   [ ] choose database and vercel serverless locations close
 -   [ ] create changelog md
+-   [ ] only verified blue tick user should show in the who to follow section, after deploy

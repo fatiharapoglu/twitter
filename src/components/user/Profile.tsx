@@ -122,7 +122,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         <h1>
                             {profile.name !== "" ? profile.name : profile.username}
                             {profile.isPremium && (
-                                <span className="blue-tick">
+                                <span className="blue-tick" data-blue="Verified Blue">
                                     <AiFillTwitterCircle />
                                 </span>
                             )}

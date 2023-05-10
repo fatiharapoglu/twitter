@@ -134,7 +134,7 @@ export default function LeftSidebar() {
                                     <div className="token-name">
                                         {token.name !== "" ? token.name : token.username}
                                         {token.isPremium && (
-                                            <span className="blue-tick">
+                                            <span className="blue-tick" data-blue="Verified Blue">
                                                 <AiFillTwitterCircle />
                                             </span>
                                         )}

@@ -99,7 +99,7 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                         <span className="tweet-author">
                             {displayedTweet.author.name !== "" ? displayedTweet.author.name : displayedTweet.author.username}
                             {displayedTweet.author.isPremium && (
-                                <span className="blue-tick">
+                                <span className="blue-tick" data-blue="Verified Blue">
                                     <AiFillTwitterCircle />
                                 </span>
                             )}

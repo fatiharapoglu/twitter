@@ -86,7 +86,7 @@ export default function Conversation({ conversation, token, handleConversations 
                         <span className="user-name">
                             {name !== "" ? name : username}
                             {isPremium && (
-                                <span className="blue-tick">
+                                <span className="blue-tick" data-blue="Verified Blue">
                                     <AiFillTwitterCircle />
                                 </span>
                             )}

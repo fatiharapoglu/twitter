@@ -35,7 +35,7 @@ export default function ProfileCard({ username, token }: { username: string; tok
                 <h1>
                     {data.user.name !== "" ? data.user.name : data.user.username}
                     {data.user.isPremium && (
-                        <span className="blue-tick">
+                        <span className="blue-tick" data-blue="Verified Blue">
                             <AiFillTwitterCircle />
                         </span>
                     )}
