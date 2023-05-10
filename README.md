@@ -89,6 +89,9 @@
 -   [x] change localhost to env or however next handles this
 -   [x] add messages feature
 -   [x] add images for messaging
+-   [x] optimistic update on new messages
+-   [x] scroll down to bottom of chat when opening messages
+-   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
 -   [ ] handle username is not found error with snackbar while messaging
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component

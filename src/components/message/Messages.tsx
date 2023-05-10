@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 import Message from "./Message";
@@ -8,9 +8,19 @@ import { MessageProps, MessagesProps } from "@/types/MessageProps";
 export default function Messages({ selectedMessages, messagedUsername, handleConversations, token }: MessagesProps) {
     const [freshMessages, setFreshMessages] = useState([] as MessageProps[]);
 
+    const messagesWrapperRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         setFreshMessages(selectedMessages);
     }, [selectedMessages]);
+
+    useEffect(() => {
+        const messagesWrapper = messagesWrapperRef.current;
+        messagesWrapper?.scrollTo({
+            top: messagesWrapper.scrollHeight,
+            behavior: "smooth",
+        });
+    }, [freshMessages]);
 
     return (
         <main className="messages-container">
@@ -22,7 +32,7 @@ export default function Messages({ selectedMessages, messagedUsername, handleCon
                     <span className="top-title">{messagedUsername}</span>
                 </div>
             </div>
-            <div className="messages-wrapper">
+            <div className="messages-wrapper" ref={messagesWrapperRef}>
                 {freshMessages.length > 0 &&
                     freshMessages.map((message) => (
                         <Message key={message.id} message={message} messagedUsername={messagedUsername} />
