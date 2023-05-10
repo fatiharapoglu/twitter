@@ -94,8 +94,8 @@
 -   [x] add disabled buttons
 -   [x] handle username is not found error with snackbar while messaging
 -   [x] add new message button on profiles
--   [ ] handle users trying to message themselves
--   [ ] handle users message click without auth
+-   [x] handle users trying to message themselves
+-   [x] handle users message click without auth
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co

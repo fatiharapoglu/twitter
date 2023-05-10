@@ -70,6 +70,17 @@ export default function Profile({ profile }: { profile: UserProps }) {
         setPreview({ open: false, url: "" });
     };
 
+    const handleNewMessageClick = () => {
+        if (!token) {
+            return setSnackbar({
+                message: "You need to login to message someone.",
+                severity: "info",
+                open: true,
+            });
+        }
+        setIsNewMessageOpen(true);
+    };
+
     const isFollowingTokenOwner = () => {
         if (profile.following.length === 0 || !token) return false;
         const isFollowing = profile.following.some((user) => user.id === token.id);
@@ -156,10 +167,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         </Link>
                     ) : (
                         <div className="edit-profile-section flex">
-                            <button
-                                className="btn btn-white icon-hoverable new-message"
-                                onClick={() => setIsNewMessageOpen(true)}
-                            >
+                            <button className="btn btn-white icon-hoverable new-message" onClick={handleNewMessageClick}>
                                 <FaRegEnvelope />
                             </button>
                             <Follow profile={profile} />

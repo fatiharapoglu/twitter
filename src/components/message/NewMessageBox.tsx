@@ -57,7 +57,7 @@ export default function NewMessageBox({ messagedUsername, token, setFreshMessage
     const formik = useFormik({
         initialValues: {
             sender: token.username,
-            recipient: messagedUsername,
+            recipient: messagedUsername ? messagedUsername : token.username, // if messagedUsername is null, then the user is messaging themselves
             text: "",
             photoUrl: "",
         },
