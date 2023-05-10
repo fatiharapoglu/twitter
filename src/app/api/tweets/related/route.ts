@@ -1,16 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
+import { verifyJwtToken } from "@/utilities/auth";
 
-export async function GET(request: NextRequest, { params: { username } }: { params: { username: string } }) {
+export async function GET(request: NextRequest) {
+    const token = request.cookies.get("token")?.value;
+    const verifiedToken = token && (await verifyJwtToken(token));
+
+    if (!verifiedToken)
+        return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
+
     try {
         const tweets = await prisma.tweet.findMany({
             where: {
-                likedBy: {
-                    some: {
-                        username: username,
+                OR: [
+                    {
+                        authorId: verifiedToken.id,
                     },
-                },
+                    {
+                        author: {
+                            followers: {
+                                some: {
+                                    id: verifiedToken.id,
+                                },
+                            },
+                        },
+                    },
+                ],
+                isReply: false,
             },
             include: {
                 author: {

@@ -97,12 +97,11 @@
 -   [x] handle users trying to message themselves
 -   [x] handle users message click without auth
 -   [x] add delete conversations logic
+-   [x] finish /home (only followings and user's tweets)
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
--   [ ] add a most basic chatbot to show off messaging feature / chatbase.co
 -   [ ] how to add notifications? if really complex, hang it for later
--   [ ] get auto follower 1 profile after user creates, seeing a notification after creating might bee cool
--   [ ] welcome notification at least
+-   [ ] add welcome notification
 -   [ ] make it responsive
 -   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add dark mode

@@ -9,6 +9,15 @@ export const getAllTweets = async (page = "1") => {
     return response.json();
 };
 
+export const getRelatedTweets = async () => {
+    const response = await fetch(`${HOST_URL}/api/tweets/related`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
 export const getUserTweets = async (username: string) => {
     const response = await fetch(`${HOST_URL}/api/tweets/${username}`, {
         next: {
