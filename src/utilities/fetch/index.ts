@@ -224,3 +224,8 @@ export const getUserMessages = async (username: string) => {
     });
     return response.json();
 };
+
+export const checkUserExists = async (username: string) => {
+    const response = await fetch(`${HOST_URL}/api/users/exists?q=${username}`);
+    return response.json();
+};

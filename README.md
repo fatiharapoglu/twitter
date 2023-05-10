@@ -91,8 +91,8 @@
 -   [x] add images for messaging
 -   [x] optimistic update on new messages
 -   [x] scroll down to bottom of chat when opening messages
--   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
 -   [ ] handle username is not found error with snackbar while messaging
+-   [ ] add disabled buttons
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] handle users message click without auth
@@ -108,6 +108,7 @@
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
+-   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
 -   [ ] if after deploy still slow, get info from user query, clean up tweet responses
 -   [ ] choose database and vercel serverless locations close

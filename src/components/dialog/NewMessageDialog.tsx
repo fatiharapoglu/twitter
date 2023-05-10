@@ -9,7 +9,7 @@ import Picker from "@emoji-mart/react";
 
 import { NewMessageDialogProps } from "@/types/DialogProps";
 import CircularLoading from "../misc/CircularLoading";
-import { createMessage } from "@/utilities/fetch";
+import { checkUserExists, createMessage } from "@/utilities/fetch";
 import { uploadFile } from "@/utilities/storage";
 import Uploader from "../misc/Uploader";
 
@@ -25,7 +25,6 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["messages", token.username] });
         },
-        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {
@@ -38,7 +37,14 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
             .min(3, "Username should be of minimum 3 characters length.")
             .max(20, "Username should be of maximum 20 characters length.")
             .matches(/^[a-zA-Z0-9_]{1,14}[a-zA-Z0-9]$/, "Username is invalid")
-            .required("Username is required."),
+            .required("Username is required.")
+            .test("checkUserExists", "User does not exist.", async (value) => {
+                if (value) {
+                    const response = await checkUserExists(value);
+                    if (response.success) return true;
+                }
+                return false;
+            }),
         text: yup
             .string()
             .max(280, "Message text should be of maximum 280 characters length.")
@@ -84,8 +90,8 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                                 }}
                                 value={formik.values.recipient}
                                 onChange={formik.handleChange}
-                                error={formik.touched.recipient && Boolean(formik.errors.recipient)}
-                                helperText={formik.touched.recipient && formik.errors.recipient}
+                                error={Boolean(formik.errors.recipient)}
+                                helperText={formik.errors.recipient}
                                 autoFocus
                             />
                         </div>
@@ -141,7 +147,7 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                 {formik.isSubmitting ? (
                     <CircularLoading />
                 ) : (
-                    <button className="btn btn-dark" type="submit">
+                    <button className="btn btn-dark" type="submit" disabled={!formik.isValid}>
                         Send
                     </button>
                 )}
