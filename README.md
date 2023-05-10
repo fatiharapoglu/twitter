@@ -99,13 +99,14 @@
 -   [x] add delete conversations logic
 -   [x] finish /home (only followings and user's tweets)
 -   [x] add css tooltip for verified blue tick
--   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
--   [ ] complete share button in tweet component
+-   [x] complete share button in related components
 -   [ ] how to add notifications? if really complex, hang it for later
 -   [ ] add welcome notification
+-   [ ] finish /notifications page
+-   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] make it responsive
--   [ ] handle mui components' css better, using sx:{} while making it responsive
 -   [ ] add dark mode
+-   [ ] finish /settings page
 -   [ ] material ui custom colors
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)

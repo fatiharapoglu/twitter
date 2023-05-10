@@ -155,7 +155,9 @@ export default function Tweet({ tweet }: { tweet: TweetProps }) {
                     <Reply tweet={displayedTweet} />
                     <Retweet tweetId={displayedTweet.id} tweetAuthor={displayedTweet.author.username} />
                     <Like tweetId={displayedTweet.id} tweetAuthor={displayedTweet.author.username} />
-                    <Share />
+                    <Share
+                        tweetUrl={`https://${window.location.hostname}/${displayedTweet.author.username}/tweets/${displayedTweet.id}`}
+                    />
                 </div>
             </div>
             {tweet.isRetweet &&

@@ -162,7 +162,9 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
                         <Reply tweet={tweet} />
                         <Retweet tweetId={tweet.id} tweetAuthor={tweet.author.username} />
                         <Like tweetId={tweet.id} tweetAuthor={tweet.author.username} />
-                        <Share />
+                        <Share
+                            tweetUrl={`https://${window.location.hostname}/${tweet.author.username}/tweets/${tweet.id}`}
+                        />
                     </div>
                 </div>
             </div>
