@@ -1,16 +1,33 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Avatar, Popover, Tooltip } from "@mui/material";
+import { Avatar, Menu, MenuItem, Popover, Tooltip } from "@mui/material";
 import { AiFillTwitterCircle } from "react-icons/ai";
+import { RxDotsHorizontal } from "react-icons/rx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import { formatDate, formatDateExtended } from "@/utilities/date";
 import ProfileCard from "../user/ProfileCard";
-import { BsThreeDots } from "react-icons/bs";
 import { ConversationProps } from "@/types/MessageProps";
+import CircularLoading from "../misc/CircularLoading";
+import { deleteConversation } from "@/utilities/fetch";
 
 export default function Conversation({ conversation, token, handleConversations }: ConversationProps) {
+    const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [anchorMenuEl, setAnchorMenuEl] = useState<HTMLElement | null>(null);
+
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: (tokenOwnerId: string) => deleteConversation(conversation.participants, tokenOwnerId),
+        onSuccess: () => {
+            setIsConfirmationOpen(false);
+            setIsDeleting(false);
+            queryClient.invalidateQueries(["messages", token.username]);
+        },
+    });
 
     const messagedUsername = conversation.participants.find((user) => user !== token.username);
 
@@ -29,6 +46,23 @@ export default function Conversation({ conversation, token, handleConversations 
     };
     const handleConversationClick = () => {
         handleConversations(true, conversation.messages, messagedUsername);
+    };
+    const handleConfirmationClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setAnchorMenuEl(null);
+        setIsConfirmationOpen(true);
+    };
+    const handleThreeDotsClick = (e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
+        setAnchorMenuEl(e.currentTarget);
+    };
+
+    const handleDelete = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+        handlePopoverClose();
+        setIsDeleting(true);
+        const jsonId = JSON.stringify(token.id);
+        mutation.mutate(jsonId);
     };
 
     return (
@@ -68,9 +102,16 @@ export default function Conversation({ conversation, token, handleConversations 
                 </section>
                 <div className="last-message text-muted">{lastMessage.text}</div>
             </div>
-            <button className="three-dots icon-hoverable">
-                <BsThreeDots />
-            </button>
+            <>
+                <button className="three-dots icon-hoverable" onClick={handleThreeDotsClick}>
+                    <RxDotsHorizontal />
+                </button>
+                <Menu anchorEl={anchorMenuEl} onClose={() => setAnchorMenuEl(null)} open={Boolean(anchorMenuEl)}>
+                    <MenuItem onClick={handleConfirmationClick} className="delete">
+                        Delete
+                    </MenuItem>
+                </Menu>
+            </>
             <Popover
                 sx={{
                     pointerEvents: "none",
@@ -90,6 +131,35 @@ export default function Conversation({ conversation, token, handleConversations 
             >
                 <ProfileCard username={username} token={token} />
             </Popover>
+            {isConfirmationOpen && (
+                <div className="html-modal-wrapper">
+                    <dialog open className="confirm">
+                        <h1>Delete Conversation?</h1>
+                        <p>
+                            Are you sure you want to clear this conversation? If you proceed, your messages will be removed,
+                            as well as the messages in the recipient&apos;s message box.
+                        </p>
+                        {isDeleting ? (
+                            <CircularLoading />
+                        ) : (
+                            <>
+                                <button className="btn btn-danger" onClick={handleDelete}>
+                                    Delete
+                                </button>
+                                <button
+                                    className="btn btn-white"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsConfirmationOpen(false);
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                            </>
+                        )}
+                    </dialog>
+                </div>
+            )}
         </div>
     );
 }

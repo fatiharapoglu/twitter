@@ -96,6 +96,7 @@
 -   [x] add new message button on profiles
 -   [x] handle users trying to message themselves
 -   [x] handle users message click without auth
+-   [x] add delete conversations logic
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] add a most basic chatbot to show off messaging feature / chatbase.co

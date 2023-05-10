@@ -208,11 +208,8 @@ export const createMessage = async (message: string) => {
         },
         body: message,
     });
-
     const json = await response.json();
-
     if (!json.success) throw new Error(json.message);
-
     return json;
 };
 
@@ -227,5 +224,16 @@ export const getUserMessages = async (username: string) => {
 
 export const checkUserExists = async (username: string) => {
     const response = await fetch(`${HOST_URL}/api/users/exists?q=${username}`);
+    return response.json();
+};
+
+export const deleteConversation = async (participants: string[], tokenOwnerId: string) => {
+    const response = await fetch(`${HOST_URL}/api/messages/delete`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ participants, tokenOwnerId }),
+    });
     return response.json();
 };

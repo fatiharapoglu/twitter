@@ -61,7 +61,7 @@ export default function MessagesPage() {
                             <BsEnvelopePlus />
                         </button>
                     </h1>
-                    {isFetched && !data && <NothingToShow />}
+                    {isFetched && !(conversations.length > 0) && <NothingToShow />}
                     <div>
                         {conversations.map((conversation: ConversationResponse) => {
                             return (
