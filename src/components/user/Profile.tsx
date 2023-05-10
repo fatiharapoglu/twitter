@@ -20,10 +20,12 @@ import { getFullURL } from "@/utilities/misc/getFullURL";
 import PreviewDialog from "../dialog/PreviewDialog";
 import { SnackbarProps } from "@/types/SnackbarProps";
 import CustomSnackbar from "../misc/CustomSnackbar";
+import NewMessageDialog from "../dialog/NewMessageDialog";
 
 export default function Profile({ profile }: { profile: UserProps }) {
     const [dialogType, setDialogType] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isNewMessageOpen, setIsNewMessageOpen] = useState(false);
     const [preview, setPreview] = useState({ open: false, url: "" });
     const [snackbar, setSnackbar] = useState<SnackbarProps>({ message: "", severity: "success", open: false });
 
@@ -154,7 +156,10 @@ export default function Profile({ profile }: { profile: UserProps }) {
                         </Link>
                     ) : (
                         <div className="edit-profile-section flex">
-                            <button className="btn btn-white icon-hoverable">
+                            <button
+                                className="btn btn-white icon-hoverable new-message"
+                                onClick={() => setIsNewMessageOpen(true)}
+                            >
                                 <FaRegEnvelope />
                             </button>
                             <Follow profile={profile} />
@@ -211,6 +216,14 @@ export default function Profile({ profile }: { profile: UserProps }) {
                 </Dialog>
             )}
             <PreviewDialog open={preview.open} handlePreviewClose={handlePreviewClose} url={preview.url} />
+            {token && isNewMessageOpen && (
+                <NewMessageDialog
+                    handleNewMessageClose={() => setIsNewMessageOpen(false)}
+                    open={isNewMessageOpen}
+                    token={token}
+                    recipient={profile.username}
+                />
+            )}
             {snackbar.open && (
                 <CustomSnackbar message={snackbar.message} severity={snackbar.severity} setSnackbar={setSnackbar} />
             )}

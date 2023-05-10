@@ -13,7 +13,7 @@ import { checkUserExists, createMessage } from "@/utilities/fetch";
 import { uploadFile } from "@/utilities/storage";
 import Uploader from "../misc/Uploader";
 
-export default function NewMessageDialog({ open, handleNewMessageClose, token }: NewMessageDialogProps) {
+export default function NewMessageDialog({ open, handleNewMessageClose, token, recipient = "" }: NewMessageDialogProps) {
     const [showPicker, setShowPicker] = useState(false);
     const [showDropzone, setShowDropzone] = useState(false);
     const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -54,7 +54,7 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
     const formik = useFormik({
         initialValues: {
             sender: token.username,
-            recipient: "",
+            recipient: recipient,
             text: "",
             photoUrl: "",
         },
@@ -92,7 +92,8 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                                 onChange={formik.handleChange}
                                 error={Boolean(formik.errors.recipient)}
                                 helperText={formik.errors.recipient}
-                                autoFocus
+                                autoFocus={recipient ? false : true}
+                                disabled={recipient ? true : false}
                             />
                         </div>
                         <div className="input">
@@ -107,6 +108,7 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                                 onChange={formik.handleChange}
                                 error={formik.touched.text && Boolean(formik.errors.text)}
                                 helperText={formik.touched.text && formik.errors.text}
+                                autoFocus={recipient ? true : false}
                             />
                         </div>
                         <div className="input-additions">

@@ -1023,6 +1023,10 @@ body {
                 top: -4.5rem;
                 font-weight: 600;
                 font-size: 15px;
+
+                .new-message {
+                    border: 1px solid var(--twitter-light-gray);
+                }
             }
 
             .flex {
@@ -1236,7 +1240,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 4rem 2rem;
+    margin: 3rem 2rem;
 }
 
 .global-loading-wrapper {
@@ -1639,6 +1643,7 @@ button.icon-hoverable {
             position: absolute;
             right: 1rem;
             top: 1.5rem;
+            border: 1px solid var(--twitter-light-gray);
         }
     }
 

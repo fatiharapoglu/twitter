@@ -33,4 +33,5 @@ export type NewMessageDialogProps = {
     open: boolean;
     handleNewMessageClose: () => void;
     token: UserProps;
+    recipient?: string;
 };
