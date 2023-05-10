@@ -41,7 +41,6 @@ export default function NewMessageBox({ messagedUsername, token, setFreshMessage
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["messages", token.username] });
         },
-        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {
@@ -89,13 +88,16 @@ export default function NewMessageBox({ messagedUsername, token, setFreshMessage
                         value={formik.values.text}
                         onChange={formik.handleChange}
                         error={formik.touched.text && Boolean(formik.errors.text)}
-                        helperText={formik.touched.text && formik.errors.text}
                     />
                 </div>
                 {formik.isSubmitting ? (
                     <CircularLoading />
                 ) : (
-                    <button className="btn btn-white icon-hoverable" type="submit">
+                    <button
+                        type="submit"
+                        className={`btn btn-white icon-hoverable ${formik.isValid ? "" : "disabled"}`}
+                        disabled={!formik.isValid}
+                    >
                         <FaPaperPlane />
                     </button>
                 )}

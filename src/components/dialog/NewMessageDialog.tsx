@@ -147,7 +147,11 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token }:
                 {formik.isSubmitting ? (
                     <CircularLoading />
                 ) : (
-                    <button className="btn btn-dark" type="submit" disabled={!formik.isValid}>
+                    <button
+                        className={`btn btn-dark ${formik.isValid ? "" : "disabled"}`}
+                        type="submit"
+                        disabled={!formik.isValid}
+                    >
                         Send
                     </button>
                 )}

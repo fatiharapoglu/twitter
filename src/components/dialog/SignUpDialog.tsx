@@ -6,7 +6,7 @@ import * as yup from "yup";
 import Image from "next/image";
 
 import { SignUpDialogProps } from "@/types/DialogProps";
-import { createUser } from "@/utilities/fetch";
+import { checkUserExists, createUser } from "@/utilities/fetch";
 import CircularLoading from "../misc/CircularLoading";
 import CustomSnackbar from "../misc/CustomSnackbar";
 import { SnackbarProps } from "@/types/SnackbarProps";
@@ -22,7 +22,14 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
             .min(3, "Username should be of minimum 3 characters length.")
             .max(20, "Username should be of maximum 20 characters length.")
             .matches(/^[a-zA-Z0-9_]{1,14}[a-zA-Z0-9]$/, "Username is invalid")
-            .required("Username is required."),
+            .required("Username is required.")
+            .test("checkUserExists", "User already exists.", async (value) => {
+                if (value) {
+                    const response = await checkUserExists(value);
+                    if (response.success) return false;
+                }
+                return true;
+            }),
         password: yup
             .string()
             .min(8, "Password should be of minimum 8 characters length.")
@@ -41,13 +48,6 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
         onSubmit: async (values, { resetForm }) => {
             const response = await createUser(JSON.stringify(values));
             if (!response.success) {
-                if (response.message === "Username already exists.") {
-                    return setSnackbar({
-                        message: "Username already exists.",
-                        severity: "error",
-                        open: true,
-                    });
-                }
                 return setSnackbar({
                     message: "Something went wrong. Please try again.",
                     severity: "error",
@@ -80,8 +80,8 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                                 }}
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
-                                error={formik.touched.username && Boolean(formik.errors.username)}
-                                helperText={formik.touched.username && formik.errors.username}
+                                error={Boolean(formik.errors.username)}
+                                helperText={formik.errors.username}
                                 autoFocus
                             />
                         </div>
@@ -94,8 +94,8 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                                 type="password"
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={formik.touched.password && formik.errors.password}
+                                error={Boolean(formik.errors.password)}
+                                helperText={formik.errors.password}
                             />
                         </div>
                         <div className="input">
@@ -115,7 +115,11 @@ export default function SignUpDialog({ open, handleSignUpClose }: SignUpDialogPr
                 {formik.isSubmitting ? (
                     <CircularLoading />
                 ) : (
-                    <button className="btn btn-dark" type="submit">
+                    <button
+                        className={`btn btn-dark ${formik.isValid ? "" : "disabled"}`}
+                        type="submit"
+                        disabled={!formik.isValid}
+                    >
                         Create
                     </button>
                 )}

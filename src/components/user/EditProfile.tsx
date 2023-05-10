@@ -230,7 +230,11 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                     {formik.isSubmitting ? (
                         <CircularLoading />
                     ) : (
-                        <button type="submit" className="btn btn-dark save">
+                        <button
+                            className={`btn btn-dark save ${formik.isValid ? "" : "disabled"}`}
+                            disabled={!formik.isValid}
+                            type="submit"
+                        >
                             Save
                         </button>
                     )}

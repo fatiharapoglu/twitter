@@ -100,6 +100,12 @@ body {
     }
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: blur(1px);
+}
+
 .root {
     display: grid;
     grid-template-columns: 50% 50%;

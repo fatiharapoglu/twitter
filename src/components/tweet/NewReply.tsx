@@ -118,7 +118,7 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
                         <FaRegSmile />
                     </button>
                     <ProgressCircle maxChars={280} count={count} />
-                    <button className="btn" type="submit">
+                    <button className={`btn ${formik.isValid ? "" : "disabled"}`} disabled={!formik.isValid} type="submit">
                         Reply
                     </button>
                 </div>

@@ -116,7 +116,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
                         <FaRegSmile />
                     </button>
                     <ProgressCircle maxChars={280} count={count} />
-                    <button className="btn" type="submit">
+                    <button className={`btn ${formik.isValid ? "" : "disabled"}`} disabled={!formik.isValid} type="submit">
                         Tweet
                     </button>
                 </div>

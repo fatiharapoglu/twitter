@@ -91,8 +91,8 @@
 -   [x] add images for messaging
 -   [x] optimistic update on new messages
 -   [x] scroll down to bottom of chat when opening messages
--   [ ] handle username is not found error with snackbar while messaging
--   [ ] add disabled buttons
+-   [x] add disabled buttons
+-   [x] handle username is not found error with snackbar while messaging
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] complete share button in tweet component
 -   [ ] handle users message click without auth
