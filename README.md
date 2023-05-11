@@ -105,8 +105,8 @@
 -   [x] handle users getting notifications from themselves
 -   [x] handle message notification's frequency
 -   [x] message and notifications length, and banner to icon
--   [ ] handle isRead function
--   [ ] finish /notifications page
+-   [x] handle isRead function
+-   [x] finish /notifications page
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] add different active icons for left-sidebar
 -   [ ] improve new message modal visually
