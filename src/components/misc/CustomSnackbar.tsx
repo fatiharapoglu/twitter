@@ -31,7 +31,7 @@ export default function CustomSnackbar({
             onClose={handleClose}
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
-            <Alert onClose={handleClose} severity={severity} sx={{ width: "100%" }}>
+            <Alert onClose={handleClose} severity={severity} sx={{ width: "100%", fontSize: "0.66rem" }}>
                 {message}
             </Alert>
         </Snackbar>

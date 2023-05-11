@@ -26,10 +26,10 @@ export default function LeftSidebar() {
     const router = useRouter();
     const pathname = usePathname();
 
-    const { data, isFetched } = useQuery(["notifications"], getNotifications);
+    const { data, isFetched } = useQuery(["notifications"], getNotifications, { enabled: !!token });
 
     const lengthOfUnreadNotifications =
-        isFetched && data.notifications.filter((notification: any) => !notification.isRead).length;
+        token && isFetched && data.notifications.filter((notification: any) => !notification.isRead).length;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
