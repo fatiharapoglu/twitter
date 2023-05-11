@@ -1920,6 +1920,28 @@ button.icon-hoverable {
     }
 }
 
+.badge-wrapper {
+    position: relative;
+
+    .badge {
+        position: absolute;
+        top: -12.5px;
+        left: 20px;
+        transform: translateX(-50%);
+        padding: 4px;
+        background-color: var(--twitter-blue);
+        border-radius: 5rem;
+        min-width: 10px;
+        aspect-ratio: 1;
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--twitter-white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 ::-webkit-scrollbar {
     width: 0.75rem;
 }

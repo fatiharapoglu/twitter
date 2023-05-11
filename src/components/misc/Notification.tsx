@@ -5,7 +5,7 @@ import { GiPartyPopper } from "react-icons/gi";
 import { RiChatFollowUpLine } from "react-icons/ri";
 import { Avatar, Popover } from "@mui/material";
 
-import { NotificationContent, NotificationProps } from "@/types/NotificationProps";
+import { NotificationProps } from "@/types/NotificationProps";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 import RetweetIcon from "./RetweetIcon";
 import ProfileCard from "../user/ProfileCard";

@@ -273,3 +273,12 @@ export const createNotification = async (
     });
     return response.json();
 };
+
+export const markNotificationsRead = async () => {
+    const response = await fetch(`${HOST_URL}/api/notifications/read`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};

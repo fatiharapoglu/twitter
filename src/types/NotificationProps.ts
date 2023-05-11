@@ -8,6 +8,7 @@ export type NotificationProps = {
     user: UserProps;
     content: string;
     notificationContent: NotificationContent;
+    isRead: boolean;
 };
 
 export type NotificationTypes = "welcome" | "follow" | "like" | "reply" | "retweet" | "message";

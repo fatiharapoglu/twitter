@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
@@ -10,7 +11,7 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 
 import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
-import { logout } from "@/utilities/fetch";
+import { getNotifications, logout } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { getFullURL } from "@/utilities/misc/getFullURL";
 
@@ -24,6 +25,11 @@ export default function LeftSidebar() {
 
     const router = useRouter();
     const pathname = usePathname();
+
+    const { data, isFetched } = useQuery(["notifications"], getNotifications);
+
+    const lengthOfUnreadNotifications =
+        isFetched && data.notifications.filter((notification: any) => !notification.isRead).length;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
@@ -84,7 +90,13 @@ export default function LeftSidebar() {
                                                     pathname.startsWith("/notifications") ? "active" : ""
                                                 }`}
                                             >
-                                                <FaBell /> Notifications
+                                                <div className="badge-wrapper">
+                                                    <FaBell />{" "}
+                                                    {isFetched && lengthOfUnreadNotifications > 0 && (
+                                                        <span className="badge">{lengthOfUnreadNotifications}</span>
+                                                    )}
+                                                </div>
+                                                Notifications
                                             </div>
                                         </Link>
                                     </li>
