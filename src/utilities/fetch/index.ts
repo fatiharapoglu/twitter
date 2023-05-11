@@ -1,4 +1,4 @@
-import { NotificationTypes } from "@/types/NotificationProps";
+import { NotificationContent, NotificationTypes } from "@/types/NotificationProps";
 
 const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
 
@@ -258,13 +258,18 @@ export const getNotifications = async () => {
     return response.json();
 };
 
-export const createNotification = async (recipient: string, type: NotificationTypes, secret: string) => {
+export const createNotification = async (
+    recipient: string,
+    type: NotificationTypes,
+    secret: string,
+    notificationContent: NotificationContent = null
+) => {
     const response = await fetch(`${HOST_URL}/api/notifications/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ recipient, type, secret }),
+        body: JSON.stringify({ recipient, type, secret, notificationContent }),
     });
     return response.json();
 };

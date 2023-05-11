@@ -2,12 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
+import { createNotification } from "@/utilities/fetch";
 
 export async function POST(request: NextRequest) {
     const { recipient, sender, text, photoUrl } = await request.json();
-
     const token = request.cookies.get("token")?.value;
     const verifiedToken = token && (await verifyJwtToken(token));
+    const secret = process.env.CREATION_SECRET_KEY;
+
+    if (!secret) {
+        return NextResponse.json({
+            success: false,
+            message: "Secret key not found.",
+        });
+    }
 
     if (!verifiedToken)
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
@@ -42,6 +50,20 @@ export async function POST(request: NextRequest) {
                 },
             },
         });
+
+        if (recipient !== verifiedToken.username) {
+            const notificationContent = {
+                sender: {
+                    username: verifiedToken.username,
+                    name: verifiedToken.name,
+                    photoUrl: verifiedToken.photoUrl,
+                },
+                content: null,
+            };
+
+            await createNotification(recipient, "message", secret, notificationContent);
+        }
+
         return NextResponse.json({ success: true });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });

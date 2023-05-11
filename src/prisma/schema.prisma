@@ -64,7 +64,7 @@ model Message {
 model Notification {
     id        String   @id @default(uuid())
     type      String   @db.VarChar(20)
-    text      String   @db.VarChar(280)
+    content   String
     createdAt DateTime @default(now())
     isRead    Boolean  @default(false)
     user      User     @relation(fields: [userId], references: [id])

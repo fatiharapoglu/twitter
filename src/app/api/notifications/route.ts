@@ -15,6 +15,15 @@ export async function GET(request: NextRequest) {
             where: {
                 userId: verifiedToken.id,
             },
+            include: {
+                user: {
+                    select: {
+                        username: true,
+                        name: true,
+                        photoUrl: true,
+                    },
+                },
+            },
             orderBy: {
                 createdAt: "desc",
             },

@@ -100,10 +100,14 @@
 -   [x] finish /home (only followings and user's tweets)
 -   [x] add css tooltip for verified blue tick
 -   [x] complete share button in related components
--   [ ] how to add notifications? if really complex, hang it for later
--   [ ] add welcome notification
+-   [x] add notifications
+-   [x] add welcome notification
+-   [x] handle users getting notifications from themselves
+-   [ ] handle message notification's frequency
 -   [ ] finish /notifications page
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
+-   [ ] add different active icons for left-sidebar
+-   [ ] improve new message modal visually
 -   [ ] make it responsive
 -   [ ] add dark mode
 -   [ ] finish /settings page

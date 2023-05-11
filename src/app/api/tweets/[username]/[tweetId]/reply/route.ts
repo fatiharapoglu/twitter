@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
+import { createNotification } from "@/utilities/fetch";
+import { UserProps } from "@/types/UserProps";
 
 export async function GET(request: NextRequest, { params: { tweetId } }: { params: { tweetId: string } }) {
     try {
@@ -69,11 +71,21 @@ export async function GET(request: NextRequest, { params: { tweetId } }: { param
     }
 }
 
-export async function POST(request: NextRequest, { params: { tweetId } }: { params: { tweetId: string } }) {
+export async function POST(
+    request: NextRequest,
+    { params: { tweetId, username } }: { params: { tweetId: string; username: string } }
+) {
     const { authorId, text, photoUrl } = await request.json();
-
     const token = request.cookies.get("token")?.value;
-    const verifiedToken = token && (await verifyJwtToken(token));
+    const verifiedToken: UserProps = token && (await verifyJwtToken(token));
+    const secret = process.env.CREATION_SECRET_KEY;
+
+    if (!secret) {
+        return NextResponse.json({
+            success: false,
+            message: "Secret key not found.",
+        });
+    }
 
     if (!verifiedToken)
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
@@ -99,6 +111,22 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
                 },
             },
         });
+
+        if (username !== verifiedToken.username) {
+            const notificationContent = {
+                sender: {
+                    username: verifiedToken.username,
+                    name: verifiedToken.name,
+                    photoUrl: verifiedToken.photoUrl,
+                },
+                content: {
+                    id: tweetId,
+                },
+            };
+
+            await createNotification(username, "reply", secret, notificationContent);
+        }
+
         return NextResponse.json({ success: true });
     } catch (error: unknown) {
         return NextResponse.json({ success: false, error });

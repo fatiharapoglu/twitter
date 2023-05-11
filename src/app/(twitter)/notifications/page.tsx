@@ -28,7 +28,7 @@ export default function NotificationsPage() {
             ) : (
                 <div className="notifications-wrapper">
                     {data.notifications.map((notification: NotificationProps) => (
-                        <Notification key={notification.id} notification={notification} />
+                        <Notification key={notification.id} notification={notification} token={token} />
                     ))}
                 </div>
             )}
