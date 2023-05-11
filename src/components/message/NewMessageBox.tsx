@@ -41,6 +41,7 @@ export default function NewMessageBox({ messagedUsername, token, setFreshMessage
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["messages", token.username] });
         },
+        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {

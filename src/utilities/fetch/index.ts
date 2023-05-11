@@ -8,7 +8,9 @@ export const getAllTweets = async (page = "1") => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getRelatedTweets = async () => {
@@ -17,7 +19,9 @@ export const getRelatedTweets = async () => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUserTweets = async (username: string) => {
@@ -26,7 +30,9 @@ export const getUserTweets = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUserLikes = async (username: string) => {
@@ -35,7 +41,9 @@ export const getUserLikes = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUserMedia = async (username: string) => {
@@ -44,7 +52,9 @@ export const getUserMedia = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUserReplies = async (username: string) => {
@@ -53,7 +63,9 @@ export const getUserReplies = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
@@ -62,7 +74,9 @@ export const getUserTweet = async (tweetId: string, tweetAuthor: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const createTweet = async (tweet: string) => {
@@ -73,7 +87,9 @@ export const createTweet = async (tweet: string) => {
         },
         body: tweet,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const logIn = async (candidate: string) => {
@@ -84,7 +100,9 @@ export const logIn = async (candidate: string) => {
         },
         body: candidate,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const logInAsTest = async () => {
@@ -111,7 +129,9 @@ export const createUser = async (newUser: string) => {
         },
         body: newUser,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getUser = async (username: string) => {
@@ -120,7 +140,9 @@ export const getUser = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const editUser = async (updatedUser: string, username: string) => {
@@ -131,7 +153,9 @@ export const editUser = async (updatedUser: string, username: string) => {
         },
         body: updatedUser,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isLiked: boolean) => {
@@ -143,7 +167,9 @@ export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tok
         },
         body: tokenOwnerId,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const updateRetweets = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isRetweeted: boolean) => {
@@ -155,7 +181,9 @@ export const updateRetweets = async (tweetId: string, tweetAuthor: string, token
         },
         body: tokenOwnerId,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const updateUserFollows = async (followedUsername: string, tokenOwnerId: string, isFollowed: boolean) => {
@@ -167,7 +195,9 @@ export const updateUserFollows = async (followedUsername: string, tokenOwnerId: 
         },
         body: tokenOwnerId,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const deleteTweet = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string) => {
@@ -178,7 +208,9 @@ export const deleteTweet = async (tweetId: string, tweetAuthor: string, tokenOwn
         },
         body: tokenOwnerId,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const createReply = async (reply: string, tweetAuthor: string, tweetId: string) => {
@@ -189,7 +221,9 @@ export const createReply = async (reply: string, tweetAuthor: string, tweetId: s
         },
         body: reply,
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getReplies = async (tweetAuthor: string, tweetId: string) => {
@@ -198,17 +232,23 @@ export const getReplies = async (tweetAuthor: string, tweetId: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const search = async (text: string) => {
     const response = await fetch(`${HOST_URL}/api/search?q=${text}`);
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getRandomThreeUsers = async () => {
     const response = await fetch(`${HOST_URL}/api/users/random`);
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const createMessage = async (message: string) => {
@@ -220,7 +260,7 @@ export const createMessage = async (message: string) => {
         body: message,
     });
     const json = await response.json();
-    if (!json.success) throw new Error(json.message);
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
     return json;
 };
 
@@ -230,12 +270,16 @@ export const getUserMessages = async (username: string) => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const checkUserExists = async (username: string) => {
     const response = await fetch(`${HOST_URL}/api/users/exists?q=${username}`);
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const deleteConversation = async (participants: string[], tokenOwnerId: string) => {
@@ -246,7 +290,9 @@ export const deleteConversation = async (participants: string[], tokenOwnerId: s
         },
         body: JSON.stringify({ participants, tokenOwnerId }),
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const getNotifications = async () => {
@@ -255,7 +301,9 @@ export const getNotifications = async () => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const createNotification = async (
@@ -271,7 +319,9 @@ export const createNotification = async (
         },
         body: JSON.stringify({ recipient, type, secret, notificationContent }),
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };
 
 export const markNotificationsRead = async () => {
@@ -280,5 +330,7 @@ export const markNotificationsRead = async () => {
             revalidate: 0,
         },
     });
-    return response.json();
+    const json = await response.json();
+    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
+    return json;
 };

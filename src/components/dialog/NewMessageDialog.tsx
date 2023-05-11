@@ -25,6 +25,7 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token, r
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["messages", token.username] });
         },
+        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {

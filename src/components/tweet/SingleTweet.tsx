@@ -50,6 +50,7 @@ export default function SingleTweet({ tweet, token }: { tweet: TweetProps; token
             queryClient.invalidateQueries(["tweets", tweet.author.username]);
             router.replace(`/${tweet.author.username}`);
         },
+        onError: (error) => console.log(error),
     });
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLButtonElement>) => {

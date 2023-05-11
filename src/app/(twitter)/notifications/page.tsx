@@ -25,6 +25,7 @@ export default function NotificationsPage() {
         onSuccess: () => {
             queryClient.invalidateQueries(["notifications"]);
         },
+        onError: (error) => console.log(error),
     });
 
     const handleNotificationsRead = () => {

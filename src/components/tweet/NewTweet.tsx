@@ -28,6 +28,7 @@ export default function NewTweet({ token, handleSubmit }: NewTweetProps) {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["tweets"] });
         },
+        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {

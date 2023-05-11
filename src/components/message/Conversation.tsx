@@ -27,6 +27,7 @@ export default function Conversation({ conversation, token, handleConversations 
             setIsDeleting(false);
             queryClient.invalidateQueries(["messages", token.username]);
         },
+        onError: (error) => console.log(error),
     });
 
     const messagedUsername = conversation.participants.find((user) => user !== token.username);

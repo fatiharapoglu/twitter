@@ -107,7 +107,7 @@
 -   [x] message and notifications length, and banner to icon
 -   [x] handle isRead function
 -   [x] finish /notifications page
--   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
+-   [x] error handling with onSuccess, onError, throw new Error in fetch responses
 -   [ ] add different active icons for left-sidebar
 -   [ ] improve new message modal visually
 -   [ ] make it responsive

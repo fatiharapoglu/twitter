@@ -32,6 +32,7 @@ export default function NewReply({ token, tweet }: { token: UserProps; tweet: Tw
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKey });
         },
+        onError: (error) => console.log(error),
     });
 
     const handlePhotoChange = (file: File) => {
