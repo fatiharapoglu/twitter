@@ -4,10 +4,19 @@ import { SignJWT } from "jose";
 import { prisma } from "@/prisma/client";
 import { hashPassword } from "@/utilities/bcrypt";
 import { getJwtSecretKey } from "@/utilities/auth";
+import { createNotification } from "@/utilities/fetch";
 
 export async function POST(request: NextRequest) {
     const userData = await request.json();
     const hashedPassword = await hashPassword(userData.password);
+    const secret = process.env.CREATION_SECRET_KEY;
+
+    if (!secret) {
+        return NextResponse.json({
+            success: false,
+            message: "Secret key not found.",
+        });
+    }
 
     try {
         const userExists = await prisma.user.findUnique({
@@ -29,6 +38,8 @@ export async function POST(request: NextRequest) {
                 password: hashedPassword,
             },
         });
+
+        await createNotification(newUser.username, "welcome", secret);
 
         const token = await new SignJWT({
             id: newUser.id,

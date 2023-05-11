@@ -1,3 +1,5 @@
+import { NotificationTypes } from "@/types/NotificationProps";
+
 const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL;
 
 export const getAllTweets = async (page = "1") => {
@@ -243,6 +245,26 @@ export const deleteConversation = async (participants: string[], tokenOwnerId: s
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ participants, tokenOwnerId }),
+    });
+    return response.json();
+};
+
+export const getNotifications = async () => {
+    const response = await fetch(`${HOST_URL}/api/notifications`, {
+        next: {
+            revalidate: 0,
+        },
+    });
+    return response.json();
+};
+
+export const createNotification = async (recipient: string, type: NotificationTypes, secret: string) => {
+    const response = await fetch(`${HOST_URL}/api/notifications/create`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ recipient, type, secret }),
     });
     return response.json();
 };
