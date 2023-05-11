@@ -103,7 +103,8 @@
 -   [x] add notifications
 -   [x] add welcome notification
 -   [x] handle users getting notifications from themselves
--   [ ] handle message notification's frequency
+-   [x] handle message notification's frequency
+-   [ ] handle isRead function
 -   [ ] finish /notifications page
 -   [ ] error handling in useQuery, throw new Error in fetch responses, catch in useQuery onError.
 -   [ ] add different active icons for left-sidebar
@@ -115,6 +116,8 @@
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
+-   [ ] optimistic updates on maybe twitter creation, retweet especially
+-   [ ] fix favicon problem when path is /\*
 -   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
 -   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
 -   [ ] if after deploy still slow, get info from user query, clean up tweet responses

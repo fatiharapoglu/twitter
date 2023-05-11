@@ -21,11 +21,9 @@ export default function Notification({ notification, token }: { notification: No
         setAnchorEl(null);
     };
 
-    const content: NotificationContent = JSON.parse(notification.content);
+    const content = JSON.parse(notification.content);
 
-    if (!content) return null;
-
-    const tweetUrl = `/${notification.user.username}/tweets/${content.content?.id}`;
+    const tweetUrl = `/${notification.user.username}/tweets/${content?.content?.id}`;
     const profileUrl = `/${notification.user.username}`;
 
     const popoverJSX = (
@@ -46,7 +44,7 @@ export default function Notification({ notification, token }: { notification: No
             onClose={handlePopoverClose}
             disableRestoreFocus
         >
-            <ProfileCard username={content.sender.username} token={token} />
+            <ProfileCard username={content?.sender.username} token={token} />
         </Popover>
     );
 
@@ -61,12 +59,12 @@ export default function Notification({ notification, token }: { notification: No
                 <Avatar
                     sx={{ width: 33, height: 33 }}
                     alt=""
-                    src={content.sender.photoUrl ? getFullURL(content.sender.photoUrl) : "/assets/egg.jpg"}
+                    src={content?.sender.photoUrl ? getFullURL(content?.sender.photoUrl) : "/assets/egg.jpg"}
                 />
                 <div className="profile-info-main">
                     <h1>
-                        {content.sender.name !== "" ? content.sender.name : content.sender.username}{" "}
-                        <span className="text-muted">(@{content.sender.username})</span>
+                        {content?.sender.name !== "" ? content?.sender.name : content?.sender.username}{" "}
+                        <span className="text-muted">(@{content?.sender.username})</span>
                     </h1>
                 </div>
             </Link>

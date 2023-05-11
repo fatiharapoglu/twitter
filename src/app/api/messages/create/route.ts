@@ -3,11 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
 import { createNotification } from "@/utilities/fetch";
+import { shouldCreateNotification } from "@/utilities/misc/shouldCreateNotification";
+import { UserProps } from "@/types/UserProps";
 
 export async function POST(request: NextRequest) {
     const { recipient, sender, text, photoUrl } = await request.json();
     const token = request.cookies.get("token")?.value;
-    const verifiedToken = token && (await verifyJwtToken(token));
+    const verifiedToken: UserProps = token && (await verifyJwtToken(token));
     const secret = process.env.CREATION_SECRET_KEY;
 
     if (!secret) {
@@ -51,7 +53,7 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        if (recipient !== verifiedToken.username) {
+        if (recipient !== verifiedToken.username && (await shouldCreateNotification(verifiedToken.username, recipient))) {
             const notificationContent = {
                 sender: {
                     username: verifiedToken.username,

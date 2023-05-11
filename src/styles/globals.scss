@@ -12,7 +12,7 @@
     --twitter-red: #ff0000;
     --twitter-light-red: #fdc9ce;
     --twitter-dark-red: #9c0000;
-    --twitter-orange: #ffa500;
+    --twitter-orange: #fc5000;
     --twitter-purple: #380038;
     --twitter-pink: #c333d6;
     --twitter-white: #f5f8fa;
@@ -1854,6 +1854,7 @@ button.icon-hoverable {
         grid-template-columns: 50px 1fr;
         align-items: center;
         gap: 1rem;
+        line-height: 1.2;
 
         .icon-div {
             display: flex;
@@ -1891,8 +1892,6 @@ button.icon-hoverable {
         }
 
         .notification-sender {
-            line-height: 1.2;
-
             .avatar-wrapper {
                 display: inline-block;
 
