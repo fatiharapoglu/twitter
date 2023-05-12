@@ -239,9 +239,7 @@ export const getReplies = async (tweetAuthor: string, tweetId: string) => {
 
 export const search = async (text: string) => {
     const response = await fetch(`${HOST_URL}/api/search?q=${text}`);
-    const json = await response.json();
-    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
-    return json;
+    return response.json();
 };
 
 export const getRandomThreeUsers = async () => {
@@ -277,9 +275,7 @@ export const getUserMessages = async (username: string) => {
 
 export const checkUserExists = async (username: string) => {
     const response = await fetch(`${HOST_URL}/api/users/exists?q=${username}`);
-    const json = await response.json();
-    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
-    return json;
+    return response.json();
 };
 
 export const deleteConversation = async (participants: string[], tokenOwnerId: string) => {
