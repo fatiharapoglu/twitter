@@ -27,7 +27,7 @@ export default function LeftSidebar() {
     const router = useRouter();
     const pathname = usePathname();
 
-    const { data, isFetched } = useQuery(["notifications"], getNotifications, { enabled: !!token });
+    const { data, isFetched } = useQuery(["notifications"], getNotifications);
 
     const lengthOfUnreadNotifications =
         token &&
