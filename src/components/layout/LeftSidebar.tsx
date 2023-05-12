@@ -97,9 +97,12 @@ export default function LeftSidebar() {
                                             >
                                                 <div className="badge-wrapper">
                                                     <FaBell />{" "}
-                                                    {isFetched && lengthOfUnreadNotifications > 0 && (
-                                                        <span className="badge">{lengthOfUnreadNotifications}</span>
-                                                    )}
+                                                    {isFetched &&
+                                                        data.notifications &&
+                                                        data.notifications.length > 0 &&
+                                                        lengthOfUnreadNotifications > 0 && (
+                                                            <span className="badge">{lengthOfUnreadNotifications}</span>
+                                                        )}
                                                 </div>
                                                 Notifications
                                             </div>
