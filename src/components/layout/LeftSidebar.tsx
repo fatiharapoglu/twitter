@@ -30,7 +30,11 @@ export default function LeftSidebar() {
     const { data, isFetched } = useQuery(["notifications"], getNotifications, { enabled: !!token });
 
     const lengthOfUnreadNotifications =
-        token && isFetched && data.notifications.filter((notification: NotificationProps) => !notification.isRead).length;
+        token &&
+        isFetched &&
+        data &&
+        data.notifications &&
+        data.notifications.filter((notification: NotificationProps) => !notification.isRead).length;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
