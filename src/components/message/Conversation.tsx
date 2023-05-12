@@ -30,7 +30,7 @@ export default function Conversation({ conversation, token, handleConversations 
         onError: (error) => console.log(error),
     });
 
-    const messagedUsername = conversation.participants.find((user) => user !== token.username);
+    const messagedUsername = conversation.participants.find((user: string) => user !== token.username);
 
     const { name, username, photoUrl, isPremium } =
         conversation.messages[conversation.messages.length - 1].recipient.username === messagedUsername

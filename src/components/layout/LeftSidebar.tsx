@@ -14,6 +14,7 @@ import LogOutDialog from "../dialog/LogOutDialog";
 import { getNotifications, logout } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { getFullURL } from "@/utilities/misc/getFullURL";
+import { NotificationProps } from "@/types/NotificationProps";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -29,7 +30,7 @@ export default function LeftSidebar() {
     const { data, isFetched } = useQuery(["notifications"], getNotifications, { enabled: !!token });
 
     const lengthOfUnreadNotifications =
-        token && isFetched && data.notifications.filter((notification: any) => !notification.isRead).length;
+        token && isFetched && data.notifications.filter((notification: NotificationProps) => !notification.isRead).length;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);

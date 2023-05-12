@@ -209,12 +209,12 @@ export default function Profile({ profile }: { profile: UserProps }) {
                     <DialogContent sx={{ paddingX: 0 }}>
                         <div className="user-list">
                             {dialogType === "following"
-                                ? profile.following.map((user) => (
+                                ? profile.following.map((user: UserProps) => (
                                       <div className="user-wrapper" key={"following" + user.id}>
                                           <User user={user} />
                                       </div>
                                   ))
-                                : profile.followers.map((user) => (
+                                : profile.followers.map((user: UserProps) => (
                                       <div className="user-wrapper" key={"followers" + user.id}>
                                           <User user={user} />
                                       </div>

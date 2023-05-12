@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
+import { TweetProps } from "@/types/TweetProps";
 
 export async function POST(request: NextRequest, { params: { tweetId } }: { params: { tweetId: string } }) {
     const tokenOwnerId = await request.json();
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest, { params: { tweetId } }: { para
             },
         });
 
-        const retweetId = originalTweet?.retweets.find((retweet) => retweet.authorId === tokenOwnerId)?.id;
+        const retweetId = originalTweet?.retweets.find((retweet: any) => retweet.authorId === tokenOwnerId)?.id;
 
         await prisma.tweet.delete({
             where: {

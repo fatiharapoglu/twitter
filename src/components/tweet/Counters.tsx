@@ -7,6 +7,7 @@ import { AuthContext } from "@/app/(twitter)/layout";
 import { scrollToBottom } from "@/utilities/misc/scrollToBottom";
 import CustomSnackbar from "../misc/CustomSnackbar";
 import { SnackbarProps } from "@/types/SnackbarProps";
+import { UserProps } from "@/types/UserProps";
 
 export default function Counters({ tweet }: { tweet: TweetProps }) {
     const [dialogType, setDialogType] = useState("");
@@ -70,12 +71,12 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                     <DialogContent sx={{ paddingX: 0 }}>
                         <div className="user-list">
                             {dialogType === "likes"
-                                ? tweet.likedBy.map((user) => (
+                                ? tweet.likedBy.map((user: UserProps) => (
                                       <div className="user-wrapper" key={"like-" + user.id}>
                                           <User user={user} />
                                       </div>
                                   ))
-                                : tweet.retweetedBy.map((user) => (
+                                : tweet.retweetedBy.map((user: UserProps) => (
                                       <div className="user-wrapper" key={"retweet-" + user.id}>
                                           <User user={user} />
                                       </div>

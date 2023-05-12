@@ -58,7 +58,9 @@ export default function Follow({ profile }: { profile: UserProps }) {
                     ...previous,
                     user: {
                         ...previous.user,
-                        followers: previous.user.followers.filter((user) => JSON.stringify(user.id) !== tokenOwnerId),
+                        followers: previous.user.followers.filter(
+                            (user: UserProps) => JSON.stringify(user.id) !== tokenOwnerId
+                        ),
                     },
                 });
             }

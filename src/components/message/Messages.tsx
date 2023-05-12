@@ -34,7 +34,7 @@ export default function Messages({ selectedMessages, messagedUsername, handleCon
             </div>
             <div className="messages-wrapper" ref={messagesWrapperRef}>
                 {freshMessages.length > 0 &&
-                    freshMessages.map((message) => (
+                    freshMessages.map((message: MessageProps) => (
                         <Message key={message.id} message={message} messagedUsername={messagedUsername} />
                     ))}
             </div>

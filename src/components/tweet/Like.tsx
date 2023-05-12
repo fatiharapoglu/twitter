@@ -8,6 +8,7 @@ import { getUserTweet, updateTweetLikes } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { SnackbarProps } from "@/types/SnackbarProps";
 import CustomSnackbar from "../misc/CustomSnackbar";
+import { UserProps } from "@/types/UserProps";
 
 export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
     const [isLiked, setIsLiked] = useState(false);
@@ -64,7 +65,9 @@ export default function Like({ tweetId, tweetAuthor }: TweetOptionsProps) {
                     ...previous,
                     tweet: {
                         ...previous.tweet,
-                        likedBy: previous.tweet.likedBy.filter((user) => JSON.stringify(user.id) !== tokenOwnerId),
+                        likedBy: previous.tweet.likedBy.filter(
+                            (user: UserProps) => JSON.stringify(user.id) !== tokenOwnerId
+                        ),
                     },
                 });
             }
