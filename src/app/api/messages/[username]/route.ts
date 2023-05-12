@@ -56,7 +56,7 @@ export async function GET(request: NextRequest, { params: { username } }: { para
 
         const conversations: any = {};
 
-        messages.forEach((message) => {
+        messages.forEach((message: any) => {
             const sender = message.sender.username;
             const recipient = message.recipient.username;
             const conversationKey = [sender, recipient].sort().join("-");
