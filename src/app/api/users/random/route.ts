@@ -7,6 +7,9 @@ export async function GET(request: NextRequest) {
     const token = request.cookies.get("token")?.value;
     const verifiedToken = token && (await verifyJwtToken(token));
 
+    console.log(token);
+    console.log(verifiedToken);
+
     if (!verifiedToken) return NextResponse.json({ success: false, message: "You are not logged in." });
 
     const username = verifiedToken.username as string;

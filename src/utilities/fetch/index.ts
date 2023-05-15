@@ -298,8 +298,6 @@ export const getNotifications = async () => {
         },
     });
     const json = await response.json();
-    console.log(json);
-
     if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
     return json;
 };
