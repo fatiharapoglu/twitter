@@ -79,14 +79,14 @@ export default function LeftSidebar() {
                             {token && (
                                 <>
                                     <li>
-                                        <Link href="/notifications">
+                                        <Link href="/notifications" prefetch={false}>
                                             <div
                                                 className={`nav-link ${
                                                     pathname.startsWith("/notifications") ? "active" : ""
                                                 }`}
                                             >
                                                 <div className="badge-wrapper">
-                                                    <FaBell /> <UnreadNotificationsBadge token={token} />
+                                                    <FaBell /> <UnreadNotificationsBadge />
                                                 </div>
                                                 Notifications
                                             </div>
