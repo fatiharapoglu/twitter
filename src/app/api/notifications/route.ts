@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     const verifiedToken = token && (await verifyJwtToken(token));
 
     console.log(verifiedToken);
+    console.log(token);
 
     if (!verifiedToken)
         return NextResponse.json({ success: false, message: "You are not authorized to perform this action." });
