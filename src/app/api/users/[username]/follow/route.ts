@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 import { prisma } from "@/prisma/client";
 import { verifyJwtToken } from "@/utilities/auth";
@@ -7,8 +8,11 @@ import { UserProps } from "@/types/UserProps";
 
 export async function POST(request: NextRequest, { params: { username } }: { params: { username: string } }) {
     const tokenOwnerId = await request.json();
-    const token = request.cookies.get("token")?.value;
+
+    const cookieStore = cookies();
+    const token = cookieStore.get("token")?.value;
     const verifiedToken: UserProps = token && (await verifyJwtToken(token));
+
     const secret = process.env.CREATION_SECRET_KEY;
 
     if (!secret) {
