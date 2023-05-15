@@ -88,7 +88,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
                 });
             }
             setSnackbar({
-                message: "Profile updated successfully.",
+                message: "Your profile has been updated successfully.",
                 severity: "success",
                 open: true,
             });
@@ -104,7 +104,7 @@ export default function EditProfile({ profile, refreshToken }: { profile: UserPr
         const checkResponse = await checkBlueFromServer(blueInput);
         if (!checkResponse) {
             setIsBlueLoading(false);
-            return setSnackbar({ message: "Invalid blue code.", severity: "error", open: true });
+            return setSnackbar({ message: "Invalid blue code. Please try again.", severity: "error", open: true });
         }
         const response = await editUser(JSON.stringify({ isPremium: true }), profile.username);
         if (!response.success) {

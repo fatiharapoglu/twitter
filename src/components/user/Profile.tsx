@@ -35,7 +35,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
     const handleDialogOpen = (type: string) => {
         if (!token) {
             return setSnackbar({
-                message: "You need to login to see the followers.",
+                message: "You need to login first to see the followers.",
                 severity: "info",
                 open: true,
             });
@@ -73,7 +73,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
     const handleNewMessageClick = () => {
         if (!token) {
             return setSnackbar({
-                message: "You need to login to message someone.",
+                message: "You need to login first to message someone.",
                 severity: "info",
                 open: true,
             });

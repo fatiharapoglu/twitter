@@ -108,6 +108,7 @@
 -   [x] handle isRead function
 -   [x] finish /notifications page
 -   [x] error handling with onSuccess, onError, throw new Error in fetch responses
+-   [x] add next optimized fonts
 -   [ ] add different active icons for left-sidebar
 -   [ ] improve new message modal visually
 -   [ ] make it responsive

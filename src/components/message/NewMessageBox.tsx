@@ -81,7 +81,6 @@ export default function NewMessageBox({ messagedUsername, token, setFreshMessage
                 <div className="input">
                     <TextField
                         placeholder="Start a new message"
-                        multiline
                         hiddenLabel
                         variant="outlined"
                         name="text"

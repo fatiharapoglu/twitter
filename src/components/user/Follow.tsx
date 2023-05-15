@@ -81,7 +81,7 @@ export default function Follow({ profile }: { profile: UserProps }) {
 
         if (!token) {
             return setSnackbar({
-                message: "You need to login to follow someone.",
+                message: "You need to login first to follow someone.",
                 severity: "info",
                 open: true,
             });
