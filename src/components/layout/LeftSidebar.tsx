@@ -45,6 +45,7 @@ export default function LeftSidebar() {
         setIsNewTweetOpen(false);
     };
     const handleLogOutClick = () => {
+        handleAnchorClose();
         setIsLogOutOpen(true);
     };
     const handleLogOutClose = () => {
