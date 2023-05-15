@@ -254,6 +254,8 @@ body {
         flex-direction: column;
 
         .twitter-icon {
+            padding-top: 1rem;
+
             & > img {
                 border-radius: 5rem;
                 padding: 0.25rem;
@@ -278,6 +280,7 @@ body {
                         border-radius: 5rem;
                         display: inline-flex;
                         transition: background-color 0.2s ease-in-out;
+                        color: var(--twitter-light-black);
 
                         &:hover {
                             background-color: var(--hover);
@@ -285,11 +288,16 @@ body {
 
                         svg {
                             padding-right: 1rem;
+                            color: var(--twitter-muted);
                         }
-                    }
 
-                    .active {
-                        font-weight: 900;
+                        &.active {
+                            font-weight: 900;
+
+                            svg {
+                                color: var(--twitter-black);
+                            }
+                        }
                     }
                 }
             }
@@ -1631,7 +1639,7 @@ button.icon-hoverable {
     }
 }
 
-.new-message-form {
+.new-message-form.dialog-form {
     .title {
         margin-bottom: -1rem;
     }
@@ -1643,11 +1651,16 @@ button.icon-hoverable {
 
     .input-additions {
         border-top: none;
-        justify-content: center;
+        justify-content: end;
+        margin-right: 10rem;
     }
 
     .btn {
-        width: 50%;
+        width: 20%;
+        position: absolute;
+        right: 0;
+        top: 16.25rem;
+        right: 2rem;
     }
 
     .emoji-picker {

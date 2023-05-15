@@ -109,8 +109,8 @@
 -   [x] finish /notifications page
 -   [x] error handling with onSuccess, onError, throw new Error in fetch responses
 -   [x] add next optimized fonts
--   [ ] add different active icons for left-sidebar
--   [ ] improve new message modal visually
+-   [x] improve new message modal visually
+-   [x] add different active icons for left-sidebar
 -   [ ] make it responsive
 -   [ ] add dark mode
 -   [ ] finish /settings page
