@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
@@ -11,10 +10,10 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 
 import NewTweetDialog from "../dialog/NewTweetDialog";
 import LogOutDialog from "../dialog/LogOutDialog";
-import { getNotifications, logout } from "@/utilities/fetch";
+import { logout } from "@/utilities/fetch";
 import { AuthContext } from "@/app/(twitter)/layout";
 import { getFullURL } from "@/utilities/misc/getFullURL";
-import { NotificationProps } from "@/types/NotificationProps";
+import UnreadNotificationsBadge from "../misc/UnreadNotificationsBadge";
 
 export default function LeftSidebar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -26,15 +25,6 @@ export default function LeftSidebar() {
 
     const router = useRouter();
     const pathname = usePathname();
-
-    const { data, isFetched } = useQuery(["notifications"], getNotifications);
-
-    const lengthOfUnreadNotifications =
-        token &&
-        isFetched &&
-        data &&
-        data.notifications &&
-        data.notifications.filter((notification: NotificationProps) => !notification.isRead).length;
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
@@ -96,13 +86,7 @@ export default function LeftSidebar() {
                                                 }`}
                                             >
                                                 <div className="badge-wrapper">
-                                                    <FaBell />{" "}
-                                                    {isFetched &&
-                                                        data.notifications &&
-                                                        data.notifications.length > 0 &&
-                                                        lengthOfUnreadNotifications > 0 && (
-                                                            <span className="badge">{lengthOfUnreadNotifications}</span>
-                                                        )}
+                                                    <FaBell /> <UnreadNotificationsBadge token={token} />
                                                 </div>
                                                 Notifications
                                             </div>
