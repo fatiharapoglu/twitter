@@ -19,8 +19,6 @@ export const getJwtSecretKey = () => {
 
 export const verifyJwtToken = async (token: string) => {
     const response = await verifyTokenFromServer(token);
-    console.log(response);
-
     if (!response) return null;
     return response;
 };
