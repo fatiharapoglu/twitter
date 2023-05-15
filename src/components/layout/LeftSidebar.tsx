@@ -79,7 +79,7 @@ export default function LeftSidebar() {
                             {token && (
                                 <>
                                     <li>
-                                        <Link href="/notifications" prefetch={false}>
+                                        <Link href="/notifications">
                                             <div
                                                 className={`nav-link ${
                                                     pathname.startsWith("/notifications") ? "active" : ""

@@ -20,6 +20,8 @@ export default function NotificationsPage() {
         queryFn: getNotifications,
     });
 
+    console.log(data);
+
     const mutation = useMutation({
         mutationFn: markNotificationsRead,
         onSuccess: () => {
