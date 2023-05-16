@@ -2,6 +2,8 @@
 
 ## Roadmap
 
+Starting date: April 4, 2023
+
 -   [x] add hash to passwords when creating
 -   [x] add auth
 -   [x] if auth, return to /home | /explore

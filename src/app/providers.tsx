@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
 export const ThemeContext = createContext({ theme: "light", toggleTheme: () => {} });
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
@@ -31,6 +31,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             localStorage.setItem("theme", "light");
         }
     }, [theme]);
+
+    useEffect(() => {
+        const theme = localStorage.getItem("theme") || "light";
+        setTheme(theme);
+    }, []);
 
     const muiTheme = useMemo(
         () =>
