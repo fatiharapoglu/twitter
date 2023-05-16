@@ -1,4 +1,4 @@
-[data-theme="light"] {
+:root {
     --background-primary: #ffffff;
     --background-blue: #1da1f2;
     --twitter-blue: #1da1f2;
@@ -2032,6 +2032,13 @@ button.icon-hoverable {
 
 .color-theme-switch {
     padding: 2rem 1rem;
+
+    .label {
+        display: inline;
+        vertical-align: middle;
+        font-size: smaller;
+        color: var(--twitter-muted);
+    }
 }
 
 ::-webkit-scrollbar {

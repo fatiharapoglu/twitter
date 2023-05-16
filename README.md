@@ -116,12 +116,13 @@
 -   [x] finish /settings page
 -   [x] fix favicon problem when path is deeper
 -   [x] choose database and vercel serverless locations close
+-   [x] make color choice stable by saving it to the localstore
+-   [ ] activate material ui dark mode when dark mode
 -   [ ] make it responsive
--   [ ] material ui custom colors
+-   [ ] only verified blue tick user should show in the who to follow section, after deploy
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
 -   [ ] optimistic updates on maybe tweet creation, retweet especially, try passing isRetweeted as a prop then set onMutate
 -   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
 -   [ ] create changelog md
--   [ ] only verified blue tick user should show in the who to follow section, after deploy

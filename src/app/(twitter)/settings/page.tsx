@@ -1,7 +1,8 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Switch } from "@mui/material";
+
 import { ThemeContext } from "@/app/providers";
 
 export default function SettingsPage() {
@@ -13,7 +14,7 @@ export default function SettingsPage() {
             <div className="color-theme-switch">
                 <h1>Color Theme</h1>
                 <Switch checked={theme === "dark" ? true : false} onChange={toggleTheme} />
-                <div>{theme === "dark" ? "Lights Out" : "Default"}</div>
+                <div className="label">{theme === "dark" ? "(Lights Out)" : "(Default)"}</div>
             </div>
         </main>
     );

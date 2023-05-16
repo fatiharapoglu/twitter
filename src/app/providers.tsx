@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
 export const ThemeContext = createContext({ theme: "light", toggleTheme: () => {} });
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
@@ -24,8 +24,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (theme === "dark") {
             document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
         } else {
             document.documentElement.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
         }
     }, [theme]);
 
