@@ -4,6 +4,8 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import GlobalLoading from "@/components/misc/GlobalLoading";
+
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -15,27 +17,28 @@ const queryClient = new QueryClient({
 export const ThemeContext = createContext({ theme: "light", toggleTheme: () => {} });
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState("loading");
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
     };
+
+    useEffect(() => {
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme) {
+            setTheme(storedTheme);
+        }
+    }, []);
 
     useEffect(() => {
         if (theme === "dark") {
             document.documentElement.setAttribute("data-theme", "dark");
-            localStorage.setItem("theme", "dark");
         } else {
             document.documentElement.setAttribute("data-theme", "light");
-            localStorage.setItem("theme", "light");
         }
     }, [theme]);
-
-    useEffect(() => {
-        const theme = localStorage.getItem("theme") || "light";
-        setTheme(theme);
-    }, []);
 
     const muiTheme = useMemo(
         () =>
@@ -46,6 +49,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             }),
         [theme]
     );
+
+    if (theme === "loading") return <GlobalLoading />;
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

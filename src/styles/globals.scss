@@ -2,7 +2,6 @@
     --background-primary: #ffffff;
     --background-blue: #1da1f2;
     --twitter-blue: #1da1f2;
-    --twitter-light-blue: #dae7ee;
     --twitter-dark-blue: #1b90dd;
     --twitter-gray: #657786;
     --twitter-light-gray: #d1dce4;
@@ -33,14 +32,13 @@
     --background-primary: #000000;
     --background-blue: #000000;
     --twitter-blue: #1976d2;
-    --twitter-light-blue: #29418b;
     --twitter-dark-blue: #1d5fa1;
     --twitter-gray: #9898a3;
     --twitter-light-gray: #303030;
     --twitter-black: #f8f8f8;
     --twitter-light-black: #cecece;
     --twitter-red: #ff4747;
-    --twitter-light-red: #f31414;
+    --twitter-light-red: #210000;
     --twitter-dark-red: #df6a6a;
     --twitter-orange: #ffb898;
     --twitter-purple: #a2a2ff;
@@ -1409,7 +1407,7 @@ button.icon-hoverable {
     font-size: 1.25rem;
 
     &:hover {
-        background-color: var(--twitter-light-blue);
+        background-color: var(--twitter-light-gray);
     }
 }
 
