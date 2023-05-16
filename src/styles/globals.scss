@@ -1,5 +1,6 @@
-:root {
+[data-theme="light"] {
     --background-primary: #ffffff;
+    --background-blue: #1da1f2;
     --twitter-blue: #1da1f2;
     --twitter-light-blue: #dae7ee;
     --twitter-dark-blue: #1b90dd;
@@ -17,6 +18,46 @@
     --twitter-muted: #536471;
     --hover: #efefef;
     --border-color: #eff3f4;
+    --const-white: #f5f8fa;
+    --twitter-like: #e0245e;
+    --twitter-like-background: #f918801a;
+    --twitter-retweet: #17bf63;
+    --twitter-retweet-background: #13e29d1a;
+    --twitter-reply: #1da1f2;
+    --twitter-reply-background: #158cd11a;
+    --twitter-share: #1da1f2;
+    --twitter-share-background: #158cd11a;
+}
+
+[data-theme="dark"] {
+    --background-primary: #000000;
+    --background-blue: #000000;
+    --twitter-blue: #1976d2;
+    --twitter-light-blue: #29418b;
+    --twitter-dark-blue: #1d5fa1;
+    --twitter-gray: #9898a3;
+    --twitter-light-gray: #303030;
+    --twitter-black: #f8f8f8;
+    --twitter-light-black: #cecece;
+    --twitter-red: #ff4747;
+    --twitter-light-red: #f31414;
+    --twitter-dark-red: #df6a6a;
+    --twitter-orange: #ffb898;
+    --twitter-purple: #a2a2ff;
+    --twitter-pink: #7cf2ff;
+    --twitter-white: #16181c;
+    --twitter-muted: #71767b;
+    --hover: #0c0c0c;
+    --border-color: #1e2022;
+    --const-white: #f5f8fa;
+    --twitter-like: #ff82bc;
+    --twitter-like-background: #57183599;
+    --twitter-retweet: #008559;
+    --twitter-retweet-background: #13aa751a;
+    --twitter-reply: #4179a9;
+    --twitter-reply-background: #1c455f70;
+    --twitter-share: #4179a9;
+    --twitter-share-background: #1c455f70;
 }
 
 a {
@@ -33,7 +74,7 @@ body {
 
 .btn {
     background-color: var(--twitter-blue);
-    color: var(--twitter-white);
+    color: var(--const-white);
     border: none;
     border-radius: 2rem;
     padding: 0.75rem 1.5rem;
@@ -44,18 +85,22 @@ body {
 
     &:hover {
         background-color: var(--twitter-dark-blue);
-        color: var(--twitter-white);
+        color: var(--const-white);
     }
+}
+
+main {
+    position: relative;
 }
 
 .btn-light {
     color: var(--twitter-blue);
     background-color: var(--twitter-white);
-    border: 1px solid var(--twitter-blue);
+    border: 1px solid var(--twitter-light-gray);
 
     &:hover {
         background-color: var(--twitter-blue);
-        color: var(--twitter-white);
+        color: var(--const-white);
     }
 }
 
@@ -65,6 +110,7 @@ body {
 
     &:hover {
         background-color: var(--twitter-light-black);
+        color: var(--twitter-white);
     }
 }
 
@@ -96,6 +142,7 @@ body {
 
     &:hover {
         background-color: var(--twitter-dark-red);
+        color: var(--twitter-white);
     }
 }
 
@@ -103,6 +150,11 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
     filter: blur(1px);
+}
+
+.bold {
+    font-weight: bolder;
+    color: var(--twitter-black);
 }
 
 .root {
@@ -194,7 +246,7 @@ body {
         padding: 0.5rem;
 
         * {
-            border: none;
+            border-bottom: none;
         }
     }
 
@@ -322,15 +374,20 @@ body {
             border: none;
             border-radius: 5rem;
             cursor: pointer;
-            background-color: var(--hover);
+            background-color: var(--twitter-white);
             max-width: 250px;
             overflow: hidden;
+
+            &:hover {
+                background-color: var(--hover);
+            }
 
             .token-name {
                 font-weight: bold;
                 padding-bottom: 0.25rem;
                 display: flex;
                 text-align: left;
+                color: var(--twitter-black);
             }
 
             .token-username {
@@ -339,6 +396,7 @@ body {
 
             .three-dots {
                 padding-right: 0.5rem;
+                color: var(--twitter-black);
             }
         }
     }
@@ -607,13 +665,13 @@ body {
     justify-content: center;
     gap: 5rem;
     align-items: center;
-    color: var(--twitter-white);
+    color: var(--const-white);
     background-color: var(--twitter-blue);
     opacity: 0.9;
 
     .btn {
         margin: 0 0.5rem;
-        color: var(--twitter-white);
+        color: var(--const-white);
         background-color: var(--twitter-blue);
         font-size: small;
         border: 1px solid var(--border-color);
@@ -657,8 +715,10 @@ body {
         }
 
         .input ::before,
-        .input:hover ::before {
-            border: none;
+        .input:hover ::before,
+        .input ::after,
+        .input:hover ::after {
+            border: none !important;
         }
     }
 }
@@ -716,23 +776,22 @@ body {
             transform: translate(-6px, -6px);
 
             .icon {
-                opacity: 0.75;
-                color: var(--twitter-muted);
                 border: none;
-                border-radius: 5rem;
-                transition: all 0.2s ease-in-out;
-                padding: 0.5rem;
+                background-color: inherit;
                 display: flex;
                 justify-content: center;
+                color: var(--twitter-muted);
+                opacity: 0.75;
                 align-items: center;
-                background-color: inherit;
+
+                svg {
+                    border-radius: 5rem;
+                    transition: all 0.2s ease-in-out;
+                    padding: 0.5rem;
+                }
 
                 &:hover {
                     cursor: pointer;
-                }
-
-                .count {
-                    padding-left: 0.25rem;
                 }
 
                 span {
@@ -747,38 +806,45 @@ body {
             }
 
             .like {
-                &:hover {
-                    background-color: rgba(249, 24, 128, 0.1);
-                    color: rgba(249, 24, 128, 0.75);
+                &:hover svg {
+                    background-color: var(--twitter-like-background);
+                    color: var(--twitter-like);
                 }
-
+                &:hover {
+                    color: var(--twitter-like);
+                }
                 &.active {
-                    color: rgba(249, 24, 128, 0.75);
+                    color: var(--twitter-like);
                 }
             }
 
             .retweet {
-                &:hover {
-                    background-color: rgba(19, 226, 157, 0.1);
-                    color: rgba(2, 37, 26, 0.75);
+                &:hover svg {
+                    background-color: var(--twitter-retweet-background);
+                    color: var(--twitter-retweet);
                 }
-
+                &:hover {
+                    color: var(--twitter-retweet);
+                }
                 &.active {
-                    color: rgb(0, 186, 124);
+                    color: var(--twitter-retweet);
                 }
             }
 
             .reply {
+                &:hover svg {
+                    background-color: var(--twitter-reply-background);
+                    color: var(--twitter-reply);
+                }
                 &:hover {
-                    background-color: rgba(21, 140, 209, 0.1);
-                    color: var(--twitter-dark-blue);
+                    color: var(--twitter-reply);
                 }
             }
 
             .share {
-                &:hover {
-                    background-color: rgba(21, 140, 209, 0.1);
-                    color: var(--twitter-dark-blue);
+                &:hover svg {
+                    background-color: var(--twitter-share-background);
+                    color: var(--twitter-share);
                 }
             }
         }
@@ -1050,6 +1116,7 @@ body {
                     font-size: 0.7rem;
                     font-weight: 500;
                     background-color: var(--twitter-white);
+                    color: var(--twitter-black);
                     padding: 0.1rem 0.25rem;
                     border-radius: 0.5rem;
                 }
@@ -1121,6 +1188,7 @@ body {
             font-size: 0.7rem;
             font-weight: 500;
             background-color: var(--twitter-white);
+            color: var(--twitter-black);
             padding-left: 0.25rem;
             border-radius: 0.5rem;
         }
@@ -1208,7 +1276,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--twitter-blue);
+    background-color: var(--background-blue);
     z-index: 1000;
     position: fixed;
     inset: 0;
@@ -1216,11 +1284,11 @@ body {
     h1 {
         font-size: 3.5rem;
         font-weight: 300;
-        color: var(--twitter-white);
+        color: var(--const-white);
     }
 
     a {
-        color: var(--twitter-white);
+        color: var(--const-white);
         font-size: 1.5rem;
         font-weight: 900;
         transition: color 0.2s ease-in-out;
@@ -1256,11 +1324,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--twitter-blue);
+    background-color: var(--background-blue);
 
     .bird {
         animation: zoom-in 1.5s forwards;
-        color: var(--twitter-white);
+        color: var(--const-white);
         font-size: xx-large;
     }
 }
@@ -1280,6 +1348,11 @@ body {
     font-size: 1.25rem;
     font-weight: bold;
     border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    z-index: 50;
+    top: 0;
+    background-color: var(--background-primary);
+    opacity: 0.9;
 }
 
 .button-group {
@@ -1426,6 +1499,11 @@ button.icon-hoverable {
     align-items: center;
     gap: 1rem;
     border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    z-index: 50;
+    top: 0;
+    background-color: var(--background-primary);
+    opacity: 0.9;
 
     .top {
         display: flex;
@@ -1488,6 +1566,7 @@ button.icon-hoverable {
     dialog {
         border: 1px solid var(--border-color);
         background-color: var(--background-primary);
+        color: var(--twitter-black);
         border-radius: 1rem;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
@@ -1592,6 +1671,7 @@ button.icon-hoverable {
         border: none;
         background: inherit;
         cursor: pointer;
+        color: var(--twitter-black);
 
         &:hover {
             color: var(--twitter-blue);
@@ -1613,7 +1693,7 @@ button.icon-hoverable {
 .blue-tick {
     vertical-align: top;
     color: var(--twitter-blue);
-    padding-left: 2px;
+    margin-left: 2px;
     display: inline-flex;
     position: relative;
 
@@ -1625,7 +1705,7 @@ button.icon-hoverable {
         transform: translateX(-50%);
         padding: 4px 8px;
         background-color: var(--twitter-blue);
-        color: var(--twitter-white);
+        color: var(--const-white);
         font-size: 0.75rem;
         white-space: nowrap;
         font-weight: 500;
@@ -1658,7 +1738,6 @@ button.icon-hoverable {
     .btn {
         width: 20%;
         position: absolute;
-        right: 0;
         top: 16.25rem;
         right: 2rem;
     }
@@ -1766,7 +1845,7 @@ button.icon-hoverable {
                     .message-text {
                         border-bottom-right-radius: 0;
                         background-color: var(--twitter-blue);
-                        color: var(--twitter-white);
+                        color: var(--const-white);
                         margin-left: auto;
                     }
                 }
@@ -1881,7 +1960,7 @@ button.icon-hoverable {
                 color: var(--twitter-red);
             }
             &.retweet {
-                color: rgb(0, 186, 124);
+                color: var(--twitter-retweet);
                 scale: 1.75;
             }
             &.reply {
@@ -1944,11 +2023,15 @@ button.icon-hoverable {
         aspect-ratio: 1;
         font-size: 10px;
         font-weight: 800;
-        color: var(--twitter-white);
+        color: var(--const-white);
         display: flex;
         justify-content: center;
         align-items: center;
     }
+}
+
+.color-theme-switch {
+    padding: 2rem 1rem;
 }
 
 ::-webkit-scrollbar {

@@ -26,7 +26,7 @@ export default function Notification({ notification, token }: { notification: No
     const content = JSON.parse(notification.content);
 
     const tweetUrl = `/${notification.user.username}/tweets/${content?.content?.id}`;
-    const profileUrl = `/${notification.user.username}`;
+    const profileUrl = `/${content?.sender.username}`;
 
     const popoverJSX = (
         <Popover
@@ -81,8 +81,8 @@ export default function Notification({ notification, token }: { notification: No
                     <FaRegEnvelope />
                 </div>
                 <div>
-                    {sharedJSX} Sent you a direct message.{" "}
-                    <Link className="notification-link" href="/messages">
+                    {sharedJSX} <span className={!notification.isRead ? "bold" : ""}>Sent you a direct message.</span>{" "}
+                    <Link className={`notification-link ${!notification.isRead ? "bold" : ""}`} href="/messages">
                         Check it out!
                     </Link>
                 </div>
@@ -94,7 +94,12 @@ export default function Notification({ notification, token }: { notification: No
                 <div className="icon-div follow">
                     <RiChatFollowUpLine />
                 </div>
-                <div>{sharedJSX} Started following you. Stay connected and discover their updates!</div>
+                <div>
+                    {sharedJSX}{" "}
+                    <span className={!notification.isRead ? "bold" : ""}>
+                        Started following you. Stay connected and discover their updates!
+                    </span>
+                </div>
             </div>
         );
     } else if (notification.type === "like") {
@@ -104,8 +109,8 @@ export default function Notification({ notification, token }: { notification: No
                     <FaHeart />
                 </div>
                 <div>
-                    {sharedJSX} Liked your{" "}
-                    <Link className="notification-link" href={tweetUrl}>
+                    {sharedJSX} <span className={!notification.isRead ? "bold" : ""}>Liked your</span>{" "}
+                    <Link className={`notification-link ${!notification.isRead ? "bold" : ""}`} href={tweetUrl}>
                         tweet.
                     </Link>
                 </div>
@@ -118,8 +123,8 @@ export default function Notification({ notification, token }: { notification: No
                     <FaRegComment />
                 </div>
                 <div>
-                    {sharedJSX} Replied to your{" "}
-                    <Link className="notification-link" href={tweetUrl}>
+                    {sharedJSX} <span className={!notification.isRead ? "bold" : ""}>Replied to your</span>{" "}
+                    <Link className={`notification-link ${!notification.isRead ? "bold" : ""}`} href={tweetUrl}>
                         tweet.
                     </Link>
                 </div>
@@ -132,8 +137,8 @@ export default function Notification({ notification, token }: { notification: No
                     <RetweetIcon />
                 </div>
                 <div>
-                    {sharedJSX} Retweeted your{" "}
-                    <Link className="notification-link" href={tweetUrl}>
+                    {sharedJSX} <span className={!notification.isRead ? "bold" : ""}>Retweeted your</span>{" "}
+                    <Link className={`notification-link ${!notification.isRead ? "bold" : ""}`} href={tweetUrl}>
                         tweet.
                     </Link>
                 </div>
@@ -145,7 +150,7 @@ export default function Notification({ notification, token }: { notification: No
                 <div className="icon-div welcome">
                     <GiPartyPopper />
                 </div>
-                <div>
+                <div className={!notification.isRead ? "bold" : ""}>
                     Welcome to the Twitter! <br />
                     Start exploring and sharing your thoughts with the world.
                 </div>

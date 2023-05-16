@@ -58,7 +58,7 @@ const poppins = localFont({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${roboto.variable} ${poppins.variable}`}>
+        <html lang="en" className={`${roboto.variable} ${poppins.variable}`} data-theme="light">
             <body>
                 <Providers>{children}</Providers>
             </body>

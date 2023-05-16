@@ -111,18 +111,17 @@
 -   [x] add next optimized fonts
 -   [x] improve new message modal visually
 -   [x] add different active icons for left-sidebar
+-   [x] sticky page names and back links
+-   [x] add dark mode
+-   [x] finish /settings page
+-   [x] fix favicon problem when path is deeper
+-   [x] choose database and vercel serverless locations close
 -   [ ] make it responsive
--   [ ] add dark mode
--   [ ] finish /settings page
 -   [ ] material ui custom colors
 -   [ ] block/unblock feature (optional, maybe in roadmap?)
 -   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
 -   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
 -   [ ] optimistic updates on maybe tweet creation, retweet especially, try passing isRetweeted as a prop then set onMutate
--   [ ] fix favicon problem when path is deeper
 -   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
--   [ ] delete all users and tweets before deploying, make it more presentable and maybe use faker.js
--   [ ] if after deploy still slow, get info from user query, clean up tweet responses
--   [ ] choose database and vercel serverless locations close
 -   [ ] create changelog md
 -   [ ] only verified blue tick user should show in the who to follow section, after deploy
