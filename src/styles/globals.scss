@@ -138,11 +138,11 @@ main {
 
 .btn-danger {
     background-color: var(--twitter-red);
-    color: var(--twitter-white);
+    color: var(--const-white);
 
     &:hover {
         background-color: var(--twitter-dark-red);
-        color: var(--twitter-white);
+        color: var(--const-white);
     }
 }
 
@@ -966,6 +966,7 @@ main {
     .count {
         font-weight: 900;
         font-size: 1rem;
+        color: var(--twitter-black);
 
         .text-muted {
             font-weight: normal;
@@ -1185,11 +1186,11 @@ main {
         gap: 0.33rem;
 
         .is-following {
-            font-size: 0.7rem;
+            font-size: 0.66rem;
             font-weight: 500;
             background-color: var(--twitter-white);
             color: var(--twitter-black);
-            padding-left: 0.25rem;
+            padding-inline: 0.25rem;
             border-radius: 0.5rem;
         }
 

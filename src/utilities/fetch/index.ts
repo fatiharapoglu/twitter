@@ -100,9 +100,7 @@ export const logIn = async (candidate: string) => {
         },
         body: candidate,
     });
-    const json = await response.json();
-    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
-    return json;
+    return response.json();
 };
 
 export const logInAsTest = async () => {
@@ -129,9 +127,7 @@ export const createUser = async (newUser: string) => {
         },
         body: newUser,
     });
-    const json = await response.json();
-    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
-    return json;
+    return response.json();
 };
 
 export const getUser = async (username: string) => {
@@ -153,9 +149,7 @@ export const editUser = async (updatedUser: string, username: string) => {
         },
         body: updatedUser,
     });
-    const json = await response.json();
-    if (!json.success) throw new Error(json.message ? json.message : "Something went wrong.");
-    return json;
+    return response.json();
 };
 
 export const updateTweetLikes = async (tweetId: string, tweetAuthor: string, tokenOwnerId: string, isLiked: boolean) => {

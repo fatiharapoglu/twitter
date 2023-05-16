@@ -25,13 +25,13 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
     });
 
     const mutation = useMutation({
-        mutationFn: (tokenOwnerId: string) => updateRetweets(tweetId, tweetAuthor, tokenOwnerId, isRetweeted),
+        mutationFn: (variables: any) => updateRetweets(tweetId, tweetAuthor, variables.tokenOwnerId, variables.isRetweeted),
         onMutate: () => {
             setIsButtonDisabled(true);
+            setIsRetweeted(!isRetweeted);
         },
         onSuccess: () => {
             setIsButtonDisabled(false);
-            setIsRetweeted(!isRetweeted);
             queryClient.invalidateQueries({ queryKey: ["tweets"] });
         },
         onError: (error) => console.log(error),
@@ -54,7 +54,12 @@ export default function Retweet({ tweetId, tweetAuthor }: TweetOptionsProps) {
 
         if (isRetweeted !== isRetweetedBy) setIsRetweeted(isRetweetedBy);
 
-        mutation.mutate(tokenOwnerId);
+        const variables = {
+            tokenOwnerId,
+            isRetweeted,
+        };
+
+        mutation.mutate(variables);
     };
 
     useEffect(() => {

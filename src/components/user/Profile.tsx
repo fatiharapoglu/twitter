@@ -202,7 +202,7 @@ export default function Profile({ profile }: { profile: UserProps }) {
                 </Link>
             </nav>
             {isDialogOpen && (
-                <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} fullWidth>
+                <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} fullWidth maxWidth="xs">
                     <DialogTitle className="title">
                         {dialogType === "following" ? "Following" : dialogType === "followers" ? "Followers" : ""}
                     </DialogTitle>

@@ -1,7 +1,8 @@
 "use client";
 
+import { createContext, useEffect, useMemo, useState } from "react";
+import { ThemeProvider, createTheme } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createContext, useEffect, useState } from "react";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -31,9 +32,21 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         }
     }, [theme]);
 
+    const muiTheme = useMemo(
+        () =>
+            createTheme({
+                palette: {
+                    mode: theme === "light" ? "light" : "dark",
+                },
+            }),
+        [theme]
+    );
+
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+            <ThemeProvider theme={muiTheme}>
+                <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+            </ThemeProvider>
         </ThemeContext.Provider>
     );
 }

@@ -64,7 +64,7 @@ export default function Counters({ tweet }: { tweet: TweetProps }) {
                 </div>
             )}
             {isDialogOpen && (
-                <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} fullWidth>
+                <Dialog className="dialog" open={isDialogOpen} onClose={handleDialogClose} fullWidth maxWidth="xs">
                     <DialogTitle className="title">
                         {dialogType === "likes" ? "Liked by" : dialogType === "retweets" ? "Retweeted by" : ""}
                     </DialogTitle>

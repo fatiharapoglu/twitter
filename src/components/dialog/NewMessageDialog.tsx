@@ -75,7 +75,7 @@ export default function NewMessageDialog({ open, handleNewMessageClose, token, r
     });
 
     return (
-        <Dialog className="dialog" open={open} onClose={handleNewMessageClose} fullWidth>
+        <Dialog className="dialog" open={open} onClose={handleNewMessageClose} fullWidth maxWidth="xs">
             <DialogTitle className="title">New Message {recipient ? "to " + recipient.toLowerCase() : ""}</DialogTitle>
             <form className="dialog-form new-message-form" onSubmit={formik.handleSubmit}>
                 <DialogContent>
