@@ -122,8 +122,3 @@
 # Deploy 1.0.0 (May 18, 2023)
 
 -   [x] create changelog md
--   [ ] only verified blue tick user should show in the who to follow section, after deploy
--   [ ] block/unblock feature (optional, maybe in roadmap?)
--   [ ] add hidden/locked profile, deal with temp keyword in search (optional, maybe in roadmap?)
--   [ ] find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render
--   [ ] find a better way of optimistic messages other than faking it, refactor whole messaging system
