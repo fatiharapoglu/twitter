@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar, Menu, MenuItem } from "@mui/material";
-import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaEllipsisH } from "react-icons/fa";
+import { FaHome, FaBell, FaEnvelope, FaUser, FaCog, FaHashtag, FaEllipsisH, FaTwitter } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 
 import NewTweetDialog from "../dialog/NewTweetDialog";
@@ -57,7 +56,7 @@ export default function LeftSidebar() {
             <aside className="left-sidebar">
                 <div className="fixed">
                     <Link href="/explore" className="twitter-icon">
-                        <Image src="/assets/favicon.png" alt="" width={40} height={40} />
+                        <FaTwitter />
                     </Link>
                     <nav>
                         <ul>
@@ -65,7 +64,7 @@ export default function LeftSidebar() {
                                 <li>
                                     <Link href="/home">
                                         <div className={`nav-link ${pathname.startsWith("/home") ? "active" : ""}`}>
-                                            <FaHome /> Home
+                                            <FaHome /> <span className="nav-title">Home</span>
                                         </div>
                                     </Link>
                                 </li>
@@ -73,7 +72,7 @@ export default function LeftSidebar() {
                             <li>
                                 <Link href="/explore">
                                     <div className={`nav-link ${pathname.startsWith("/explore") ? "active" : ""}`}>
-                                        <FaHashtag /> Explore
+                                        <FaHashtag /> <span className="nav-title">Explore</span>
                                     </div>
                                 </Link>
                             </li>
@@ -89,14 +88,14 @@ export default function LeftSidebar() {
                                                 <div className="badge-wrapper">
                                                     <FaBell /> <UnreadNotificationsBadge />
                                                 </div>
-                                                Notifications
+                                                <span className="nav-title">Notifications</span>
                                             </div>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/messages">
                                             <div className={`nav-link ${pathname.startsWith("/messages") ? "active" : ""}`}>
-                                                <FaEnvelope /> Messages
+                                                <FaEnvelope /> <span className="nav-title">Messages</span>
                                             </div>
                                         </Link>
                                     </li>
@@ -107,7 +106,7 @@ export default function LeftSidebar() {
                                                     pathname.startsWith(`/${token.username}`) ? "active" : ""
                                                 }`}
                                             >
-                                                <FaUser /> Profile
+                                                <FaUser /> <span className="nav-title">Profile</span>
                                             </div>
                                         </Link>
                                     </li>
@@ -116,7 +115,7 @@ export default function LeftSidebar() {
                             <li>
                                 <Link href="/settings">
                                     <div className={`nav-link ${pathname.startsWith("/settings") ? "active" : ""}`}>
-                                        <FaCog /> Settings
+                                        <FaCog /> <span className="nav-title">Settings</span>
                                     </div>
                                 </Link>
                             </li>

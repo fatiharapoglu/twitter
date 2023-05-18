@@ -26,6 +26,7 @@
     --twitter-reply-background: #158cd11a;
     --twitter-share: #1da1f2;
     --twitter-share-background: #158cd11a;
+    --twitter-bird: #1da1f2;
 }
 
 [data-theme="dark"] {
@@ -56,11 +57,16 @@
     --twitter-reply-background: #1c455f70;
     --twitter-share: #4179a9;
     --twitter-share-background: #1c455f70;
+    --twitter-bird: #f5f8fa;
 }
 
 a {
     color: inherit;
     text-decoration: none;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
@@ -204,7 +210,6 @@ main {
         width: 100%;
         display: flex;
         flex-direction: column;
-        min-width: 400px;
 
         .btn {
             width: 75%;
@@ -239,12 +244,19 @@ main {
 
     .new-tweet-wrapper {
         position: relative;
-        width: 30vw;
-        min-width: 550px;
         padding: 0.5rem;
+        overflow: hidden;
 
         * {
             border-bottom: none;
+        }
+
+        .input-additions {
+            margin-right: 0.5rem;
+        }
+
+        .emoji-picker {
+            scale: 0.9;
         }
     }
 
@@ -272,7 +284,6 @@ main {
         z-index: 9999;
         color: var(--twitter-white);
         background-color: var(--twitter-light-black);
-        font-size: x-large;
         transition: all 0.2s ease-in-out;
 
         &:hover {
@@ -292,8 +303,8 @@ main {
 .left-sidebar {
     position: relative;
     margin-left: auto;
-    padding: 0 5vw;
-    min-width: 190px;
+    min-width: 230px;
+    padding-left: 1rem;
     border-right: 1px solid var(--border-color);
     height: 100%;
 
@@ -305,11 +316,14 @@ main {
 
         .twitter-icon {
             padding-top: 1rem;
+            width: fit-content;
+            color: var(--twitter-bird);
 
-            & > img {
+            & > svg {
                 border-radius: 5rem;
-                padding: 0.25rem;
+                padding: 0.5rem;
                 transition: background-color 0.2s ease-in-out;
+                font-size: 30px;
 
                 &:hover {
                     background-color: var(--hover);
@@ -501,7 +515,7 @@ main {
 
                     .user-name {
                         font-weight: bold;
-                        font-size: 15px;
+                        font-size: 0.93rem;
                         overflow-wrap: anywhere;
 
                         &:hover {
@@ -533,7 +547,7 @@ main {
         }
 
         p {
-            font-size: smaller;
+            font-size: 0.8rem;
         }
 
         .btn {
@@ -565,7 +579,7 @@ main {
         }
 
         p {
-            font-size: smaller;
+            font-size: 0.8rem;
             line-height: 1.25;
         }
 
@@ -585,7 +599,7 @@ main {
     }
 
     .legal {
-        font-size: smaller;
+        font-size: 0.8rem;
         color: var(--twitter-muted);
 
         .legal-links {
@@ -631,7 +645,7 @@ main {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: var(--twitter-blue);
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
@@ -671,7 +685,7 @@ main {
         margin: 0 0.5rem;
         color: var(--const-white);
         background-color: var(--twitter-blue);
-        font-size: small;
+        font-size: 0.93rem;
         border: 1px solid var(--border-color);
         padding: 0.5rem 1.5rem;
 
@@ -692,7 +706,7 @@ main {
 
     h1 {
         font-weight: bold;
-        font-size: x-large;
+        font-size: 1.5rem;
         padding-bottom: 0.25rem;
     }
 }
@@ -708,7 +722,7 @@ main {
         padding-left: 1rem;
 
         .input textarea {
-            font-size: 20px;
+            font-size: 1.25rem;
             padding: 0.25rem 0;
         }
 
@@ -747,7 +761,7 @@ main {
         .tweet-text {
             overflow-wrap: anywhere;
             line-height: normal;
-            font-size: 14px;
+            font-size: 0.875rem;
             font-family: var(--font-poppins);
             white-space: pre-line;
         }
@@ -864,7 +878,7 @@ main {
 
         .tweet-author {
             font-weight: bold;
-            font-size: 15px;
+            font-size: 0.93rem;
             display: flex;
             align-items: center;
         }
@@ -873,6 +887,7 @@ main {
             font-size: 0.75rem;
             opacity: 0.75;
             cursor: pointer;
+            white-space: nowrap;
         }
     }
 }
@@ -1010,11 +1025,11 @@ main {
 
             .user-name {
                 font-weight: bold;
-                font-size: 15px;
+                font-size: 0.93rem;
             }
 
             .user-desc {
-                font-size: 14px;
+                font-size: 0.875rem;
                 font-family: var(--font-poppins);
                 line-height: normal;
                 overflow-wrap: anywhere;
@@ -1094,7 +1109,7 @@ main {
                 right: 1rem;
                 top: -4.5rem;
                 font-weight: 600;
-                font-size: 15px;
+                font-size: 0.93rem;
 
                 .new-message {
                     border: 1px solid var(--twitter-light-gray);
@@ -1121,13 +1136,13 @@ main {
                 }
 
                 h1 {
-                    font-size: larger;
+                    font-size: 1.2rem;
                     font-weight: 900;
                 }
             }
 
             .profile-info-desc {
-                font-size: 15px;
+                font-size: 0.93rem;
                 line-height: normal;
                 overflow-wrap: anywhere;
                 font-family: var(--font-poppins);
@@ -1193,7 +1208,7 @@ main {
         }
 
         h1 {
-            font-size: larger;
+            font-size: 1.2rem;
             font-weight: 900;
         }
     }
@@ -1304,9 +1319,8 @@ main {
 
 .layout {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 600px) 1fr;
-    grid-template-rows: auto;
-    min-height: 100vh;
+    grid-template-columns: 1fr minmax(360px, 600px) 1fr;
+    height: 100vh;
     position: relative;
 }
 
@@ -1333,7 +1347,7 @@ main {
 }
 
 .text-muted {
-    font-size: 15px;
+    font-size: 0.93rem;
     color: var(--twitter-muted);
 }
 
@@ -1461,7 +1475,7 @@ button.icon-hoverable {
     }
 
     p {
-        font-size: x-large;
+        font-size: 1.25rem;
         padding-top: 2rem;
         font-family: cursive;
     }
@@ -1578,7 +1592,7 @@ button.icon-hoverable {
         gap: 1rem;
 
         h1 {
-            font-size: x-large;
+            font-size: 1.2rem;
         }
 
         p {
@@ -1596,7 +1610,7 @@ button.icon-hoverable {
         gap: 1rem;
 
         h1 {
-            font-size: x-large;
+            font-size: 1.2rem;
             display: flex;
             gap: 0.5rem;
         }
@@ -1680,7 +1694,7 @@ button.icon-hoverable {
 
     svg {
         color: var(--twitter-blue);
-        font-size: x-large;
+        font-size: 1.2rem;
         transition: all 0.5s ease-in-out;
 
         &:hover {
@@ -1737,7 +1751,7 @@ button.icon-hoverable {
     .btn {
         width: 20%;
         position: absolute;
-        top: 16.25rem;
+        top: 16rem;
         right: 2rem;
     }
 
@@ -1749,8 +1763,6 @@ button.icon-hoverable {
 
 .messages-page {
     .page-name {
-        position: relative;
-
         .new-message {
             position: absolute;
             right: 1rem;
@@ -1766,6 +1778,7 @@ button.icon-hoverable {
 
         .new-message-box {
             padding: 0.75rem;
+            position: relative;
 
             .new-message-form {
                 .input {
@@ -1790,10 +1803,11 @@ button.icon-hoverable {
 
             .input-additions {
                 border-top: none;
-                transform: translate(455px, -65px);
                 display: inline-flex;
                 flex-direction: row-reverse;
                 position: absolute;
+                top: 0;
+                right: 1rem;
             }
 
             .emoji-picker {
@@ -1891,11 +1905,11 @@ button.icon-hoverable {
 
             .last-message {
                 white-space: nowrap;
-                width: 350px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-family: var(--font-poppins);
                 line-height: 1.5;
+                max-width: 200px;
             }
 
             .user-section {
@@ -1923,6 +1937,7 @@ button.icon-hoverable {
                     font-size: 0.75rem;
                     opacity: 0.75;
                     cursor: pointer;
+                    white-space: nowrap;
                 }
             }
         }
@@ -1947,7 +1962,7 @@ button.icon-hoverable {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: x-large;
+            font-size: 1.5rem;
 
             &.welcome {
                 color: var(--twitter-orange);
@@ -2020,7 +2035,7 @@ button.icon-hoverable {
         border-radius: 5rem;
         min-width: 10px;
         aspect-ratio: 1;
-        font-size: 10px;
+        font-size: 0.66rem;
         font-weight: 800;
         color: var(--const-white);
         display: flex;
@@ -2035,7 +2050,7 @@ button.icon-hoverable {
     .label {
         display: inline;
         vertical-align: middle;
-        font-size: smaller;
+        font-size: 0.7rem;
         color: var(--twitter-muted);
     }
 }
@@ -2065,5 +2080,115 @@ button.icon-hoverable {
     100% {
         transform: scale(5);
         opacity: 1;
+    }
+}
+
+@media (width <= 1300px) {
+    .layout {
+        grid-template-columns: auto minmax(360px, 600px) 1fr;
+    }
+
+    .left-sidebar {
+        min-width: 190px;
+    }
+}
+
+@media (width <= 1150px) {
+    .layout {
+        grid-template-columns: auto minmax(360px, 1fr) 330px;
+    }
+
+    .left-sidebar {
+        min-width: 60px;
+
+        .fixed {
+            .nav-title {
+                display: none;
+            }
+
+            nav ul {
+                gap: 1rem;
+
+                li {
+                    .nav-link {
+                        margin-left: 0.5rem;
+                        font-size: 30px;
+                        padding: 0;
+                        margin-bottom: 0.75rem;
+
+                        svg {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+
+            .btn.btn-tweet {
+                font-size: 0.75rem;
+                margin-left: -0.1rem;
+                padding: 0.5rem;
+            }
+
+            .side-profile {
+                max-width: 45px;
+                scale: 0.75;
+                padding: 0.25rem;
+            }
+        }
+    }
+}
+
+@media (width <= 850px) {
+    html {
+        font-size: 14px;
+    }
+
+    .new-message-form.dialog-form .btn {
+        top: 16.75rem;
+    }
+
+    .layout {
+        grid-template-columns: auto minmax(360px, 1fr) 0;
+    }
+}
+
+@media (width <= 650px) {
+    html {
+        font-size: 13px;
+    }
+
+    .new-message-form.dialog-form .btn {
+        top: 17.5rem;
+    }
+
+    .profile-layout .profile .profile-info {
+        margin-top: 7.5rem;
+    }
+}
+
+@media (width <= 550px) {
+    html {
+        font-size: 12px;
+    }
+
+    .dropzone {
+        margin-right: -6rem;
+    }
+
+    .emoji-picker {
+        scale: 0.75 !important;
+        transform: translate(-30px, -60px) !important;
+    }
+
+    .dialog .new-tweet-wrapper .input-additions {
+        max-width: 280px;
+    }
+
+    .profile-layout .profile .profile-info {
+        margin-top: 7.5rem;
+    }
+
+    .right-sidebar {
+        display: none;
     }
 }

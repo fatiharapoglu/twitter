@@ -16,7 +16,7 @@ export default function NewTweetDialog({ open, handleNewTweetClose, token }: New
     }, [isSubmitted]);
 
     return (
-        <Dialog className="dialog" open={open} onClose={handleNewTweetClose}>
+        <Dialog className="dialog" open={open} onClose={handleNewTweetClose} maxWidth={"xs"} fullWidth>
             <div className="new-tweet-wrapper">
                 <NewTweet token={token} handleSubmit={handleSubmit} />
             </div>
