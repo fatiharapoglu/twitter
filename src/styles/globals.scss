@@ -681,6 +681,10 @@ main {
     background-color: var(--twitter-blue);
     opacity: 0.9;
 
+    .footer-div {
+        padding-left: 1rem;
+    }
+
     .btn {
         margin: 0 0.5rem;
         color: var(--const-white);
@@ -777,6 +781,7 @@ main {
                 object-fit: cover;
                 display: block;
                 cursor: pointer;
+                max-width: 100%;
             }
         }
 
@@ -2110,11 +2115,12 @@ button.icon-hoverable {
                 gap: 1rem;
 
                 li {
+                    margin: auto;
+
                     .nav-link {
-                        margin-left: 0.5rem;
-                        font-size: 30px;
+                        font-size: 20px;
                         padding: 0;
-                        margin-bottom: 0.75rem;
+                        margin-bottom: 1.25rem;
 
                         svg {
                             padding: 0;
@@ -2150,6 +2156,23 @@ button.icon-hoverable {
     .layout {
         grid-template-columns: auto minmax(360px, 1fr) 0;
     }
+
+    .tweet .tweet-main .tweet-image img {
+        max-height: 375px;
+    }
+
+    .root {
+        grid-template-columns: 100%;
+
+        .root-left {
+            display: none;
+        }
+
+        .root-right {
+            margin: auto;
+            padding: 2rem;
+        }
+    }
 }
 
 @media (width <= 650px) {
@@ -2163,6 +2186,14 @@ button.icon-hoverable {
 
     .profile-layout .profile .profile-info {
         margin-top: 7.5rem;
+    }
+
+    .footer {
+        gap: 0;
+    }
+
+    .tweet .tweet-main .tweet-image img {
+        max-height: 300px;
     }
 }
 
@@ -2190,5 +2221,9 @@ button.icon-hoverable {
 
     .right-sidebar {
         display: none;
+    }
+
+    .tweet .tweet-main .tweet-image img {
+        max-height: 200px;
     }
 }

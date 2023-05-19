@@ -13,7 +13,7 @@ export default function Footer() {
     if (!token)
         return (
             <footer className="footer">
-                <div>
+                <div className="footer-div">
                     <h1>Don’t miss what’s happening</h1>
                     <p>People on Twitter are the first to know.</p>
                 </div>

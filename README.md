@@ -59,7 +59,7 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [Verc
 
 ### ⮕ You can access the complete progression of development from [changelog.md file](/CHANGELOG.md).
 
--   [ ] Only verified blue tick user should show in the who to follow section.
+-   [x] Only verified blue tick user should show in the who to follow section.
 -   [ ] Add block/unblock feature.
 -   [ ] Add hidden/locked profile.
 -   [ ] Find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render.
@@ -68,7 +68,12 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [Verc
 
 ## How It Looks
 
-![ss](ss1.jpg)
+![ss](./public/screenshots/ss2.png)
+![ss](./public/screenshots/ss5.png)
+![ss](./public/screenshots/ss1.png)
+![ss](./public/screenshots/ss6.png)
+![ss](./public/screenshots/ss3.png)
+![ss](./public/screenshots/ss4.png)
 
 ## Contact
 
