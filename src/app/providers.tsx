@@ -29,6 +29,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         const storedTheme = localStorage.getItem("theme");
         if (storedTheme) {
             setTheme(storedTheme);
+        } else {
+            setTheme("light");
         }
     }, []);
 

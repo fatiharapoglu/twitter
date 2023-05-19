@@ -50,7 +50,7 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [Verc
 -   [React Dropzone](https://react-dropzone.js.org/) drag-and-drop file upload component for React.
 -   [react-icons](https://react-icons.github.io/react-icons/) collection of customizable icons.
 -   [react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component) for infinite scrolling.
--   [Jose](https://www.npmjs.com/package/react-infinite-scroll-component) for handling JWTs.
+-   [Jose](https://www.npmjs.com/package/jose) for handling JWTs.
 -   [Eslint](https://eslint.org/) for linting.
 -   [Prettier](https://prettier.io/) for formatting.
 -   [Sass](https://sass-lang.com/) for SCSS
