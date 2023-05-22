@@ -66,6 +66,10 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [Verc
 -   [ ] Find a better way of optimistic messages other than faking it, refactor whole messaging system.
 -   [ ] Add Turkish language support.
 
+## Acknowledgements
+
+-   [Google Fonts](https://fonts.google.com/) (Poppins and Roboto fonts provider)
+
 ## How It Looks
 
 ![ss](./public/screenshots/ss2.png)
