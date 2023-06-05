@@ -2,7 +2,7 @@
 
 Introducing a comprehensive clone of [Twitter](https://twitter.com), with a familiar interface and a range of essential features.
 
-Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [Vercel](https://vercel.com/).
+Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Vercel**](https://vercel.com/).
 
 ## ⮕ [Live preview](https://twitter-next13.vercel.app/)
 
