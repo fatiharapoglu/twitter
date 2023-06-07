@@ -8,7 +8,7 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Ve
 
 ---
 
-### Secret key for Twitter Blue: `thanksforcaring`
+`Secret key for Twitter Blue: thanksforcaring`
 
 ---
 
@@ -82,6 +82,8 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Ve
 ## Contact
 
 ⮕ [LinkedIn](https://www.linkedin.com/in/fatiharapoglu/)
+
+⮕ [Portfolio](https://fatiharapoglu.dev)
 
 ## License
 
