@@ -6,6 +6,8 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Ve
 
 ## ⮕ [Live preview](https://twitter-next13.vercel.app/)
 
+### ➡ FYI: Supabase updated their DB settings recently (January 2024), so environment variables from examples may look different when you try it out.
+
 ---
 
 `Secret key for Twitter Blue: thanksforcaring`
