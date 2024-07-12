@@ -67,6 +67,8 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Ve
 -   [ ] Find out how to infinite load for every page / extract usememo to the different component? because can't conditionaly render.
 -   [ ] Find a better way of optimistic messages other than faking it, refactor whole messaging system.
 -   [ ] Add Turkish language support.
+-   [ ] Multiple test accounts when onclick test login, test account goes to random.
+-   [ ] Email / sms verification just for the fun.
 
 ## Acknowledgements
 
