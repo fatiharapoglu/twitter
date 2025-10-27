@@ -87,7 +87,7 @@ Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Ve
 
 ⮕ [LinkedIn](https://www.linkedin.com/in/fatiharapoglu/)
 
-⮕ [Portfolio](https://fatiharapoglu.dev)
+⮕ [Portfolio](https://fatiharapoglu.com.tr)
 
 ## License
 

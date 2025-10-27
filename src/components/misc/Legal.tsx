@@ -31,7 +31,7 @@ export default function Legal() {
                 </li>
             </ul>
             <div className="copy">
-                <a href="https://fatiharapoglu.dev" target="_blank">
+                <a href="https://fatiharapoglu.com.tr" target="_blank">
                     &copy; 2023 | Fatih Arapoğlu
                 </a>
                 <a href="https://github.com/fatiharapoglu" target="_blank">
