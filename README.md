@@ -4,7 +4,7 @@ Introducing a comprehensive clone of [Twitter](https://twitter.com), with a fami
 
 Created with **Next.js 13+**, **Supabase** and **PostgreSQL**. Deployed on [**Vercel**](https://vercel.com/).
 
-## ⮕ [Live preview](https://twitter-next13.vercel.app/)
+## ⮕ [Live preview](https://twitter.fatiharapoglu.com.tr)
 
 ### ➡ FYI: Supabase updated their DB settings recently (January 2024), so environment variables from examples may look different when you try it out.
 
