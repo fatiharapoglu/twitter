@@ -122,3 +122,6 @@
 # Deploy 1.0.0 (May 18, 2023)
 
 -   [x] create changelog md
+-   [x] update db settings
+-   [x] update broken dependencies
+-   [x] change host & dns
